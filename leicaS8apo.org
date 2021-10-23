@@ -1,0 +1,766 @@
+# -*- Mode:Org; Coding:utf-8; fill-column:158 -*-
+#+TITLE:       Leica S4E & S8APO
+#+AUTHOR:      Mitch Richling
+#+EMAIL:       http://www.mitchr.me/
+#+DESCRIPTION: Leica S8 API
+#+KEYWORDS:    Leica S8 API
+#+LANGUAGE:    en
+#+OPTIONS:     num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t skip:nil d:nil todo:t pri:nil H:5 p:t author:t html-scripts:nil
+#+SEQ_TODO:    TODO:NEW(t)                         TODO:WORK(w)    TODO:HOLD(h)    | TODO:FUTURE(f)   TODO:DONE(d)    TODO:CANCELED(c)
+#+HTML_HEAD: <style>body { width: 95%; margin: 2% auto; font-size: 18px; line-height: 1.4em; font-family: Georgia, serif; color: black; background-color: white; }</style>
+#+HTML_HEAD: <style>body { min-width: 500px; max-width: 1024px; }</style>
+#+HTML_HEAD: <style>h1,h2,h3,h4,h5,h6 { color: #A5573E; line-height: 1em; font-family: Helvetica, sans-serif; }</style>
+#+HTML_HEAD: <style>h1,h2,h3 { line-height: 1.4em; }</style>
+#+HTML_HEAD: <style>h1.title { font-size: 3em; }</style>
+#+HTML_HEAD: <style>h4,h5,h6 { font-size: 1em; }</style>
+#+HTML_HEAD: <style>.org-src-container { border: 1px solid #ccc; box-shadow: 3px 3px 3px #eee; font-family: Lucida Console, monospace; font-size: 80%; margin: 0px; padding: 0px 0px; position: relative; }</style>
+#+HTML_HEAD: <style>.org-src-container>pre { line-height: 1.2em; padding-top: 1.5em; margin: 0.5em; background-color: #404040; color: white; overflow: auto; }</style>
+#+HTML_HEAD: <style>.org-src-container>pre:before { display: block; position: absolute; background-color: #b3b3b3; top: 0; right: 0; padding: 0 0.2em 0 0.4em; border-bottom-left-radius: 8px; border: 0; color: white; font-size: 100%; font-family: Helvetica, sans-serif;}</style>
+#+HTML_HEAD: <style>pre.example { white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -o-pre-wrap; font-family: Lucida Console, monospace; font-size: 80%; background: #404040; color: white; display: block; padding: 0em; border: 2px solid black; }</style>
+#+HTML_LINK_HOME: https://www.mitchr.me/
+#+HTML_LINK_UP: https://richmit.github.io/microscope/
+#+EXPORT_FILE_NAME: docs/hp42s-meta
+
+#+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
+|          <r> | <l>                                          |
+|    *Author:* | /{{{author}}}/                               |
+|   *Updated:* | /{{{modification-time(%Y-%m-%d %H:%M:%S)}}}/ |
+#+ATTR_HTML: :align center
+Copyright {{{time(%Y)}}} Mitch Richling. All rights reserved.
+
+#+TOC: headlines 5
+
+#        #         #         #         #         #         #         #         #         #         #         #         #         #         #         #         #         #
+#   00   #    10   #    20   #    30   #    40   #    50   #    60   #    70   #    80   #    90   #   100   #   110   #   120   #   130   #   140   #   150   #   160   #
+# 234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
+#        #         #         #         #         #         #         #         #         #         #         #         #         #         #         #         #         #
+#        #         #         #         #         #         #         #         #         #         #         #         #         #         #         #         #         #
+
+* Symbols & Formulas
+** Variables
+:PROPERTIES:
+:CUSTOM_ID: variables
+:END:
+
+#+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
+| Variable     | Description                            | Units     | Notes                                            |
+|--------------+----------------------------------------+-----------+--------------------------------------------------|
+| $S_{MAG}$    | Magnification At Sensor                | Ratio     |                                                  |
+| $S_{FOVh}$   | Sensor Horizontal Field Of View        | mm        |                                                  |
+| $S_{FOVv}$   | Sensor Vertical Field Of View          | mm        |                                                  |
+| $I_{SCLh}$   | Image Horizontal Scale                 | Pixel/mm  |                                                  |
+| $I_{SCLv}$   | Image Vertical Scale                   | Pixel/mm  |                                                  |
+| $S_w$        | Sensor Physical Width                  | mm        |                                                  |
+| $S_h$        | Sensor Physical Height                 | mm        |                                                  |
+| $S_d$        | Sensor Physical Diagonal               | mm        |                                                  |
+| $S_A$        | Sensor Physical Area                   | square mm |                                                  |
+| $I_w$        | Image/Sensor Pixel Width               | pixel     |                                                  |
+| $I_h$        | Image/Sensor Pixel Height              | pixel     |                                                  |
+| $I_{MP}$     | Total number of Image/Sensor Pixels    | Megapixel |                                                  |
+| $L_s$        | Length At Sensor                       | mm        |                                                  |
+| $L_o$        | Object Length                          | mm        |                                                  |
+| $A$          | Auxiliary                              | Ratio     |                                                  |
+| $Z$          | Zoom                                   | Ratio     |                                                  |
+| $O_c$        | Camera Objective                       | Ratio     | camera relay lens, camera port lens              |
+| $O_d$        | Camera Objective Image Circle Diameter | mm        |                                                  |
+| $P_w$        | Sensor Pixel Width                     | mm        |                                                  |
+| $P_h$        | Sensor Pixel Height                    | mm        |                                                  |
+| $P_{AR}$     | Pixel Aspect Ratio                     | Ratio     |                                                  |
+| $V_{FOV}$    | Visual Field Of View                   | mm        |                                                  |
+| $E_{FN}$     | Eyepiece Field Number                  | mm        |                                                  |
+| $E_{MAG}$    | Eyepiece magnification                 | Ratio     |                                                  |
+| $V_{MAG}$    | Visual Magnification                   | Ratio     |                                                  |
+| $R_c$        | Reticle Unit Conversion Factor         | mm/Ru     | $1\,\mathrm{Ru}=1\,\mathrm{mmu}$ @ $Z=1$ & $A=1$ |
+| $R_s$        | Reticle Scale                          | mm/Ru     |                                                  |
+| $L_R$        | Length in Reticle Units                | Ru        |                                                  |
+| $I_{AR}$     | Image Aspect Ratio                     | Ratio     |                                                  |
+| $P_{IJSPAR}$ | ImageJ Scale Pixel Aspect Ratio        | Ratio     |                                                  |
+| $W$          | Working Distance                       | mm        |                                                  |
+** Formulas
+:PROPERTIES:
+:CUSTOM_ID: formulas
+:END:
+
+ - Image/Sensor magnification            :: $$S_{MAG} = \frac{L_s}{L_o} = A \cdot Z \cdot O_c$$
+ - Image/Sensor Horizontal Field Of View :: $$S_{FOVh} = \frac{\min(O_d, S_w)}{S_{MAG}}$$
+ - Image/Sensor Vertical Field Of View   :: $$S_{FOVv} = \frac{\min(O_d, S_h)}{S_{MAG}}$$
+ - Image/Sensor Horizontal Scale         :: $$I_{SCLh} = \frac{S_{MAG} \cdot I_w}{S_w} = \frac{S_{MAG}}{P_w}$$
+ - Image/Sensor Vertical Scale           :: $$I_{SCLv} = \frac{S_{MAG} \cdot I_h}{S_h} = \frac{S_{MAG}}{P_h}$$
+ - Visual magnification                  :: $$V_{MAG} = A \cdot Z \cdot E_{MAG}$$
+ - Visual Field Of View                  :: $$V_{FOV} = \frac{E_{FN}}{A \cdot Z}$$
+ - Reticle Scale                         :: $$\frac{R_c}{Z \cdot A}$$
+ - Reticle Length Measurements           :: $$\mathrm{Length}=R_s \cdot L_R$$
+ - Sensor Diagonal length                :: $$S_d = \sqrt{S_w^2 + S_h^2}$$
+ - Sensor Pixel Width                    :: $$P_w = \frac{S_w}{I_w}$$
+ - Sensor Pixel Height                   :: $$P_h = \frac{S_h}{I_h}$$
+ - Pixel Aspect Ratio                    :: $$P_{AR} = \frac{P_w}{P_h} = \frac{S_w \cdot I_h}{I_w \cdot S_h}$$
+ - Image Aspect Ratio                    :: $$I_{AR} = \frac{I_w}{I_h}$$
+ - ImageJ Scale Pixel Aspect Ratio       :: $$P_{IJSPAR} = \frac{1}{P_{AR}}$$
+
+* Local Documentation                                              :noexport:
+:PROPERTIES:
+:CUSTOM_ID: documentation
+:END:
+
+ - /Users/richmit/Documents/Doc2/gadgets/leica_microscopes/cameras
+ - /Users/richmit/Documents/Doc2/gadgets/leica_microscopes/S4-S6-S8APO
+ - /Users/richmit/Documents/Doc2/gadgets/leica_microscopes/S8APO
+ - /Users/richmit/Documents/Doc2/gadgets/leica_microscopes/S9-S8APO
+ - /Users/richmit/Documents/Doc2/gadgets/leica_microscopes/whitepapers
+
+* S4E
+:PROPERTIES:
+:CUSTOM_ID: s4e
+:END:
+
+** Magnification and FOV at Various Zoom Levels With 10x/23 Eyepiece
+:PROPERTIES:
+:CUSTOM_ID: s4-mag-fov
+:END:
+
+#+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
+|   |      | $A=1.0\times$ | $W=110\,\mathrm{mm}$ | $A=0.5\times$ | $W=200\,\mathrm{mm}$ | $A=1.6\times$ | $W=55\,\mathrm{mm}$ |
+|   |  $Z$ |     $E_{MAG}$ |            $V_{FOV}$ |     $E_{MAG}$ |            $V_{FOV}$ |     $E_{MAG}$ |           $V_{FOV}$ |
+|---+------+---------------+----------------------+---------------+----------------------+---------------+---------------------|
+| / |      |            23 |                   10 |               |                      |               |                     |
+| ^ |      |           EFN |                 EMAG |               |                      |               |                     |
+| / |      |             1 |                      |           0.5 |                      |           1.6 |                     |
+| / |      |             < |                    > |             < |                    > |             < |                   > |
+|   | 0.63 |          6.30 |                36.51 |          3.15 |                73.02 |         10.08 |               22.82 |
+|   | 0.80 |          8.00 |                28.75 |          4.00 |                57.50 |         12.80 |               17.97 |
+|   | 1.00 |         10.00 |                23.00 |          5.00 |                46.00 |         16.00 |               14.38 |
+|   | 1.25 |         12.50 |                18.40 |          6.25 |                36.80 |         20.00 |               11.50 |
+|   | 1.60 |         16.00 |                14.38 |          8.00 |                28.75 |         25.60 |                8.98 |
+|   | 2.00 |         20.00 |                11.50 |         10.00 |                23.00 |         32.00 |                7.19 |
+|   | 2.50 |         25.00 |                 9.20 |         12.50 |                18.40 |         40.00 |                5.75 |
+|   | 3.00 |         30.00 |                 7.67 |         15.00 |                15.33 |         48.00 |                4.79 |
+#+TBLFM: @7$3..@>$3=$EMAG*$2*@5;%.2f
+#+TBLFM: @7$4..@>$4=$EFN/$2/@5$-1;%.2f
+#+TBLFM: @7$5..@>$5=$EMAG*$2*@5;%.2f
+#+TBLFM: @7$6..@>$6=$EFN/$2/@5$-1;%.2f
+#+TBLFM: @7$7..@>$7=$EMAG*$2*@5;%.2f
+#+TBLFM: @7$8..@>$8=$EFN/$2/@5$-1;%.2f
+
+** Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece
+:PROPERTIES:
+:CUSTOM_ID: s4-ret-scale
+:END:
+
+#+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
+| $A$ |  $Z$ | $E_{MAG}$ | $E_{FN}$ |   $R_s$ | $V_{MAG}$ | $V_{FOV}$ |
+|-----+------+-----------+----------+---------+-----------+-----------|
+|   / |      |         < |        > |       < |           |         > |
+| 0.5 | 0.63 |        10 |       23 | 3.17460 |      3.15 |     73.02 |
+| 0.5 | 3.00 |        10 |       23 | 0.66667 |     15.00 |     15.33 |
+|-----+------+-----------+----------+---------+-----------+-----------|
+| 1.0 | 0.63 |        10 |       23 | 1.58730 |      6.30 |     36.51 |
+| 1.0 | 3.00 |        10 |       23 | 0.33333 |     30.00 |      7.67 |
+|-----+------+-----------+----------+---------+-----------+-----------|
+| 1.6 | 0.63 |        10 |       23 | 0.99206 |     10.08 |     22.82 |
+| 1.6 | 3.00 |        10 |       23 | 0.20833 |     48.00 |      4.79 |
+#+TBLFM: $5=1/($1*$2);%.5f
+#+TBLFM: $7=$4/($1*$2);%.2f
+#+TBLFM: $6=$1*$2*$3;%.2f
+
+* S8APO
+:PROPERTIES:
+:CUSTOM_ID: s8apo
+:END:
+
+** Magnification and FOV at Various Zoom Levels With 10x/23 Eyepiece
+:PROPERTIES:
+:CUSTOM_ID: s8-mag-fov
+:END:
+
+#+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
+|   |      | $A=1.0\times$ | $W=75\,\mathrm{mm}$ | $A=0.63\times$ | $W=101\,\mathrm{mm}$ | $A=2.0\times$ | $W=25\,\mathrm{mm}$ |
+|   |  $Z$ |     $V_{MAG}$ |           $V_{FOV}$ |      $V_{MAG}$ |            $V_{FOV}$ |     $V_{MAG}$ |           $V_{FOV}$ |
+|---+------+---------------+---------------------+----------------+----------------------+---------------+---------------------|
+| / |      |            23 |                  10 |                |                      |               |                     |
+| ^ |      |           EFN |                EMAG |                |                      |               |                     |
+| / |      |           1.0 |                     |           0.63 |                      |           2.0 |                     |
+| / |      |             < |                   > |              < |                    > |             < |                   > |
+|   |  1.0 |          10.0 |               23.00 |           6.30 |                36.51 |            20 |               11.50 |
+|   | 1.25 |          12.5 |               18.40 |           7.88 |                29.21 |            25 |                9.20 |
+|   |  1.6 |          16.0 |               14.38 |          10.08 |                22.82 |            32 |                7.19 |
+|   |  2.0 |          20.0 |               11.50 |          12.60 |                18.25 |            40 |                5.75 |
+|   |  2.5 |          25.0 |                9.20 |          15.75 |                14.60 |            50 |                4.60 |
+|   |  3.2 |          32.0 |                7.19 |          20.16 |                11.41 |            64 |                3.59 |
+|   |  4.0 |          40.0 |                5.75 |          25.20 |                 9.13 |            80 |                2.88 |
+|   |  5.0 |          50.0 |                4.60 |          31.50 |                 7.30 |           100 |                2.30 |
+|   |  6.3 |          63.0 |                3.65 |          39.69 |                 5.79 |           126 |                1.83 |
+|   |  8.0 |          80.0 |                2.88 |          50.40 |                 4.56 |           160 |                1.44 |
+#+TBLFM: @7$3..@>$3=$EMAG*$2*@5;%.1f
+#+TBLFM: @7$4..@>$4=$EFN/$2/@5$-1;%.2f
+#+TBLFM: @7$5..@>$5=$EMAG*$2*@5;%.2f
+#+TBLFM: @7$6..@>$6=$EFN/$2/@5$-1;%.2f
+#+TBLFM: @7$7..@>$7=$EMAG*$2*@5;%.0f
+#+TBLFM: @7$8..@>$8=$EFN/$2/@5$-1;%.2f
+
+** Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece
+:PROPERTIES:
+:CUSTOM_ID: s8-ret-scale
+:END:
+
+#+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
+|  $A$ | $Z$ | $E_{MAG}$ | $E_{FN}$ |   $R_s$ | $V_{MAG}$ | $V_{FOV}$ |
+|------+-----+-----------+----------+---------+-----------+-----------|
+|    / |     |           |          |       < |           |         > |
+| 0.63 |   1 |        10 |       23 | 1.58730 |      6.30 |     36.51 |
+| 0.63 |   8 |        10 |       23 | 0.19841 |     50.40 |      4.56 |
+|------+-----+-----------+----------+---------+-----------+-----------|
+| 1.00 |   1 |        10 |       23 | 1.00000 |     10.00 |     23.00 |
+| 1.00 |   8 |        10 |       23 | 0.12500 |     80.00 |      2.88 |
+|------+-----+-----------+----------+---------+-----------+-----------|
+| 2.00 |   1 |        10 |       23 | 0.50000 |     20.00 |     11.50 |
+| 2.00 |   8 |        10 |       23 | 0.06250 |    160.00 |      1.44 |
+#+TBLFM: $5=1/($1*$2);%.5f
+#+TBLFM: $6=$1*$2*$3;%.2f
+#+TBLFM: $7=$4/($1*$2);%.2f
+
+** Numerical Aperture With No Auxiliary Lens
+:PROPERTIES:
+:CUSTOM_ID: s8-na
+:END:
+
+#+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
+| Zoom |    NA |
+|------+-------|
+|  1.0 | 0.026 |
+| 1.25 | 0.031 |
+|  1.6 | 0.038 |
+|  2.0 | 0.046 |
+|  2.5 | 0.056 |
+|  3.2 | 0.069 |
+|  4.0 | 0.081 |
+|  5.0 | 0.093 |
+|  6.3 | 0.100 |
+|  8.0 | 0.100 |
+
+** Leica C-Mount Video Objective Data
+:PROPERTIES:
+:CUSTOM_ID: leica-vid-obj
+:END:
+
+#+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
+| Leica Part # | Leica Part Name             | $O_d$ | Notes           | Ref  |
+|--------------+-----------------------------+-------+-----------------+------|
+|          <r> | <l>                         |   <r> | <l>             | <c>  |
+|            / | <>                          |       |                 |      |
+|     10445928 | Leica Video Objective 0.32x |  6.72 | Estimated $O_d$ | co32 |
+|     10450528 | Leica Video Objective 0.5x  | 10.50 | Measured $O_d$  | co50 |
+|     10447367 | Leica Video Objective 0.63x | 13.23 | Estimated $O_d$ | co63 |
+|     10446307 | Leica Video Objective 0.8x  | 16.80 | Estimated $O_d$ | co80 |
+
+** Attaching Cameras
+
+The Leica documentation suggests using a chain of adapters for attaching a generic digital camera. The first part of the chain is one of the following three
+parts: 10447436 1.6× DSLR tube, 10446175 2.5× DSLR tube, or 10445930 1.0× video/photo objective.  Next will be one or more adapters for your camera.  The
+result can be a tower of adapters taller than your microscope!  For cameras with large sensors, this really is the only way to go.  An excellent write-up
+for this approach may be found 
+[[http://www.microscopy-uk.org.uk/mag/indexmag.html?http://www.microscopy-uk.org.uk/mag/artmay16/dw-stereo-photo.html][here]].  A good discussion on
+[[https://www.microbehunter.com/][MicrobeHunter.com]] may found [[https://www.microbehunter.com/microscopy-forum/viewtopic.php?t=8527][here]].
+      
+For cameras with Micro Four Thirds and smaller sensors, a simpler approach is connect your camera via a c-mount adapter to one of Leica's "C-Mount Video
+Objectives": 10445928 0.32x, 10450528 0.5x, 10447367 0.63x, or 10446307 0.8x.  These adapters are intended to be used with Leica's microscope cameras, but
+they will work with any c-mount camera -- including your SLR with a c-mount adapter.
+
+With the 0.5x objective one will obtain a nice 10.5mm image circle which is just about perfect for whole field imaging with the 13mm tall sensor in a Micro
+Four Thirds camera.
+
+I use two cameras with my S8APO:
+  - [[https://www.getolympus.com/us/en/digitalcameras/omd/e-m1-mark-ii.html][Olympus OM-D E-M1 Mark II]] with a 0.5x or 0.32x video objective
+  - [[#rpi-camera][A DIY solution]] with a Raspberry Pi & Raspberry Pi HQ Camera attached to a 0.32x video objective.
+
+** Camera FOV & Image Scales
+:PROPERTIES:
+:CUSTOM_ID: s8-cam-data
+:END:
+
+#+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
+|   |      |     |       |       |           |          RPI |            |            |            |            |          OLY |            |            |            |            |
+|   |  $A$ | $Z$ | $O_c$ | $O_d$ | $S_{MAG}$ | $P_{IJSPAR}$ | $I_{SCLh}$ | $I_{SCLv}$ | $S_{FOVh}$ | $S_{FOVv}$ | $P_{IJSPAR}$ | $I_{SCLh}$ | $I_{SCLv}$ | $S_{FOVh}$ | $S_{FOVv}$ |
+|---+------+-----+-------+-------+-----------+--------------+------------+------------+------------+------------+--------------+------------+------------+------------+------------|
+| ! |    A |   Z |    Oc |    Od |      SMAG |  RPI_PIJSPAR |  RPI_ISCLH |  RPI_ISCLV |  RPI_SFOVH |  RPI_SFOVV |  OLY_PIJSPAR |  OLY_ISCLH |  OLY_ISCLV |  OLY_SFOVH |  OLY_SFOVV |
+| / |      |     |       |       |           |              |     6.2868 |      4.712 |       4056 |       3040 |              |       17.4 |         13 |       5184 |       3888 |
+| ^ |      |     |       |       |           |              |     RPI_Sw |     RPI_Sh |     RPI_Iw |     RPI_Ih |              |     OLY_Sw |     OLY_Sh |     OLY_Iw |     OLY_Ih |
+| / |      |     |       |       |           |            < |            |            |            |          > |            < |            |            |            |          > |
+|   | 0.63 |   1 |  0.50 |  10.5 |      0.32 |    1.0000000 |     203.23 |     203.23 |      19.96 |      14.96 |    0.9961686 |      93.85 |      94.21 |      33.33 |      33.33 |
+|   | 0.63 |   8 |  0.50 |  10.5 |      2.52 |    1.0000000 |    1625.81 |    1625.81 |       2.49 |       1.87 |    0.9961686 |     750.79 |     753.67 |       4.17 |       4.17 |
+|---+------+-----+-------+-------+-----------+--------------+------------+------------+------------+------------+--------------+------------+------------+------------+------------|
+|   | 1.00 |   1 |  0.50 |  10.5 |      0.50 |    1.0000000 |     322.58 |     322.58 |      12.57 |       9.42 |    0.9961686 |     148.97 |     149.54 |      21.00 |      21.00 |
+|   | 1.00 |   8 |  0.50 |  10.5 |      4.00 |    1.0000000 |    2580.65 |    2580.65 |       1.57 |       1.18 |    0.9961686 |    1191.72 |    1196.31 |       2.62 |       2.62 |
+|---+------+-----+-------+-------+-----------+--------------+------------+------------+------------+------------+--------------+------------+------------+------------+------------|
+|   | 2.00 |   1 |  0.50 |  10.5 |      1.00 |    1.0000000 |     645.16 |     645.16 |       6.29 |       4.71 |    0.9961686 |     297.93 |     299.08 |      10.50 |      10.50 |
+|   | 2.00 |   8 |  0.50 |  10.5 |      8.00 |    1.0000000 |    5161.29 |    5161.29 |       0.79 |       0.59 |    0.9961686 |    2383.45 |    2392.62 |       1.31 |       1.31 |
+#+TBLFM: @4$8='(org-lookup-first @1$-1 '(remote(sensor-info,@4$ref..@>$ref)) '(remote(sensor-info,@4$Sw..@>$Sw)))
+#+TBLFM: @4$9='(org-lookup-first @1$-2 '(remote(sensor-info,@4$ref..@>$ref)) '(remote(sensor-info,@4$Sh..@>$Sh)))
+#+TBLFM: @4$10='(org-lookup-first @1$-3 '(remote(sensor-info,@4$ref..@>$ref)) '(remote(sensor-info,@4$Iw..@>$Iw)))
+#+TBLFM: @4$11='(org-lookup-first @1$-4 '(remote(sensor-info,@4$ref..@>$ref)) '(remote(sensor-info,@4$Ih..@>$Ih)))
+#+TBLFM: @4$13='(org-lookup-first @1$-1 '(remote(sensor-info,@4$ref..@>$ref)) '(remote(sensor-info,@4$Sw..@>$Sw)))
+#+TBLFM: @4$14='(org-lookup-first @1$-2 '(remote(sensor-info,@4$ref..@>$ref)) '(remote(sensor-info,@4$Sh..@>$Sh)))
+#+TBLFM: @4$15='(org-lookup-first @1$-3 '(remote(sensor-info,@4$ref..@>$ref)) '(remote(sensor-info,@4$Iw..@>$Iw)))
+#+TBLFM: @4$16='(org-lookup-first @1$-4 '(remote(sensor-info,@4$ref..@>$ref)) '(remote(sensor-info,@4$Ih..@>$Ih)))
+#+TBLFM: @7$6..@>$6=$2*$3*$4;%.2f
+#+TBLFM: @7$7..@>$7=$RPI_Iw*$RPI_Sh/$RPI_Sw/$RPI_Ih;%.7f
+#+TBLFM: @7$8..@>$8=$2*$3*$4*$RPI_Iw/$RPI_Sw;%.2f
+#+TBLFM: @7$9..@>$9=$2*$3*$4*$RPI_Ih/$RPI_Sh;%.2f
+#+TBLFM: @7$10..@>$10=min($5,$RPI_Sw)/($2*$3*$4);%.2f
+#+TBLFM: @7$11..@>$11=min($5,$RPI_Sh)/($2*$3*$4);%.2f
+#+TBLFM: @7$12..@>$12=$OLY_Iw*$OLY_Sh/$OLY_Sw/$OLY_Ih;%.7f
+#+TBLFM: @7$13..@>$13=$2*$3*$4*$OLY_Iw/$OLY_Sw;%.2f
+#+TBLFM: @7$14..@>$14=$2*$3*$4*$OLY_Ih/$OLY_Sh;%.2f
+#+TBLFM: @7$15..@>$15=min($5,$OLY_Sw)/($2*$3*$4);%.2f
+#+TBLFM: @7$16..@>$16=min($5,$OLY_Sh)/($2*$3*$4);%.2f
+
+* Reticle Unit Conversion Software For free42 and DM42
+:PROPERTIES:
+:CUSTOM_ID: mrconv
+:END:
+
+** The menu
+
+| Key                | Without =[SHIFT]=           | With =[SHIFT]=              | Notes                                |
+|--------------------+-----------------------------+-----------------------------+--------------------------------------|
+| /                  | <                           | >                           |                                      |
+| A                  | Store A                     | Display A                   | Actually stored in variable "mrcvA"  |
+| Z                  | Store Z                     | Display Z                   | Actually stored in variable "mrcvZ"  |
+| Rc                 | Store Rc                    | Display Rc                  | Actually stored in variable "mrcvRc" |
+| ▒▒▒▒               |                             |                             |                                      |
+| ▒▒▒▒               |                             |                             |                                      |
+| CONV               | Convert from Reticle Units  | Convert from Reticle Units  |                                      |
+|--------------------+-----------------------------+-----------------------------+--------------------------------------|
+| Setting 1: "4;.5"  | Leica S4; A=0.50; Z=0.63    | Leica S4; A=0.50; Z=3.00    | Modify as required!                  |
+| Setting 2: "4;1"   | Leica S4; A=1.00; Z=0.63    | Leica S4; A=1.00; Z=3.00    | Modify as required!                  |
+| Setting 3: "4;1.6" | Leica S4; A=1.60; Z=0.63    | Leica S4; A=1.60; Z=3.00    | Modify as required!                  |
+| Setting 4: "8;.63" | Leica S8APO; A=0.63; Z=1.00 | Leica S8APO; A=0.63; Z=8.00 | Modify as required!                  |
+| Setting 5: "8;1"   | Leica S8APO; A=1.00; Z=1.00 | Leica S8APO; A=1.00; Z=8.00 | Modify as required!                  |
+| Setting 6: "8;2"   | Leica S8APO; A=2.00; Z=1.00 | Leica S8APO; A=2.00; Z=8.00 | Modify as required!                  |
+
+The setting sections of the code should be modified to meet the end user's needs.  In my case, I have two zoom microscopes (Leica S4E and Leica S8APO).  They
+both have two zoom stops (upper and lower), and I have two auxiliary lenses for each.  That's a total of 12 different configurations.  I decided use 6 menu
+keys each with two sets of settings -- the scope's lower zoom stop is used when pressed without =[SHIFT]=, and the upper zoom stop when use with =[SHIFT]=.
+
+** The code
+
+While this code isn't very useful without being customized to the particular settings the end user needs, it can be test driven as-is by cut-n-pasting the
+code below into free42 or by installing the raw file: file:MRCONV.raw
+
+#+begin_src hp42s :eval never :tangle mrconv.hp42s
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ (ref:MRCONV)
+@@@@ DSC: Convert Reticle Units to Physical Units
+LBL "MRCONV"
+LBL 01           @@@@ Conversion & Variable Menu Page
+CLMENU
+"A"
+KEY 1 XEQ 03
+"Z"
+KEY 2 XEQ 04
+"Rc"
+KEY 3 XEQ 05
+"CONV"
+KEY 6 XEQ 06
+KEY 7 GTO 02
+KEY 8 GTO 02
+KEY 9 GTO 00
+MENU
+STOP
+GTO 01
+LBL 02           @@@@ Quick Settings Menu Page
+CLMENU
+"4;.5"             @@@@ Setting 1
+KEY 1 GTO 07       
+"4;1"              @@@@ Setting 2
+KEY 2 GTO 08       
+"4;1.6"            @@@@ Setting 3
+KEY 3 GTO 09       
+"8;.63"            @@@@ Setting 4
+KEY 4 GTO 10       
+"8;1"              @@@@ Setting 5
+KEY 5 GTO 11       
+"8;2"              @@@@ Setting 6
+KEY 6 XEQ 12
+KEY 7 GTO 01
+KEY 8 GTO 01
+KEY 9 GTO 00
+MENU
+STOP
+GTO 02
+LBL 00           @@@@ Application Exit
+EXITALL          
+RTN              
+LBL 03           @@@@ Code for menu key A
+FC? 64           
+STO "mrcvA"      
+VIEW "mrcvA"     
+RTN              
+LBL 04           @@@@ Code for menu key Z
+FC? 64           
+STO "mrcvZ"      
+VIEW "mrcvZ"     
+RTN              
+LBL 05           @@@@ Code for menu key Rc
+FC? 64           
+STO "mrcvRc"     
+VIEW "mrcvRc"    
+RTN              
+LBL 06           @@@@ Code for menu key CONV
+RCL× "mrcvRc"    
+RCL÷ "mrcvA"     
+RCL÷ "mrcvZ"     
+RTN              
+LBL 07           @@@@ Code for Setting 1 -- "4;.5"
+1                  @@@@ Rc Value for Setting 1 -- "4;.5"
+STO "mrcvRc"     
+R↓               
+0.5                @@@@ A Value for Setting 1 -- "4;.5"
+STO "mrcvA"      
+R↓               
+FC? 64           
+0.63               @@@@ Z Value for no SHIFT Setting 1 -- "4;.5"
+FS? 64           
+3.0                @@@@ Z Value for SHIFT Setting 1 -- "4;.5"
+STO "mrcvZ"      
+GTO 01           
+LBL 08           @@@@ Code for Setting 2 -- "4;1"
+1                  @@@@ Rc Value for Setting 2 -- "4;1"
+STO "mrcvRc"     
+R↓               
+1.0                @@@@ A Value for Setting 2 -- "4;1"
+STO "mrcvA"      
+R↓               
+FC? 64           
+0.63               @@@@ Z Value for no SHIFT Setting 2 -- "4;1"
+FS? 64           
+3.0                @@@@ Z Value for SHIFT Setting 2 -- "4;1"
+STO "mrcvZ"      
+GTO 01           
+LBL 09           @@@@ Code for Setting 3 -- "4;1.6"
+1                  @@@@ Rc Value for Setting 3 -- "4;1.6"
+STO "mrcvRc"     
+R↓               
+1.6                @@@@ A Value for Setting 3 -- "4;1.6"
+STO "mrcvA"      
+R↓               
+FC? 64           
+0.63               @@@@ Z Value for no SHIFT Setting 3 -- "4;1.6"
+FS? 64           
+3.0                @@@@ Z Value for SHIFT Setting 3 -- "4;1.6"
+STO "mrcvZ"      
+GTO 01           
+LBL 10           @@@@ Code for Setting 4 -- "8;.63"
+1                  @@@@ Rc Value for Setting 4 -- "8;.63"
+STO "mrcvRc"     
+R↓               
+0.63               @@@@ A Value for Setting 4 -- "8;.63"
+STO "mrcvA"      
+R↓               
+FC? 64           
+1.0                @@@@ Z Value for no SHIFT Setting 4 -- "8;.63"
+FS? 64           
+8.0                @@@@ Z Value for SHIFT Setting 4 -- "8;.63"
+STO "mrcvZ"      
+GTO 01           
+LBL 11           @@@@ Code for Setting 5 -- "8;1"
+1                  @@@@ Rc Value for Setting 5 -- "8;1"
+STO "mrcvRc"     
+R↓               
+1.0                @@@@ A Value for Setting 5 -- "8;1"
+STO "mrcvA"      
+R↓               
+FC? 64           
+1.0                @@@@ Z Value for no SHIFT Setting 5 -- "8;1"
+FS? 64           
+8.0                @@@@ Z Value for SHIFT Setting 5 -- "8;1"
+STO "mrcvZ"      
+GTO 01           
+LBL 12           @@@@ Code for Setting 6 -- "8;2"
+1                  @@@@ Rc Value for Setting 6 -- "8;2"
+STO "mrcvRc"     
+R↓               
+2.0                @@@@ A Value for Setting 6 -- "8;2"
+STO "mrcvA"      
+R↓               
+FC? 64           
+1.0                @@@@ Z Value for no SHIFT Setting 6 -- "8;2"
+FS? 64           
+8.0                @@@@ Z Value for SHIFT Setting 6 -- "8;2"
+STO "mrcvZ"
+GTO 01
+END
+#+end_src
+
+* S-Series Leica Parts
+:PROPERTIES:
+:CUSTOM_ID: parts
+:END:
+
+#+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
+| Leica Part # | Leica Part Name                                           |
+|--------------+-----------------------------------------------------------|
+|            / | <>                                                        |
+|     10446298 | Leica S8 APO                                              |
+|     10446293 | Leica S4 E                                                |
+|--------------+-----------------------------------------------------------|
+|     10447136 | 10x/23B eyepiece for eyeglasses, fixed                    |
+|     10447137 | 10x/23B eyepiece for eyeglasses, adjustable               |
+|     10447138 | 16x/15B eyepiece for eyeglasses, fixed                    |
+|     10447139 | 16x/15B eyepiece for eyeglasses, adjustable               |
+|--------------+-----------------------------------------------------------|
+|     10446447 | Reticle 10 mm/0.1 mm                                      |
+|     10446448 | Reticle 5 mm/0.1 mm                                       |
+|     10446449 | Reticle 5 mm/0.05 mm                                      |
+|     10447000 | Reticle 100 scale intervals / 0.002"                      |
+|     10447001 | Reticle 100 scale intervals / 0.001"                      |
+|     10447002 | Reticle 150 scale intervals / 0.0005"                     |
+|--------------+-----------------------------------------------------------|
+|     10446334 | Achro Auxiliary 0.32× for A8, WD 200 mm                   |
+|     10446335 | APO Auxiliary 0.63× for A8, WD 100 mm                     |
+|     10446336 | APO Auxiliary 1.6× for A8, WD 37 mm                       |
+|     10446337 | APO Auxiliary 2.0× for A8, WD 25 mm                       |
+|--------------+-----------------------------------------------------------|
+|     10446316 | Auxiliary 0.32× for S4/S6, WD 300 mm                      |
+|     10446318 | Auxiliary 0.5× for S4/S6, WD 200 mm                       |
+|     10446319 | Auxiliary 0.63× for S4/S6, WD 155 mm                      |
+|     10446320 | Auxiliary 0.75× for S4/S6, WD 130 mm                      |
+|     10446321 | Auxiliary 1.6× for S4/S6, WD 55 mm                        |
+|     10446322 | Auxiliary 2.0× for S4/S6, WD 35 mm                        |
+|     10446325 | Auxiliary 0.3–0.4× for S4/S6 (Adjustable), WD 200–350mm   |
+|     10446323 | Auxiliary 0.6–0.75× for S4/S6 (ErgoObjective) WD 77–137mm |
+|--------------+-----------------------------------------------------------|
+|     10450817 | Auxiliary 0.5 for S9, WD 200 mm                           |
+|     10450818 | Auxiliary 0.63 for S9, WD 150 mm                          |
+|     10450819 | Auxiliary 0.75 for S9, WD 130 mm                          |
+|     10450820 | Auxiliary 1.6 for S9, WD 50 mm                            |
+|     10450821 | Auxiliary 2.0 for S9, WD 35 mm                            |
+|--------------+-----------------------------------------------------------|
+|     10446324 | Lens shield                                               |
+|     10450831 | Updated lens shield                                       |
+|--------------+-----------------------------------------------------------|
+|     10445928 | Leica Video Objective 0.32x                               |
+|     10450528 | Leica Video Objective 0.5x                                |
+|     10447367 | Leica Video Objective 0.63x                               |
+|     10446307 | Leica Video Objective 0.8x                                |
+
+* Image Sensor Data
+:PROPERTIES:
+:CUSTOM_ID: sensors
+:END:
+
+#+TBLNAME: sensor-info
+#+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
+|   | Type   | Sensor      |   $S_w$ | $S_h$ | $I_w$ | $I_h$ | $S_d$ | $S_A$ | $I_{MP}$ | $P_w$ | $P_h$ | $P_{AR}$ | $P_{IJSPAR}$ | Ref     |
+|---+--------+-------------+---------+-------+-------+-------+-------+-------+----------+-------+-------+----------+--------------+---------|
+| ! | type   | sensor      |      Sw |    Sh |    Iw |    Ih |    Sd |    SA |      IMP |    Pw |    Ph |      PAR |      PIJSPAR | ref     |
+| / |        |             |       < |       |       |     > |     < |       |          |       |       |          |            > |         |
+|   | 1/4"   | IMX219      |  3.6800 |  2.76 |  3280 |  2464 |   4.6 |    10 |      8.1 |  1.12 |  1.12 |  1.00163 |      0.99838 | IMX219  |
+|   | 1/3.2" | IMX179      |  3.2880 | 2.512 |  3280 |  2464 |   4.1 |     8 |      8.1 |  1.00 |  1.02 |  0.98328 |      1.01700 | IMX179  |
+|   | 1/2.5" | MT9P031     |  5.7000 |  4.28 |  2592 |  1944 |   7.1 |    24 |      5.0 |  2.20 |  2.20 |  0.99883 |      1.00117 | MT9P031 |
+|   | 1/2.3" | Leica mc170 |  6.1000 |   4.6 |  2592 |  1944 |   7.6 |    28 |      5.0 |  2.35 |  2.37 |  0.99457 |      1.00546 | mc170   |
+|   | 1/2.3" | Leica mc190 |  6.1000 |   4.6 |  3648 |  2736 |   7.6 |    28 |     10.0 |  1.67 |  1.68 |  0.99457 |      1.00546 | mc190   |
+|   | 1/2.3" | IMX477 RPI  |  6.2868 | 4.712 |  4056 |  3040 |   7.9 |    29 |     12.3 |  1.55 |  1.55 |  1.00000 |      1.00000 | RPI     |
+|   | 1/1.8" | IMX334      |  7.9000 |  4.64 |  3952 |  2320 |   9.2 |    36 |      9.2 |  2.00 |  2.00 |  0.99949 |      1.00051 | IMX334  |
+|   | 2/3"   | IMX264      |  8.5000 |   7.1 |  2464 |  2056 |  11.1 |    60 |      5.1 |  3.45 |  3.45 |  0.99895 |      1.00105 | IMX264  |
+|   | 16mm   | film        | 10.3000 |   7.4 |  4120 |  2960 |  12.7 |    76 |     12.2 |  2.50 |  2.50 |  1.00000 |      1.00000 | 16mm    |
+|   | 1"     | IMX183      | 13.1300 |  8.76 |  5472 |  3648 |  15.8 |   115 |     20.0 |  2.40 |  2.40 |  0.99924 |      1.00076 | IMX183  |
+|   | 1.1"   | IMX304      | 14.2000 |  10.4 |  4104 |  3006 |  17.6 |   147 |     12.3 |  3.46 |  3.46 |  1.00008 |      0.99992 | IMX304  |
+|   | 4/3"   | OMD EM1 M2  | 17.4000 |    13 |  5184 |  3888 |  21.7 |   226 |     20.2 |  3.36 |  3.34 |  1.00385 |      0.99617 | OLY     |
+|   | APS-C  | Nikon D3200 | 23.2000 |  15.4 |  6016 |  4000 |  27.8 |   357 |     24.1 |  3.86 |  3.85 |  1.00166 |      0.99834 | APSC    |
+|   | 35mm   | film        | 36.0000 |  24.0 | 14400 |  9600 |  43.3 |   864 |    138.2 |  2.50 |  2.50 |  1.00000 |      1.00000 | 35mm    |
+|   | 645    | film        | 56.0000 |  41.5 | 22400 | 16600 |  69.7 |  2324 |    371.8 |  2.50 |  2.50 |  1.00000 |      1.00000 | 645     |
+|   | IMAX   | film        | 70.4000 |  52.6 | 28160 | 21040 |  87.9 |  3703 |    592.5 |  2.50 |  2.50 |  1.00000 |      1.00000 | IMAX    |
+#+TBLFM: $8=sqrt($4*$4+$5*$5);%.1f
+#+TBLFM: $9=$4*$5;%d
+#+TBLFM: $10=$6*$7/1e6;%.1f
+#+TBLFM: $11=1000*$4/$6;%.2f
+#+TBLFM: $12=1000*$5/$7;%.2f
+#+TBLFM: $13=$4*$7/$6/$5;%.5f
+#+TBLFM: $14=$6*$5/$4/$7;%.5f
+
+* DIY RPI Camera
+:PROPERTIES:
+:CUSTOM_ID: rpi-camera
+:END:
+
+** The Idea
+
+Microscope cameras with built in image analysis software are pretty cool.  Simply connect the camera to your monitor & mouse, and you can do simple image
+processing and measurement without a computer.  These solutions are expensive for what you get, and the analysis software is pretty limited.  So I thought,
+why not build my own?  It's just a tiny computer and a camera in a compact case after all.  If I used a Raspberry Pi, then I could actually run my favorite
+image analysis software (Fiji/ImageJ) right on the camera.  
+
+** Bill Of Materials
+
+#+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
+| Item                                                                                                                       | Price (US $) |
+|----------------------------------------------------------------------------------------------------------------------------+--------------|
+| [[https://www.adafruit.com/product/4564][Raspberry Pi 4 Model B - 8 GB RAM]]                                               |           75 |
+| [[https://www.adafruit.com/product/5026][Raspberry Pi 4 Pro Mounting Plate for HQ Camera]]                                 |            7 |
+| [[https://www.adafruit.com/product/4340][Heatsink Raspberry Pi 4 Case with Dual Fans]]                                     |           26 |
+| [[https://www.adafruit.com/product/4561][Raspberry Pi High Quality HQ Camera - 12MP]]                                      |           50 |
+| MicroSD Card                                                                                                               |           15 |
+| Micro HDMI to HDMI Cable                                                                                                   |           12 |
+| [[https://www.amazon.com/CanaKit-Raspberry-Power-Supply-PiSwitch/dp/B07TSFYXBC][CanaKit RPI 4 Power Supply with PiSwitch]] |           11 |
+|----------------------------------------------------------------------------------------------------------------------------+--------------|
+| Total                                                                                                                      |          196 |
+
+** System Setup
+
+#+begin_src sh
+#### Refresh packages and update everything
+sudo apt-get update
+sudo apt-get upgrade
+sudo reboot
+#### Install packages
+sudo apt install emacs gnuplot maxima sbcl telnet zsh tmux gitk paraview paraview-dev xterm imagemagick nomacs gimp ruby
+sudo update-alternatives --config java
+#### Make local links
+for f in ruby perl sbcl; do
+  if [ -e /usr/bin/$f ]; then
+    sudo ln -s /usr/bin/$f /usr/local/bin/$f
+  else
+    echo Missing: /usr/bin/$f
+  fi
+done
+#### Create my account
+addgroup richmit
+adduser -G 1001 richmit ## use GID from previous command
+#### Add me to all the groups the pi user is in -- or at least users that start with pi ;)
+sudo usermod -aG `grep '[:,]pi' /etc/group | cut -d: -f3 | tr '[:space:]' , | sed 's/,$//'` richmit
+#### Download Fiji software & launcher
+wget 'https://downloads.imagej.net/fiji/latest/fiji-nojre.zip'
+wget 'https://github.com/imagej/imagej2/raw/master/bin/ImageJ.sh'
+#### Unpack Fiji
+unzip fiji-nojre.zip
+#### Put in place ImageJ.sh script
+cp ImageJ.sh Fiji.app/
+chmod a+rx Fiji.app/ImageJ.sh
+#### Workaround for a bug in current Fiji
+sudo cp /etc/java-8-openjdk/accessibility.properties /etc/java-8-openjdk/accessibility.properties.org
+sudo sh -c 'grep -v ^assistive_technologies /etc/java-8-openjdk/accessibility.properties.org > /etc/java-8-openjdk/accessibility.properties'
+#### Setup directories & links in $HOME
+cd ~
+mkdir -p bin
+mkdir -p tmp/tmux/sockets
+mkdir -p synced/world/dotfiles/
+mkdir -p synced/world/dotfilesSecure/
+mkdir -p synced/world/stuff/homeNetwork/
+mkdir -p synced/world/stuff/my_ref/
+mkdir -p synced/world/stuff/notes/
+mkdir -p synced/world/my_prog/learn/ex-ruby/
+mkdir -p synced/world/my_prog/lispStuff/lispy/
+mkdir -p synced/world/my_prog/MJRdebianPakageTools/
+mkdir -p synced/world/my_prog/tmuxStuff/
+mkdir -p synced/world/my_prog/UNIXutils/
+mkdir -p synced/world/my_prog/utils/
+mkdir -p synced/world/my_prog/microscope
+mkdir -p synced/world/my_prog/mpms
+mkdir -p synced/world/my_prog/dir-inventory/
+mkdir -p synced/core/
+mkdir -p synced/Doc2/gadgets/leicaS8APO/
+ln -s synced/world world
+ln -s synced/core core
+#### Setup dotfiles & ~/bin
+./world/my_prog/UNIXutils/SelectSetup.rb --loc=HOME; ./world/my_prog/UNIXutils/SetupBin.rb
+#### Change my shell
+sudo usermod -s /usr/bin/zsh richmit
+/usr/bin/setxkbmap -option 'ctrl:nocaps'
+#+end_src
+
+** Camera Data Sync
+
+#+begin_src sh
+date; echo back-dat-sync;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2                  --rsh='ssh' pi-cam.home.mitchr.me:synced/pi-data/                            /c/Users/richmit/Documents/world/pi-cam/;
+date; echo back-pic-sync;        rsync -rlt --log-format=%f                            --modify-window=2                  --rsh='ssh' pi-cam.home.mitchr.me:tmp/pi-images/                             /c/Users/richmit/Pictures/pi-cam/;
+date; echo dotfiles;             rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/dotfiles/                       pi-cam.home.mitchr.me:synced/world/dotfiles/;
+date; echo dotfilesSecure;       rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/dotfilesSecure/                 pi-cam.home.mitchr.me:synced/world/dotfilesSecure/;
+date; echo homeNetwork;          rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/stuff/homeNetwork/              pi-cam.home.mitchr.me:synced/world/stuff/homeNetwork/;
+date; echo my_ref;               rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/stuff/my_ref/                   pi-cam.home.mitchr.me:synced/world/stuff/my_ref/;
+date; echo notes;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/stuff/notes/                    pi-cam.home.mitchr.me:synced/world/stuff/notes/;
+date; echo microscope-code;      rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/microscope/             pi-cam.home.mitchr.me:synced/world/my_prog/microscope/;
+date; echo mpms;                 rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/mpms/                   pi-cam.home.mitchr.me:synced/world/my_prog/mpms/;
+date; echo dir-inventory;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/dir-inventory/          pi-cam.home.mitchr.me:synced/world/my_prog/dir-inventory/;
+date; echo ruby-examples;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/learn/ex-ruby/          pi-cam.home.mitchr.me:synced/world/my_prog/learn/ex-ruby/;
+date; echo lispy;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/lispStuff/lispy/        pi-cam.home.mitchr.me:synced/world/my_prog/lispStuff/lispy/;
+date; echo MJRdebianPakageTools; rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/MJRdebianPakageTools/   pi-cam.home.mitchr.me:synced/world/my_prog/MJRdebianPakageTools/;
+date; echo tmuxStuff;            rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/tmuxStuff/              pi-cam.home.mitchr.me:synced/world/my_prog/tmuxStuff/;
+date; echo UNIXutils;            rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/UNIXutils/              pi-cam.home.mitchr.me:synced/world/my_prog/UNIXutils/;
+date; echo utils;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/utils/                  pi-cam.home.mitchr.me:synced/world/my_prog/utils/;
+date; echo core;                 rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/core/                                 pi-cam.home.mitchr.me:synced/core/;
+date; echo leicaS8APO-docs;      rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/Doc2/gadgets/leicaS8APO/              pi-cam.home.mitchr.me:synced/Doc2/gadgets/leicaS8APO/;
+date
+#+end_src
+
+** RPI Image Capture Script
+#+INCLUDE:piSnap.sh src sh
+** ImageJ/Fiji Software
+:PROPERTIES:
+:CUSTOM_ID: rpi-imagej
+:END:
+
+*** Macro
+#+INCLUDE:RPI_tools.ijm src c
+*** Macro Installer
+
+I use Fiji on Windows & [[#rpi-camera][DIY RPI Camera]].  On Windows I install it under a folder named "=PF/Fiji.app=" -- I install various packages in "=PF="
+that can't be installed in the traditional "=Program Files=" folder.  On the RPI, I have been installing it directly in my home directory (=~/Fiji.app/=).  The
+install script below is used to install the macros into my Fiji.app directories.  That is to say, it knows about my specific installation preferences.  To
+modify the script for use in other environments, update line 6 to have a list of alternate install paths.
+
+#+INCLUDE:RPI_tools_install.sh src sh
+
+* S4 and S8 Magnification Coverage                                 :noexport:
+
+#+begin_src text
+|    |    EPxA |    EPxA |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   | 1 | 1 | 1 | 2 | 2 | 3 | 4 | 5 | 6 |
+|    |         |         |   |   |   |   |   | 1 | 1 | 1 | 2 | 2 | 3 | 4 | 5 | 6 | 8 | 0 | 2 | 6 | 0 | 5 | 2 | 0 | 0 | 4 |
+|    |         |         | 3 | 4 | 5 | 6 | 8 | 0 | 3 | 6 | 0 | 6 | 2 | 0 | 0 | 4 | 0 | 0 | 8 | 0 | 0 | 6 | 0 | 0 | 0 | 0 |
+|----+---------+---------+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---|
+| S4 |  10x0.5 |         | * | * | * | * | * | * | * | * |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| S4 |  16x0.5 |         |   |   | * | * | * | * | * | * | * | * |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| S4 |    10x1 |  16x0.5 |   |   |   | * | * | * | * | * | * | * | * |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| S8 | 10x0.63 |         |   |   |   | * | * | * | * | * | * | * | * | * | * |   |   |   |   |   |   |   |   |   |   |   |
+| S4 |  25x0.5 |         |   |   |   |   | * | * | * | * | * | * | * | * |   |   |   |   |   |   |   |   |   |   |   |   |
+| S4 |  10x1.6 |    16x1 |   |   |   |   |   | * | * | * | * | * | * | * | * |   |   |   |   |   |   |   |   |   |   |   |
+| S8 |  10x1.0 | 16x0.63 |   |   |   |   |   | * | * | * | * | * | * | * | * | * | * |   |   |   |   |   |   |   |   |   |
+| S4 |    20x1 |  40x0.5 |   |   |   |   |   |   | * | * | * | * | * | * | * | * |   |   |   |   |   |   |   |   |   |   |
+| S8 | 20x0.63 |         |   |   |   |   |   |   | * | * | * | * | * | * | * | * | * | * |   |   |   |   |   |   |   |   |
+| S4 |  16x1.6 |    25x1 |   |   |   |   |   |   |   | * | * | * | * | * | * | * | * |   |   |   |   |   |   |   |   |   |
+| S8 |  16x1.0 | 25x0.63 |   |   |   |   |   |   |   | * | * | * | * | * | * | * | * | * | * |   |   |   |   |   |   |   |
+| S4 |  20x1.6 |         |   |   |   |   |   |   |   |   | * | * | * | * | * | * | * | * |   |   |   |   |   |   |   |   |
+| S8 |  10x2.0 |    20x1 |   |   |   |   |   |   |   |   | * | * | * | * | * | * | * | * | * | * |   |   |   |   |   |   |
+| S4 |  25x1.6 |    40x1 |   |   |   |   |   |   |   |   |   | * | * | * | * | * | * | * | * |   |   |   |   |   |   |   |
+| S8 |  25x1.0 | 40x0.63 |   |   |   |   |   |   |   |   |   | * | * | * | * | * | * | * | * | * | * |   |   |   |   |   |
+| S8 |  16x2.0 |         |   |   |   |   |   |   |   |   |   |   | * | * | * | * | * | * | * | * | * | * |   |   |   |   |
+| S4 |  40x1.6 |         |   |   |   |   |   |   |   |   |   |   |   | * | * | * | * | * | * | * | * |   |   |   |   |   |
+| S8 |  40x1.0 |  20x2.0 |   |   |   |   |   |   |   |   |   |   |   | * | * | * | * | * | * | * | * | * | * |   |   |   |
+| S8 |  25x2.0 |         |   |   |   |   |   |   |   |   |   |   |   |   | * | * | * | * | * | * | * | * | * | * |   |   |
+| S8 |  40x2.0 |         |   |   |   |   |   |   |   |   |   |   |   |   |   |   | * | * | * | * | * | * | * | * | * | * |
+
+
+          |    |    EPxA |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   | 1 | 1 | 1 | 2 | 2 | 3 | 4 | 5 | 6 |
+          |    |         |   |   |   |   |   | 1 | 1 | 1 | 2 | 2 | 3 | 4 | 5 | 6 | 8 | 0 | 2 | 6 | 0 | 5 | 2 | 0 | 0 | 4 |
+          |    |         | 3 | 4 | 5 | 6 | 8 | 0 | 3 | 6 | 0 | 6 | 2 | 0 | 0 | 4 | 0 | 0 | 8 | 0 | 0 | 6 | 0 | 0 | 0 | 0 |
+          |----+---------+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---|
+          | S4 |  10x0.5 | * | * | * | * | * | * | * | * |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+          | S4 |    10x1 |   |   |   | * | * | * | * | * | * | * | * |   |   |   |   |   |   |   |   |   |   |   |   |   |
+          | S8 | 10x0.63 |   |   |   | * | * | * | * | * | * | * | * | * | * |   |   |   |   |   |   |   |   |   |   |   |
+          | S4 |  10x1.6 |   |   |   |   |   | * | * | * | * | * | * | * | * |   |   |   |   |   |   |   |   |   |   |   |
+          | S8 |  10x1.0 |   |   |   |   |   | * | * | * | * | * | * | * | * | * | * |   |   |   |   |   |   |   |   |   |
+#+end_src
+
+* EOF
+
+# End of document.
+
+# The following adds some space at the bottom of exported HTML
+#+HTML: <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+#+HTML: <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+#+HTML: <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+#+HTML: <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+#+HTML: <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+
+
+
+
+

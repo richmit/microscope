@@ -1,0 +1,2762 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-10-23 Sat 14:35 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=1024, initial-scale=1" />
+<title>Leica S4E &amp; S8APO</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Mitch Richling" />
+<meta name="description" content="Leica S8 API"
+ />
+<meta name="keywords" content="Leica S8 API" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<style>body { width: 95%; margin: 2% auto; font-size: 18px; line-height: 1.4em; font-family: Georgia, serif; color: black; background-color: white; }</style>
+<style>body { min-width: 500px; max-width: 1024px; }</style>
+<style>h1,h2,h3,h4,h5,h6 { color: #A5573E; line-height: 1em; font-family: Helvetica, sans-serif; }</style>
+<style>h1,h2,h3 { line-height: 1.4em; }</style>
+<style>h1.title { font-size: 3em; }</style>
+<style>h4,h5,h6 { font-size: 1em; }</style>
+<style>.org-src-container { border: 1px solid #ccc; box-shadow: 3px 3px 3px #eee; font-family: Lucida Console, monospace; font-size: 80%; margin: 0px; padding: 0px 0px; position: relative; }</style>
+<style>.org-src-container>pre { line-height: 1.2em; padding-top: 1.5em; margin: 0.5em; background-color: #404040; color: white; overflow: auto; }</style>
+<style>.org-src-container>pre:before { display: block; position: absolute; background-color: #b3b3b3; top: 0; right: 0; padding: 0 0.2em 0 0.4em; border-bottom-left-radius: 8px; border: 0; color: white; font-size: 100%; font-family: Helvetica, sans-serif;}</style>
+<style>pre.example { white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -o-pre-wrap; font-family: Lucida Console, monospace; font-size: 80%; background: #404040; color: white; display: block; padding: 0em; border: 2px solid black; }</style>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="https://richmit.github.io/microscope/"> UP </a>
+ |
+ <a accesskey="H" href="https://www.mitchr.me/"> HOME </a>
+</div><div id="content">
+<h1 class="title">Leica S4E &amp; S8APO</h1>
+<table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right"><b>Author:</b></td>
+<td class="org-left"><i>Mitch Richling</i></td>
+</tr>
+
+<tr>
+<td class="org-right"><b>Updated:</b></td>
+<td class="org-left"><i>2021-10-23 14:35:42</i></td>
+</tr>
+</tbody>
+</table>
+<p align="center">
+Copyright 2021 Mitch Richling. All rights reserved.
+</p>
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org0753573">1. Symbols &amp; Formulas</a>
+<ul>
+<li><a href="#variables">1.1. Variables</a></li>
+<li><a href="#formulas">1.2. Formulas</a></li>
+</ul>
+</li>
+<li><a href="#s4e">2. S4E</a>
+<ul>
+<li><a href="#s4-mag-fov">2.1. Magnification and FOV at Various Zoom Levels With 10x/23 Eyepiece</a></li>
+<li><a href="#s4-ret-scale">2.2. Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece</a></li>
+</ul>
+</li>
+<li><a href="#s8apo">3. S8APO</a>
+<ul>
+<li><a href="#s8-mag-fov">3.1. Magnification and FOV at Various Zoom Levels With 10x/23 Eyepiece</a></li>
+<li><a href="#s8-ret-scale">3.2. Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece</a></li>
+<li><a href="#s8-na">3.3. Numerical Aperture With No Auxiliary Lens</a></li>
+<li><a href="#leica-vid-obj">3.4. Leica C-Mount Video Objective Data</a></li>
+<li><a href="#org180361f">3.5. Attaching Cameras</a></li>
+<li><a href="#s8-cam-data">3.6. Camera FOV &amp; Image Scales</a></li>
+</ul>
+</li>
+<li><a href="#mrconv">4. Reticle Unit Conversion Software For free42 and DM42</a>
+<ul>
+<li><a href="#orgd595c3d">4.1. The menu</a></li>
+<li><a href="#org5aa9fd0">4.2. The code</a></li>
+</ul>
+</li>
+<li><a href="#parts">5. S-Series Leica Parts</a></li>
+<li><a href="#sensors">6. Image Sensor Data</a></li>
+<li><a href="#rpi-camera">7. DIY RPI Camera</a>
+<ul>
+<li><a href="#org3b64980">7.1. The Idea</a></li>
+<li><a href="#org0680c92">7.2. Bill Of Materials</a></li>
+<li><a href="#org8647da5">7.3. System Setup</a></li>
+<li><a href="#orgfc60e11">7.4. Camera Data Sync</a></li>
+<li><a href="#org777fe25">7.5. RPI Image Capture Script</a></li>
+<li><a href="#rpi-imagej">7.6. ImageJ/Fiji Software</a>
+<ul>
+<li><a href="#orgae74f8c">7.6.1. Macro</a></li>
+<li><a href="#org2f03a37">7.6.2. Macro Installer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org70ffb12">8. EOF</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0753573" class="outline-2">
+<h2 id="org0753573"><span class="section-number-2">1.</span> Symbols &amp; Formulas</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-variables" class="outline-3">
+<h3 id="variables"><span class="section-number-3">1.1.</span> Variables</h3>
+<div class="outline-text-3" id="text-variables">
+<table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Variable</th>
+<th scope="col" class="org-left">Description</th>
+<th scope="col" class="org-left">Units</th>
+<th scope="col" class="org-left">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">\(S_{MAG}\)</td>
+<td class="org-left">Magnification At Sensor</td>
+<td class="org-left">Ratio</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(S_{FOVh}\)</td>
+<td class="org-left">Sensor Horizontal Field Of View</td>
+<td class="org-left">mm</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(S_{FOVv}\)</td>
+<td class="org-left">Sensor Vertical Field Of View</td>
+<td class="org-left">mm</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(I_{SCLh}\)</td>
+<td class="org-left">Image Horizontal Scale</td>
+<td class="org-left">Pixel/mm</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(I_{SCLv}\)</td>
+<td class="org-left">Image Vertical Scale</td>
+<td class="org-left">Pixel/mm</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(S_w\)</td>
+<td class="org-left">Sensor Physical Width</td>
+<td class="org-left">mm</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(S_h\)</td>
+<td class="org-left">Sensor Physical Height</td>
+<td class="org-left">mm</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(S_d\)</td>
+<td class="org-left">Sensor Physical Diagonal</td>
+<td class="org-left">mm</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(S_A\)</td>
+<td class="org-left">Sensor Physical Area</td>
+<td class="org-left">square mm</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(I_w\)</td>
+<td class="org-left">Image/Sensor Pixel Width</td>
+<td class="org-left">pixel</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(I_h\)</td>
+<td class="org-left">Image/Sensor Pixel Height</td>
+<td class="org-left">pixel</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(I_{MP}\)</td>
+<td class="org-left">Total number of Image/Sensor Pixels</td>
+<td class="org-left">Megapixel</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(L_s\)</td>
+<td class="org-left">Length At Sensor</td>
+<td class="org-left">mm</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(L_o\)</td>
+<td class="org-left">Object Length</td>
+<td class="org-left">mm</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(A\)</td>
+<td class="org-left">Auxiliary</td>
+<td class="org-left">Ratio</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(Z\)</td>
+<td class="org-left">Zoom</td>
+<td class="org-left">Ratio</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(O_c\)</td>
+<td class="org-left">Camera Objective</td>
+<td class="org-left">Ratio</td>
+<td class="org-left">camera relay lens, camera port lens</td>
+</tr>
+
+<tr>
+<td class="org-left">\(O_d\)</td>
+<td class="org-left">Camera Objective Image Circle Diameter</td>
+<td class="org-left">mm</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(P_w\)</td>
+<td class="org-left">Sensor Pixel Width</td>
+<td class="org-left">mm</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(P_h\)</td>
+<td class="org-left">Sensor Pixel Height</td>
+<td class="org-left">mm</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(P_{AR}\)</td>
+<td class="org-left">Pixel Aspect Ratio</td>
+<td class="org-left">Ratio</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(V_{FOV}\)</td>
+<td class="org-left">Visual Field Of View</td>
+<td class="org-left">mm</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(E_{FN}\)</td>
+<td class="org-left">Eyepiece Field Number</td>
+<td class="org-left">mm</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(E_{MAG}\)</td>
+<td class="org-left">Eyepiece magnification</td>
+<td class="org-left">Ratio</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(V_{MAG}\)</td>
+<td class="org-left">Visual Magnification</td>
+<td class="org-left">Ratio</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(R_c\)</td>
+<td class="org-left">Reticle Unit Conversion Factor</td>
+<td class="org-left">mm/Ru</td>
+<td class="org-left">\(1\,\mathrm{Ru}=1\,\mathrm{mmu}\) @ \(Z=1\) &amp; \(A=1\)</td>
+</tr>
+
+<tr>
+<td class="org-left">\(R_s\)</td>
+<td class="org-left">Reticle Scale</td>
+<td class="org-left">mm/Ru</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(L_R\)</td>
+<td class="org-left">Length in Reticle Units</td>
+<td class="org-left">Ru</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(I_{AR}\)</td>
+<td class="org-left">Image Aspect Ratio</td>
+<td class="org-left">Ratio</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(P_{IJSPAR}\)</td>
+<td class="org-left">ImageJ Scale Pixel Aspect Ratio</td>
+<td class="org-left">Ratio</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">\(W\)</td>
+<td class="org-left">Working Distance</td>
+<td class="org-left">mm</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-formulas" class="outline-3">
+<h3 id="formulas"><span class="section-number-3">1.2.</span> Formulas</h3>
+<div class="outline-text-3" id="text-formulas">
+<dl class="org-dl">
+<dt>Image/Sensor magnification           </dt><dd>\[S_{MAG} = \frac{L_s}{L_o} = A \cdot Z \cdot O_c\]</dd>
+<dt>Image/Sensor Horizontal Field Of View</dt><dd>\[S_{FOVh} = \frac{\min(O_d, S_w)}{S_{MAG}}\]</dd>
+<dt>Image/Sensor Vertical Field Of View  </dt><dd>\[S_{FOVv} = \frac{\min(O_d, S_h)}{S_{MAG}}\]</dd>
+<dt>Image/Sensor Horizontal Scale        </dt><dd>\[I_{SCLh} = \frac{S_{MAG} \cdot I_w}{S_w} = \frac{S_{MAG}}{P_w}\]</dd>
+<dt>Image/Sensor Vertical Scale          </dt><dd>\[I_{SCLv} = \frac{S_{MAG} \cdot I_h}{S_h} = \frac{S_{MAG}}{P_h}\]</dd>
+<dt>Visual magnification                 </dt><dd>\[V_{MAG} = A \cdot Z \cdot E_{MAG}\]</dd>
+<dt>Visual Field Of View                 </dt><dd>\[V_{FOV} = \frac{E_{FN}}{A \cdot Z}\]</dd>
+<dt>Reticle Scale                        </dt><dd>\[\frac{R_c}{Z \cdot A}\]</dd>
+<dt>Reticle Length Measurements          </dt><dd>\[\mathrm{Length}=R_s \cdot L_R\]</dd>
+<dt>Sensor Diagonal length               </dt><dd>\[S_d = \sqrt{S_w^2 + S_h^2}\]</dd>
+<dt>Sensor Pixel Width                   </dt><dd>\[P_w = \frac{S_w}{I_w}\]</dd>
+<dt>Sensor Pixel Height                  </dt><dd>\[P_h = \frac{S_h}{I_h}\]</dd>
+<dt>Pixel Aspect Ratio                   </dt><dd>\[P_{AR} = \frac{P_w}{P_h} = \frac{S_w \cdot I_h}{I_w \cdot S_h}\]</dd>
+<dt>Image Aspect Ratio                   </dt><dd>\[I_{AR} = \frac{I_w}{I_h}\]</dd>
+<dt>ImageJ Scale Pixel Aspect Ratio      </dt><dd>\[P_{IJSPAR} = \frac{1}{P_{AR}}\]</dd>
+</dl>
+</div>
+</div>
+</div>
+
+<div id="outline-container-s4e" class="outline-2">
+<h2 id="s4e"><span class="section-number-2">2.</span> S4E</h2>
+<div class="outline-text-2" id="text-s4e">
+</div>
+
+<div id="outline-container-s4-mag-fov" class="outline-3">
+<h3 id="s4-mag-fov"><span class="section-number-3">2.1.</span> Magnification and FOV at Various Zoom Levels With 10x/23 Eyepiece</h3>
+<div class="outline-text-3" id="text-s4-mag-fov">
+<table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
+
+
+<colgroup>
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">&#xa0;</th>
+<th scope="col" class="org-right">\(A=1.0\times\)</th>
+<th scope="col" class="org-right">\(W=110\,\mathrm{mm}\)</th>
+<th scope="col" class="org-right">\(A=0.5\times\)</th>
+<th scope="col" class="org-right">\(W=200\,\mathrm{mm}\)</th>
+<th scope="col" class="org-right">\(A=1.6\times\)</th>
+<th scope="col" class="org-right">\(W=55\,\mathrm{mm}\)</th>
+</tr>
+
+<tr>
+<th scope="col" class="org-right">\(Z\)</th>
+<th scope="col" class="org-right">\(E_{MAG}\)</th>
+<th scope="col" class="org-right">\(V_{FOV}\)</th>
+<th scope="col" class="org-right">\(E_{MAG}\)</th>
+<th scope="col" class="org-right">\(V_{FOV}\)</th>
+<th scope="col" class="org-right">\(E_{MAG}\)</th>
+<th scope="col" class="org-right">\(V_{FOV}\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0.63</td>
+<td class="org-right">6.30</td>
+<td class="org-right">36.51</td>
+<td class="org-right">3.15</td>
+<td class="org-right">73.02</td>
+<td class="org-right">10.08</td>
+<td class="org-right">22.82</td>
+</tr>
+
+<tr>
+<td class="org-right">0.80</td>
+<td class="org-right">8.00</td>
+<td class="org-right">28.75</td>
+<td class="org-right">4.00</td>
+<td class="org-right">57.50</td>
+<td class="org-right">12.80</td>
+<td class="org-right">17.97</td>
+</tr>
+
+<tr>
+<td class="org-right">1.00</td>
+<td class="org-right">10.00</td>
+<td class="org-right">23.00</td>
+<td class="org-right">5.00</td>
+<td class="org-right">46.00</td>
+<td class="org-right">16.00</td>
+<td class="org-right">14.38</td>
+</tr>
+
+<tr>
+<td class="org-right">1.25</td>
+<td class="org-right">12.50</td>
+<td class="org-right">18.40</td>
+<td class="org-right">6.25</td>
+<td class="org-right">36.80</td>
+<td class="org-right">20.00</td>
+<td class="org-right">11.50</td>
+</tr>
+
+<tr>
+<td class="org-right">1.60</td>
+<td class="org-right">16.00</td>
+<td class="org-right">14.38</td>
+<td class="org-right">8.00</td>
+<td class="org-right">28.75</td>
+<td class="org-right">25.60</td>
+<td class="org-right">8.98</td>
+</tr>
+
+<tr>
+<td class="org-right">2.00</td>
+<td class="org-right">20.00</td>
+<td class="org-right">11.50</td>
+<td class="org-right">10.00</td>
+<td class="org-right">23.00</td>
+<td class="org-right">32.00</td>
+<td class="org-right">7.19</td>
+</tr>
+
+<tr>
+<td class="org-right">2.50</td>
+<td class="org-right">25.00</td>
+<td class="org-right">9.20</td>
+<td class="org-right">12.50</td>
+<td class="org-right">18.40</td>
+<td class="org-right">40.00</td>
+<td class="org-right">5.75</td>
+</tr>
+
+<tr>
+<td class="org-right">3.00</td>
+<td class="org-right">30.00</td>
+<td class="org-right">7.67</td>
+<td class="org-right">15.00</td>
+<td class="org-right">15.33</td>
+<td class="org-right">48.00</td>
+<td class="org-right">4.79</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-s4-ret-scale" class="outline-3">
+<h3 id="s4-ret-scale"><span class="section-number-3">2.2.</span> Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece</h3>
+<div class="outline-text-3" id="text-s4-ret-scale">
+<table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">\(A\)</th>
+<th scope="col" class="org-right">\(Z\)</th>
+<th scope="col" class="org-right">\(E_{MAG}\)</th>
+<th scope="col" class="org-right">\(E_{FN}\)</th>
+<th scope="col" class="org-right">\(R_s\)</th>
+<th scope="col" class="org-right">\(V_{MAG}\)</th>
+<th scope="col" class="org-right">\(V_{FOV}\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0.5</td>
+<td class="org-right">0.63</td>
+<td class="org-right">10</td>
+<td class="org-right">23</td>
+<td class="org-right">3.17460</td>
+<td class="org-right">3.15</td>
+<td class="org-right">73.02</td>
+</tr>
+
+<tr>
+<td class="org-right">0.5</td>
+<td class="org-right">3.00</td>
+<td class="org-right">10</td>
+<td class="org-right">23</td>
+<td class="org-right">0.66667</td>
+<td class="org-right">15.00</td>
+<td class="org-right">15.33</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">1.0</td>
+<td class="org-right">0.63</td>
+<td class="org-right">10</td>
+<td class="org-right">23</td>
+<td class="org-right">1.58730</td>
+<td class="org-right">6.30</td>
+<td class="org-right">36.51</td>
+</tr>
+
+<tr>
+<td class="org-right">1.0</td>
+<td class="org-right">3.00</td>
+<td class="org-right">10</td>
+<td class="org-right">23</td>
+<td class="org-right">0.33333</td>
+<td class="org-right">30.00</td>
+<td class="org-right">7.67</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">1.6</td>
+<td class="org-right">0.63</td>
+<td class="org-right">10</td>
+<td class="org-right">23</td>
+<td class="org-right">0.99206</td>
+<td class="org-right">10.08</td>
+<td class="org-right">22.82</td>
+</tr>
+
+<tr>
+<td class="org-right">1.6</td>
+<td class="org-right">3.00</td>
+<td class="org-right">10</td>
+<td class="org-right">23</td>
+<td class="org-right">0.20833</td>
+<td class="org-right">48.00</td>
+<td class="org-right">4.79</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-s8apo" class="outline-2">
+<h2 id="s8apo"><span class="section-number-2">3.</span> S8APO</h2>
+<div class="outline-text-2" id="text-s8apo">
+</div>
+
+<div id="outline-container-s8-mag-fov" class="outline-3">
+<h3 id="s8-mag-fov"><span class="section-number-3">3.1.</span> Magnification and FOV at Various Zoom Levels With 10x/23 Eyepiece</h3>
+<div class="outline-text-3" id="text-s8-mag-fov">
+<table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
+
+
+<colgroup>
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">&#xa0;</th>
+<th scope="col" class="org-right">\(A=1.0\times\)</th>
+<th scope="col" class="org-right">\(W=75\,\mathrm{mm}\)</th>
+<th scope="col" class="org-right">\(A=0.63\times\)</th>
+<th scope="col" class="org-right">\(W=101\,\mathrm{mm}\)</th>
+<th scope="col" class="org-right">\(A=2.0\times\)</th>
+<th scope="col" class="org-right">\(W=25\,\mathrm{mm}\)</th>
+</tr>
+
+<tr>
+<th scope="col" class="org-right">\(Z\)</th>
+<th scope="col" class="org-right">\(V_{MAG}\)</th>
+<th scope="col" class="org-right">\(V_{FOV}\)</th>
+<th scope="col" class="org-right">\(V_{MAG}\)</th>
+<th scope="col" class="org-right">\(V_{FOV}\)</th>
+<th scope="col" class="org-right">\(V_{MAG}\)</th>
+<th scope="col" class="org-right">\(V_{FOV}\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1.0</td>
+<td class="org-right">10.0</td>
+<td class="org-right">23.00</td>
+<td class="org-right">6.30</td>
+<td class="org-right">36.51</td>
+<td class="org-right">20</td>
+<td class="org-right">11.50</td>
+</tr>
+
+<tr>
+<td class="org-right">1.25</td>
+<td class="org-right">12.5</td>
+<td class="org-right">18.40</td>
+<td class="org-right">7.88</td>
+<td class="org-right">29.21</td>
+<td class="org-right">25</td>
+<td class="org-right">9.20</td>
+</tr>
+
+<tr>
+<td class="org-right">1.6</td>
+<td class="org-right">16.0</td>
+<td class="org-right">14.38</td>
+<td class="org-right">10.08</td>
+<td class="org-right">22.82</td>
+<td class="org-right">32</td>
+<td class="org-right">7.19</td>
+</tr>
+
+<tr>
+<td class="org-right">2.0</td>
+<td class="org-right">20.0</td>
+<td class="org-right">11.50</td>
+<td class="org-right">12.60</td>
+<td class="org-right">18.25</td>
+<td class="org-right">40</td>
+<td class="org-right">5.75</td>
+</tr>
+
+<tr>
+<td class="org-right">2.5</td>
+<td class="org-right">25.0</td>
+<td class="org-right">9.20</td>
+<td class="org-right">15.75</td>
+<td class="org-right">14.60</td>
+<td class="org-right">50</td>
+<td class="org-right">4.60</td>
+</tr>
+
+<tr>
+<td class="org-right">3.2</td>
+<td class="org-right">32.0</td>
+<td class="org-right">7.19</td>
+<td class="org-right">20.16</td>
+<td class="org-right">11.41</td>
+<td class="org-right">64</td>
+<td class="org-right">3.59</td>
+</tr>
+
+<tr>
+<td class="org-right">4.0</td>
+<td class="org-right">40.0</td>
+<td class="org-right">5.75</td>
+<td class="org-right">25.20</td>
+<td class="org-right">9.13</td>
+<td class="org-right">80</td>
+<td class="org-right">2.88</td>
+</tr>
+
+<tr>
+<td class="org-right">5.0</td>
+<td class="org-right">50.0</td>
+<td class="org-right">4.60</td>
+<td class="org-right">31.50</td>
+<td class="org-right">7.30</td>
+<td class="org-right">100</td>
+<td class="org-right">2.30</td>
+</tr>
+
+<tr>
+<td class="org-right">6.3</td>
+<td class="org-right">63.0</td>
+<td class="org-right">3.65</td>
+<td class="org-right">39.69</td>
+<td class="org-right">5.79</td>
+<td class="org-right">126</td>
+<td class="org-right">1.83</td>
+</tr>
+
+<tr>
+<td class="org-right">8.0</td>
+<td class="org-right">80.0</td>
+<td class="org-right">2.88</td>
+<td class="org-right">50.40</td>
+<td class="org-right">4.56</td>
+<td class="org-right">160</td>
+<td class="org-right">1.44</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-s8-ret-scale" class="outline-3">
+<h3 id="s8-ret-scale"><span class="section-number-3">3.2.</span> Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece</h3>
+<div class="outline-text-3" id="text-s8-ret-scale">
+<table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">\(A\)</th>
+<th scope="col" class="org-right">\(Z\)</th>
+<th scope="col" class="org-right">\(E_{MAG}\)</th>
+<th scope="col" class="org-right">\(E_{FN}\)</th>
+<th scope="col" class="org-right">\(R_s\)</th>
+<th scope="col" class="org-right">\(V_{MAG}\)</th>
+<th scope="col" class="org-right">\(V_{FOV}\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0.63</td>
+<td class="org-right">1</td>
+<td class="org-right">10</td>
+<td class="org-right">23</td>
+<td class="org-right">1.58730</td>
+<td class="org-right">6.30</td>
+<td class="org-right">36.51</td>
+</tr>
+
+<tr>
+<td class="org-right">0.63</td>
+<td class="org-right">8</td>
+<td class="org-right">10</td>
+<td class="org-right">23</td>
+<td class="org-right">0.19841</td>
+<td class="org-right">50.40</td>
+<td class="org-right">4.56</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">1.00</td>
+<td class="org-right">1</td>
+<td class="org-right">10</td>
+<td class="org-right">23</td>
+<td class="org-right">1.00000</td>
+<td class="org-right">10.00</td>
+<td class="org-right">23.00</td>
+</tr>
+
+<tr>
+<td class="org-right">1.00</td>
+<td class="org-right">8</td>
+<td class="org-right">10</td>
+<td class="org-right">23</td>
+<td class="org-right">0.12500</td>
+<td class="org-right">80.00</td>
+<td class="org-right">2.88</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">2.00</td>
+<td class="org-right">1</td>
+<td class="org-right">10</td>
+<td class="org-right">23</td>
+<td class="org-right">0.50000</td>
+<td class="org-right">20.00</td>
+<td class="org-right">11.50</td>
+</tr>
+
+<tr>
+<td class="org-right">2.00</td>
+<td class="org-right">8</td>
+<td class="org-right">10</td>
+<td class="org-right">23</td>
+<td class="org-right">0.06250</td>
+<td class="org-right">160.00</td>
+<td class="org-right">1.44</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-s8-na" class="outline-3">
+<h3 id="s8-na"><span class="section-number-3">3.3.</span> Numerical Aperture With No Auxiliary Lens</h3>
+<div class="outline-text-3" id="text-s8-na">
+<table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">Zoom</th>
+<th scope="col" class="org-right">NA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1.0</td>
+<td class="org-right">0.026</td>
+</tr>
+
+<tr>
+<td class="org-right">1.25</td>
+<td class="org-right">0.031</td>
+</tr>
+
+<tr>
+<td class="org-right">1.6</td>
+<td class="org-right">0.038</td>
+</tr>
+
+<tr>
+<td class="org-right">2.0</td>
+<td class="org-right">0.046</td>
+</tr>
+
+<tr>
+<td class="org-right">2.5</td>
+<td class="org-right">0.056</td>
+</tr>
+
+<tr>
+<td class="org-right">3.2</td>
+<td class="org-right">0.069</td>
+</tr>
+
+<tr>
+<td class="org-right">4.0</td>
+<td class="org-right">0.081</td>
+</tr>
+
+<tr>
+<td class="org-right">5.0</td>
+<td class="org-right">0.093</td>
+</tr>
+
+<tr>
+<td class="org-right">6.3</td>
+<td class="org-right">0.100</td>
+</tr>
+
+<tr>
+<td class="org-right">8.0</td>
+<td class="org-right">0.100</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-leica-vid-obj" class="outline-3">
+<h3 id="leica-vid-obj"><span class="section-number-3">3.4.</span> Leica C-Mount Video Objective Data</h3>
+<div class="outline-text-3" id="text-leica-vid-obj">
+<table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
+
+
+<colgroup>
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-center" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">Leica Part #</th>
+<th scope="col" class="org-left">Leica Part Name</th>
+<th scope="col" class="org-right">\(O_d\)</th>
+<th scope="col" class="org-left">Notes</th>
+<th scope="col" class="org-center">Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">10445928</td>
+<td class="org-left">Leica Video Objective 0.32x</td>
+<td class="org-right">6.72</td>
+<td class="org-left">Estimated \(O_d\)</td>
+<td class="org-center">co32</td>
+</tr>
+
+<tr>
+<td class="org-right">10450528</td>
+<td class="org-left">Leica Video Objective 0.5x</td>
+<td class="org-right">10.50</td>
+<td class="org-left">Measured \(O_d\)</td>
+<td class="org-center">co50</td>
+</tr>
+
+<tr>
+<td class="org-right">10447367</td>
+<td class="org-left">Leica Video Objective 0.63x</td>
+<td class="org-right">13.23</td>
+<td class="org-left">Estimated \(O_d\)</td>
+<td class="org-center">co63</td>
+</tr>
+
+<tr>
+<td class="org-right">10446307</td>
+<td class="org-left">Leica Video Objective 0.8x</td>
+<td class="org-right">16.80</td>
+<td class="org-left">Estimated \(O_d\)</td>
+<td class="org-center">co80</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org180361f" class="outline-3">
+<h3 id="org180361f"><span class="section-number-3">3.5.</span> Attaching Cameras</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+The Leica documentation suggests using a chain of adapters for attaching a generic digital camera. The first part of the chain is one of the following three
+parts: 10447436 1.6× DSLR tube, 10446175 2.5× DSLR tube, or 10445930 1.0× video/photo objective.  Next will be one or more adapters for your camera.  The
+result can be a tower of adapters taller than your microscope!  For cameras with large sensors, this really is the only way to go.  An excellent write-up
+for this approach may be found 
+<a href="http://www.microscopy-uk.org.uk/mag/indexmag.html?http://www.microscopy-uk.org.uk/mag/artmay16/dw-stereo-photo.html">here</a>.  A good discussion on
+<a href="https://www.microbehunter.com/">MicrobeHunter.com</a> may found <a href="https://www.microbehunter.com/microscopy-forum/viewtopic.php?t=8527">here</a>.
+</p>
+
+<p>
+For cameras with Micro Four Thirds and smaller sensors, a simpler approach is connect your camera via a c-mount adapter to one of Leica's "C-Mount Video
+Objectives": 10445928 0.32x, 10450528 0.5x, 10447367 0.63x, or 10446307 0.8x.  These adapters are intended to be used with Leica's microscope cameras, but
+they will work with any c-mount camera &#x2013; including your SLR with a c-mount adapter.
+</p>
+
+<p>
+With the 0.5x objective one will obtain a nice 10.5mm image circle which is just about perfect for whole field imaging with the 13mm tall sensor in a Micro
+Four Thirds camera.
+</p>
+
+<p>
+I use two cameras with my S8APO:
+</p>
+<ul class="org-ul">
+<li><a href="https://www.getolympus.com/us/en/digitalcameras/omd/e-m1-mark-ii.html">Olympus OM-D E-M1 Mark II</a> with a 0.5x or 0.32x video objective</li>
+<li><a href="#rpi-camera">A DIY solution</a> with a Raspberry Pi &amp; Raspberry Pi HQ Camera attached to a 0.32x video objective.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-s8-cam-data" class="outline-3">
+<h3 id="s8-cam-data"><span class="section-number-3">3.6.</span> Camera FOV &amp; Image Scales</h3>
+<div class="outline-text-3" id="text-s8-cam-data">
+<table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">&#xa0;</th>
+<th scope="col" class="org-right">&#xa0;</th>
+<th scope="col" class="org-right">&#xa0;</th>
+<th scope="col" class="org-right">&#xa0;</th>
+<th scope="col" class="org-right">&#xa0;</th>
+<th scope="col" class="org-right">RPI</th>
+<th scope="col" class="org-right">&#xa0;</th>
+<th scope="col" class="org-right">&#xa0;</th>
+<th scope="col" class="org-right">&#xa0;</th>
+<th scope="col" class="org-right">&#xa0;</th>
+<th scope="col" class="org-right">OLY</th>
+<th scope="col" class="org-right">&#xa0;</th>
+<th scope="col" class="org-right">&#xa0;</th>
+<th scope="col" class="org-right">&#xa0;</th>
+<th scope="col" class="org-right">&#xa0;</th>
+</tr>
+
+<tr>
+<th scope="col" class="org-right">\(A\)</th>
+<th scope="col" class="org-right">\(Z\)</th>
+<th scope="col" class="org-right">\(O_c\)</th>
+<th scope="col" class="org-right">\(O_d\)</th>
+<th scope="col" class="org-right">\(S_{MAG}\)</th>
+<th scope="col" class="org-right">\(P_{IJSPAR}\)</th>
+<th scope="col" class="org-right">\(I_{SCLh}\)</th>
+<th scope="col" class="org-right">\(I_{SCLv}\)</th>
+<th scope="col" class="org-right">\(S_{FOVh}\)</th>
+<th scope="col" class="org-right">\(S_{FOVv}\)</th>
+<th scope="col" class="org-right">\(P_{IJSPAR}\)</th>
+<th scope="col" class="org-right">\(I_{SCLh}\)</th>
+<th scope="col" class="org-right">\(I_{SCLv}\)</th>
+<th scope="col" class="org-right">\(S_{FOVh}\)</th>
+<th scope="col" class="org-right">\(S_{FOVv}\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0.63</td>
+<td class="org-right">1</td>
+<td class="org-right">0.50</td>
+<td class="org-right">10.5</td>
+<td class="org-right">0.32</td>
+<td class="org-right">1.0000000</td>
+<td class="org-right">203.23</td>
+<td class="org-right">203.23</td>
+<td class="org-right">19.96</td>
+<td class="org-right">14.96</td>
+<td class="org-right">0.9961686</td>
+<td class="org-right">93.85</td>
+<td class="org-right">94.21</td>
+<td class="org-right">33.33</td>
+<td class="org-right">33.33</td>
+</tr>
+
+<tr>
+<td class="org-right">0.63</td>
+<td class="org-right">8</td>
+<td class="org-right">0.50</td>
+<td class="org-right">10.5</td>
+<td class="org-right">2.52</td>
+<td class="org-right">1.0000000</td>
+<td class="org-right">1625.81</td>
+<td class="org-right">1625.81</td>
+<td class="org-right">2.49</td>
+<td class="org-right">1.87</td>
+<td class="org-right">0.9961686</td>
+<td class="org-right">750.79</td>
+<td class="org-right">753.67</td>
+<td class="org-right">4.17</td>
+<td class="org-right">4.17</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">1.00</td>
+<td class="org-right">1</td>
+<td class="org-right">0.50</td>
+<td class="org-right">10.5</td>
+<td class="org-right">0.50</td>
+<td class="org-right">1.0000000</td>
+<td class="org-right">322.58</td>
+<td class="org-right">322.58</td>
+<td class="org-right">12.57</td>
+<td class="org-right">9.42</td>
+<td class="org-right">0.9961686</td>
+<td class="org-right">148.97</td>
+<td class="org-right">149.54</td>
+<td class="org-right">21.00</td>
+<td class="org-right">21.00</td>
+</tr>
+
+<tr>
+<td class="org-right">1.00</td>
+<td class="org-right">8</td>
+<td class="org-right">0.50</td>
+<td class="org-right">10.5</td>
+<td class="org-right">4.00</td>
+<td class="org-right">1.0000000</td>
+<td class="org-right">2580.65</td>
+<td class="org-right">2580.65</td>
+<td class="org-right">1.57</td>
+<td class="org-right">1.18</td>
+<td class="org-right">0.9961686</td>
+<td class="org-right">1191.72</td>
+<td class="org-right">1196.31</td>
+<td class="org-right">2.62</td>
+<td class="org-right">2.62</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">2.00</td>
+<td class="org-right">1</td>
+<td class="org-right">0.50</td>
+<td class="org-right">10.5</td>
+<td class="org-right">1.00</td>
+<td class="org-right">1.0000000</td>
+<td class="org-right">645.16</td>
+<td class="org-right">645.16</td>
+<td class="org-right">6.29</td>
+<td class="org-right">4.71</td>
+<td class="org-right">0.9961686</td>
+<td class="org-right">297.93</td>
+<td class="org-right">299.08</td>
+<td class="org-right">10.50</td>
+<td class="org-right">10.50</td>
+</tr>
+
+<tr>
+<td class="org-right">2.00</td>
+<td class="org-right">8</td>
+<td class="org-right">0.50</td>
+<td class="org-right">10.5</td>
+<td class="org-right">8.00</td>
+<td class="org-right">1.0000000</td>
+<td class="org-right">5161.29</td>
+<td class="org-right">5161.29</td>
+<td class="org-right">0.79</td>
+<td class="org-right">0.59</td>
+<td class="org-right">0.9961686</td>
+<td class="org-right">2383.45</td>
+<td class="org-right">2392.62</td>
+<td class="org-right">1.31</td>
+<td class="org-right">1.31</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-mrconv" class="outline-2">
+<h2 id="mrconv"><span class="section-number-2">4.</span> Reticle Unit Conversion Software For free42 and DM42</h2>
+<div class="outline-text-2" id="text-mrconv">
+</div>
+
+<div id="outline-container-orgd595c3d" class="outline-3">
+<h3 id="orgd595c3d"><span class="section-number-3">4.1.</span> The menu</h3>
+<div class="outline-text-3" id="text-4-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-left">Without <code>[SHIFT]</code></th>
+<th scope="col" class="org-left">With <code>[SHIFT]</code></th>
+<th scope="col" class="org-left">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">A</td>
+<td class="org-left">Store A</td>
+<td class="org-left">Display A</td>
+<td class="org-left">Actually stored in variable "mrcvA"</td>
+</tr>
+
+<tr>
+<td class="org-left">Z</td>
+<td class="org-left">Store Z</td>
+<td class="org-left">Display Z</td>
+<td class="org-left">Actually stored in variable "mrcvZ"</td>
+</tr>
+
+<tr>
+<td class="org-left">Rc</td>
+<td class="org-left">Store Rc</td>
+<td class="org-left">Display Rc</td>
+<td class="org-left">Actually stored in variable "mrcvRc"</td>
+</tr>
+
+<tr>
+<td class="org-left">▒▒▒▒</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">▒▒▒▒</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">CONV</td>
+<td class="org-left">Convert from Reticle Units</td>
+<td class="org-left">Convert from Reticle Units</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Setting 1: "4;.5"</td>
+<td class="org-left">Leica S4; A=0.50; Z=0.63</td>
+<td class="org-left">Leica S4; A=0.50; Z=3.00</td>
+<td class="org-left">Modify as required!</td>
+</tr>
+
+<tr>
+<td class="org-left">Setting 2: "4;1"</td>
+<td class="org-left">Leica S4; A=1.00; Z=0.63</td>
+<td class="org-left">Leica S4; A=1.00; Z=3.00</td>
+<td class="org-left">Modify as required!</td>
+</tr>
+
+<tr>
+<td class="org-left">Setting 3: "4;1.6"</td>
+<td class="org-left">Leica S4; A=1.60; Z=0.63</td>
+<td class="org-left">Leica S4; A=1.60; Z=3.00</td>
+<td class="org-left">Modify as required!</td>
+</tr>
+
+<tr>
+<td class="org-left">Setting 4: "8;.63"</td>
+<td class="org-left">Leica S8APO; A=0.63; Z=1.00</td>
+<td class="org-left">Leica S8APO; A=0.63; Z=8.00</td>
+<td class="org-left">Modify as required!</td>
+</tr>
+
+<tr>
+<td class="org-left">Setting 5: "8;1"</td>
+<td class="org-left">Leica S8APO; A=1.00; Z=1.00</td>
+<td class="org-left">Leica S8APO; A=1.00; Z=8.00</td>
+<td class="org-left">Modify as required!</td>
+</tr>
+
+<tr>
+<td class="org-left">Setting 6: "8;2"</td>
+<td class="org-left">Leica S8APO; A=2.00; Z=1.00</td>
+<td class="org-left">Leica S8APO; A=2.00; Z=8.00</td>
+<td class="org-left">Modify as required!</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+The setting sections of the code should be modified to meet the end user's needs.  In my case, I have two zoom microscopes (Leica S4E and Leica S8APO).  They
+both have two zoom stops (upper and lower), and I have two auxiliary lenses for each.  That's a total of 12 different configurations.  I decided use 6 menu
+keys each with two sets of settings &#x2013; the scope's lower zoom stop is used when pressed without <code>[SHIFT]</code>, and the upper zoom stop when use with <code>[SHIFT]</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5aa9fd0" class="outline-3">
+<h3 id="org5aa9fd0"><span class="section-number-3">4.2.</span> The code</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+While this code isn't very useful without being customized to the particular settings the end user needs, it can be test driven as-is by cut-n-pasting the
+code below into free42 or by installing the raw file: <a href="MRCONV.raw">MRCONV.raw</a>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-hp42s"><span id="coderef-MRCONV" class="coderef-off"><span style="color: #ffa500;">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span> (MRCONV)</span>
+<span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">DSC: Convert Reticle Units to Physical Units</span>
+<span style="color: #00ffff;">LBL</span> <span style="color: #fa8072;">"MRCONV"</span>
+<span style="color: #00ffff;">LBL</span> 01           <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Conversion &amp; Variable Menu Page</span>
+<span style="color: #00ffff;">CLMENU</span>
+<span style="color: #fa8072;">"A"</span>
+<span style="color: #00ffff;">KEY</span> 1 <span style="color: #00ffff;">XEQ</span> 03
+<span style="color: #fa8072;">"Z"</span>
+<span style="color: #00ffff;">KEY</span> 2 <span style="color: #00ffff;">XEQ</span> 04
+<span style="color: #fa8072;">"Rc"</span>
+<span style="color: #00ffff;">KEY</span> 3 <span style="color: #00ffff;">XEQ</span> 05
+<span style="color: #fa8072;">"CONV"</span>
+<span style="color: #00ffff;">KEY</span> 6 <span style="color: #00ffff;">XEQ</span> 06
+<span style="color: #00ffff;">KEY</span> 7 <span style="color: #00ffff;">GTO</span> 02
+<span style="color: #00ffff;">KEY</span> 8 <span style="color: #00ffff;">GTO</span> 02
+<span style="color: #00ffff;">KEY</span> 9 <span style="color: #00ffff;">GTO</span> 00
+<span style="color: #00ffff;">MENU</span>
+<span style="color: #00ffff;">STOP</span>
+<span style="color: #00ffff;">GTO</span> 01
+<span style="color: #00ffff;">LBL</span> 02           <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Quick Settings Menu Page</span>
+<span style="color: #00ffff;">CLMENU</span>
+<span style="color: #fa8072;">"4;.5"</span>             <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Setting 1</span>
+<span style="color: #00ffff;">KEY</span> 1 <span style="color: #00ffff;">GTO</span> 07       
+<span style="color: #fa8072;">"4;1"</span>              <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Setting 2</span>
+<span style="color: #00ffff;">KEY</span> 2 <span style="color: #00ffff;">GTO</span> 08       
+<span style="color: #fa8072;">"4;1.6"</span>            <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Setting 3</span>
+<span style="color: #00ffff;">KEY</span> 3 <span style="color: #00ffff;">GTO</span> 09       
+<span style="color: #fa8072;">"8;.63"</span>            <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Setting 4</span>
+<span style="color: #00ffff;">KEY</span> 4 <span style="color: #00ffff;">GTO</span> 10       
+<span style="color: #fa8072;">"8;1"</span>              <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Setting 5</span>
+<span style="color: #00ffff;">KEY</span> 5 <span style="color: #00ffff;">GTO</span> 11       
+<span style="color: #fa8072;">"8;2"</span>              <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Setting 6</span>
+<span style="color: #00ffff;">KEY</span> 6 <span style="color: #00ffff;">XEQ</span> 12
+<span style="color: #00ffff;">KEY</span> 7 <span style="color: #00ffff;">GTO</span> 01
+<span style="color: #00ffff;">KEY</span> 8 <span style="color: #00ffff;">GTO</span> 01
+<span style="color: #00ffff;">KEY</span> 9 <span style="color: #00ffff;">GTO</span> 00
+<span style="color: #00ffff;">MENU</span>
+<span style="color: #00ffff;">STOP</span>
+<span style="color: #00ffff;">GTO</span> 02
+<span style="color: #00ffff;">LBL</span> 00           <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Application Exit</span>
+<span style="color: #00ffff;">EXITALL</span>          
+<span style="color: #00ffff;">RTN</span>              
+<span style="color: #00ffff;">LBL</span> 03           <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Code for menu key A</span>
+<span style="color: #00ffff;">FC</span>? 64           
+<span style="color: #00ffff;">STO</span> <span style="color: #fa8072;">"mrcvA"</span>      
+<span style="color: #00ffff;">VIEW</span> <span style="color: #fa8072;">"mrcvA"</span>     
+<span style="color: #00ffff;">RTN</span>              
+<span style="color: #00ffff;">LBL</span> 04           <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Code for menu key Z</span>
+<span style="color: #00ffff;">FC</span>? 64           
+<span style="color: #00ffff;">STO</span> <span style="color: #fa8072;">"mrcvZ"</span>      
+<span style="color: #00ffff;">VIEW</span> <span style="color: #fa8072;">"mrcvZ"</span>     
+<span style="color: #00ffff;">RTN</span>              
+<span style="color: #00ffff;">LBL</span> 05           <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Code for menu key Rc</span>
+<span style="color: #00ffff;">FC</span>? 64           
+<span style="color: #00ffff;">STO</span> <span style="color: #fa8072;">"mrcvRc"</span>     
+<span style="color: #00ffff;">VIEW</span> <span style="color: #fa8072;">"mrcvRc"</span>    
+<span style="color: #00ffff;">RTN</span>              
+<span style="color: #00ffff;">LBL</span> 06           <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Code for menu key CONV</span>
+<span style="color: #00ffff;">RCL&#215;</span> <span style="color: #fa8072;">"mrcvRc"</span>    
+<span style="color: #00ffff;">RCL&#247;</span> <span style="color: #fa8072;">"mrcvA"</span>     
+<span style="color: #00ffff;">RCL&#247;</span> <span style="color: #fa8072;">"mrcvZ"</span>     
+<span style="color: #00ffff;">RTN</span>              
+<span style="color: #00ffff;">LBL</span> 07           <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Code for Setting 1 -- "4;.5"</span>
+1                  <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Rc Value for Setting 1 -- "4;.5"</span>
+<span style="color: #00ffff;">STO</span> <span style="color: #fa8072;">"mrcvRc"</span>     
+R&#8595;               
+0.5                <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">A Value for Setting 1 -- "4;.5"</span>
+<span style="color: #00ffff;">STO</span> <span style="color: #fa8072;">"mrcvA"</span>      
+R&#8595;               
+<span style="color: #00ffff;">FC</span>? 64           
+0.63               <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Z Value for no SHIFT Setting 1 -- "4;.5"</span>
+<span style="color: #00ffff;">FS</span>? 64           
+3.0                <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Z Value for SHIFT Setting 1 -- "4;.5"</span>
+<span style="color: #00ffff;">STO</span> <span style="color: #fa8072;">"mrcvZ"</span>      
+<span style="color: #00ffff;">GTO</span> 01           
+<span style="color: #00ffff;">LBL</span> 08           <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Code for Setting 2 -- "4;1"</span>
+1                  <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Rc Value for Setting 2 -- "4;1"</span>
+<span style="color: #00ffff;">STO</span> <span style="color: #fa8072;">"mrcvRc"</span>     
+R&#8595;               
+1.0                <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">A Value for Setting 2 -- "4;1"</span>
+<span style="color: #00ffff;">STO</span> <span style="color: #fa8072;">"mrcvA"</span>      
+R&#8595;               
+<span style="color: #00ffff;">FC</span>? 64           
+0.63               <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Z Value for no SHIFT Setting 2 -- "4;1"</span>
+<span style="color: #00ffff;">FS</span>? 64           
+3.0                <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Z Value for SHIFT Setting 2 -- "4;1"</span>
+<span style="color: #00ffff;">STO</span> <span style="color: #fa8072;">"mrcvZ"</span>      
+<span style="color: #00ffff;">GTO</span> 01           
+<span style="color: #00ffff;">LBL</span> 09           <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Code for Setting 3 -- "4;1.6"</span>
+1                  <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Rc Value for Setting 3 -- "4;1.6"</span>
+<span style="color: #00ffff;">STO</span> <span style="color: #fa8072;">"mrcvRc"</span>     
+R&#8595;               
+1.6                <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">A Value for Setting 3 -- "4;1.6"</span>
+<span style="color: #00ffff;">STO</span> <span style="color: #fa8072;">"mrcvA"</span>      
+R&#8595;               
+<span style="color: #00ffff;">FC</span>? 64           
+0.63               <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Z Value for no SHIFT Setting 3 -- "4;1.6"</span>
+<span style="color: #00ffff;">FS</span>? 64           
+3.0                <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Z Value for SHIFT Setting 3 -- "4;1.6"</span>
+<span style="color: #00ffff;">STO</span> <span style="color: #fa8072;">"mrcvZ"</span>      
+<span style="color: #00ffff;">GTO</span> 01           
+<span style="color: #00ffff;">LBL</span> 10           <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Code for Setting 4 -- "8;.63"</span>
+1                  <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Rc Value for Setting 4 -- "8;.63"</span>
+<span style="color: #00ffff;">STO</span> <span style="color: #fa8072;">"mrcvRc"</span>     
+R&#8595;               
+0.63               <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">A Value for Setting 4 -- "8;.63"</span>
+<span style="color: #00ffff;">STO</span> <span style="color: #fa8072;">"mrcvA"</span>      
+R&#8595;               
+<span style="color: #00ffff;">FC</span>? 64           
+1.0                <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Z Value for no SHIFT Setting 4 -- "8;.63"</span>
+<span style="color: #00ffff;">FS</span>? 64           
+8.0                <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Z Value for SHIFT Setting 4 -- "8;.63"</span>
+<span style="color: #00ffff;">STO</span> <span style="color: #fa8072;">"mrcvZ"</span>      
+<span style="color: #00ffff;">GTO</span> 01           
+<span style="color: #00ffff;">LBL</span> 11           <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Code for Setting 5 -- "8;1"</span>
+1                  <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Rc Value for Setting 5 -- "8;1"</span>
+<span style="color: #00ffff;">STO</span> <span style="color: #fa8072;">"mrcvRc"</span>     
+R&#8595;               
+1.0                <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">A Value for Setting 5 -- "8;1"</span>
+<span style="color: #00ffff;">STO</span> <span style="color: #fa8072;">"mrcvA"</span>      
+R&#8595;               
+<span style="color: #00ffff;">FC</span>? 64           
+1.0                <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Z Value for no SHIFT Setting 5 -- "8;1"</span>
+<span style="color: #00ffff;">FS</span>? 64           
+8.0                <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Z Value for SHIFT Setting 5 -- "8;1"</span>
+<span style="color: #00ffff;">STO</span> <span style="color: #fa8072;">"mrcvZ"</span>      
+<span style="color: #00ffff;">GTO</span> 01           
+<span style="color: #00ffff;">LBL</span> 12           <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Code for Setting 6 -- "8;2"</span>
+1                  <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Rc Value for Setting 6 -- "8;2"</span>
+<span style="color: #00ffff;">STO</span> <span style="color: #fa8072;">"mrcvRc"</span>     
+R&#8595;               
+2.0                <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">A Value for Setting 6 -- "8;2"</span>
+<span style="color: #00ffff;">STO</span> <span style="color: #fa8072;">"mrcvA"</span>      
+R&#8595;               
+<span style="color: #00ffff;">FC</span>? 64           
+1.0                <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Z Value for no SHIFT Setting 6 -- "8;2"</span>
+<span style="color: #00ffff;">FS</span>? 64           
+8.0                <span style="color: #ffa500;">@@@@ </span><span style="color: #ff7f24;">Z Value for SHIFT Setting 6 -- "8;2"</span>
+<span style="color: #00ffff;">STO</span> <span style="color: #fa8072;">"mrcvZ"</span>
+<span style="color: #00ffff;">GTO</span> 01
+<span style="color: #00ffff;">END</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-parts" class="outline-2">
+<h2 id="parts"><span class="section-number-2">5.</span> S-Series Leica Parts</h2>
+<div class="outline-text-2" id="text-parts">
+<table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
+
+
+<colgroup>
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">Leica Part #</th>
+<th scope="col" class="org-left">Leica Part Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">10446298</td>
+<td class="org-left">Leica S8 APO</td>
+</tr>
+
+<tr>
+<td class="org-right">10446293</td>
+<td class="org-left">Leica S4 E</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">10447136</td>
+<td class="org-left">10x/23B eyepiece for eyeglasses, fixed</td>
+</tr>
+
+<tr>
+<td class="org-right">10447137</td>
+<td class="org-left">10x/23B eyepiece for eyeglasses, adjustable</td>
+</tr>
+
+<tr>
+<td class="org-right">10447138</td>
+<td class="org-left">16x/15B eyepiece for eyeglasses, fixed</td>
+</tr>
+
+<tr>
+<td class="org-right">10447139</td>
+<td class="org-left">16x/15B eyepiece for eyeglasses, adjustable</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">10446447</td>
+<td class="org-left">Reticle 10 mm/0.1 mm</td>
+</tr>
+
+<tr>
+<td class="org-right">10446448</td>
+<td class="org-left">Reticle 5 mm/0.1 mm</td>
+</tr>
+
+<tr>
+<td class="org-right">10446449</td>
+<td class="org-left">Reticle 5 mm/0.05 mm</td>
+</tr>
+
+<tr>
+<td class="org-right">10447000</td>
+<td class="org-left">Reticle 100 scale intervals / 0.002"</td>
+</tr>
+
+<tr>
+<td class="org-right">10447001</td>
+<td class="org-left">Reticle 100 scale intervals / 0.001"</td>
+</tr>
+
+<tr>
+<td class="org-right">10447002</td>
+<td class="org-left">Reticle 150 scale intervals / 0.0005"</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">10446334</td>
+<td class="org-left">Achro Auxiliary 0.32× for A8, WD 200 mm</td>
+</tr>
+
+<tr>
+<td class="org-right">10446335</td>
+<td class="org-left">APO Auxiliary 0.63× for A8, WD 100 mm</td>
+</tr>
+
+<tr>
+<td class="org-right">10446336</td>
+<td class="org-left">APO Auxiliary 1.6× for A8, WD 37 mm</td>
+</tr>
+
+<tr>
+<td class="org-right">10446337</td>
+<td class="org-left">APO Auxiliary 2.0× for A8, WD 25 mm</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">10446316</td>
+<td class="org-left">Auxiliary 0.32× for S4/S6, WD 300 mm</td>
+</tr>
+
+<tr>
+<td class="org-right">10446318</td>
+<td class="org-left">Auxiliary 0.5× for S4/S6, WD 200 mm</td>
+</tr>
+
+<tr>
+<td class="org-right">10446319</td>
+<td class="org-left">Auxiliary 0.63× for S4/S6, WD 155 mm</td>
+</tr>
+
+<tr>
+<td class="org-right">10446320</td>
+<td class="org-left">Auxiliary 0.75× for S4/S6, WD 130 mm</td>
+</tr>
+
+<tr>
+<td class="org-right">10446321</td>
+<td class="org-left">Auxiliary 1.6× for S4/S6, WD 55 mm</td>
+</tr>
+
+<tr>
+<td class="org-right">10446322</td>
+<td class="org-left">Auxiliary 2.0× for S4/S6, WD 35 mm</td>
+</tr>
+
+<tr>
+<td class="org-right">10446325</td>
+<td class="org-left">Auxiliary 0.3–0.4× for S4/S6 (Adjustable), WD 200–350mm</td>
+</tr>
+
+<tr>
+<td class="org-right">10446323</td>
+<td class="org-left">Auxiliary 0.6–0.75× for S4/S6 (ErgoObjective) WD 77–137mm</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">10450817</td>
+<td class="org-left">Auxiliary 0.5 for S9, WD 200 mm</td>
+</tr>
+
+<tr>
+<td class="org-right">10450818</td>
+<td class="org-left">Auxiliary 0.63 for S9, WD 150 mm</td>
+</tr>
+
+<tr>
+<td class="org-right">10450819</td>
+<td class="org-left">Auxiliary 0.75 for S9, WD 130 mm</td>
+</tr>
+
+<tr>
+<td class="org-right">10450820</td>
+<td class="org-left">Auxiliary 1.6 for S9, WD 50 mm</td>
+</tr>
+
+<tr>
+<td class="org-right">10450821</td>
+<td class="org-left">Auxiliary 2.0 for S9, WD 35 mm</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">10446324</td>
+<td class="org-left">Lens shield</td>
+</tr>
+
+<tr>
+<td class="org-right">10450831</td>
+<td class="org-left">Updated lens shield</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">10445928</td>
+<td class="org-left">Leica Video Objective 0.32x</td>
+</tr>
+
+<tr>
+<td class="org-right">10450528</td>
+<td class="org-left">Leica Video Objective 0.5x</td>
+</tr>
+
+<tr>
+<td class="org-right">10447367</td>
+<td class="org-left">Leica Video Objective 0.63x</td>
+</tr>
+
+<tr>
+<td class="org-right">10446307</td>
+<td class="org-left">Leica Video Objective 0.8x</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-sensors" class="outline-2">
+<h2 id="sensors"><span class="section-number-2">6.</span> Image Sensor Data</h2>
+<div class="outline-text-2" id="text-sensors">
+<table id="org2a0288c" border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Type</th>
+<th scope="col" class="org-left">Sensor</th>
+<th scope="col" class="org-right">\(S_w\)</th>
+<th scope="col" class="org-right">\(S_h\)</th>
+<th scope="col" class="org-right">\(I_w\)</th>
+<th scope="col" class="org-right">\(I_h\)</th>
+<th scope="col" class="org-right">\(S_d\)</th>
+<th scope="col" class="org-right">\(S_A\)</th>
+<th scope="col" class="org-right">\(I_{MP}\)</th>
+<th scope="col" class="org-right">\(P_w\)</th>
+<th scope="col" class="org-right">\(P_h\)</th>
+<th scope="col" class="org-right">\(P_{AR}\)</th>
+<th scope="col" class="org-right">\(P_{IJSPAR}\)</th>
+<th scope="col" class="org-left">Ref</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">1/4"</td>
+<td class="org-left">IMX219</td>
+<td class="org-right">3.6800</td>
+<td class="org-right">2.76</td>
+<td class="org-right">3280</td>
+<td class="org-right">2464</td>
+<td class="org-right">4.6</td>
+<td class="org-right">10</td>
+<td class="org-right">8.1</td>
+<td class="org-right">1.12</td>
+<td class="org-right">1.12</td>
+<td class="org-right">1.00163</td>
+<td class="org-right">0.99838</td>
+<td class="org-left">IMX219</td>
+</tr>
+
+<tr>
+<td class="org-left">1/3.2"</td>
+<td class="org-left">IMX179</td>
+<td class="org-right">3.2880</td>
+<td class="org-right">2.512</td>
+<td class="org-right">3280</td>
+<td class="org-right">2464</td>
+<td class="org-right">4.1</td>
+<td class="org-right">8</td>
+<td class="org-right">8.1</td>
+<td class="org-right">1.00</td>
+<td class="org-right">1.02</td>
+<td class="org-right">0.98328</td>
+<td class="org-right">1.01700</td>
+<td class="org-left">IMX179</td>
+</tr>
+
+<tr>
+<td class="org-left">1/2.5"</td>
+<td class="org-left">MT9P031</td>
+<td class="org-right">5.7000</td>
+<td class="org-right">4.28</td>
+<td class="org-right">2592</td>
+<td class="org-right">1944</td>
+<td class="org-right">7.1</td>
+<td class="org-right">24</td>
+<td class="org-right">5.0</td>
+<td class="org-right">2.20</td>
+<td class="org-right">2.20</td>
+<td class="org-right">0.99883</td>
+<td class="org-right">1.00117</td>
+<td class="org-left">MT9P031</td>
+</tr>
+
+<tr>
+<td class="org-left">1/2.3"</td>
+<td class="org-left">Leica mc170</td>
+<td class="org-right">6.1000</td>
+<td class="org-right">4.6</td>
+<td class="org-right">2592</td>
+<td class="org-right">1944</td>
+<td class="org-right">7.6</td>
+<td class="org-right">28</td>
+<td class="org-right">5.0</td>
+<td class="org-right">2.35</td>
+<td class="org-right">2.37</td>
+<td class="org-right">0.99457</td>
+<td class="org-right">1.00546</td>
+<td class="org-left">mc170</td>
+</tr>
+
+<tr>
+<td class="org-left">1/2.3"</td>
+<td class="org-left">Leica mc190</td>
+<td class="org-right">6.1000</td>
+<td class="org-right">4.6</td>
+<td class="org-right">3648</td>
+<td class="org-right">2736</td>
+<td class="org-right">7.6</td>
+<td class="org-right">28</td>
+<td class="org-right">10.0</td>
+<td class="org-right">1.67</td>
+<td class="org-right">1.68</td>
+<td class="org-right">0.99457</td>
+<td class="org-right">1.00546</td>
+<td class="org-left">mc190</td>
+</tr>
+
+<tr>
+<td class="org-left">1/2.3"</td>
+<td class="org-left">IMX477 RPI</td>
+<td class="org-right">6.2868</td>
+<td class="org-right">4.712</td>
+<td class="org-right">4056</td>
+<td class="org-right">3040</td>
+<td class="org-right">7.9</td>
+<td class="org-right">29</td>
+<td class="org-right">12.3</td>
+<td class="org-right">1.55</td>
+<td class="org-right">1.55</td>
+<td class="org-right">1.00000</td>
+<td class="org-right">1.00000</td>
+<td class="org-left">RPI</td>
+</tr>
+
+<tr>
+<td class="org-left">1/1.8"</td>
+<td class="org-left">IMX334</td>
+<td class="org-right">7.9000</td>
+<td class="org-right">4.64</td>
+<td class="org-right">3952</td>
+<td class="org-right">2320</td>
+<td class="org-right">9.2</td>
+<td class="org-right">36</td>
+<td class="org-right">9.2</td>
+<td class="org-right">2.00</td>
+<td class="org-right">2.00</td>
+<td class="org-right">0.99949</td>
+<td class="org-right">1.00051</td>
+<td class="org-left">IMX334</td>
+</tr>
+
+<tr>
+<td class="org-left">2/3"</td>
+<td class="org-left">IMX264</td>
+<td class="org-right">8.5000</td>
+<td class="org-right">7.1</td>
+<td class="org-right">2464</td>
+<td class="org-right">2056</td>
+<td class="org-right">11.1</td>
+<td class="org-right">60</td>
+<td class="org-right">5.1</td>
+<td class="org-right">3.45</td>
+<td class="org-right">3.45</td>
+<td class="org-right">0.99895</td>
+<td class="org-right">1.00105</td>
+<td class="org-left">IMX264</td>
+</tr>
+
+<tr>
+<td class="org-left">16mm</td>
+<td class="org-left">film</td>
+<td class="org-right">10.3000</td>
+<td class="org-right">7.4</td>
+<td class="org-right">4120</td>
+<td class="org-right">2960</td>
+<td class="org-right">12.7</td>
+<td class="org-right">76</td>
+<td class="org-right">12.2</td>
+<td class="org-right">2.50</td>
+<td class="org-right">2.50</td>
+<td class="org-right">1.00000</td>
+<td class="org-right">1.00000</td>
+<td class="org-left">16mm</td>
+</tr>
+
+<tr>
+<td class="org-left">1"</td>
+<td class="org-left">IMX183</td>
+<td class="org-right">13.1300</td>
+<td class="org-right">8.76</td>
+<td class="org-right">5472</td>
+<td class="org-right">3648</td>
+<td class="org-right">15.8</td>
+<td class="org-right">115</td>
+<td class="org-right">20.0</td>
+<td class="org-right">2.40</td>
+<td class="org-right">2.40</td>
+<td class="org-right">0.99924</td>
+<td class="org-right">1.00076</td>
+<td class="org-left">IMX183</td>
+</tr>
+
+<tr>
+<td class="org-left">1.1"</td>
+<td class="org-left">IMX304</td>
+<td class="org-right">14.2000</td>
+<td class="org-right">10.4</td>
+<td class="org-right">4104</td>
+<td class="org-right">3006</td>
+<td class="org-right">17.6</td>
+<td class="org-right">147</td>
+<td class="org-right">12.3</td>
+<td class="org-right">3.46</td>
+<td class="org-right">3.46</td>
+<td class="org-right">1.00008</td>
+<td class="org-right">0.99992</td>
+<td class="org-left">IMX304</td>
+</tr>
+
+<tr>
+<td class="org-left">4/3"</td>
+<td class="org-left">OMD EM1 M2</td>
+<td class="org-right">17.4000</td>
+<td class="org-right">13</td>
+<td class="org-right">5184</td>
+<td class="org-right">3888</td>
+<td class="org-right">21.7</td>
+<td class="org-right">226</td>
+<td class="org-right">20.2</td>
+<td class="org-right">3.36</td>
+<td class="org-right">3.34</td>
+<td class="org-right">1.00385</td>
+<td class="org-right">0.99617</td>
+<td class="org-left">OLY</td>
+</tr>
+
+<tr>
+<td class="org-left">APS-C</td>
+<td class="org-left">Nikon D3200</td>
+<td class="org-right">23.2000</td>
+<td class="org-right">15.4</td>
+<td class="org-right">6016</td>
+<td class="org-right">4000</td>
+<td class="org-right">27.8</td>
+<td class="org-right">357</td>
+<td class="org-right">24.1</td>
+<td class="org-right">3.86</td>
+<td class="org-right">3.85</td>
+<td class="org-right">1.00166</td>
+<td class="org-right">0.99834</td>
+<td class="org-left">APSC</td>
+</tr>
+
+<tr>
+<td class="org-left">35mm</td>
+<td class="org-left">film</td>
+<td class="org-right">36.0000</td>
+<td class="org-right">24.0</td>
+<td class="org-right">14400</td>
+<td class="org-right">9600</td>
+<td class="org-right">43.3</td>
+<td class="org-right">864</td>
+<td class="org-right">138.2</td>
+<td class="org-right">2.50</td>
+<td class="org-right">2.50</td>
+<td class="org-right">1.00000</td>
+<td class="org-right">1.00000</td>
+<td class="org-left">35mm</td>
+</tr>
+
+<tr>
+<td class="org-left">645</td>
+<td class="org-left">film</td>
+<td class="org-right">56.0000</td>
+<td class="org-right">41.5</td>
+<td class="org-right">22400</td>
+<td class="org-right">16600</td>
+<td class="org-right">69.7</td>
+<td class="org-right">2324</td>
+<td class="org-right">371.8</td>
+<td class="org-right">2.50</td>
+<td class="org-right">2.50</td>
+<td class="org-right">1.00000</td>
+<td class="org-right">1.00000</td>
+<td class="org-left">645</td>
+</tr>
+
+<tr>
+<td class="org-left">IMAX</td>
+<td class="org-left">film</td>
+<td class="org-right">70.4000</td>
+<td class="org-right">52.6</td>
+<td class="org-right">28160</td>
+<td class="org-right">21040</td>
+<td class="org-right">87.9</td>
+<td class="org-right">3703</td>
+<td class="org-right">592.5</td>
+<td class="org-right">2.50</td>
+<td class="org-right">2.50</td>
+<td class="org-right">1.00000</td>
+<td class="org-right">1.00000</td>
+<td class="org-left">IMAX</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-rpi-camera" class="outline-2">
+<h2 id="rpi-camera"><span class="section-number-2">7.</span> DIY RPI Camera</h2>
+<div class="outline-text-2" id="text-rpi-camera">
+</div>
+
+<div id="outline-container-org3b64980" class="outline-3">
+<h3 id="org3b64980"><span class="section-number-3">7.1.</span> The Idea</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+Microscope cameras with built in image analysis software are pretty cool.  Simply connect the camera to your monitor &amp; mouse, and you can do simple image
+processing and measurement without a computer.  These solutions are expensive for what you get, and the analysis software is pretty limited.  So I thought,
+why not build my own?  It's just a tiny computer and a camera in a compact case after all.  If I used a Raspberry Pi, then I could actually run my favorite
+image analysis software (Fiji/ImageJ) right on the camera.  
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0680c92" class="outline-3">
+<h3 id="org0680c92"><span class="section-number-3">7.2.</span> Bill Of Materials</h3>
+<div class="outline-text-3" id="text-7-2">
+<table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Item</th>
+<th scope="col" class="org-right">Price (US $)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><a href="https://www.adafruit.com/product/4564">Raspberry Pi 4 Model B - 8 GB RAM</a></td>
+<td class="org-right">75</td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://www.adafruit.com/product/5026">Raspberry Pi 4 Pro Mounting Plate for HQ Camera</a></td>
+<td class="org-right">7</td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://www.adafruit.com/product/4340">Heatsink Raspberry Pi 4 Case with Dual Fans</a></td>
+<td class="org-right">26</td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://www.adafruit.com/product/4561">Raspberry Pi High Quality HQ Camera - 12MP</a></td>
+<td class="org-right">50</td>
+</tr>
+
+<tr>
+<td class="org-left">MicroSD Card</td>
+<td class="org-right">15</td>
+</tr>
+
+<tr>
+<td class="org-left">Micro HDMI to HDMI Cable</td>
+<td class="org-right">12</td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://www.amazon.com/CanaKit-Raspberry-Power-Supply-PiSwitch/dp/B07TSFYXBC">CanaKit RPI 4 Power Supply with PiSwitch</a></td>
+<td class="org-right">11</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Total</td>
+<td class="org-right">196</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org8647da5" class="outline-3">
+<h3 id="org8647da5"><span class="section-number-3">7.3.</span> System Setup</h3>
+<div class="outline-text-3" id="text-7-3">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Refresh packages and update everything</span>
+sudo apt-get update
+sudo apt-get upgrade
+sudo reboot
+<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Install packages</span>
+sudo apt install emacs gnuplot maxima sbcl telnet zsh tmux gitk paraview paraview-dev xterm imagemagick nomacs gimp ruby
+sudo update-alternatives --config java
+<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Make local links</span>
+<span style="color: #00ffff;">for</span> f<span style="color: #00ffff;"> in</span> ruby perl sbcl; <span style="color: #00ffff;">do</span>
+  <span style="color: #00ffff;">if</span> [ -e /usr/bin/$<span style="color: #7fffd4;">f</span> ]; <span style="color: #00ffff;">then</span>
+    sudo ln -s /usr/bin/$<span style="color: #7fffd4;">f</span> /usr/local/bin/$<span style="color: #7fffd4;">f</span>
+  <span style="color: #00ffff;">else</span>
+    <span style="color: #b0c4de;">echo</span> Missing: /usr/bin/$<span style="color: #7fffd4;">f</span>
+  <span style="color: #00ffff;">fi</span>
+<span style="color: #00ffff;">done</span>
+<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Create my account</span>
+addgroup richmit
+adduser -G 1001 richmit <span style="color: #ffa500;">## </span><span style="color: #ff7f24;">use GID from previous command</span>
+<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Add me to all the groups the pi user is in -- or at least users that start with pi ;)</span>
+sudo usermod -aG <span style="color: #bf3eff; font-weight: bold;">`grep '[:,]pi' /etc/group | cut -d: -f3 | tr '[:space:]' , | sed 's/,$//'`</span> richmit
+<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Download Fiji software &amp; launcher</span>
+wget <span style="color: #fa8072;">'https://downloads.imagej.net/fiji/latest/fiji-nojre.zip'</span>
+wget <span style="color: #fa8072;">'https://github.com/imagej/imagej2/raw/master/bin/ImageJ.sh'</span>
+<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Unpack Fiji</span>
+unzip fiji-nojre.zip
+<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Put in place ImageJ.sh script</span>
+cp ImageJ.sh Fiji.app/
+chmod a+rx Fiji.app/ImageJ.sh
+<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Workaround for a bug in current Fiji</span>
+sudo cp /etc/java-8-openjdk/accessibility.properties /etc/java-8-openjdk/accessibility.properties.org
+sudo sh -c <span style="color: #fa8072;">'grep -v ^assistive_technologies /etc/java-8-openjdk/accessibility.properties.org &gt; /etc/java-8-openjdk/accessibility.properties'</span>
+<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Setup directories &amp; links in $HOME</span>
+<span style="color: #b0c4de;">cd</span> ~
+mkdir -p bin
+mkdir -p tmp/tmux/sockets
+mkdir -p synced/world/dotfiles/
+mkdir -p synced/world/dotfilesSecure/
+mkdir -p synced/world/stuff/homeNetwork/
+mkdir -p synced/world/stuff/my_ref/
+mkdir -p synced/world/stuff/notes/
+mkdir -p synced/world/my_prog/learn/ex-ruby/
+mkdir -p synced/world/my_prog/lispStuff/lispy/
+mkdir -p synced/world/my_prog/MJRdebianPakageTools/
+mkdir -p synced/world/my_prog/tmuxStuff/
+mkdir -p synced/world/my_prog/UNIXutils/
+mkdir -p synced/world/my_prog/utils/
+mkdir -p synced/world/my_prog/microscope
+mkdir -p synced/world/my_prog/mpms
+mkdir -p synced/world/my_prog/dir-inventory/
+mkdir -p synced/core/
+mkdir -p synced/Doc2/gadgets/leicaS8APO/
+ln -s synced/world world
+ln -s synced/core core
+<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Setup dotfiles &amp; ~/bin</span>
+./world/my_prog/UNIXutils/SelectSetup.rb --loc=HOME; ./world/my_prog/UNIXutils/SetupBin.rb
+<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Change my shell</span>
+sudo usermod -s /usr/bin/zsh richmit
+/usr/bin/setxkbmap -option <span style="color: #fa8072;">'ctrl:nocaps'</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfc60e11" class="outline-3">
+<h3 id="orgfc60e11"><span class="section-number-3">7.4.</span> Camera Data Sync</h3>
+<div class="outline-text-3" id="text-7-4">
+<div class="org-src-container">
+<pre class="src src-sh">date; <span style="color: #b0c4de;">echo</span> back-dat-sync;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2                  --rsh=<span style="color: #fa8072;">'ssh'</span> pi-cam.home.mitchr.me:synced/pi-data/                            /c/Users/richmit/Documents/world/pi-cam/;
+date; <span style="color: #b0c4de;">echo</span> back-pic-sync;        rsync -rlt --log-format=%f                            --modify-window=2                  --rsh=<span style="color: #fa8072;">'ssh'</span> pi-cam.home.mitchr.me:tmp/pi-images/                             /c/Users/richmit/Pictures/pi-cam/;
+date; <span style="color: #b0c4de;">echo</span> dotfiles;             rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/dotfiles/                       pi-cam.home.mitchr.me:synced/world/dotfiles/;
+date; <span style="color: #b0c4de;">echo</span> dotfilesSecure;       rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/dotfilesSecure/                 pi-cam.home.mitchr.me:synced/world/dotfilesSecure/;
+date; <span style="color: #b0c4de;">echo</span> homeNetwork;          rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/stuff/homeNetwork/              pi-cam.home.mitchr.me:synced/world/stuff/homeNetwork/;
+date; <span style="color: #b0c4de;">echo</span> my_ref;               rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/stuff/my_ref/                   pi-cam.home.mitchr.me:synced/world/stuff/my_ref/;
+date; <span style="color: #b0c4de;">echo</span> notes;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/stuff/notes/                    pi-cam.home.mitchr.me:synced/world/stuff/notes/;
+date; <span style="color: #b0c4de;">echo</span> microscope-code;      rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/my_prog/microscope/             pi-cam.home.mitchr.me:synced/world/my_prog/microscope/;
+date; <span style="color: #b0c4de;">echo</span> mpms;                 rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/my_prog/mpms/                   pi-cam.home.mitchr.me:synced/world/my_prog/mpms/;
+date; <span style="color: #b0c4de;">echo</span> dir-inventory;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/my_prog/dir-inventory/          pi-cam.home.mitchr.me:synced/world/my_prog/dir-inventory/;
+date; <span style="color: #b0c4de;">echo</span> ruby-examples;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/my_prog/learn/ex-ruby/          pi-cam.home.mitchr.me:synced/world/my_prog/learn/ex-ruby/;
+date; <span style="color: #b0c4de;">echo</span> lispy;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/my_prog/lispStuff/lispy/        pi-cam.home.mitchr.me:synced/world/my_prog/lispStuff/lispy/;
+date; <span style="color: #b0c4de;">echo</span> MJRdebianPakageTools; rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/my_prog/MJRdebianPakageTools/   pi-cam.home.mitchr.me:synced/world/my_prog/MJRdebianPakageTools/;
+date; <span style="color: #b0c4de;">echo</span> tmuxStuff;            rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/my_prog/tmuxStuff/              pi-cam.home.mitchr.me:synced/world/my_prog/tmuxStuff/;
+date; <span style="color: #b0c4de;">echo</span> UNIXutils;            rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/my_prog/UNIXutils/              pi-cam.home.mitchr.me:synced/world/my_prog/UNIXutils/;
+date; <span style="color: #b0c4de;">echo</span> utils;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/my_prog/utils/                  pi-cam.home.mitchr.me:synced/world/my_prog/utils/;
+date; <span style="color: #b0c4de;">echo</span> core;                 rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/core/                                 pi-cam.home.mitchr.me:synced/core/;
+date; <span style="color: #b0c4de;">echo</span> leicaS8APO-docs;      rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/Doc2/gadgets/leicaS8APO/              pi-cam.home.mitchr.me:synced/Doc2/gadgets/leicaS8APO/;
+date
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org777fe25" class="outline-3">
+<h3 id="org777fe25"><span class="section-number-3">7.5.</span> RPI Image Capture Script</h3>
+<div class="outline-text-3" id="text-7-5">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #ffa500;">#</span><span style="color: #ff7f24;">!/bin/</span><span style="color: #00ffff;">sh</span>
+
+<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Take one (or more) snapshot(s) </span>
+<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Use: piSnap.sh [-k] [file-annotation]</span>
+<span style="color: #ffa500;">#      </span><span style="color: #ff7f24;">Without -k, one image is capgured.  </span>
+<span style="color: #ffa500;">#      </span><span style="color: #ff7f24;">With -k multiple images are captured.  An image is captured for each [enter], exit with [x] followed by [enter]</span>
+<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Images land in ~/tmp/pi-images</span>
+<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Image names are like: YYYYMMDDHHMMSS_COUNT-ANNOTATION.jpg -- Note the _COUNT and/or -ANNOTATION bits may be missing.</span>
+<span style="color: #ffa500;">#</span>
+<span style="color: #ffa500;"># </span><span style="color: #ff7f24;">TODO: </span>
+<span style="color: #ffa500;">#   </span><span style="color: #ff7f24;">1 Add some command line  error checking. ;)</span>
+<span style="color: #ffa500;">#   </span><span style="color: #ff7f24;">2 Support PNG &amp; JPEG+RAW</span>
+
+<span style="color: #7fffd4;">MULTI</span>=<span style="color: #fa8072;">'N'</span>
+<span style="color: #7fffd4;">ANNOT</span>=<span style="color: #fa8072;">''</span>
+<span style="color: #00ffff;">if</span> [ -n <span style="color: #fa8072;">"$1"</span> ]; <span style="color: #00ffff;">then</span>
+  <span style="color: #00ffff;">if</span> [ <span style="color: #fa8072;">"$1"</span> = <span style="color: #fa8072;">'-k'</span> ]; <span style="color: #00ffff;">then</span>
+    <span style="color: #7fffd4;">MULTI</span>=<span style="color: #fa8072;">'Y'</span>
+    <span style="color: #7fffd4;">ANNOT</span>=<span style="color: #fa8072;">"$2"</span>
+  <span style="color: #00ffff;">else</span>
+    <span style="color: #7fffd4;">ANNOT</span>=<span style="color: #fa8072;">"$1"</span>
+  <span style="color: #00ffff;">fi</span>
+<span style="color: #00ffff;">fi</span>
+<span style="color: #00ffff;">if</span> [ -n <span style="color: #fa8072;">"$ANNOT"</span> ]; <span style="color: #00ffff;">then</span>
+  <span style="color: #7fffd4;">ANNOT</span>=<span style="color: #fa8072;">'-'</span>$<span style="color: #7fffd4;">ANNOT</span>
+<span style="color: #00ffff;">fi</span>
+
+<span style="color: #7fffd4;">ODIR</span>=~/tmp/pi-images/
+<span style="color: #7fffd4;">IFMT</span>=<span style="color: #fa8072;">'jpg'</span>
+<span style="color: #00ffff;">if</span> [ <span style="color: #fa8072;">"$MULTI"</span> = <span style="color: #fa8072;">"Y"</span> ]; <span style="color: #00ffff;">then</span>
+  <span style="color: #7fffd4;">FILE</span>=$<span style="color: #7fffd4;">ODIR</span><span style="color: #bf3eff; font-weight: bold;">`date '+%Y%m%d%H%M%S'`</span><span style="color: #fa8072;">'_%d'</span>${<span style="color: #7fffd4;">ANNOT</span>}<span style="color: #fa8072;">'.'</span>$<span style="color: #7fffd4;">IFMT</span>
+  <span style="color: #7fffd4;">MARG</span>=<span style="color: #fa8072;">'-t 0 -k'</span>
+<span style="color: #00ffff;">else</span>
+  <span style="color: #7fffd4;">FILE</span>=$<span style="color: #7fffd4;">ODIR</span><span style="color: #bf3eff; font-weight: bold;">`date '+%Y%m%d%H%M%S'`</span>${<span style="color: #7fffd4;">ANNOT</span>}<span style="color: #fa8072;">'.'</span>$<span style="color: #7fffd4;">IFMT</span>
+  <span style="color: #7fffd4;">MARG</span>=<span style="color: #fa8072;">'-t 1 -n'</span>
+<span style="color: #00ffff;">fi</span>
+raspistill $<span style="color: #7fffd4;">MARG</span> -q 100 -e $<span style="color: #7fffd4;">IFMT</span> -o $<span style="color: #7fffd4;">FILE</span>
+
+<span style="color: #7fffd4;">TFILE</span>=<span style="color: #bf3eff; font-weight: bold;">`echo "$FILE" | sed 's/%d/0/'`</span>
+<span style="color: #00ffff;">if</span> [ -e <span style="color: #fa8072;">"$TFILE"</span> ]; <span style="color: #00ffff;">then</span>
+  <span style="color: #b0c4de;">echo</span> <span style="color: #fa8072;">"Captured Image File(s):"</span>
+  ls -l <span style="color: #bf3eff; font-weight: bold;">`echo "$TFILE" | sed 's/_0/_*/'`</span>
+<span style="color: #00ffff;">else</span>
+  <span style="color: #b0c4de;">echo</span> <span style="color: #fa8072;">"ERROR: No image(s) captured!"</span>
+<span style="color: #00ffff;">fi</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-rpi-imagej" class="outline-3">
+<h3 id="rpi-imagej"><span class="section-number-3">7.6.</span> ImageJ/Fiji Software</h3>
+<div class="outline-text-3" id="text-rpi-imagej">
+</div>
+
+<div id="outline-container-orgae74f8c" class="outline-4">
+<h4 id="orgae74f8c"><span class="section-number-4">7.6.1.</span> Macro</h4>
+<div class="outline-text-4" id="text-7-6-1">
+<div class="org-src-container">
+<pre class="src src-c">macro <span style="color: #fa8072;">"Capture From RPI Camera Action Tool - Cc11 F06fa F16fa F4472 F6333 Ld2e3 Le0e3 Lf2e3 Cfff V5866"</span> {
+<span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Capture an image</span>
+
+  piDebug = <span style="color: #8470ff; font-weight: bold;">false</span>;
+    
+  <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Takes an integer and returns a zero padded string</span>
+  <span style="color: #63b8ff;">function</span> <span style="color: #00fa9a; font-weight: bold;">int2str</span>(<span style="color: #63b8ff;">anInt</span>, <span style="color: #63b8ff;">width</span>) {
+    result = d2s(anInt, 0);
+    <span style="color: #00ffff;">while</span> (lengthOf(result) &lt; width) {
+      result = <span style="color: #fa8072;">"0"</span> + result;
+    }
+    <span style="color: #00ffff;">return</span> result;
+  }
+    
+  <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Returns a string for the current date/time YYYYMMDDhhmmss</span>
+  <span style="color: #63b8ff;">function</span> <span style="color: #00fa9a; font-weight: bold;">makeDateString</span>() {
+    getDateAndTime(year, month, dayOfWeek, dayOfMonth, hour, minute, second, msec);
+    dateBitVal = newArray(year, month+1, dayOfMonth, hour, minute, second);
+    dateBitWid = newArray(4, 2, 2, 2, 2, 2);
+    dateString = <span style="color: #fa8072;">""</span>;
+    <span style="color: #00ffff;">for</span>(i=0; i&lt;6; i++) {
+      dateString = dateString + int2str(dateBitVal[i], dateBitWid[i]);
+    }
+    <span style="color: #00ffff;">return</span> dateString;
+  }
+    
+  <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Make sure we have raspistill installed -- if we don't, then we are probably</span>
+  <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">not running on a RPI..</span>
+  <span style="color: #00ffff;">if</span> (!(File.exists(<span style="color: #fa8072;">"/usr/bin/raspistill"</span>))) {
+    exit(<span style="color: #fa8072;">"Could not find /usr/bin/raspistill!"</span>);
+  }
+    
+  <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Make sure we can find the user home directory</span>
+  piImagePath = getDirectory(<span style="color: #fa8072;">"home"</span>);
+  <span style="color: #00ffff;">if</span> (!(File.exists(piImagePath))) {
+    exit(<span style="color: #fa8072;">"Could not find home directory!"</span>);
+  }
+    
+  <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Look for ~/tmp.  Try to create it if it is missing.</span>
+  piImagePath = String.join(newArray(piImagePath, <span style="color: #fa8072;">"tmp"</span>), File.separator);
+  <span style="color: #00ffff;">if</span> (!(File.exists(piImagePath))) {
+    print(<span style="color: #fa8072;">"Attempting to create directory: "</span> + piImagePath);
+    File.makeDirectory(piImagePath);
+    <span style="color: #00ffff;">if</span> (!(File.exists(piImagePath))) {  
+      exit(<span style="color: #fa8072;">"Directory creation failed: "</span> + piImagePath);
+    }
+  }
+    
+  <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Look for ~/tmp/pi-images.  Try to create it if it is missing.</span>
+  piImagePath = String.join(newArray(piImagePath, <span style="color: #fa8072;">"pi-images"</span>), File.separator);
+  <span style="color: #00ffff;">if</span> (!(File.exists(piImagePath))) {
+    print(<span style="color: #fa8072;">"Attempting to create directory: "</span> + piImagePath);
+    File.makeDirectory(piImagePath);
+    <span style="color: #00ffff;">if</span> (!(File.exists(piImagePath))) {  
+      exit(<span style="color: #fa8072;">"Directory creation failed: "</span> + piImagePath);
+    }
+  }
+    
+  <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Check again that piImagePath really exists...</span>
+  <span style="color: #00ffff;">if</span> (!(File.exists(piImagePath))) {
+    exit(<span style="color: #fa8072;">"Could not find/create image directory: "</span> + piImagePath);
+  }
+    
+  <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">We have to break this up on two lines for some reason...</span>
+  piImageFileName = makeDateString();
+  piImageFileName = piImageFileName + <span style="color: #fa8072;">".jpg"</span>;
+    
+  <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Construct full file name path</span>
+  piImageFullFileName = String.join(newArray(piImagePath, piImageFileName), File.separator);
+  <span style="color: #00ffff;">if</span> (piDebug) {
+    print(<span style="color: #fa8072;">"Image file: "</span> + piImageFullFileName);
+  }
+    
+  <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Run raspistill now</span>
+  exec(<span style="color: #fa8072;">"raspistill -t 1 -n -q 100 -o "</span> + piImageFullFileName);
+    
+  <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">If we got an image, then we load it</span>
+  <span style="color: #00ffff;">if</span> (File.exists(piImageFullFileName)) {
+    open(piImageFullFileName);  
+  } <span style="color: #00ffff;">else</span> {
+    exit(<span style="color: #fa8072;">"Image file not found (raspistill failed): "</span> + piImageFullFileName);
+  }
+}
+
+macro <span style="color: #fa8072;">"Set Scale Action Tool - Cc11 L1cfc L1a1e Lfafe L8b8d L5b5d Lbbbd T4707R T9707P Te707I"</span> {
+<span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Set image scale</span>
+
+  equipmentNames = newArray(<span style="color: #fa8072;">"Leica S8API Z1 A0.63x C0.50x RPIHQ"</span>,
+                            <span style="color: #fa8072;">"Leica S8API Z8 A0.63x C0.50x RPIHQ"</span>,
+                            <span style="color: #fa8072;">"Leica S8API Z1 A1.00x C0.50x RPIHQ"</span>,
+                            <span style="color: #fa8072;">"Leica S8API Z8 A1.00x C0.50x RPIHQ"</span>
+                           );
+
+  equipmentScale = newArray(<span style="color: #fa8072;">"203.611111111"</span>, <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">3665/18</span>
+                            <span style="color: #fa8072;">"1646.00000000"</span>, <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">3292/2</span>
+                            <span style="color: #fa8072;">"320.583333333"</span>, <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">3847/12</span>
+                            <span style="color: #fa8072;">"2588.57142857"</span>  <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">3624/1.4</span>
+                           );                             
+
+  Dialog.create(<span style="color: #fa8072;">"Quick Set Scale"</span>);
+  <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Write the name of the equipments you want to quickly set scale in the array below</span>
+  Dialog.addChoice(<span style="color: #fa8072;">"Equipment:"</span>, equipmentNames);
+  Dialog.addCheckbox(<span style="color: #fa8072;">"Global Scale"</span>, <span style="color: #8470ff; font-weight: bold;">false</span>);
+  Dialog.show();
+  equip  = Dialog.getChoice();
+  global = Dialog.getCheckbox();
+  
+  options = <span style="color: #fa8072;">" known=1 pixel=1 unit=mm distance="</span>;
+  <span style="color: #00ffff;">for</span> (i=0; i&lt;equipmentNames.length; i++) {
+    <span style="color: #00ffff;">if</span> (equip == equipmentNames[i]) {
+      options = options + equipmentScale[i];
+    }
+  }
+  <span style="color: #00ffff;">if</span> (global) {
+    options = options + <span style="color: #fa8072;">" global=1"</span>;
+  }  
+  run(<span style="color: #fa8072;">"Set Scale..."</span>, options);
+}
+
+macro <span style="color: #fa8072;">"Open Last RPI Capture(s) Action Tool - Cc11 L000f L0fff Lfff3 Lf363 L6340 L4000 T3c07R T8c07P Tdc07I"</span> {
+<span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Open most recient pi-cam capture(s)</span>
+   
+  pp = newArray(String.join(newArray(getDirectory(<span style="color: #fa8072;">"home"</span>), <span style="color: #fa8072;">"Pictures"</span>, <span style="color: #fa8072;">"pi-cam"</span>), File.separator),
+                String.join(newArray(getDirectory(<span style="color: #fa8072;">"home"</span>), <span style="color: #fa8072;">"tmp"</span>, <span style="color: #fa8072;">"pi-images"</span>), File.separator));
+   
+  piFilesDir=<span style="color: #fa8072;">"-"</span>;
+  <span style="color: #00ffff;">for</span> (i=0; i&lt;pp.length; i++) {
+    <span style="color: #00ffff;">if</span> (File.exists(pp[i])) {
+      piFilesDir = pp[i];
+      <span style="color: #00ffff;">break</span>;
+    }
+  }
+  <span style="color: #00ffff;">if</span> ( piFilesDir == <span style="color: #fa8072;">"-"</span>) {
+    exit(<span style="color: #fa8072;">"Unable to locate pi-cam images directory!"</span>);
+  }
+   
+  <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Figure out last file captured</span>
+  files = getFileList(piFilesDir);
+  files = Array.sort(files);
+  lastFile = files[lengthOf(files)-1];
+   
+  <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Open the file(s)</span>
+  <span style="color: #00ffff;">if</span> (14 == indexOf(lastFile, <span style="color: #fa8072;">"_"</span>)) {
+    <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Have Multiple Captures To Load</span>
+    prefix = substring(lastFile, 0, 15);
+    <span style="color: #00ffff;">for</span> (i=0; i&lt;files.length; i++) {
+      <span style="color: #00ffff;">if</span> (startsWith(files[i], prefix)) {
+        open(String.join(newArray(piFilesDir, files[i]), File.separator));
+      }
+    }
+  } <span style="color: #00ffff;">else</span> { 
+    <span style="color: #ffa500;">//</span><span style="color: #ff7f24;">Have single capture to load</span>
+    open(String.join(newArray(piFilesDir, lastFile), File.separator));
+  }
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2f03a37" class="outline-4">
+<h4 id="org2f03a37"><span class="section-number-4">7.6.2.</span> Macro Installer</h4>
+<div class="outline-text-4" id="text-7-6-2">
+<p>
+I use Fiji on Windows &amp; <a href="#rpi-camera">DIY RPI Camera</a>.  On Windows I install it under a folder named "<code>PF/Fiji.app</code>" &#x2013; I install various packages in "<code>PF</code>"
+that can't be installed in the traditional "<code>Program Files</code>" folder.  On the RPI, I have been installing it directly in my home directory (<code>~/Fiji.app/</code>).  The
+install script below is used to install the macros into my Fiji.app directories.  That is to say, it knows about my specific installation preferences.  To
+modify the script for use in other environments, update line 6 to have a list of alternate install paths.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #ffa500;">#</span><span style="color: #ff7f24;">!/bin/</span><span style="color: #00ffff;">bash</span>
+
+<span style="color: #7fffd4;">TOOL_TO_INSTALL</span>=<span style="color: #fa8072;">'RPI_tools.ijm'</span>
+<span style="color: #7fffd4;">RUN_IMAGEJ_AFTER_INSTALL</span>=<span style="color: #fa8072;">'Y'</span>
+
+<span style="color: #00ffff;">for</span> pp<span style="color: #00ffff;"> in</span> ~/winHome/PF/Fiji.app/ ~/Fiji.app/; <span style="color: #00ffff;">do</span>
+  <span style="color: #00ffff;">if</span> [ -z <span style="color: #fa8072;">"$IMAGEJ_PATH"</span> -a -e <span style="color: #fa8072;">"$pp"</span> ]; <span style="color: #00ffff;">then</span>
+    <span style="color: #7fffd4;">IMAGEJ_PATH</span>=$<span style="color: #7fffd4;">pp</span>
+  <span style="color: #00ffff;">fi</span>
+<span style="color: #00ffff;">done</span>
+
+<span style="color: #00ffff;">if</span> [ -n <span style="color: #fa8072;">"$IMAGEJ_PATH"</span> ]; <span style="color: #00ffff;">then</span>
+  <span style="color: #b0c4de;">echo</span> <span style="color: #fa8072;">"INFO: ImageJ Path: $IMAGEJ_PATH"</span>
+<span style="color: #00ffff;">else</span>
+  <span style="color: #b0c4de;">echo</span> <span style="color: #fa8072;">"ERROR: ImageJ Path Not Set!"</span>
+  <span style="color: #00ffff;">exit</span>
+<span style="color: #00ffff;">fi</span>
+
+<span style="color: #00ffff;">if</span> [ ! -d <span style="color: #fa8072;">"$IMAGEJ_PATH"</span> ]; <span style="color: #00ffff;">then</span>
+  <span style="color: #b0c4de;">echo</span> <span style="color: #fa8072;">"ERROR: ImageJ Path Set, but directory not found!"</span>
+  <span style="color: #00ffff;">exit</span>
+<span style="color: #00ffff;">fi</span>
+
+<span style="color: #7fffd4;">TOOLSET_PATH</span>=<span style="color: #fa8072;">"$IMAGEJ_PATH/macros/toolsets/"</span>
+<span style="color: #00ffff;">if</span> [ ! -d <span style="color: #fa8072;">"$TOOLSET_PATH"</span> ]; <span style="color: #00ffff;">then</span>
+  <span style="color: #b0c4de;">echo</span> <span style="color: #fa8072;">"ERROR: ImageJ Path Set, but macros/toolsets directory not found!"</span>
+  <span style="color: #00ffff;">exit</span>
+<span style="color: #00ffff;">fi</span>
+
+cp <span style="color: #fa8072;">"$TOOL_TO_INSTALL"</span> <span style="color: #fa8072;">"$TOOLSET_PATH"</span>
+
+<span style="color: #00ffff;">if</span> [ -e <span style="color: #fa8072;">"$TOOLSET_PATH/$TOOL_TO_INSTALL"</span> ]; <span style="color: #00ffff;">then</span>
+  <span style="color: #00ffff;">if</span> diff -q <span style="color: #fa8072;">"$TOOL_TO_INSTALL"</span> <span style="color: #fa8072;">"$TOOLSET_PATH/$TOOL_TO_INSTALL"</span>; <span style="color: #00ffff;">then</span>
+    <span style="color: #b0c4de;">echo</span> <span style="color: #fa8072;">"INFO: $TOOL_TO_INSTALL successfully installed!"</span>
+    <span style="color: #00ffff;">if</span> [ <span style="color: #fa8072;">"$RUN_IMAGEJ_AFTER_INSTALL"</span> = <span style="color: #fa8072;">"Y"</span> ]; <span style="color: #00ffff;">then</span>
+      <span style="color: #b0c4de;">echo</span> <span style="color: #fa8072;">"INFO: Attempting to run ImageJ now"</span>
+      <span style="color: #00ffff;">for</span> pe<span style="color: #00ffff;"> in</span> <span style="color: #fa8072;">'ImageJ.sh'</span> <span style="color: #fa8072;">'ImageJ-win64.exe'</span>; <span style="color: #00ffff;">do</span> <span style="color: #ffa500;"># </span><span style="color: #ff7f24;">Note .sh is listed first!!</span>
+        <span style="color: #00ffff;">if</span> [ -e <span style="color: #fa8072;">"$IMAGEJ_PATH/$pe"</span> ]; <span style="color: #00ffff;">then</span>
+          <span style="color: #fa8072;">"$IMAGEJ_PATH/$pe"</span> 
+          <span style="color: #00ffff;">exit</span>
+        <span style="color: #00ffff;">fi</span>
+      <span style="color: #00ffff;">done</span>
+    <span style="color: #00ffff;">fi</span>
+  <span style="color: #00ffff;">else</span>
+    <span style="color: #b0c4de;">echo</span> <span style="color: #fa8072;">"ERROR: Installed $TOOL_TO_INSTALL file dosen't match newest version!"</span>
+    <span style="color: #00ffff;">exit</span>
+  <span style="color: #00ffff;">fi</span>
+<span style="color: #00ffff;">else</span>
+  <span style="color: #b0c4de;">echo</span> <span style="color: #fa8072;">"ERROR: $TOOL_TO_INSTALL not found in install directory after copy!"</span>
+  <span style="color: #00ffff;">exit</span>
+<span style="color: #00ffff;">fi</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org70ffb12" class="outline-2">
+<h2 id="org70ffb12"><span class="section-number-2">8.</span> EOF</h2>
+<div class="outline-text-2" id="text-8">
+<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+Created by Mitch Richling <<a href="mailto:http://www.mitchr.me/">http://www.mitchr.me/</a>>.  Rendered on 2021-10-23 Sat 14:35 via <a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="https://orgmode.org">Org</a> mode 9.4.6)
+</div>
+</body>
+</html>
