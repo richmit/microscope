@@ -344,7 +344,7 @@ keys each with two sets of settings -- the scope's lower zoom stop is used when 
 ** The code
 
 While this code isn't very useful without being customized to the particular settings the end user needs, it can be test driven as-is by cut-n-pasting the
-code below into free42 or by installing the raw file: file:MRCONV.raw
+code below into free42 or by installing the raw file from [[https://github.com/richmit/microscope][github]]. 
 
 #+begin_src hp42s :eval never :tangle mrconv.hp42s
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ (ref:MRCONV)
