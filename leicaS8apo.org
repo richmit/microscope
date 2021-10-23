@@ -582,6 +582,16 @@ END
 :CUSTOM_ID: rpi-camera
 :END:
 
+#+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
+file:rpicam1_800.jpg
+
+#+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
+file:rpicam2_800.jpg
+
+#+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
+file:rpicam4_800.jpg
+
+
 ** The Idea
 
 Microscope cameras with built in image analysis software are pretty cool.  Simply connect the camera to your monitor & mouse, and you can do simple image
