@@ -591,7 +591,6 @@ file:rpicam2_800.jpg
 #+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
 file:rpicam4_800.jpg
 
-
 ** The Idea
 
 Microscope cameras with built in image analysis software are pretty cool.  Simply connect the camera to your monitor & mouse, and you can do simple image
@@ -702,6 +701,7 @@ date
 #+end_src
 
 ** RPI Image Capture Script
+This scipr tis pretty simple.  Right now it only supports
 #+INCLUDE:piSnap.sh src sh
 ** ImageJ/Fiji Software
 :PROPERTIES:
@@ -709,7 +709,24 @@ date
 :END:
 
 *** Macro
+
+The code below provides an ImageJ/Fiji toolset.  You activate the tool set via the toolset menu:
+
+#+ATTR_HTML: :align center
+file:toolsetmenu_800.gif
+
+Once activated, it will add three buttons to the toolbar:
+
+#+ATTR_HTML: :align center
+file:toolsetbuttons_800.gif
+
+Button Functions:
+ - file:toolsetbutton-capture.gif :: Capture, save, and open an image from the camera.  Images are stored in the same location, and with the same file name conventions, used by =piSnap.sh=.
+ - file:toolsetbutton-load.gif    :: Load last capture(s) from camera using the ImageJ/Fiji macro above or the =piSnap.sh= script.  If the last capture session with =piSnap.sh= captured multiple images, then *all* of them will be loaded.
+ - file:toolsetbutton-scale.gif   :: Set image scale based upon microscope settings.  This script contains hardwired settings for my specific microscope and lenses, and may require modification for your microscope.
+
 #+INCLUDE:RPI_tools.ijm src c
+
 *** Macro Installer
 
 I use Fiji on Windows & [[#rpi-camera][DIY RPI Camera]].  On Windows I install it under a folder named "=PF/Fiji.app=" -- I install various packages in "=PF="
