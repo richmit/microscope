@@ -27,10 +27,6 @@
 #  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
 #  TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #  @endparblock
-# @todo      Add file-annotation to exif comment field..@EOL
-# @filedetails
-#
-#
 ################################################################################################################################################################
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -41,7 +37,7 @@ Take one (or more) snapshot(s) using the Raspberry Pi HQ Camera and save them of
 Use: piSnap.sh [options] [file-annotation]
        Options: -k      Capture multiple images.  
                         An image is captured for each [enter], exit with [x] followed by [enter]
-                -p      Preview mode -- all other arguments are ignored (not supported yet)
+                -p      Preview only.  No images are captured. All other arguments are ignored
                 -s      Show image(s) after capture with nomacs (my favorite lightweight image viewer)
                 -v      Verbose mode
                 -b BIN  Full path to the raspistill binary
@@ -72,6 +68,7 @@ while [[ "$1" = -* ]]; do
     -v ) VERB='Y';                                              ;; # Verbose mode
     -e ) IFMT="$2"; shift;                                      ;; # Output image format
     -s ) SHOW='Y';                                              ;; # Open captured images
+    -p ) PREVIEW='Y';                                           ;; # Preview only
     -b ) RASPISP="$2"; shift;                                   ;; # Location of raspistill binary
     *  ) echo "ERROR: Unknown option: $1"; echo "$HELPT"; exit; ;;
    esac
@@ -122,16 +119,20 @@ if [ ! -d "$ODIR" ]; then
 fi
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------
-if [ "$MULTI" = "Y" ]; then
-  FILE=$ODIR'/'`date '+%Y%m%d%H%M%S'`'_%d'${ANNOT}'.'$IFMT
-  MARG='-t 0 -k'
+if [ "$PREVIEW" = 'Y' ]; then
+  DACMD="$RASPISP -t 0"
 else
-  FILE=$ODIR'/'`date '+%Y%m%d%H%M%S'`${ANNOT}'.'$IFMT
-  MARG='-t 1 -n'
+  if [ "$MULTI" = "Y" ]; then
+    FILE=$ODIR'/'`date '+%Y%m%d%H%M%S'`'_%d'${ANNOT}'.'$IFMT
+    MARG='-t 0 -k'
+  else
+    FILE=$ODIR'/'`date '+%Y%m%d%H%M%S'`${ANNOT}'.'$IFMT
+    MARG='-t 1 -n'
+  fi
+  DACMD="$RASPISP $MARG -q 100 -e $IFMT -o $FILE"
 fi
-DACMD="$RASPISP $MARG -q 100 -e $IFMT -o $FILE"
 if [ "$VERB" = 'Y' ]; then                     
-  echo "DEBUG: Command to run: DACMD"
+  echo "DEBUG: Command to run: $DACMD"
 fi
 $DACMD
 
