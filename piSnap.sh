@@ -42,11 +42,12 @@ Use: piSnap.sh [options] [file-annotation]
        Options: -k      Capture multiple images.  
                         An image is captured for each [enter], exit with [x] followed by [enter]
                 -p      Preview mode -- all other arguments are ignored (not supported yet)
+                -s      Show image(s) after capture with nomacs (my favorite lightweight image viewer)
                 -v      Verbose mode
                 -b BIN  Full path to the raspistill binary
                         Default: /usr/bin/raspistill
                 -d DIR  Directory to store captured images.  
-                        Default: $HOME/tmp/pi-images
+                        Default: $HOME/Pictures/pi-cam
                         Note: The related ImageJ/Fiji macro expects the default value!
                 -e ENC  File format: jpg, bmp, gif, png
                         Default: jpg
@@ -55,13 +56,13 @@ Image names are like: YYYYMMDDHHMMSS_COUNT-ANNOTATION.ENC -- Note the _COUNT and
 
 EOF
 
-
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------
+SHOW='N'
 MULTI='N'
 VERB='N'
 PREVIEW='N'
 ANNOT=''
-ODIR="$HOME/tmp/pi-images"
+ODIR="$HOME/Pictures/pi-cam"
 IFMT='jpg'
 RASPISP='/usr/bin/raspistill'
 while [[ "$1" = -* ]]; do
@@ -70,6 +71,7 @@ while [[ "$1" = -* ]]; do
     -d ) ODIR="$2"; shift;                                      ;; # Output directory
     -v ) VERB='Y';                                              ;; # Verbose mode
     -e ) IFMT="$2"; shift;                                      ;; # Output image format
+    -s ) SHOW='Y';                                              ;; # Open captured images
     -b ) RASPISP="$2"; shift;                                   ;; # Location of raspistill binary
     *  ) echo "ERROR: Unknown option: $1"; echo "$HELPT"; exit; ;;
    esac
@@ -81,33 +83,42 @@ fi
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------
 if [ "$VERB" = 'Y' ]; then                     
-  echo "MULTI    $MULTI    "
-  echo "VERB     $VERB     " 
-  echo "PREVIEW  $PREVIEW  "
-  echo "ANNOT    $ANNOT    "
-  echo "ODIR     $ODIR     " 
-  echo "IFMT     $IFMT     "
+  echo "DEBUG: MULTI    $MULTI    "
+  echo "DEBUG: VERB     $VERB     " 
+  echo "DEBUG: PREVIEW  $PREVIEW  "
+  echo "DEBUG: ANNOT    $ANNOT    "
+  echo "DEBUG: ODIR     $ODIR     " 
+  echo "DEBUG: IFMT     $IFMT     "
 fi    
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------
 if [ -n "$2" ]; then
   echo "ERROR: Arguments ignored: $@"
+  echo "$HELPT"
   exit
 fi
 
 if [[ ! "$IFMT" =~ ^(jpg|bmp|gif|png)$ ]]; then
-  echo "ERROR: Encodeing of '$IFMT' is not supported.  Use one of jpg, bmp, gif, or png!"
+  echo "ERROR: Encodeing of '$IFMT' is not supported!"
+  echo "$HELPT"
   exit
 fi
 
 if [ ! -x "$RASPISP" ]; then
   echo "ERROR: $RASPISP not found!"
+  echo "$HELPT"
   exit
 fi
 
 if [ ! -d "$ODIR" ]; then
-  echo "ERROR: Output directory not found: $ODIR"
-  exit
+  mkdir "$ODIR"
+  if [ -d "$ODIR" ]; then
+    echo "WARNING: Output directory was created: $ODIR"
+  else
+    echo "ERROR: Output directory not found/created: $ODIR"
+    echo "$HELPT"
+    exit
+  fi
 fi
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -127,8 +138,15 @@ $DACMD
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------
 TFILE=`echo "$FILE" | sed 's/%d/0/'`
 if [ -e "$TFILE" ]; then
-  echo "Captured Image File(s):"
+  echo "INFO: Captured Image File(s):"
   ls -l `echo "$TFILE" | sed 's/_0/_*/'`
+  if [ "$SHOW" = 'Y' ]; then
+    if [ -x '/usr/bin/nomacs' ]; then
+      /usr/bin/nomacs `echo "$TFILE" | sed 's/_0/_*/'`
+    else
+      echo 'ERROR: Unable to open images (/usr/bin/nomacs) not found.'
+    fi
+  fi
 else
   echo "ERROR: No image(s) captured!"
 fi

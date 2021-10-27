@@ -1,6 +1,6 @@
 
 macro "Capture From RPI Camera Action Tool - Cc11 F06fa F16fa F4472 F6333 Ld2e3 Le0e3 Lf2e3 Cfff V5866" {
-// Capture an image
+// Capture an image.  See piSnap.sh filename conventions.
 
   piDebug = false;
     
@@ -37,8 +37,8 @@ macro "Capture From RPI Camera Action Tool - Cc11 F06fa F16fa F4472 F6333 Ld2e3 
     exit("Could not find home directory!");
   }
     
-  // Look for ~/tmp.  Try to create it if it is missing.
-  piImagePath = String.join(newArray(piImagePath, "tmp"), File.separator);
+  // Look for ~/Pictures.  Try to create it if it is missing.
+  piImagePath = String.join(newArray(piImagePath, "Pictures"), File.separator);
   if (!(File.exists(piImagePath))) {
     print("Attempting to create directory: " + piImagePath);
     File.makeDirectory(piImagePath);
@@ -47,8 +47,8 @@ macro "Capture From RPI Camera Action Tool - Cc11 F06fa F16fa F4472 F6333 Ld2e3 
     }
   }
     
-  // Look for ~/tmp/pi-images.  Try to create it if it is missing.
-  piImagePath = String.join(newArray(piImagePath, "pi-images"), File.separator);
+  // Look for ~/Pictures/pi-cam.  Try to create it if it is missing.
+  piImagePath = String.join(newArray(piImagePath, "pi-cam"), File.separator);
   if (!(File.exists(piImagePath))) {
     print("Attempting to create directory: " + piImagePath);
     File.makeDirectory(piImagePath);
@@ -86,53 +86,47 @@ macro "Capture From RPI Camera Action Tool - Cc11 F06fa F16fa F4472 F6333 Ld2e3 
 macro "Set Scale Action Tool - Cc11 L1cfc L1a1e Lfafe L8b8d L5b5d Lbbbd T4707R T9707P Te707I" {
 // Set image scale
 
-  equipmentNames = newArray("Leica S8API Z1 A0.63x C0.50x RPIHQ",
-                            "Leica S8API Z8 A0.63x C0.50x RPIHQ",
-                            "Leica S8API Z1 A1.00x C0.50x RPIHQ",
-                            "Leica S8API Z8 A1.00x C0.50x RPIHQ"
-                           );
-
-  equipmentScale = newArray("203.611111111", // 3665/18
-                            "1646.00000000", // 3292/2
-                            "320.583333333", // 3847/12
-                            "2588.57142857"  // 3624/1.4
-                           );                             
-
   Dialog.create("Quick Set Scale");
-  // Write the name of the equipments you want to quickly set scale in the array below
-  Dialog.addChoice("Equipment:", equipmentNames);
+  Dialog.addChoice("Microscope:", newArray("Leica S8API"),                   "Leica S8API");
+  Dialog.addChoice("Zoom Stop:",  newArray("1.00", "8.00"),                  "1.00");
+  Dialog.addChoice("Auxiliary:",  newArray("0.32", "0.63", "1.00", "2.00"),  "0.63");
+  Dialog.addChoice("Video Obj:",  newArray("0.32", "0.50", "0.63", "0.8"),   "0.50");
+  Dialog.addChoice("Camera:",     newArray("RPI", "OLY"),                    "RPI");
   Dialog.addCheckbox("Global Scale", false);
   Dialog.show();
-  equip  = Dialog.getChoice();
+
+  equipScope = Dialog.getChoice();
+  equipZoom  = parseFloat(Dialog.getChoice());
+  equipAux   = parseFloat(Dialog.getChoice());
+  equipVObj  = parseFloat(Dialog.getChoice());
+  equipCam   = Dialog.getChoice();
   global = Dialog.getCheckbox();
-  
-  options = " known=1 pixel=1 unit=mm distance=";
-  for (i=0; i<equipmentNames.length; i++) {
-    if (equip == equipmentNames[i]) {
-      options = options + equipmentScale[i];
-    }
-  }
+
+  List.clear();
+  List.set("OLY", d2s(5184.0 / 17.4,   10));
+  List.set("RPI", d2s(4056.0 / 6.2868, 10));
+  ijPixHorzScale = d2s(parseFloat(List.get(equipCam)) * equipAux * equipZoom * equipVObj, 10);
+
+  List.clear();
+  List.set("OLY", d2s(5184.0 * 13.0 / 17.4 / 3888.0, 10));
+  List.set("RPI", d2s(1.0,                           10));
+  ijPixAspectRatio = List.get(equipCam);
+
+  setScaleOptions = " known=1 unit=mm distance=" + ijPixHorzScale + " pixel=" + ijPixAspectRatio;
   if (global) {
-    options = options + " global=1";
+    setScaleOptions = setScaleOptions + " global=1";
   }  
-  run("Set Scale...", options);
+  //print("Set Scale Options: " + setScaleOptions);
+
+  run("Set Scale...", setScaleOptions);
 }
 
 macro "Open Last RPI Capture(s) Action Tool - Cc11 L000f L0fff Lfff3 Lf363 L6340 L4000 T3c07R T8c07P Tdc07I" {
-// Open most recient pi-cam capture(s)
+// Open most recient pi-cam capture(s).  See piSnap.sh filename conventions.
    
-  pp = newArray(String.join(newArray(getDirectory("home"), "Pictures", "pi-cam"), File.separator),
-                String.join(newArray(getDirectory("home"), "tmp", "pi-images"), File.separator));
-   
-  piFilesDir="-";
-  for (i=0; i<pp.length; i++) {
-    if (File.exists(pp[i])) {
-      piFilesDir = pp[i];
-      break;
-   	}
-  }
+  piFilesDir = String.join(newArray(getDirectory("home"), "Pictures", "pi-cam"), File.separator);
   if ( piFilesDir == "-") {
-   	exit("Unable to locate pi-cam images directory!");
+   	exit("Unable to locate pi-cam images directory: " + piFilesDir);
   }
    
   // Figure out last file captured
