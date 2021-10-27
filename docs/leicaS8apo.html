@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-10-27 Wed 18:06 -->
+<!-- 2021-10-27 Wed 18:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=1024, initial-scale=1" />
 <title>Leica S4E &amp; S8APO</title>
@@ -264,7 +264,7 @@ Copyright 2021 Mitch Richling. All rights reserved.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7c85957">1. Symbols &amp; Formulas</a>
+<li><a href="#org9d1e844">1. Symbols &amp; Formulas</a>
 <ul>
 <li><a href="#variables">1.1. Variables</a></li>
 <li><a href="#formulas">1.2. Formulas</a></li>
@@ -282,40 +282,40 @@ Copyright 2021 Mitch Richling. All rights reserved.
 <li><a href="#s8-ret-scale">3.2. Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece</a></li>
 <li><a href="#s8-na">3.3. Numerical Aperture With No Auxiliary Lens</a></li>
 <li><a href="#leica-vid-obj">3.4. Leica C-Mount Video Objective Data</a></li>
-<li><a href="#orgb738f97">3.5. Attaching Cameras</a></li>
+<li><a href="#org362ceb1">3.5. Attaching Cameras</a></li>
 <li><a href="#s8-cam-data">3.6. Camera FOV &amp; Image Scales</a></li>
 </ul>
 </li>
 <li><a href="#mrconv">4. Reticle Unit Conversion Software For free42 and DM42</a>
 <ul>
-<li><a href="#orgb6dc1b1">4.1. The menu</a></li>
-<li><a href="#org40f3f0c">4.2. The code</a></li>
+<li><a href="#org65cdb86">4.1. The menu</a></li>
+<li><a href="#org5b80d30">4.2. The code</a></li>
 </ul>
 </li>
 <li><a href="#parts">5. S-Series Leica Parts</a></li>
 <li><a href="#sensors">6. Image Sensor Data</a></li>
 <li><a href="#rpi-camera">7. DIY RPI Camera</a>
 <ul>
-<li><a href="#org0aa453e">7.1. The Idea</a></li>
-<li><a href="#orga09bb71">7.2. Bill Of Materials</a></li>
-<li><a href="#org0685538">7.3. System Setup</a></li>
-<li><a href="#orga4d0411">7.4. Camera Data Sync</a></li>
-<li><a href="#org9ced05b">7.5. RPI Image Capture Script</a></li>
+<li><a href="#org71e87d6">7.1. The Idea</a></li>
+<li><a href="#org07c3d9f">7.2. Bill Of Materials</a></li>
+<li><a href="#org9aaebfd">7.3. System Setup</a></li>
+<li><a href="#orgb7edc42">7.4. Camera Data Sync</a></li>
+<li><a href="#org52f88f6">7.5. RPI Image Capture Script</a></li>
 <li><a href="#rpi-imagej">7.6. ImageJ/Fiji Software</a>
 <ul>
-<li><a href="#org0d45300">7.6.1. Macro</a></li>
-<li><a href="#org3f80ae7">7.6.2. Macro Installer</a></li>
+<li><a href="#org448c7f6">7.6.1. Macro</a></li>
+<li><a href="#org6ce8ca9">7.6.2. Macro Installer</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org534aa7c">8. EOF</a></li>
+<li><a href="#orgba18fb6">8. EOF</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7c85957" class="outline-2">
-<h2 id="org7c85957"><span class="section-number-2">1.</span> Symbols &amp; Formulas</h2>
+<div id="outline-container-org9d1e844" class="outline-2">
+<h2 id="org9d1e844"><span class="section-number-2">1.</span> Symbols &amp; Formulas</h2>
 <div class="outline-text-2" id="text-1">
 </div>
 <div id="outline-container-variables" class="outline-3">
@@ -1226,8 +1226,8 @@ Copyright 2021 Mitch Richling. All rights reserved.
 </div>
 </div>
 
-<div id="outline-container-orgb738f97" class="outline-3">
-<h3 id="orgb738f97"><span class="section-number-3">3.5.</span> Attaching Cameras</h3>
+<div id="outline-container-org362ceb1" class="outline-3">
+<h3 id="org362ceb1"><span class="section-number-3">3.5.</span> Attaching Cameras</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 The Leica documentation suggests using a chain of adapters for attaching a generic digital camera. The first part of the chain is one of the following three
@@ -1458,8 +1458,8 @@ I use two cameras with my S8APO:
 <div class="outline-text-2" id="text-mrconv">
 </div>
 
-<div id="outline-container-orgb6dc1b1" class="outline-3">
-<h3 id="orgb6dc1b1"><span class="section-number-3">4.1.</span> The menu</h3>
+<div id="outline-container-org65cdb86" class="outline-3">
+<h3 id="org65cdb86"><span class="section-number-3">4.1.</span> The menu</h3>
 <div class="outline-text-3" id="text-4-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1581,8 +1581,8 @@ keys each with two sets of settings &#x2013; the scope's lower zoom stop is used
 </div>
 </div>
 
-<div id="outline-container-org40f3f0c" class="outline-3">
-<h3 id="org40f3f0c"><span class="section-number-3">4.2.</span> The code</h3>
+<div id="outline-container-org5b80d30" class="outline-3">
+<h3 id="org5b80d30"><span class="section-number-3">4.2.</span> The code</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 While this code isn't very useful without being customized to the particular settings the end user needs, it can be test driven as-is by cut-n-pasting the
@@ -1946,7 +1946,7 @@ END
 <div id="outline-container-sensors" class="outline-2">
 <h2 id="sensors"><span class="section-number-2">6.</span> Image Sensor Data</h2>
 <div class="outline-text-2" id="text-sensors">
-<table id="orgfa0cc67" border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
+<table id="org3a199d9" border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
 
 
 <colgroup>
@@ -2249,26 +2249,26 @@ END
 <h2 id="rpi-camera"><span class="section-number-2">7.</span> DIY RPI Camera</h2>
 <div class="outline-text-2" id="text-rpi-camera">
 
-<div id="org7c5f24b" class="figure">
+<div id="org6a740b2" class="figure">
 <p><img src="rpicam1_800.jpg" alt="rpicam1_800.jpg" border="2 solid #ccc" frame="hsides" align="center" />
 </p>
 </div>
 
 
-<div id="org837d6df" class="figure">
+<div id="orgad65f1d" class="figure">
 <p><img src="rpicam2_800.jpg" alt="rpicam2_800.jpg" border="2 solid #ccc" frame="hsides" align="center" />
 </p>
 </div>
 
 
-<div id="org175fba1" class="figure">
+<div id="orgb4a2c68" class="figure">
 <p><img src="rpicam4_800.jpg" alt="rpicam4_800.jpg" border="2 solid #ccc" frame="hsides" align="center" />
 </p>
 </div>
 </div>
 
-<div id="outline-container-org0aa453e" class="outline-3">
-<h3 id="org0aa453e"><span class="section-number-3">7.1.</span> The Idea</h3>
+<div id="outline-container-org71e87d6" class="outline-3">
+<h3 id="org71e87d6"><span class="section-number-3">7.1.</span> The Idea</h3>
 <div class="outline-text-3" id="text-7-1">
 <p>
 Microscope cameras with built in image analysis software are pretty cool.  Simply connect the camera to your monitor &amp; mouse, and you can do simple image
@@ -2279,8 +2279,8 @@ image analysis software (Fiji/ImageJ) right on the camera.
 </div>
 </div>
 
-<div id="outline-container-orga09bb71" class="outline-3">
-<h3 id="orga09bb71"><span class="section-number-3">7.2.</span> Bill Of Materials</h3>
+<div id="outline-container-org07c3d9f" class="outline-3">
+<h3 id="org07c3d9f"><span class="section-number-3">7.2.</span> Bill Of Materials</h3>
 <div class="outline-text-3" id="text-7-2">
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
 
@@ -2342,8 +2342,8 @@ image analysis software (Fiji/ImageJ) right on the camera.
 </div>
 </div>
 
-<div id="outline-container-org0685538" class="outline-3">
-<h3 id="org0685538"><span class="section-number-3">7.3.</span> System Setup</h3>
+<div id="outline-container-org9aaebfd" class="outline-3">
+<h3 id="org9aaebfd"><span class="section-number-3">7.3.</span> System Setup</h3>
 <div class="outline-text-3" id="text-7-3">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Refresh packages and update everything</span>
@@ -2351,7 +2351,7 @@ sudo apt-get update
 sudo apt-get upgrade
 sudo reboot
 <span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Install packages</span>
-sudo apt install emacs gnuplot maxima sbcl telnet zsh tmux gitk paraview paraview-dev xterm imagemagick nomacs gimp ruby
+sudo apt install emacs gnuplot maxima sbcl telnet zsh tmux gitk paraview paraview-dev xterm imagemagick nomacs gimp ruby libgtk-3-dev libasound2-dev exiv2
 sudo update-alternatives --config java
 <span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Make local links</span>
 <span style="color: #00ffff;">for</span> f<span style="color: #00ffff;"> in</span> ruby perl sbcl; <span style="color: #00ffff;">do</span>
@@ -2377,6 +2377,15 @@ chmod a+rx Fiji.app/ImageJ.sh
 <span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Workaround for a bug in current Fiji</span>
 sudo cp /etc/java-8-openjdk/accessibility.properties /etc/java-8-openjdk/accessibility.properties.org
 sudo sh -c <span style="color: #fa8072;">'grep -v ^assistive_technologies /etc/java-8-openjdk/accessibility.properties.org &gt; /etc/java-8-openjdk/accessibility.properties'</span>
+<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Install free42 calculator</span>
+<span style="color: #b0c4de;">cd</span> ~
+rm -rf ~/free42
+git clone <span style="color: #fa8072;">'https://github.com/thomasokken/free42.git'</span>
+<span style="color: #b0c4de;">cd</span> free42/gtk
+make <span style="color: #7fffd4;">BCD_MATH</span>=1 <span style="color: #7fffd4;">AUDIO_ALSA</span>=1
+sudo cp free42dec /usr/local/bin/free42-3.0.6
+sudo rm -f /usr/local/bin/free42
+sudo ln -s /usr/local/bin/free42-3.0.6 /usr/local/bin/free42
 <span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Setup directories &amp; links in $HOME</span>
 <span style="color: #b0c4de;">cd</span> ~
 mkdir -p bin
@@ -2404,13 +2413,17 @@ ln -s synced/core core
 <span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Change my shell</span>
 sudo usermod -s /usr/bin/zsh richmit
 /usr/bin/setxkbmap -option <span style="color: #fa8072;">'ctrl:nocaps'</span>
+<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Change root's password</span>
+sudo passwd root
+<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Delete pi user</span>
+userdel -r pi
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orga4d0411" class="outline-3">
-<h3 id="orga4d0411"><span class="section-number-3">7.4.</span> Camera Data Sync</h3>
+<div id="outline-container-orgb7edc42" class="outline-3">
+<h3 id="orgb7edc42"><span class="section-number-3">7.4.</span> Camera Data Sync</h3>
 <div class="outline-text-3" id="text-7-4">
 <div class="org-src-container">
 <pre class="src src-sh">date; <span style="color: #b0c4de;">echo</span> back-dat-sync;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2                  --rsh=<span style="color: #fa8072;">'ssh'</span> pi-cam.home.mitchr.me:synced/pi-data/                            /c/Users/richmit/Documents/world/pi-cam/;
@@ -2437,8 +2450,8 @@ date
 </div>
 </div>
 
-<div id="outline-container-org9ced05b" class="outline-3">
-<h3 id="org9ced05b"><span class="section-number-3">7.5.</span> RPI Image Capture Script</h3>
+<div id="outline-container-org52f88f6" class="outline-3">
+<h3 id="org52f88f6"><span class="section-number-3">7.5.</span> RPI Image Capture Script</h3>
 <div class="outline-text-3" id="text-7-5">
 <p>
 This scipr tis pretty simple.  Right now it only supports
@@ -2606,15 +2619,15 @@ $<span style="color: #7fffd4;">DACMD</span>
 <div class="outline-text-3" id="text-rpi-imagej">
 </div>
 
-<div id="outline-container-org0d45300" class="outline-4">
-<h4 id="org0d45300"><span class="section-number-4">7.6.1.</span> Macro</h4>
+<div id="outline-container-org448c7f6" class="outline-4">
+<h4 id="org448c7f6"><span class="section-number-4">7.6.1.</span> Macro</h4>
 <div class="outline-text-4" id="text-7-6-1">
 <p>
 The code below provides an ImageJ/Fiji toolset.  You activate the tool set via the toolset menu:
 </p>
 
 
-<div id="org12a33c7" class="figure">
+<div id="org0cc93a1" class="figure">
 <p><img src="toolsetmenu_800.gif" alt="toolsetmenu_800.gif" align="center" />
 </p>
 </div>
@@ -2624,7 +2637,7 @@ Once activated, it will add three buttons to the toolbar:
 </p>
 
 
-<div id="org696ddac" class="figure">
+<div id="org409710a" class="figure">
 <p><img src="toolsetbuttons_800.gif" alt="toolsetbuttons_800.gif" align="center" />
 </p>
 </div>
@@ -2793,8 +2806,8 @@ macro <span style="color: #fa8072;">"Open Last RPI Capture(s) Action Tool - Cc11
 </div>
 </div>
 
-<div id="outline-container-org3f80ae7" class="outline-4">
-<h4 id="org3f80ae7"><span class="section-number-4">7.6.2.</span> Macro Installer</h4>
+<div id="outline-container-org6ce8ca9" class="outline-4">
+<h4 id="org6ce8ca9"><span class="section-number-4">7.6.2.</span> Macro Installer</h4>
 <div class="outline-text-4" id="text-7-6-2">
 <p>
 I use Fiji on Windows &amp; <a href="#rpi-camera">DIY RPI Camera</a>.  On Windows I install it under a folder named "<code>PF/Fiji.app</code>" &#x2013; I install various packages in "<code>PF</code>"
@@ -2869,8 +2882,8 @@ cp <span style="color: #fa8072;">"$TOOL_TO_INSTALL"</span> <span style="color: #
 </div>
 </div>
 
-<div id="outline-container-org534aa7c" class="outline-2">
-<h2 id="org534aa7c"><span class="section-number-2">8.</span> EOF</h2>
+<div id="outline-container-orgba18fb6" class="outline-2">
+<h2 id="orgba18fb6"><span class="section-number-2">8.</span> EOF</h2>
 <div class="outline-text-2" id="text-8">
 <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
@@ -2881,7 +2894,7 @@ cp <span style="color: #fa8072;">"$TOOL_TO_INSTALL"</span> <span style="color: #
 </div>
 </div>
 <div id="postamble" class="status">
-Created by Mitch Richling <<a href="mailto:http://www.mitchr.me/">http://www.mitchr.me/</a>>.  Rendered on 2021-10-27 Wed 18:06 via <a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="https://orgmode.org">Org</a> mode 9.4.6)
+Created by Mitch Richling <<a href="mailto:http://www.mitchr.me/">http://www.mitchr.me/</a>>.  Rendered on 2021-10-27 Wed 18:13 via <a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="https://orgmode.org">Org</a> mode 9.4.6)
 </div>
 </body>
 </html>

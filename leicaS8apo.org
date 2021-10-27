@@ -619,7 +619,7 @@ sudo apt-get update
 sudo apt-get upgrade
 sudo reboot
 #### Install packages
-sudo apt install emacs gnuplot maxima sbcl telnet zsh tmux gitk paraview paraview-dev xterm imagemagick nomacs gimp ruby
+sudo apt install emacs gnuplot maxima sbcl telnet zsh tmux gitk paraview paraview-dev xterm imagemagick nomacs gimp ruby libgtk-3-dev libasound2-dev exiv2
 sudo update-alternatives --config java
 #### Make local links
 for f in ruby perl sbcl; do
@@ -645,6 +645,15 @@ chmod a+rx Fiji.app/ImageJ.sh
 #### Workaround for a bug in current Fiji
 sudo cp /etc/java-8-openjdk/accessibility.properties /etc/java-8-openjdk/accessibility.properties.org
 sudo sh -c 'grep -v ^assistive_technologies /etc/java-8-openjdk/accessibility.properties.org > /etc/java-8-openjdk/accessibility.properties'
+#### Install free42 calculator
+cd ~
+rm -rf ~/free42
+git clone 'https://github.com/thomasokken/free42.git'
+cd free42/gtk
+make BCD_MATH=1 AUDIO_ALSA=1
+sudo cp free42dec /usr/local/bin/free42-3.0.6
+sudo rm -f /usr/local/bin/free42
+sudo ln -s /usr/local/bin/free42-3.0.6 /usr/local/bin/free42
 #### Setup directories & links in $HOME
 cd ~
 mkdir -p bin
@@ -672,6 +681,10 @@ ln -s synced/core core
 #### Change my shell
 sudo usermod -s /usr/bin/zsh richmit
 /usr/bin/setxkbmap -option 'ctrl:nocaps'
+#### Change root's password
+sudo passwd root
+#### Delete pi user
+userdel -r pi
 #+end_src
 
 ** Camera Data Sync
