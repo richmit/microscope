@@ -616,7 +616,7 @@ image analysis software (Fiji/ImageJ) right on the camera.
 |----------------------------------------------------------------------------------------------------------------------------+--------------|
 | Total                                                                                                                      |          196 |
 
-** System Setup
+** System Setup With Custom Home Directory                         :noexport:
 
 #+begin_src sh
 #### Refresh packages and update everything
@@ -692,7 +692,7 @@ sudo passwd root
 userdel -r pi
 #+end_src
 
-** Camera Data Sync
+** Camera Data Sync With Custom Home Directory                     :noexport:
 
 #+begin_src sh
 date; echo back-dat-sync;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2                  --rsh='ssh' pi-cam.home.mitchr.me:synced/pi-data/                            /c/Users/richmit/Documents/world/pi-cam/;
@@ -714,6 +714,65 @@ date; echo utils;                rsync -rlt --log-format=%f --delete --delete-ex
 date; echo core;                 rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/core/                                 pi-cam.home.mitchr.me:synced/core/;
 date; echo leicaS8APO-docs;      rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/Doc2/gadgets/leica_microscopes/       pi-cam.home.mitchr.me:synced/Doc2/leica_microscopes/;
 date
+#+end_src
+
+** System Setup
+
+#+begin_src sh
+#### Refresh packages and update everything
+sudo apt-get update
+sudo apt-get upgrade
+sudo reboot
+#### Install packages
+sudo apt install emacs gnuplot maxima sbcl telnet zsh tmux gitk paraview paraview-dev xterm imagemagick nomacs gimp ruby libgtk-3-dev libasound2-dev exiv2
+sudo update-alternatives --config java
+#### Make local links
+for f in ruby perl sbcl; do
+  if [ -e /usr/bin/$f ]; then
+    sudo ln -s /usr/bin/$f /usr/local/bin/$f
+  else
+    echo Missing: /usr/bin/$f
+  fi
+done
+#### Download Fiji software & launcher
+wget 'https://downloads.imagej.net/fiji/latest/fiji-nojre.zip'
+wget 'https://github.com/imagej/imagej2/raw/master/bin/ImageJ.sh'
+#### Unpack Fiji
+unzip fiji-nojre.zip
+#### Put in place ImageJ.sh script
+cp ImageJ.sh Fiji.app/
+chmod a+rx Fiji.app/ImageJ.sh
+#### Workaround for a bug in current Fiji
+sudo cp /etc/java-8-openjdk/accessibility.properties /etc/java-8-openjdk/accessibility.properties.org
+sudo sh -c 'grep -v ^assistive_technologies /etc/java-8-openjdk/accessibility.properties.org > /etc/java-8-openjdk/accessibility.properties'
+#### Install free42 calculator
+cd ~
+rm -rf ~/free42
+git clone 'https://github.com/thomasokken/free42.git'
+cd free42/gtk
+make BCD_MATH=1 AUDIO_ALSA=1
+sudo cp free42dec /usr/local/bin/free42-3.0.6
+sudo rm -f /usr/local/bin/free42
+sudo ln -s /usr/local/bin/free42-3.0.6 /usr/local/bin/free42
+#### Setup directories & links in $HOME
+cd ~
+mkdir -p bin
+mkdir -p Pictures/pi-cam/
+#### Setup directories & links in $HOME
+git clone 'https://github.com/richmit/microscope.git'
+cd microscope
+cp piSnap.sh ~/bin
+cd ~/bin
+ln -s piSnap.sh piSnap
+cd ~/microscope
+### EDIT the install script for your install path!!!  Then run it
+./RPI_tools_install.sh
+#+end_src
+
+** Camera Data Sync
+
+#+begin_src sh
+date; echo back-dat-sync;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2                  --rsh='ssh' pi-cam.home.mitchr.me:synced/pi-data/                            /c/Users/richmit/Documents/world/pi-cam/; date
 #+end_src
 
 ** RPI Image Capture Script
