@@ -36,6 +36,8 @@ Copyright {{{time(%Y)}}} Mitch Richling. All rights reserved.
 #        #         #         #         #         #         #         #         #         #         #         #         #         #         #         #         #         #
 #        #         #         #         #         #         #         #         #         #         #         #         #         #         #         #         #         #
 
+Check out my home page for more stuff: https://www.mitchr.me/
+
 * Symbols & Formulas
 ** Variables
 :PROPERTIES:
@@ -580,12 +582,15 @@ END
 :CUSTOM_ID: rpi-camera
 :END:
 
+#+CAPTION: A live feed from the microscope with a glass scale on the stage.
 #+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
 file:rpicam1_800.jpg
 
+#+CAPTION: A good view of the wire management for the camera.
 #+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
 file:rpicam2_800.jpg
 
+#+CAPTION: A 30fps live feed illuminated only by my desk lamps.  This is an exceptionally bright microscope.
 #+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
 file:rpicam4_800.jpg
 
