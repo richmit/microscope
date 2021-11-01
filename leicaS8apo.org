@@ -44,6 +44,7 @@ Check out my home page for more stuff: https://www.mitchr.me/
 :CUSTOM_ID: variables
 :END:
 
+#+CAPTION: Symbols & Formulas
 #+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
 | Variable     | Description                            | Units     | Notes                                            |
 |--------------+----------------------------------------+-----------+--------------------------------------------------|
@@ -120,6 +121,7 @@ Check out my home page for more stuff: https://www.mitchr.me/
 :CUSTOM_ID: s4-mag-fov
 :END:
 
+#+CAPTION: S4E -- Magnification and FOV at Various Zoom Levels With 10x/23 Eyepiece
 #+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
 |   |      | $A=1.0\times$ | $W=110\,\mathrm{mm}$ | $A=0.5\times$ | $W=200\,\mathrm{mm}$ | $A=1.6\times$ | $W=55\,\mathrm{mm}$ |
 |   |  $Z$ |     $E_{MAG}$ |            $V_{FOV}$ |     $E_{MAG}$ |            $V_{FOV}$ |     $E_{MAG}$ |           $V_{FOV}$ |
@@ -148,6 +150,7 @@ Check out my home page for more stuff: https://www.mitchr.me/
 :CUSTOM_ID: s4-ret-scale
 :END:
 
+#+CAPTION: S4E -- Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece
 #+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
 | $A$ |  $Z$ | $E_{MAG}$ | $E_{FN}$ |   $R_s$ | $V_{MAG}$ | $V_{FOV}$ |
 |-----+------+-----------+----------+---------+-----------+-----------|
@@ -174,6 +177,7 @@ Check out my home page for more stuff: https://www.mitchr.me/
 :CUSTOM_ID: s8-mag-fov
 :END:
 
+#+CAPTION: S8APO -- Magnification and FOV at Various Zoom Levels With 10x/23 Eyepiece
 #+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
 |   |      | $A=1.0\times$ | $W=75\,\mathrm{mm}$ | $A=0.63\times$ | $W=101\,\mathrm{mm}$ | $A=2.0\times$ | $W=25\,\mathrm{mm}$ |
 |   |  $Z$ |     $V_{MAG}$ |           $V_{FOV}$ |      $V_{MAG}$ |            $V_{FOV}$ |     $V_{MAG}$ |           $V_{FOV}$ |
@@ -204,6 +208,7 @@ Check out my home page for more stuff: https://www.mitchr.me/
 :CUSTOM_ID: s8-ret-scale
 :END:
 
+#+CAPTION: S8APO -- Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece
 #+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
 |  $A$ | $Z$ | $E_{MAG}$ | $E_{FN}$ |   $R_s$ | $V_{MAG}$ | $V_{FOV}$ |
 |------+-----+-----------+----------+---------+-----------+-----------|
@@ -225,6 +230,7 @@ Check out my home page for more stuff: https://www.mitchr.me/
 :CUSTOM_ID: s8-na
 :END:
 
+#+CAPTION: S8APO Numerical Aperture
 #+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
 | Zoom |    NA |
 |------+-------|
@@ -244,15 +250,53 @@ Check out my home page for more stuff: https://www.mitchr.me/
 :CUSTOM_ID: leica-vid-obj
 :END:
 
+#+CAPTION: Leica C-Mount Video Objective Data
 #+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
-| Leica Part # | Leica Part Name             | $O_d$ | Notes           | Ref  |
-|--------------+-----------------------------+-------+-----------------+------|
-|          <r> | <l>                         |   <r> | <l>             | <c>  |
-|            / | <>                          |       |                 |      |
-|     10445928 | Leica Video Objective 0.32x |  6.72 | Estimated $O_d$ | co32 |
-|     10450528 | Leica Video Objective 0.5x  | 10.50 | Measured $O_d$  | co50 |
-|     10447367 | Leica Video Objective 0.63x | 13.23 | Estimated $O_d$ | co63 |
-|     10446307 | Leica Video Objective 0.8x  | 16.80 | Estimated $O_d$ | co80 |
+| Leica Part # | Leica Part Name             |  Mag | $O_d$ | Notes           | Ref  |
+|--------------+-----------------------------+------+-------+-----------------+------|
+|          <r> | <l>                         |      |   <r> | <l>             | <c>  |
+|            / | <>                          |      |       |                 |      |
+|     10445928 | Leica Video Objective 0.32x | 0.32 |   6.7 | Estimated $O_d$ | co32 |
+|     10450528 | Leica Video Objective 0.5x  | 0.50 |  10.5 | Measured $O_d$  | co50 |
+|     10447367 | Leica Video Objective 0.63x | 0.63 |  13.2 | Estimated $O_d$ | co63 |
+|     10446307 | Leica Video Objective 0.8x  | 0.80 |  16.8 | Estimated $O_d$ | co80 |
+#+TBLFM: @4$4..@>$4=21*$3;%.1f
+
+Note the image circles are all the same size on the image sensor for a particular video objective, but FOV will change with the Auxiliary & video objective.
+Some examples:
+
+#+CAPTION: Image Circles with $O_d=0.5x$
+#+ATTR_HTML: :border 2 solid #ccc :frame all :align center
+|          | $Z=1$                                                                    | $Z=8$                                                                    |
+| $A=0.63$ | [[file:10450528-10446335-z1_800.png][file:10450528-10446335-z1_200.png]] | [[file:10450528-10446335-z8_800.png][file:10450528-10446335-z8_200.png]] |
+| $A=1.00$ | [[file:10450528-NONE-z1_800.png][file:10450528-NONE-z1_200.png]]         | [[file:10450528-NONE-z8_800.png][file:10450528-NONE-z8_200.png]]         |
+
+*** Annotating Image Circle Images                      :noexport:
+
+#+begin_src sh
+rm *.png
+
+echo anno 10450528-10446335-z1.jpg
+convert 10450528-10446335-z1.jpg -rotate 180 -pointsize 100 -draw "gravity northwest fill white text 10,10 'Z=1  A=0.63x  C=0.5x'" -draw "gravity northwest fill red text 4300,1944 '32 mm'"  -draw "gravity southeast fill blue text 2050,1500 'RPI HQ'" -draw "gravity southwest fill green text 4350,10 'Micro Four Thirds'" -fill none -stroke red -strokewidth 10 -draw 'circle 2592,1944 4093,1944' -stroke blue -draw 'rectangle 2002,1500 3182,2388' -stroke green -draw 'rectangle 1,1 5184,3888' 10450528-10446335-z1.png
+echo anno 10450528-10446335-z8.jpg
+convert 10450528-10446335-z8.jpg -rotate 180 -pointsize 100 -draw "gravity northwest fill white text 10,10 'Z=8  A=0.63x  C=0.5x'" -draw "gravity northwest fill red text 4300,1944 '4 mm'"   -draw "gravity southeast fill blue text 2050,1500 'RPI HQ'" -draw "gravity southwest fill green text 4350,10 'Micro Four Thirds'" -fill none -stroke red -strokewidth 10 -draw 'circle 2592,1944 4093,1944' -stroke blue -draw 'rectangle 2002,1500 3182,2388' -stroke green -draw 'rectangle 1,1 5184,3888' 10450528-10446335-z8.png; 
+echo anno 10450528-NONE-z1.jpg  
+convert 10450528-NONE-z1.jpg     -rotate 180 -pointsize 100 -draw "gravity northwest fill white text 10,10 'Z=1  A=1.00x  C=0.5x'" -draw "gravity northwest fill red text 4300,1944 '20 mm'"  -draw "gravity southeast fill blue text 2050,1500 'RPI HQ'" -draw "gravity southwest fill green text 4350,10 'Micro Four Thirds'" -fill none -stroke red -strokewidth 10 -draw 'circle 2592,1944 4093,1944' -stroke blue -draw 'rectangle 2002,1500 3182,2388' -stroke green -draw 'rectangle 1,1 5184,3888' 10450528-NONE-z1.png; 
+echo anno 10450528-NONE-z8.jpg
+convert 10450528-NONE-z8.jpg     -rotate 180 -pointsize 100 -draw "gravity northwest fill white text 10,10 'Z=8  A=1.00x  C=0.5x'" -draw "gravity northwest fill red text 4300,1944 '2.5 mm'" -draw "gravity southeast fill blue text 2050,1500 'RPI HQ'" -draw "gravity southwest fill green text 4350,10 'Micro Four Thirds'" -fill none -stroke red -strokewidth 10 -draw 'circle 2592,1944 4093,1944' -stroke blue -draw 'rectangle 2002,1500 3182,2388' -stroke green -draw 'rectangle 1,1 5184,3888' 10450528-NONE-z8.png; 
+
+for f in *.png; do
+  for s in 200 800; do
+    echo $f $s
+    nn=`echo $f | sed "s/.png\$/_$s.png/"`
+    convert $f -resize x$s $nn
+  done
+done
+
+cp *_*.png ~/world/my_prog/microscope/docs
+
+echo DONE
+#+end_src
 
 ** Attaching Cameras
 
@@ -279,6 +323,7 @@ I use two cameras with my S8APO:
 :CUSTOM_ID: s8-cam-data
 :END:
 
+#+CAPTION: Camera FOV & Image Scales
 #+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
 |   |      |     |       |       |           |          RPI |            |            |            |            |          OLY |            |            |            |            |
 |   |  $A$ | $Z$ | $O_c$ | $O_d$ | $S_{MAG}$ | $P_{IJSPAR}$ | $I_{SCLh}$ | $I_{SCLv}$ | $S_{FOVh}$ | $S_{FOVv}$ | $P_{IJSPAR}$ | $I_{SCLh}$ | $I_{SCLv}$ | $S_{FOVh}$ | $S_{FOVv}$ |
@@ -322,6 +367,8 @@ I use two cameras with my S8APO:
 
 ** The menu
 
+#+CAPTION: Application Menu
+#+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
 | Key                | Without =[SHIFT]=           | With =[SHIFT]=              | Notes                                |
 |--------------------+-----------------------------+-----------------------------+--------------------------------------|
 | /                  | <                           | >                           |                                      |
@@ -497,6 +544,7 @@ END
 :CUSTOM_ID: parts
 :END:
 
+#+CAPTION: S-Series Leica Parts
 #+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
 | Leica Part # | Leica Part Name                                           |
 |--------------+-----------------------------------------------------------|
@@ -549,6 +597,7 @@ END
 :CUSTOM_ID: sensors
 :END:
 
+#+CAPTION: Image Sensor Data
 #+TBLNAME: sensor-info
 #+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
 |   | Type   | Sensor      |   $S_w$ |  $S_h$ | $I_w$ | $I_h$ | $S_d$ | $S_A$ | $I_{MP}$ | $P_w$ | $P_h$ | $P_{AR}$ | $P_{IJSPAR}$ | Ref     |
@@ -603,6 +652,7 @@ image analysis software (Fiji/ImageJ) right on the camera.
 
 ** Bill Of Materials
 
+#+CAPTION: Bill Of Materials
 #+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
 | Item                                                                                                                       | Price (US $) |
 |----------------------------------------------------------------------------------------------------------------------------+--------------|
