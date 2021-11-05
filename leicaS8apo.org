@@ -252,31 +252,32 @@ Check out my home page for more stuff: https://www.mitchr.me/
 
 #+CAPTION: Leica C-Mount Video Objective Data
 #+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
-| Leica Part # | Leica Part Name             |  Mag | $O_d$ | Notes           | Ref  |
-|--------------+-----------------------------+------+-------+-----------------+------|
-|          <r> | <l>                         |      |   <r> | <l>             | <c>  |
-|            / | <>                          |      |       |                 |      |
-|     10445928 | Leica Video Objective 0.32x | 0.32 |   6.7 | Estimated $O_d$ | co32 |
-|     10450528 | Leica Video Objective 0.5x  | 0.50 |  10.5 | Measured $O_d$  | co50 |
-|     10447367 | Leica Video Objective 0.63x | 0.63 |  13.2 | Estimated $O_d$ | co63 |
-|     10446307 | Leica Video Objective 0.8x  | 0.80 |  16.8 | Estimated $O_d$ | co80 |
+| Leica Part # | Leica Part Name                    |  Mag | $O_d$ | Notes           | Ref  |
+|--------------+------------------------------------+------+-------+-----------------+------|
+|          <r> | <l>                                |      |   <r> | <l>             | <c>  |
+|            / | <>                                 |      |       |                 |      |
+|     10445928 | Leica Video Objective $0.32\times$ | 0.32 |   6.7 | Estimated $O_d$ | co32 |
+|     10450528 | Leica Video Objective $0.5\times$  | 0.50 |  10.5 | Measured $O_d$  | co50 |
+|     10447367 | Leica Video Objective $0.63\times$ | 0.63 |  13.2 | Estimated $O_d$ | co63 |
+|     10446307 | Leica Video Objective $0.8\times$  | 0.80 |  16.8 | Estimated $O_d$ | co80 |
 #+TBLFM: @4$4..@>$4=21*$3;%.1f
 
 Note the image circles are all the same size at the sensor for a particular video objective, but FOV will change with the auxiliary & video objective.
 
-With $O_d=0.5x$ we can capture the full image circle with a Micro Four Thirds (Olympus OM-D E-M1 Mark II) sensor, but only about 37% of the image circle with
-an IMX477 (RPI HQ) sensor.
+With $O_d=0.5\times$ we can capture the full image circle with a Micro Four Thirds (Olympus OM-D E-M1 Mark II) sensor, but only about 37% of the image circle with
+an IMX477 (RPI HQ) sensor.  Note that about 65% of the Micro Four Thirds sensor is outside the image circle -- i.e. wasted pixels.
 
-#+CAPTION: Image Circles with $O_d=0.5x$
+#+CAPTION: Image Circles with $O_d=0.5\times$
 #+ATTR_HTML: :border 2 solid #ccc :frame all :align center
 |          | $Z=1$                                                                    | $Z=8$                                                                    |
 | $A=0.63$ | [[file:10450528-10446335-z1_800.png][file:10450528-10446335-z1_200.png]] | [[file:10450528-10446335-z8_800.png][file:10450528-10446335-z8_200.png]] |
 | $A=1.00$ | [[file:10450528-NONE-z1_800.png][file:10450528-NONE-z1_200.png]]         | [[file:10450528-NONE-z8_800.png][file:10450528-NONE-z8_200.png]]         |
 
-With $O_d=0.32x$ the image circle shrinks, and now we can capture about 76% of the image circle with an IMX477 (RPI HQ); however, about 3% percent of the sensor
-is outside the image circle -- i.e. wasted sensor pixels.
+With $O_d=0.32\times$ the image circle shrinks, and now we can capture about 76% of the image circle with an IMX477 (RPI HQ); however, about 3% percent of the
+sensor is outside the image circle -- i.e. wasted sensor pixels.  Note that with the smaller image circle the Micro Four Thirds sensor is even less
+efficiently used with about 84% of the sensor pixels wasted.
 
-#+CAPTION: Image Circles with $O_d=0.32x$
+#+CAPTION: Image Circles with $O_d=0.32\times$
 #+ATTR_HTML: :border 2 solid #ccc :frame all :align center
 |          | $Z=1$                                                                    | $Z=8$                                                                    |
 | $A=0.63$ | [[file:10445928-10446335-z1_800.png][file:10445928-10446335-z1_200.png]] | [[file:10445928-10446335-z8_800.png][file:10445928-10446335-z8_200.png]] |
@@ -330,15 +331,15 @@ for this approach may be found
 [[https://www.microbehunter.com/][MicrobeHunter.com]] may found [[https://www.microbehunter.com/microscopy-forum/viewtopic.php?t=8527][here]].
       
 For cameras with Micro Four Thirds and smaller sensors, a simpler approach is connect your camera via a c-mount adapter to one of Leica's "C-Mount Video
-Objectives": 10445928 0.32x, 10450528 0.5x, 10447367 0.63x, or 10446307 0.8x.  These adapters are intended to be used with Leica's microscope cameras, but
+Objectives": 10445928 $0.32\times$, 10450528 $0.5\times$, 10447367 $0.63\times$, or 10446307 $0.8\times$.  These adapters are intended to be used with Leica's microscope cameras, but
 they will work with any c-mount camera -- including your SLR with a c-mount adapter.
 
-With the 0.5x objective one will obtain a nice 10.5mm image circle which is just about perfect for whole field imaging with the 13mm tall sensor in a Micro
+With the $0.5\times$ objective one will obtain a nice 10.5mm image circle which is just about perfect for whole field imaging with the 13mm tall sensor in a Micro
 Four Thirds camera.
 
 I use two cameras with my S8APO:
-  - [[https://www.getolympus.com/us/en/digitalcameras/omd/e-m1-mark-ii.html][Olympus OM-D E-M1 Mark II]] with a 0.5x or 0.32x video objective
-  - [[#rpi-camera][A DIY solution]] with a Raspberry Pi & Raspberry Pi HQ Camera attached to a 0.32x video objective.
+  - [[https://www.getolympus.com/us/en/digitalcameras/omd/e-m1-mark-ii.html][Olympus OM-D E-M1 Mark II]] with a $0.5\times$ or $0.32\times$ video objective
+  - [[#rpi-camera][A DIY solution]] with a Raspberry Pi & Raspberry Pi HQ Camera attached to a $0.32\times$ video objective.
 
 ** Camera FOV & Image Scales
 :PROPERTIES:
@@ -568,51 +569,51 @@ END
 
 #+CAPTION: S-Series Leica Parts
 #+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
-| Leica Part # | Leica Part Name                                           |
-|--------------+-----------------------------------------------------------|
-|            / | <>                                                        |
-|     10446298 | Leica S8 APO                                              |
-|     10446293 | Leica S4 E                                                |
-|--------------+-----------------------------------------------------------|
-|     10447136 | 10x/23B eyepiece for eyeglasses, fixed                    |
-|     10447137 | 10x/23B eyepiece for eyeglasses, adjustable               |
-|     10447138 | 16x/15B eyepiece for eyeglasses, fixed                    |
-|     10447139 | 16x/15B eyepiece for eyeglasses, adjustable               |
-|--------------+-----------------------------------------------------------|
-|     10446447 | Reticle 10 mm/0.1 mm                                      |
-|     10446448 | Reticle 5 mm/0.1 mm                                       |
-|     10446449 | Reticle 5 mm/0.05 mm                                      |
-|     10447000 | Reticle 100 scale intervals / 0.002"                      |
-|     10447001 | Reticle 100 scale intervals / 0.001"                      |
-|     10447002 | Reticle 150 scale intervals / 0.0005"                     |
-|--------------+-----------------------------------------------------------|
-|     10446334 | Achro Auxiliary 0.32× for A8, WD 200 mm                   |
-|     10446335 | APO Auxiliary 0.63× for A8, WD 100 mm                     |
-|     10446336 | APO Auxiliary 1.6× for A8, WD 37 mm                       |
-|     10446337 | APO Auxiliary 2.0× for A8, WD 25 mm                       |
-|--------------+-----------------------------------------------------------|
-|     10446316 | Auxiliary 0.32× for S4/S6, WD 300 mm                      |
-|     10446318 | Auxiliary 0.5× for S4/S6, WD 200 mm                       |
-|     10446319 | Auxiliary 0.63× for S4/S6, WD 155 mm                      |
-|     10446320 | Auxiliary 0.75× for S4/S6, WD 130 mm                      |
-|     10446321 | Auxiliary 1.6× for S4/S6, WD 55 mm                        |
-|     10446322 | Auxiliary 2.0× for S4/S6, WD 35 mm                        |
-|     10446325 | Auxiliary 0.3–0.4× for S4/S6 (Adjustable), WD 200–350mm   |
-|     10446323 | Auxiliary 0.6–0.75× for S4/S6 (ErgoObjective) WD 77–137mm |
-|--------------+-----------------------------------------------------------|
-|     10450817 | Auxiliary 0.5 for S9, WD 200 mm                           |
-|     10450818 | Auxiliary 0.63 for S9, WD 150 mm                          |
-|     10450819 | Auxiliary 0.75 for S9, WD 130 mm                          |
-|     10450820 | Auxiliary 1.6 for S9, WD 50 mm                            |
-|     10450821 | Auxiliary 2.0 for S9, WD 35 mm                            |
-|--------------+-----------------------------------------------------------|
-|     10446324 | Lens shield                                               |
-|     10450831 | Updated lens shield                                       |
-|--------------+-----------------------------------------------------------|
-|     10445928 | Leica Video Objective 0.32x                               |
-|     10450528 | Leica Video Objective 0.5x                                |
-|     10447367 | Leica Video Objective 0.63x                               |
-|     10446307 | Leica Video Objective 0.8x                                |
+| Leica Part # | Leica Part Name                                                  |
+|--------------+------------------------------------------------------------------|
+|            / | <>                                                               |
+|     10446298 | Leica S8 APO                                                     |
+|     10446293 | Leica S4 E                                                       |
+|--------------+------------------------------------------------------------------|
+|     10447136 | 10x/23B eyepiece for eyeglasses, fixed                           |
+|     10447137 | 10x/23B eyepiece for eyeglasses, adjustable                      |
+|     10447138 | 16x/15B eyepiece for eyeglasses, fixed                           |
+|     10447139 | 16x/15B eyepiece for eyeglasses, adjustable                      |
+|--------------+------------------------------------------------------------------|
+|     10446447 | Reticle 10 mm/0.1 mm                                             |
+|     10446448 | Reticle 5 mm/0.1 mm                                              |
+|     10446449 | Reticle 5 mm/0.05 mm                                             |
+|     10447000 | Reticle 100 scale intervals / 0.002"                             |
+|     10447001 | Reticle 100 scale intervals / 0.001"                             |
+|     10447002 | Reticle 150 scale intervals / 0.0005"                            |
+|--------------+------------------------------------------------------------------|
+|     10446334 | Achro Auxiliary $0.32\times$ for A8, WD 200 mm                   |
+|     10446335 | APO Auxiliary $0.63\times$ for A8, WD 100 mm                     |
+|     10446336 | APO Auxiliary $1.6\times$ for A8, WD 37 mm                       |
+|     10446337 | APO Auxiliary $2.0\times$ for A8, WD 25 mm                       |
+|--------------+------------------------------------------------------------------|
+|     10446316 | Auxiliary $0.32\times$ for S4/S6, WD 300 mm                      |
+|     10446318 | Auxiliary $0.5\times$ for S4/S6, WD 200 mm                       |
+|     10446319 | Auxiliary $0.63\times$ for S4/S6, WD 155 mm                      |
+|     10446320 | Auxiliary $0.75\times$ for S4/S6, WD 130 mm                      |
+|     10446321 | Auxiliary $1.6\times$ for S4/S6, WD 55 mm                        |
+|     10446322 | Auxiliary $2.0\times$ for S4/S6, WD 35 mm                        |
+|     10446325 | Auxiliary $0.3–0.4\times$ for S4/S6 (Adjustable), WD 200–350mm   |
+|     10446323 | Auxiliary $0.6–0.75\times$ for S4/S6 (ErgoObjective) WD 77–137mm |
+|--------------+------------------------------------------------------------------|
+|     10450817 | Auxiliary $0.5\times$ for S9, WD 200 mm                          |
+|     10450818 | Auxiliary $0.63\times$ for S9, WD 150 mm                         |
+|     10450819 | Auxiliary $0.75\times$ for S9, WD 130 mm                         |
+|     10450820 | Auxiliary $1.6\times$ for S9, WD 50 mm                           |
+|     10450821 | Auxiliary $2.0\times$ for S9, WD 35 mm                           |
+|--------------+------------------------------------------------------------------|
+|     10446324 | Lens shield                                                      |
+|     10450831 | Updated lens shield                                              |
+|--------------+------------------------------------------------------------------|
+|     10445928 | Leica Video Objective $0.32\times$                               |
+|     10450528 | Leica Video Objective $0.5\times$                                |
+|     10447367 | Leica Video Objective $0.63\times$                               |
+|     10446307 | Leica Video Objective $0.8\times$                                |
 
 * Image Sensor Data
 :PROPERTIES:
