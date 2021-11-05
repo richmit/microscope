@@ -100,7 +100,7 @@ macro "Set Scale Action Tool - Cc11 L1cfc L1a1e Lfafe L8b8d L5b5d Lbbbd T4707R T
   equipAux   = parseFloat(Dialog.getChoice());
   equipVObj  = parseFloat(Dialog.getChoice());
   equipCam   = Dialog.getChoice();
-  global = Dialog.getCheckbox();
+  global     = Dialog.getCheckbox();
 
   List.clear();
   List.set("OLY", d2s(5184.0 / 17.4,   10));

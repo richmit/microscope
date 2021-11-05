@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-11-02 Tue 17:12 -->
+<!-- 2021-11-05 Fri 16:19 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=1024, initial-scale=1" />
 <title>Leica S4E &amp; S8APO</title>
@@ -252,7 +252,7 @@
 
 <tr>
 <td class="org-right"><b>Updated:</b></td>
-<td class="org-left"><i>2021-11-02</i></td>
+<td class="org-left"><i>2021-11-05</i></td>
 </tr>
 </tbody>
 </table>
@@ -264,7 +264,7 @@ Copyright 2021 Mitch Richling. All rights reserved.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga7c4a99">1. Symbols &amp; Formulas</a>
+<li><a href="#org82813df">1. Symbols &amp; Formulas</a>
 <ul>
 <li><a href="#variables">1.1. Variables</a></li>
 <li><a href="#formulas">1.2. Formulas</a></li>
@@ -282,34 +282,34 @@ Copyright 2021 Mitch Richling. All rights reserved.
 <li><a href="#s8-ret-scale">3.2. Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece</a></li>
 <li><a href="#s8-na">3.3. Numerical Aperture With No Auxiliary Lens</a></li>
 <li><a href="#leica-vid-obj">3.4. Leica C-Mount Video Objective Data</a></li>
-<li><a href="#org7e4e1fa">3.5. Attaching Cameras</a></li>
+<li><a href="#orgee62f42">3.5. Attaching Cameras</a></li>
 <li><a href="#s8-cam-data">3.6. Camera FOV &amp; Image Scales</a></li>
 </ul>
 </li>
 <li><a href="#mrconv">4. Reticle Unit Conversion Software For free42 and DM42</a>
 <ul>
-<li><a href="#org6c911d7">4.1. The menu</a></li>
-<li><a href="#org0fc00ed">4.2. The code</a></li>
+<li><a href="#org1a77cc6">4.1. The menu</a></li>
+<li><a href="#orgc2e4a5a">4.2. The code</a></li>
 </ul>
 </li>
 <li><a href="#parts">5. S-Series Leica Parts</a></li>
 <li><a href="#sensors">6. Image Sensor Data</a></li>
 <li><a href="#rpi-camera">7. DIY RPI Camera</a>
 <ul>
-<li><a href="#org9011fb5">7.1. The Idea</a></li>
-<li><a href="#org951bcc2">7.2. Bill Of Materials</a></li>
-<li><a href="#org45bf3de">7.3. System Setup</a></li>
-<li><a href="#org0eaa647">7.4. Camera Data Sync</a></li>
-<li><a href="#org7635e51">7.5. RPI Image Capture Script</a></li>
+<li><a href="#org0b2b4ec">7.1. The Idea</a></li>
+<li><a href="#org16b0c4e">7.2. Bill Of Materials</a></li>
+<li><a href="#org34594d3">7.3. System Setup</a></li>
+<li><a href="#orge504f3c">7.4. Camera Data Sync</a></li>
+<li><a href="#org8f5cbb0">7.5. RPI Image Capture Script</a></li>
 <li><a href="#rpi-imagej">7.6. ImageJ/Fiji Software</a>
 <ul>
-<li><a href="#org32228e8">7.6.1. Macro</a></li>
-<li><a href="#org0df1326">7.6.2. Macro Installer</a></li>
+<li><a href="#orgadc7b6d">7.6.1. Macro</a></li>
+<li><a href="#org2670a09">7.6.2. Macro Installer</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org190e6e4">8. EOF</a></li>
+<li><a href="#org50618c1">8. EOF</a></li>
 </ul>
 </div>
 </div>
@@ -318,8 +318,8 @@ Copyright 2021 Mitch Richling. All rights reserved.
 Check out my home page for more stuff: <a href="https://www.mitchr.me/">https://www.mitchr.me/</a>
 </p>
 
-<div id="outline-container-orga7c4a99" class="outline-2">
-<h2 id="orga7c4a99"><span class="section-number-2">1.</span> Symbols &amp; Formulas</h2>
+<div id="outline-container-org82813df" class="outline-2">
+<h2 id="org82813df"><span class="section-number-2">1.</span> Symbols &amp; Formulas</h2>
 <div class="outline-text-2" id="text-1">
 </div>
 <div id="outline-container-variables" class="outline-3">
@@ -1237,7 +1237,11 @@ Check out my home page for more stuff: <a href="https://www.mitchr.me/">https://
 
 <p>
 Note the image circles are all the same size on the image sensor for a particular video objective, but FOV will change with the Auxiliary &amp; video objective.
-Some examples:
+</p>
+
+<p>
+With \(O_d=0.5x\) we can capture the full image circle with a Micro Four Thirds (Olympus OM-D E-M1 Mark II) sensor, but only about 37% of the image circle with
+an IMX477 (RPI HQ) sensor.
 </p>
 
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="all" align="center">
@@ -1270,11 +1274,47 @@ Some examples:
 </tr>
 </tbody>
 </table>
+
+<p>
+With \(O_d=0.32x\) the image circle shrinks, and now we can capture about 76% of the image circle with an IMX477 (RPI HQ); however, about 3% percent of the sensor
+is outside the image circle &#x2013; i.e. wasted sensor pixels.
+</p>
+
+<table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="all" align="center">
+<caption class="t-above"><span class="table-number">Table 9:</span> Image Circles with \(O_d=0.32x\)</caption>
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">\(Z=1\)</td>
+<td class="org-left">\(Z=8\)</td>
+</tr>
+
+<tr>
+<td class="org-left">\(A=0.63\)</td>
+<td class="org-left"><a href="10445928-10446335-z1_800.png"><img src="10445928-10446335-z1_200.png" alt="10445928-10446335-z1_200.png" /></a></td>
+<td class="org-left"><a href="10445928-10446335-z8_800.png"><img src="10445928-10446335-z8_200.png" alt="10445928-10446335-z8_200.png" /></a></td>
+</tr>
+
+<tr>
+<td class="org-left">\(A=1.00\)</td>
+<td class="org-left"><a href="10445928-NONE-z1_800.png"><img src="10445928-NONE-z1_200.png" alt="10445928-NONE-z1_200.png" /></a></td>
+<td class="org-left"><a href="10445928-NONE-z8_800.png"><img src="10445928-NONE-z8_200.png" alt="10445928-NONE-z8_200.png" /></a></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 
-<div id="outline-container-org7e4e1fa" class="outline-3">
-<h3 id="org7e4e1fa"><span class="section-number-3">3.5.</span> Attaching Cameras</h3>
+<div id="outline-container-orgee62f42" class="outline-3">
+<h3 id="orgee62f42"><span class="section-number-3">3.5.</span> Attaching Cameras</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 The Leica documentation suggests using a chain of adapters for attaching a generic digital camera. The first part of the chain is one of the following three
@@ -1310,7 +1350,7 @@ I use two cameras with my S8APO:
 <h3 id="s8-cam-data"><span class="section-number-3">3.6.</span> Camera FOV &amp; Image Scales</h3>
 <div class="outline-text-3" id="text-s8-cam-data">
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
-<caption class="t-above"><span class="table-number">Table 9:</span> Camera FOV &amp; Image Scales</caption>
+<caption class="t-above"><span class="table-number">Table 10:</span> Camera FOV &amp; Image Scales</caption>
 
 <colgroup>
 <col  class="org-right" />
@@ -1505,11 +1545,11 @@ I use two cameras with my S8APO:
 <div class="outline-text-2" id="text-mrconv">
 </div>
 
-<div id="outline-container-org6c911d7" class="outline-3">
-<h3 id="org6c911d7"><span class="section-number-3">4.1.</span> The menu</h3>
+<div id="outline-container-org1a77cc6" class="outline-3">
+<h3 id="org1a77cc6"><span class="section-number-3">4.1.</span> The menu</h3>
 <div class="outline-text-3" id="text-4-1">
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
-<caption class="t-above"><span class="table-number">Table 10:</span> Application Menu</caption>
+<caption class="t-above"><span class="table-number">Table 11:</span> Application Menu</caption>
 
 <colgroup>
 <col  class="org-left" />
@@ -1628,8 +1668,8 @@ keys each with two sets of settings &#x2013; the scope's lower zoom stop is used
 </div>
 </div>
 
-<div id="outline-container-org0fc00ed" class="outline-3">
-<h3 id="org0fc00ed"><span class="section-number-3">4.2.</span> The code</h3>
+<div id="outline-container-orgc2e4a5a" class="outline-3">
+<h3 id="orgc2e4a5a"><span class="section-number-3">4.2.</span> The code</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 While this code isn't very useful without being customized to the particular settings the end user needs, it can be test driven as-is by cut-n-pasting the
@@ -1788,7 +1828,7 @@ END
 <h2 id="parts"><span class="section-number-2">5.</span> S-Series Leica Parts</h2>
 <div class="outline-text-2" id="text-parts">
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
-<caption class="t-above"><span class="table-number">Table 11:</span> S-Series Leica Parts</caption>
+<caption class="t-above"><span class="table-number">Table 12:</span> S-Series Leica Parts</caption>
 
 <colgroup>
 <col  class="org-right" />
@@ -1993,8 +2033,8 @@ END
 <div id="outline-container-sensors" class="outline-2">
 <h2 id="sensors"><span class="section-number-2">6.</span> Image Sensor Data</h2>
 <div class="outline-text-2" id="text-sensors">
-<table id="org7cdc947" border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
-<caption class="t-above"><span class="table-number">Table 12:</span> Image Sensor Data</caption>
+<table id="org1176aff" border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
+<caption class="t-above"><span class="table-number">Table 13:</span> Image Sensor Data</caption>
 
 <colgroup>
 <col  class="org-left" />
@@ -2296,29 +2336,29 @@ END
 <h2 id="rpi-camera"><span class="section-number-2">7.</span> DIY RPI Camera</h2>
 <div class="outline-text-2" id="text-rpi-camera">
 
-<div id="org8a142bd" class="figure">
+<div id="org187661a" class="figure">
 <p><img src="rpicam1_800.jpg" alt="rpicam1_800.jpg" border="2 solid #ccc" frame="hsides" align="center" />
 </p>
 <p><span class="figure-number">Figure 1: </span>A live feed from the microscope with a glass scale on the stage.</p>
 </div>
 
 
-<div id="org4be55e7" class="figure">
+<div id="org6f3013f" class="figure">
 <p><img src="rpicam2_800.jpg" alt="rpicam2_800.jpg" border="2 solid #ccc" frame="hsides" align="center" />
 </p>
 <p><span class="figure-number">Figure 2: </span>A good view of the wire management for the camera.</p>
 </div>
 
 
-<div id="org5a98f2b" class="figure">
+<div id="orgcd84a10" class="figure">
 <p><img src="rpicam4_800.jpg" alt="rpicam4_800.jpg" border="2 solid #ccc" frame="hsides" align="center" />
 </p>
 <p><span class="figure-number">Figure 3: </span>A 30fps live feed illuminated only by my desk lamps.  This is an exceptionally bright microscope.</p>
 </div>
 </div>
 
-<div id="outline-container-org9011fb5" class="outline-3">
-<h3 id="org9011fb5"><span class="section-number-3">7.1.</span> The Idea</h3>
+<div id="outline-container-org0b2b4ec" class="outline-3">
+<h3 id="org0b2b4ec"><span class="section-number-3">7.1.</span> The Idea</h3>
 <div class="outline-text-3" id="text-7-1">
 <p>
 Microscope cameras with built in image analysis software are pretty cool.  Simply connect the camera to your monitor &amp; mouse, and you can do simple image
@@ -2329,11 +2369,11 @@ image analysis software (Fiji/ImageJ) right on the camera.
 </div>
 </div>
 
-<div id="outline-container-org951bcc2" class="outline-3">
-<h3 id="org951bcc2"><span class="section-number-3">7.2.</span> Bill Of Materials</h3>
+<div id="outline-container-org16b0c4e" class="outline-3">
+<h3 id="org16b0c4e"><span class="section-number-3">7.2.</span> Bill Of Materials</h3>
 <div class="outline-text-3" id="text-7-2">
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
-<caption class="t-above"><span class="table-number">Table 13:</span> Bill Of Materials</caption>
+<caption class="t-above"><span class="table-number">Table 14:</span> Bill Of Materials</caption>
 
 <colgroup>
 <col  class="org-left" />
@@ -2392,8 +2432,8 @@ image analysis software (Fiji/ImageJ) right on the camera.
 </div>
 </div>
 
-<div id="outline-container-org45bf3de" class="outline-3">
-<h3 id="org45bf3de"><span class="section-number-3">7.3.</span> System Setup</h3>
+<div id="outline-container-org34594d3" class="outline-3">
+<h3 id="org34594d3"><span class="section-number-3">7.3.</span> System Setup</h3>
 <div class="outline-text-3" id="text-7-3">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Refresh packages and update everything</span>
@@ -2449,8 +2489,8 @@ ln -s piSnap.sh piSnap
 </div>
 </div>
 
-<div id="outline-container-org0eaa647" class="outline-3">
-<h3 id="org0eaa647"><span class="section-number-3">7.4.</span> Camera Data Sync</h3>
+<div id="outline-container-orge504f3c" class="outline-3">
+<h3 id="orge504f3c"><span class="section-number-3">7.4.</span> Camera Data Sync</h3>
 <div class="outline-text-3" id="text-7-4">
 <div class="org-src-container">
 <pre class="src src-sh">date; <span style="color: #b0c4de;">echo</span> back-dat-sync;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2                  --rsh=<span style="color: #fa8072;">'ssh'</span> pi-cam.home.mitchr.me:synced/pi-data/                            /c/Users/richmit/Documents/world/pi-cam/; date
@@ -2459,8 +2499,8 @@ ln -s piSnap.sh piSnap
 </div>
 </div>
 
-<div id="outline-container-org7635e51" class="outline-3">
-<h3 id="org7635e51"><span class="section-number-3">7.5.</span> RPI Image Capture Script</h3>
+<div id="outline-container-org8f5cbb0" class="outline-3">
+<h3 id="org8f5cbb0"><span class="section-number-3">7.5.</span> RPI Image Capture Script</h3>
 <div class="outline-text-3" id="text-7-5">
 <p>
 This scipr tis pretty simple.  Right now it only supports
@@ -2628,15 +2668,15 @@ $<span style="color: #7fffd4;">DACMD</span>
 <div class="outline-text-3" id="text-rpi-imagej">
 </div>
 
-<div id="outline-container-org32228e8" class="outline-4">
-<h4 id="org32228e8"><span class="section-number-4">7.6.1.</span> Macro</h4>
+<div id="outline-container-orgadc7b6d" class="outline-4">
+<h4 id="orgadc7b6d"><span class="section-number-4">7.6.1.</span> Macro</h4>
 <div class="outline-text-4" id="text-7-6-1">
 <p>
 The code below provides an ImageJ/Fiji toolset.  You activate the tool set via the toolset menu:
 </p>
 
 
-<div id="org9cf309d" class="figure">
+<div id="org07f33ed" class="figure">
 <p><img src="toolsetmenu_800.gif" alt="toolsetmenu_800.gif" align="center" />
 </p>
 </div>
@@ -2646,7 +2686,7 @@ Once activated, it will add three buttons to the toolbar:
 </p>
 
 
-<div id="org42d63d0" class="figure">
+<div id="org28744f3" class="figure">
 <p><img src="toolsetbuttons_800.gif" alt="toolsetbuttons_800.gif" align="center" />
 </p>
 </div>
@@ -2815,8 +2855,8 @@ macro <span style="color: #fa8072;">"Open Last RPI Capture(s) Action Tool - Cc11
 </div>
 </div>
 
-<div id="outline-container-org0df1326" class="outline-4">
-<h4 id="org0df1326"><span class="section-number-4">7.6.2.</span> Macro Installer</h4>
+<div id="outline-container-org2670a09" class="outline-4">
+<h4 id="org2670a09"><span class="section-number-4">7.6.2.</span> Macro Installer</h4>
 <div class="outline-text-4" id="text-7-6-2">
 <p>
 I use Fiji on Windows &amp; <a href="#rpi-camera">DIY RPI Camera</a>.  On Windows I install it under a folder named "<code>PF/Fiji.app</code>" &#x2013; I install various packages in "<code>PF</code>"
@@ -2891,8 +2931,8 @@ cp <span style="color: #fa8072;">"$TOOL_TO_INSTALL"</span> <span style="color: #
 </div>
 </div>
 
-<div id="outline-container-org190e6e4" class="outline-2">
-<h2 id="org190e6e4"><span class="section-number-2">8.</span> EOF</h2>
+<div id="outline-container-org50618c1" class="outline-2">
+<h2 id="org50618c1"><span class="section-number-2">8.</span> EOF</h2>
 <div class="outline-text-2" id="text-8">
 <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
@@ -2903,7 +2943,7 @@ cp <span style="color: #fa8072;">"$TOOL_TO_INSTALL"</span> <span style="color: #
 </div>
 </div>
 <div id="postamble" class="status">
-Created by Mitch Richling <<a href="mailto:http://www.mitchr.me/">http://www.mitchr.me/</a>>.  Rendered on 2021-11-02 Tue 17:12 via <a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="https://orgmode.org">Org</a> mode 9.4.6)
+Created by Mitch Richling <<a href="mailto:http://www.mitchr.me/">http://www.mitchr.me/</a>>.  Rendered on 2021-11-05 Fri 16:19 via <a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="https://orgmode.org">Org</a> mode 9.4.6)
 </div>
 </body>
 </html>

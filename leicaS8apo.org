@@ -262,8 +262,10 @@ Check out my home page for more stuff: https://www.mitchr.me/
 |     10446307 | Leica Video Objective 0.8x  | 0.80 |  16.8 | Estimated $O_d$ | co80 |
 #+TBLFM: @4$4..@>$4=21*$3;%.1f
 
-Note the image circles are all the same size on the image sensor for a particular video objective, but FOV will change with the Auxiliary & video objective.
-Some examples:
+Note the image circles are all the same size at the sensor for a particular video objective, but FOV will change with the auxiliary & video objective.
+
+With $O_d=0.5x$ we can capture the full image circle with a Micro Four Thirds (Olympus OM-D E-M1 Mark II) sensor, but only about 37% of the image circle with
+an IMX477 (RPI HQ) sensor.
 
 #+CAPTION: Image Circles with $O_d=0.5x$
 #+ATTR_HTML: :border 2 solid #ccc :frame all :align center
@@ -271,19 +273,39 @@ Some examples:
 | $A=0.63$ | [[file:10450528-10446335-z1_800.png][file:10450528-10446335-z1_200.png]] | [[file:10450528-10446335-z8_800.png][file:10450528-10446335-z8_200.png]] |
 | $A=1.00$ | [[file:10450528-NONE-z1_800.png][file:10450528-NONE-z1_200.png]]         | [[file:10450528-NONE-z8_800.png][file:10450528-NONE-z8_200.png]]         |
 
+With $O_d=0.32x$ the image circle shrinks, and now we can capture about 76% of the image circle with an IMX477 (RPI HQ); however, about 3% percent of the sensor
+is outside the image circle -- i.e. wasted sensor pixels.
+
+#+CAPTION: Image Circles with $O_d=0.32x$
+#+ATTR_HTML: :border 2 solid #ccc :frame all :align center
+|          | $Z=1$                                                                    | $Z=8$                                                                    |
+| $A=0.63$ | [[file:10445928-10446335-z1_800.png][file:10445928-10446335-z1_200.png]] | [[file:10445928-10446335-z8_800.png][file:10445928-10446335-z8_200.png]] |
+| $A=1.00$ | [[file:10445928-NONE-z1_800.png][file:10445928-NONE-z1_200.png]]         | [[file:10445928-NONE-z8_800.png][file:10445928-NONE-z8_200.png]]         |
+
+
+
 *** Annotating Image Circle Images                      :noexport:
 
 #+begin_src sh
 rm *.png
 
 echo anno 10450528-10446335-z1.jpg
-convert 10450528-10446335-z1.jpg -rotate 180 -pointsize 100 -draw "gravity northwest fill white text 10,10 'Z=1  A=0.63x  C=0.5x'" -draw "gravity northwest fill red text 4300,1944 '32 mm'"  -draw "gravity southeast fill blue text 1700,1239 'RPI HQ'" -draw "gravity southwest fill green text 4350,10 'Micro Four Thirds'" -fill none -stroke red -strokewidth 10 -draw 'circle 2592,1944 4093,1944' -stroke blue -draw 'rectangle 1655,1239 3529,2649' -stroke green -draw 'rectangle 1,1 5184,3888' 10450528-10446335-z1.png; 
+convert 10450528-10446335-z1.jpg -rotate 180 -pointsize 100 -draw "gravity northwest fill white text 10,10 'Z=1  A=0.63x  C=0.50x'" -draw "gravity northwest fill red text 4300,1944 '32 mm'"  -draw "gravity southeast fill blue text 1700,1239 'RPI HQ'" -draw "gravity southwest fill green text 4350,10 'Micro Four Thirds'" -fill none -stroke red -strokewidth 10 -draw 'circle 2592,1944 4093,1944' -stroke blue -draw 'rectangle 1655,1239 3529,2649' -stroke green -draw 'rectangle 1,1 5184,3888' 10450528-10446335-z1.png; 
 echo anno 10450528-10446335-z8.jpg
-convert 10450528-10446335-z8.jpg -rotate 180 -pointsize 100 -draw "gravity northwest fill white text 10,10 'Z=8  A=0.63x  C=0.5x'" -draw "gravity northwest fill red text 4300,1944 '4 mm'"   -draw "gravity southeast fill blue text 1700,1239 'RPI HQ'" -draw "gravity southwest fill green text 4350,10 'Micro Four Thirds'" -fill none -stroke red -strokewidth 10 -draw 'circle 2592,1944 4093,1944' -stroke blue -draw 'rectangle 1655,1239 3529,2649' -stroke green -draw 'rectangle 1,1 5184,3888' 10450528-10446335-z8.png; 
+convert 10450528-10446335-z8.jpg -rotate 180 -pointsize 100 -draw "gravity northwest fill white text 10,10 'Z=8  A=0.63x  C=0.50x'" -draw "gravity northwest fill red text 4300,1944 '4 mm'"   -draw "gravity southeast fill blue text 1700,1239 'RPI HQ'" -draw "gravity southwest fill green text 4350,10 'Micro Four Thirds'" -fill none -stroke red -strokewidth 10 -draw 'circle 2592,1944 4093,1944' -stroke blue -draw 'rectangle 1655,1239 3529,2649' -stroke green -draw 'rectangle 1,1 5184,3888' 10450528-10446335-z8.png; 
 echo anno 10450528-NONE-z1.jpg  
-convert 10450528-NONE-z1.jpg     -rotate 180 -pointsize 100 -draw "gravity northwest fill white text 10,10 'Z=1  A=1.00x  C=0.5x'" -draw "gravity northwest fill red text 4300,1944 '20 mm'"  -draw "gravity southeast fill blue text 1700,1239 'RPI HQ'" -draw "gravity southwest fill green text 4350,10 'Micro Four Thirds'" -fill none -stroke red -strokewidth 10 -draw 'circle 2592,1944 4093,1944' -stroke blue -draw 'rectangle 1655,1239 3529,2649' -stroke green -draw 'rectangle 1,1 5184,3888' 10450528-NONE-z1.png; 
+convert 10450528-NONE-z1.jpg     -rotate 180 -pointsize 100 -draw "gravity northwest fill white text 10,10 'Z=1  A=1.00x  C=0.50x'" -draw "gravity northwest fill red text 4300,1944 '20 mm'"  -draw "gravity southeast fill blue text 1700,1239 'RPI HQ'" -draw "gravity southwest fill green text 4350,10 'Micro Four Thirds'" -fill none -stroke red -strokewidth 10 -draw 'circle 2592,1944 4093,1944' -stroke blue -draw 'rectangle 1655,1239 3529,2649' -stroke green -draw 'rectangle 1,1 5184,3888' 10450528-NONE-z1.png; 
 echo anno 10450528-NONE-z8.jpg
-convert 10450528-NONE-z8.jpg     -rotate 180 -pointsize 100 -draw "gravity northwest fill white text 10,10 'Z=8  A=1.00x  C=0.5x'" -draw "gravity northwest fill red text 4300,1944 '2.5 mm'" -draw "gravity southeast fill blue text 1700,1239 'RPI HQ'" -draw "gravity southwest fill green text 4350,10 'Micro Four Thirds'" -fill none -stroke red -strokewidth 10 -draw 'circle 2592,1944 4093,1944' -stroke blue -draw 'rectangle 1655,1239 3529,2649' -stroke green -draw 'rectangle 1,1 5184,3888' 10450528-NONE-z8.png; 
+convert 10450528-NONE-z8.jpg     -rotate 180 -pointsize 100 -draw "gravity northwest fill white text 10,10 'Z=8  A=1.00x  C=0.50x'" -draw "gravity northwest fill red text 4300,1944 '2.5 mm'" -draw "gravity southeast fill blue text 1700,1239 'RPI HQ'" -draw "gravity southwest fill green text 4350,10 'Micro Four Thirds'" -fill none -stroke red -strokewidth 10 -draw 'circle 2592,1944 4093,1944' -stroke blue -draw 'rectangle 1655,1239 3529,2649' -stroke green -draw 'rectangle 1,1 5184,3888' 10450528-NONE-z8.png; 
+
+echo anno 10445928-10446335-z1.jpg
+convert 10445928-10446335-z1.jpg -rotate 180 -pointsize 100 -draw "gravity northwest fill white text 10,10 'Z=1  A=0.63x  C=0.32x'" -draw "gravity northwest fill red text 3800,1944 '34 mm'"  -draw "gravity southeast fill blue text 1700,1239 'RPI HQ'" -draw "gravity southwest fill green text 4350,10 'Micro Four Thirds'" -fill none -stroke red -strokewidth 10 -draw 'circle 2592,1944 3617,1944' -stroke blue -draw 'rectangle 1655,1239 3529,2649' -stroke green -draw 'rectangle 1,1 5184,3888' 10445928-10446335-z1.png;
+echo anno 10445928-10446335-z8.jpg
+convert 10445928-10446335-z8.jpg -rotate 180 -pointsize 100 -draw "gravity northwest fill white text 10,10 'Z=8  A=0.63x  C=0.32x'" -draw "gravity northwest fill red text 3800,1944 '4.3 mm'" -draw "gravity southeast fill blue text 1700,1239 'RPI HQ'" -draw "gravity southwest fill green text 4350,10 'Micro Four Thirds'" -fill none -stroke red -strokewidth 10 -draw 'circle 2592,1944 3617,1944' -stroke blue -draw 'rectangle 1655,1239 3529,2649' -stroke green -draw 'rectangle 1,1 5184,3888' 10445928-10446335-z8.png; 
+echo anno 10445928-NONE-z1.jpg  
+convert 10445928-NONE-z1.jpg     -rotate 180 -pointsize 100 -draw "gravity northwest fill white text 10,10 'Z=1  A=1.00x  C=0.32x'" -draw "gravity northwest fill red text 3800,1944 '21 mm'"  -draw "gravity southeast fill blue text 1700,1239 'RPI HQ'" -draw "gravity southwest fill green text 4350,10 'Micro Four Thirds'" -fill none -stroke red -strokewidth 10 -draw 'circle 2592,1944 3617,1944' -stroke blue -draw 'rectangle 1655,1239 3529,2649' -stroke green -draw 'rectangle 1,1 5184,3888' 10445928-NONE-z1.png; 
+echo anno 10445928-NONE-z8.jpg
+convert 10445928-NONE-z8.jpg     -rotate 180 -pointsize 100 -draw "gravity northwest fill white text 10,10 'Z=8  A=1.00x  C=0.32x'" -draw "gravity northwest fill red text 3800,1944 '2.7 mm'" -draw "gravity southeast fill blue text 1700,1239 'RPI HQ'" -draw "gravity southwest fill green text 4350,10 'Micro Four Thirds'" -fill none -stroke red -strokewidth 10 -draw 'circle 2592,1944 3617,1944' -stroke blue -draw 'rectangle 1655,1239 3529,2649' -stroke green -draw 'rectangle 1,1 5184,3888' 10445928-NONE-z8.png; 
 
 for f in *.png; do
   for s in 200 800; do
