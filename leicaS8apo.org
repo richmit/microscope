@@ -866,6 +866,19 @@ date
 
 ** RPI Software
 
+My goals:
+
+  - Capture images directly from ImageJ/Fiji so I could immediately preform an image analysis
+  - My #1 most used image analysis activity is measuring stuff (lengths, etc...) so setting image scale needs to be easy
+  - Capture images from the command line as well, but such that it is easy to load them in ImageJ/Fiji later
+  - See a live view from the camera
+  - Simple to sync data between camera and primary workstation
+  - Identical ImageJ/Fiji UI between Windows and RPI
+
+In the end I wrote a command line script and a set of ImageJ/Fiji toolbar macros that work together. I say they work together in that they both save newly
+captured images to the same directory using the same file name conventions.  For example, this makes it easy to load the last thing captured by the command
+line script into ImageJ/Fiji.
+
 *** RPI Image Capture Script
 :PROPERTIES:
 :CUSTOM_ID: rpi-pisnap
