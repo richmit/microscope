@@ -720,8 +720,8 @@ wget 'https://github.com/imagej/imagej2/raw/master/bin/ImageJ.sh'
 #### Unpack Fiji
 unzip fiji-nojre.zip
 #### Put in place ImageJ.sh script
-cp ImageJ.sh Fiji.app/
-chmod a+rx Fiji.app/ImageJ.sh
+sudo cp ImageJ.sh /usr/bin/ImageJ
+chmod a+rx /usr/bin/ImageJ
 #### Workaround for a bug in current Fiji
 sudo cp /etc/java-8-openjdk/accessibility.properties /etc/java-8-openjdk/accessibility.properties.org
 sudo sh -c 'grep -v ^assistive_technologies /etc/java-8-openjdk/accessibility.properties.org > /etc/java-8-openjdk/accessibility.properties'
@@ -733,7 +733,8 @@ cd ~
 git clone 'https://github.com/richmit/microscope.git'
 #### Link piSnap to /bin/
 cd ~/microscope
-ln -s ~/microscope/piSnap.sh /usr/bin/piSnap
+sudo ln -s ~/microscope/piSnap.sh /usr/bin/piSnap
+chmod a+rx /usr/bin/piSnap
 ### Link the RPI_tools into Fiji
 ln -s ~/microscope/RPI_tools.ijm ~Fiji.app/macros/toolsets/RPI_tools.ijm
 #+end_src
