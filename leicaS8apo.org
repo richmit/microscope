@@ -30,15 +30,17 @@ Copyright {{{time(%Y)}}} Mitch Richling. All rights reserved.
 
 #+TOC: headlines 5
 
-#        #         #         #         #         #         #         #         #         #         #         #         #         #         #         #         #         #
-#   00   #    10   #    20   #    30   #    40   #    50   #    60   #    70   #    80   #    90   #   100   #   110   #   120   #   130   #   140   #   150   #   160   #
-# 234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
-#        #         #         #         #         #         #         #         #         #         #         #         #         #         #         #         #         #
-#        #         #         #         #         #         #         #         #         #         #         #         #         #         #         #         #         #
-
 Check out my home page for more stuff: https://www.mitchr.me/
 
-* Symbols & Formulas
+* Introduction
+:PROPERTIES:
+:CUSTOM_ID: introduction
+:END:
+
+This page contains my personal notes for the Leica S8APO & S4E stereo microscopes.  Being my personal notes, the content here isn't terribly polished;
+however, I've gone ahead and published it anyhow in hope someone might find it useful.
+
+* Microscope Symbols & Formulas
 ** Variables
 :PROPERTIES:
 :CUSTOM_ID: variables
@@ -668,6 +670,10 @@ file:rpicam4_800.jpg
 
 ** The Idea
 
+If you have arrived here via direct link, then you might be interested to know that your browser is pointed to the middle of a larger document -- my personal
+stereo microscope notes.  While these are my personal notes, I have attempted to expand this section a bit to make it easier to follow for someone wishing to
+replicate my camera setup.
+
 Microscope cameras with built in image analysis software are pretty cool.  Simply connect the camera to your monitor & mouse, and you can do simple image
 processing and measurement without a computer.  These solutions are expensive for what you get, and the analysis software is pretty limited.  So I thought,
 why not build my own?  It's just a tiny computer and a camera in a compact case after all.  If I used a Raspberry Pi, then I could actually run my favorite
@@ -689,7 +695,69 @@ image analysis software (Fiji/ImageJ) right on the camera.
 |----------------------------------------------------------------------------------------------------------------------------+--------------|
 | Total                                                                                                                      |          196 |
 
-** System Setup With Custom Home Directory                         :noexport:
+** System Setup
+
+*** Minimal Configuration
+:PROPERTIES:
+:CUSTOM_ID: rpi-camera-min-soft-config
+:END:
+
+The system setup steps I used for my camera will not work for others because I made use of several aspects of my personal home directory configuration others
+will not have.  What follows are simplified configuration steps I *believe* will for for most people out of the box.  The only tricky bit is Fiji because it
+is such a dynamic project, things change.  For example, the day I installed it I had to work around a bug with java =accessibility.properties=.
+
+#+begin_src sh
+#### Refresh packages and update everything
+sudo apt-get update
+sudo apt-get upgrade
+sudo reboot
+#### Install packages
+sudo apt install imagemagick nomacs gimp exiv2
+sudo update-alternatives --config java
+#### Download Fiji software & launcher
+wget 'https://downloads.imagej.net/fiji/latest/fiji-nojre.zip'
+wget 'https://github.com/imagej/imagej2/raw/master/bin/ImageJ.sh'
+#### Unpack Fiji
+unzip fiji-nojre.zip
+#### Put in place ImageJ.sh script
+cp ImageJ.sh Fiji.app/
+chmod a+rx Fiji.app/ImageJ.sh
+#### Workaround for a bug in current Fiji
+sudo cp /etc/java-8-openjdk/accessibility.properties /etc/java-8-openjdk/accessibility.properties.org
+sudo sh -c 'grep -v ^assistive_technologies /etc/java-8-openjdk/accessibility.properties.org > /etc/java-8-openjdk/accessibility.properties'
+#### Create directory that will hold camera images
+mkdir -p ~/Pictures/pi-cam/
+#### Clone the git repo
+#### Note: We link to files in the repo, so if you do a git pull later everything gets updated in place.
+cd ~
+git clone 'https://github.com/richmit/microscope.git'
+#### Link piSnap to /bin/
+cd ~/microscope
+ln -s ~/microscope/piSnap.sh /usr/bin/piSnap
+### Link the RPI_tools into Fiji
+ln -s ~/microscope/RPI_tools.ijm ~Fiji.app/macros/toolsets/RPI_tools.ijm
+#+end_src
+
+*** My Configuration
+:PROPERTIES:
+:CUSTOM_ID: rpi-camera-my-soft-config
+:END:
+
+Most Unix/Linux users have pretty strong opinions on how to setup a personal working environment.  Emacs vs VI anyone?  This section documents my personal
+configuration and is pretty specific to my operating environment.  Some differences from the "[[#rpi-camera-min-soft-config][Minimal Configuration]]" section
+above:
+
+  - Makes use of scripts and data found in my home directory
+  - Uses my environment setup scripts to put piSnap.sh in the right place and link it.
+  - I use my preferred login name for the main account, and remove the '=pi=' user from the system
+  - Quite a bit more apt installed software (Emacs, sbcl, maxima, gnuplot, paraview, etc...)
+  - I install the free42 calculator along with some [[https://richmit.github.io/hp42/][software on the calculator]] itself.
+  - My primary system for photography and image analysis is a Windows system
+    - This system has a nice, color corrected 4K monitor, and a couple scanners attached
+    - Some of the software I use is proprietary and only runs on Windows
+    - With regard to free software, I run mostly the same stack on Windows (Fiji, GIMP, Imagemagick, Emacs, etc...) in MSYS2
+
+**** System Setup
 
 #+begin_src sh
 #### Refresh packages and update everything
@@ -754,8 +822,13 @@ mkdir -p synced/core/
 mkdir -p synced/Doc2/gadgets/leica_microscopes/
 ln -s synced/world world
 ln -s synced/core core
+#### RSYNC DATA FROM LAPTOP
+#### RSYNC DATA FROM LAPTOP
+#### RSYNC DATA FROM LAPTOP
 #### Setup dotfiles & ~/bin
 ./world/my_prog/UNIXutils/SelectSetup.rb --loc=HOME; ./world/my_prog/UNIXutils/SetupBin.rb
+### Link the RPI_tools into Fiji
+ln -s ~/world/my_prog/microscope/RPI_tools.ijm ~/Fiji.app/macros/toolsets/RPI_tools.ijm
 #### Change my shell
 sudo usermod -s /usr/bin/zsh richmit
 /usr/bin/setxkbmap -option 'ctrl:nocaps'
@@ -765,17 +838,19 @@ sudo passwd root
 userdel -r pi
 #+end_src
 
-** Camera Data Sync With Custom Home Directory                     :noexport:
+**** System Sync
+
+I use =rsync= to keep data in sync between my camera and primary workstation.
 
 #+begin_src sh
 date; echo back-dat-sync;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2                  --rsh='ssh' pi-cam.home.mitchr.me:synced/pi-data/                            /c/Users/richmit/Documents/world/pi-cam/;
 date; echo back-pic-sync;        rsync -rlt --log-format=%f                            --modify-window=2                  --rsh='ssh' pi-cam.home.mitchr.me:Pictures/pi-cam/                           /c/Users/richmit/Pictures/pi-cam/;
+date; echo microscope-code;      rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/microscope/             pi-cam.home.mitchr.me:synced/world/my_prog/microscope/;
 date; echo dotfiles;             rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/dotfiles/                       pi-cam.home.mitchr.me:synced/world/dotfiles/;
 date; echo dotfilesSecure;       rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/dotfilesSecure/                 pi-cam.home.mitchr.me:synced/world/dotfilesSecure/;
 date; echo homeNetwork;          rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/stuff/homeNetwork/              pi-cam.home.mitchr.me:synced/world/stuff/homeNetwork/;
 date; echo my_ref;               rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/stuff/my_ref/                   pi-cam.home.mitchr.me:synced/world/stuff/my_ref/;
 date; echo notes;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/stuff/notes/                    pi-cam.home.mitchr.me:synced/world/stuff/notes/;
-date; echo microscope-code;      rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/microscope/             pi-cam.home.mitchr.me:synced/world/my_prog/microscope/;
 date; echo mpms;                 rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/mpms/                   pi-cam.home.mitchr.me:synced/world/my_prog/mpms/;
 date; echo dir-inventory;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/dir-inventory/          pi-cam.home.mitchr.me:synced/world/my_prog/dir-inventory/;
 date; echo ruby-examples;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/learn/ex-ruby/          pi-cam.home.mitchr.me:synced/world/my_prog/learn/ex-ruby/;
@@ -789,74 +864,22 @@ date; echo leicaS8APO-docs;      rsync -rlt --log-format=%f --delete --delete-ex
 date
 #+end_src
 
-** System Setup
+** RPI Software
 
-#+begin_src sh
-#### Refresh packages and update everything
-sudo apt-get update
-sudo apt-get upgrade
-sudo reboot
-#### Install packages
-sudo apt install emacs gnuplot maxima sbcl telnet zsh tmux gitk paraview paraview-dev xterm imagemagick nomacs gimp ruby libgtk-3-dev libasound2-dev exiv2
-sudo update-alternatives --config java
-#### Make local links
-for f in ruby perl sbcl; do
-  if [ -e /usr/bin/$f ]; then
-    sudo ln -s /usr/bin/$f /usr/local/bin/$f
-  else
-    echo Missing: /usr/bin/$f
-  fi
-done
-#### Download Fiji software & launcher
-wget 'https://downloads.imagej.net/fiji/latest/fiji-nojre.zip'
-wget 'https://github.com/imagej/imagej2/raw/master/bin/ImageJ.sh'
-#### Unpack Fiji
-unzip fiji-nojre.zip
-#### Put in place ImageJ.sh script
-cp ImageJ.sh Fiji.app/
-chmod a+rx Fiji.app/ImageJ.sh
-#### Workaround for a bug in current Fiji
-sudo cp /etc/java-8-openjdk/accessibility.properties /etc/java-8-openjdk/accessibility.properties.org
-sudo sh -c 'grep -v ^assistive_technologies /etc/java-8-openjdk/accessibility.properties.org > /etc/java-8-openjdk/accessibility.properties'
-#### Install free42 calculator
-cd ~
-rm -rf ~/free42
-git clone 'https://github.com/thomasokken/free42.git'
-cd free42/gtk
-make BCD_MATH=1 AUDIO_ALSA=1
-sudo cp free42dec /usr/local/bin/free42-3.0.6
-sudo rm -f /usr/local/bin/free42
-sudo ln -s /usr/local/bin/free42-3.0.6 /usr/local/bin/free42
-#### Setup directories & links in $HOME
-cd ~
-mkdir -p bin
-mkdir -p Pictures/pi-cam/
-#### Setup directories & links in $HOME
-git clone 'https://github.com/richmit/microscope.git'
-cd microscope
-cp piSnap.sh ~/bin
-cd ~/bin
-ln -s piSnap.sh piSnap
-cd ~/microscope
-### EDIT the install script for your install path!!!  Then run it
-./RPI_tools_install.sh
-#+end_src
+*** RPI Image Capture Script
+:PROPERTIES:
+:CUSTOM_ID: rpi-pisnap
+:END:
 
-** Camera Data Sync
+This script is pretty simple.  It provides a way to capture one or more images outside of ImageJ/Fiji, but in a way compatible with the ImageJ/Fiji macros
+provided below.  I use this script quite a lot to provide a live view of the camera feed.
 
-#+begin_src sh
-date; echo back-dat-sync;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2                  --rsh='ssh' pi-cam.home.mitchr.me:synced/pi-data/                            /c/Users/richmit/Documents/world/pi-cam/; date
-#+end_src
-
-** RPI Image Capture Script
-This scipr tis pretty simple.  Right now it only supports
 #+INCLUDE:piSnap.sh src sh
-** ImageJ/Fiji Software
+
+*** ImageJ/Fiji Toolset/Macros 
 :PROPERTIES:
 :CUSTOM_ID: rpi-imagej
 :END:
-
-*** Macro
 
 The code below provides an ImageJ/Fiji toolset.  You activate the tool set via the toolset menu:
 
@@ -875,12 +898,10 @@ Button Functions:
 
 #+INCLUDE:RPI_tools.ijm src c
 
-*** Macro Installer
+*** Macro Test Installer
 
-I use Fiji on Windows & [[#rpi-camera][DIY RPI Camera]].  On Windows I install it under a folder named "=PF/Fiji.app=" -- I install various packages in "=PF="
-that can't be installed in the traditional "=Program Files=" folder.  On the RPI, I have been installing it directly in my home directory (=~/Fiji.app/=).  The
-install script below is used to install the macros into my Fiji.app directories.  That is to say, it knows about my specific installation preferences.  To
-modify the script for use in other environments, update line 6 to have a list of alternate install paths.
+When developing the ImageJ/Fiji macro, I use the following script to put the script in place and run ImageJ/Fiji so I can test it (on RPI or Windows).  This
+script is not useful for someone simply wanting to use the macro.
 
 #+INCLUDE:RPI_tools_install.sh src sh
 
