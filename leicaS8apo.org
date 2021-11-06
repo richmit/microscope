@@ -750,6 +750,7 @@ above:
 
   - Makes use of scripts and data found in my home directory
   - Uses my environment setup scripts to put piSnap.sh in the right place and link it.
+  - ~/bin is where the binaries go
   - I use my preferred login name for the main account, and remove the '=pi=' user from the system
   - Quite a bit more apt installed software (Emacs, sbcl, maxima, gnuplot, paraview, etc...)
   - I install the free42 calculator along with some [[https://richmit.github.io/hp42/][software on the calculator]] itself.
