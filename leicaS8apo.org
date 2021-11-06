@@ -865,6 +865,9 @@ date
 #+end_src
 
 ** RPI Software
+:PROPERTIES:
+:CUSTOM_ID: rpi-soft
+:END:
 
 My goals:
 
