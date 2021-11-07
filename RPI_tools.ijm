@@ -87,11 +87,11 @@ macro "Set Scale Action Tool - Cc11 L1cfc L1a1e Lfafe L8b8d L5b5d Lbbbd T4707R T
 // Set image scale
 
   Dialog.create("Quick Set Scale");
-  Dialog.addChoice("Microscope:", newArray("Leica S8API"),                   "Leica S8API");
-  Dialog.addChoice("Zoom Stop:",  newArray("1.00", "8.00"),                  "1.00");
-  Dialog.addChoice("Auxiliary:",  newArray("0.32", "0.63", "1.00", "2.00"),  "0.63");
-  Dialog.addChoice("Video Obj:",  newArray("0.32", "0.50", "0.63", "0.8"),   "0.50");
-  Dialog.addChoice("Camera:",     newArray("RPI", "OLY"),                    "RPI");
+  Dialog.addChoice("Microscope:", newArray("Leica S8API"),   "Leica S8API");
+  Dialog.addChoice("Zoom Stop:",  newArray("1.00", "8.00"),  "1.00");
+  Dialog.addChoice("Auxiliary:",  newArray("0.63", "1.00"),  "0.63");
+  Dialog.addChoice("Video Obj:",  newArray("0.32", "0.50"),  "0.32");
+  Dialog.addChoice("Camera:",     newArray("RPI", "OLY"),    "RPI");
   Dialog.addCheckbox("Global Scale", false);
   Dialog.show();
 
