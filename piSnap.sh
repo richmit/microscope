@@ -35,13 +35,15 @@ read -r -d '' HELPT <<EOF
 Take one (or more) snapshot(s) using the Raspberry Pi HQ Camera and save them off in a standard way
 
 Use: piSnap.sh [options] [file-annotation]
-       Options: -k      Capture multiple images.  
-                        An image is captured for each [enter], exit with [x] followed by [enter]
+       Options: -k      Show a preview, and capture on keypress.
+                        An image is captured for [enter], exit with [x] followed by [enter]
+                -f      Printf format for numeric index in filenames created with -k option
+                        Default: %02d
                 -p      Preview only.  No images are captured. All other arguments are ignored
                 -s      Show image(s) after capture with nomacs (my favorite lightweight image viewer)
                 -v      Verbose mode
-                -b BIN  Full path to the raspistill binary
-                        Default: /usr/bin/raspistill
+                -b BIN  Full path to the libcamera-still binary
+                        Default: /usr/bin/libcamera-still
                 -d DIR  Directory to store captured images.  
                         Default: $HOME/Pictures/pi-cam
                         Note: The related ImageJ/Fiji macro expects the default value!
@@ -50,17 +52,22 @@ Use: piSnap.sh [options] [file-annotation]
 
 Image names are like: YYYYMMDDHHMMSS_COUNT-ANNOTATION.ENC -- Note the _COUNT and/or -ANNOTATION bits may be missing.
 
+Note: Older versions of the image capture tool would capture multiple images with -k option.  The current versions don't 
+      work like this.  I'm waiting to see if this functionality comes back.  If it looks like single capture is the 
+      future, then I'll rework this code a bit.
+
 EOF
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------
 SHOW='N'
+PFMT='%02d'
 MULTI='N'
 VERB='N'
 PREVIEW='N'
 ANNOT=''
 ODIR="$HOME/Pictures/pi-cam"
 IFMT='jpg'
-RASPISP='/usr/bin/raspistill'
+RASPISP='/usr/bin/libcamera-still'
 while [[ "$1" = -* ]]; do
    case "$1" in
     -k ) MULTI='Y';                                             ;; # Capture multiple images
@@ -69,7 +76,7 @@ while [[ "$1" = -* ]]; do
     -e ) IFMT="$2"; shift;                                      ;; # Output image format
     -s ) SHOW='Y';                                              ;; # Open captured images
     -p ) PREVIEW='Y';                                           ;; # Preview only
-    -b ) RASPISP="$2"; shift;                                   ;; # Location of raspistill binary
+    -b ) RASPISP="$2"; shift;                                   ;; # Location of libcamera-still binary
     *  ) echo "ERROR: Unknown option: $1"; echo "$HELPT"; exit; ;;
    esac
    shift;
@@ -123,7 +130,7 @@ if [ "$PREVIEW" = 'Y' ]; then
   DACMD="$RASPISP -t 0"
 else
   if [ "$MULTI" = "Y" ]; then
-    FILE=$ODIR'/'`date '+%Y%m%d%H%M%S'`'_%d'${ANNOT}'.'$IFMT
+    FILE=$ODIR'/'`date '+%Y%m%d%H%M%S'`'_'${PFMT}${ANNOT}'.'$IFMT
     MARG='-t 0 -k'
   else
     FILE=$ODIR'/'`date '+%Y%m%d%H%M%S'`${ANNOT}'.'$IFMT
@@ -137,10 +144,10 @@ fi
 $DACMD
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------
-TFILE=`echo "$FILE" | sed 's/%d/0/'`
+TFILE=`printf "$FILE" 0`
 if [ -e "$TFILE" ]; then
   echo "INFO: Captured Image File(s):"
-  ls -l `echo "$TFILE" | sed 's/_0/_*/'`
+  ls -l `echo "$TFILE" | sed 's/_00*/_*/'`
   if [ "$SHOW" = 'Y' ]; then
     if [ -x '/usr/bin/nomacs' ]; then
       /usr/bin/nomacs `echo "$TFILE" | sed 's/_0/_*/'`

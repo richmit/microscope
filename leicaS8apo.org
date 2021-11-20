@@ -697,6 +697,8 @@ image analysis software (Fiji/ImageJ) right on the camera.
 
 ** System Setup
 
+Note: These instructions are for the Bullseye based Raspberry Pi OS relased in November of 2021!  
+
 *** Minimal Configuration
 :PROPERTIES:
 :CUSTOM_ID: rpi-camera-min-soft-config
@@ -704,39 +706,42 @@ image analysis software (Fiji/ImageJ) right on the camera.
 
 The system setup steps I used for my camera will not work for others because I made use of several aspects of my personal home directory configuration others
 will not have.  What follows are simplified configuration steps I *believe* will for for most people out of the box.  The only tricky bit is Fiji because it
-is such a dynamic project, things change.  For example, the day I installed it I had to work around a bug with java =accessibility.properties=.
+is such a dynamic project, things change.
 
 #+begin_src sh
 #### Refresh packages and update everything
 sudo apt-get update
 sudo apt-get upgrade
 sudo reboot
-#### Install packages
-sudo apt install imagemagick nomacs gimp exiv2
-sudo update-alternatives --config java
+#### Camera packages
+sudo apt install -y libcamera-apps
+sudo apt install -y libcamera-dev libepoxy-dev libjpeg-dev libtiff5-dev
+sudo apt install -y qtbase5-dev libqt5core5a libqt5gui5 libqt5widgets5 python3-pip git libboost-dev libgnutls28-dev openssl libtiff5-dev qtbase5-dev libqt5core5a libqt5gui5 libqt5widgets5 meson libglib2.0-dev libgstreamer-plugins-base1.0-dev
+#### Install my favorite  packages
+sudo apt install -y emacs gnuplot maxima sbcl telnet zsh tmux gitk xterm imagemagick nomacs gimp ruby exiv2
+#### Install & Setup java
+sudo apt install -y openjdk-8-jdk
 #### Download Fiji software & launcher
-wget 'https://downloads.imagej.net/fiji/latest/fiji-nojre.zip'
-wget 'https://github.com/imagej/imagej2/raw/master/bin/ImageJ.sh'
+cd ~
+test -e fiji-nojre.zip || wget 'https://downloads.imagej.net/fiji/latest/fiji-nojre.zip' 
+test -e ImageJ.sh || wget 'https://github.com/imagej/imagej2/raw/master/bin/ImageJ.sh'
 #### Unpack Fiji
 unzip fiji-nojre.zip
-#### Put in place ImageJ.sh script
-sudo cp ImageJ.sh /usr/bin/ImageJ
-chmod a+rx /usr/bin/ImageJ
+#### Put in place ImageJ.sh script (hardwire the install directory)
+sed 's/^DIRECTORY=.*/DIRECTORY=~\/Fiji.app/' ImageJ.sh > ~/Fiji.app/ImageJ.sh
+chmod a+rx ~/Fiji.app/ImageJ.sh
 #### Workaround for a bug in current Fiji
-sudo cp /etc/java-8-openjdk/accessibility.properties /etc/java-8-openjdk/accessibility.properties.org
-sudo sh -c 'grep -v ^assistive_technologies /etc/java-8-openjdk/accessibility.properties.org > /etc/java-8-openjdk/accessibility.properties'
-#### Create directory that will hold camera images
-mkdir -p ~/Pictures/pi-cam/
+mv ~/Fiji.app/jars/FilamentDetector-1.0.0.jar ~/Fiji.app/jars/FilamentDetector-1.0.0.bad
+#### Link ImageJ.sh into /usr/bin/ as ImageJ
+sudo ln -s ~/Fiji.app/ImageJ.sh /usr/bin/ImageJ
 #### Clone the git repo
-#### Note: We link to files in the repo, so if you do a git pull later everything gets updated in place.
 cd ~
 git clone 'https://github.com/richmit/microscope.git'
 #### Link piSnap to /bin/
-cd ~/microscope
 sudo ln -s ~/microscope/piSnap.sh /usr/bin/piSnap
 chmod a+rx /usr/bin/piSnap
 ### Link the RPI_tools into Fiji
-ln -s ~/microscope/RPI_tools.ijm ~Fiji.app/macros/toolsets/RPI_tools.ijm
+ln -s ~/microscope/RPI_tools.ijm ~/Fiji.app/macros/toolsets/RPI_tools.ijm
 #+end_src
 
 *** My Configuration
@@ -765,10 +770,17 @@ above:
 #### Refresh packages and update everything
 sudo apt-get update
 sudo apt-get upgrade
+#### DO: Turn off auto login for pi user
+#### DO: Turn on SSH & VNC
 sudo reboot
-#### Install packages
-sudo apt install emacs gnuplot maxima sbcl telnet zsh tmux gitk paraview paraview-dev xterm imagemagick nomacs gimp ruby libgtk-3-dev libasound2-dev exiv2
-sudo update-alternatives --config java
+#### Camera packages
+sudo apt install -y libcamera-apps
+sudo apt install -y libcamera-dev libepoxy-dev libjpeg-dev libtiff5-dev
+sudo apt install -y qtbase5-dev libqt5core5a libqt5gui5 libqt5widgets5 python3-pip git libboost-dev libgnutls28-dev openssl libtiff5-dev qtbase5-dev libqt5core5a libqt5gui5 libqt5widgets5 meson libglib2.0-dev libgstreamer-plugins-base1.0-dev
+#### Install my favorite  packages
+sudo apt install -y emacs gnuplot maxima sbcl telnet zsh tmux gitk xterm imagemagick nomacs gimp ruby exiv2
+#### Install & Setup java
+sudo apt install -y openjdk-8-jdk
 #### Make local links
 for f in ruby perl sbcl; do
   if [ -e /usr/bin/$f ]; then
@@ -778,21 +790,72 @@ for f in ruby perl sbcl; do
   fi
 done
 #### Create my account
-addgroup richmit
-adduser -G 1001 richmit ## use GID from previous command
+sudo addgroup richmit
+sudo adduser --gid 1001 richmit ## use GID from previous command
 #### Add me to all the groups the pi user is in -- or at least users that start with pi ;)
 sudo usermod -aG `grep '[:,]pi' /etc/group | cut -d: -f3 | tr '[:space:]' , | sed 's/,$//'` richmit
+#### Change my shell
+sudo usermod -s /usr/bin/zsh richmit
+#### Change root's password
+sudo passwd root
+#### DO: Add my account to sudo
+#### Login with my new account
+sudo su - richmit
+#### Setup directories & links in $HOME
+cd ~
+mkdir -p ~/bin
+mkdir -p ~/tmp/tmux/sockets
+mkdir -p ~/Pictures/pi-cam
+mkdir -p ~/synced/world/pi-data/
+mkdir -p ~/synced/world/dotfiles/
+mkdir -p ~/synced/world/dotfilesSecure/
+mkdir -p ~/synced/world/stuff/homeNetwork/
+mkdir -p ~/synced/world/stuff/my_ref/
+mkdir -p ~/synced/world/stuff/notes/
+mkdir -p ~/synced/world/my_prog/learn/ex-ruby/
+mkdir -p ~/synced/world/my_prog/lispStuff/lispy/
+mkdir -p ~/synced/world/my_prog/MJRdebianPakageTools/
+mkdir -p ~/synced/world/my_prog/tmuxStuff/
+mkdir -p ~/synced/world/my_prog/UNIXutils/
+mkdir -p ~/synced/world/my_prog/utils/
+mkdir -p ~/synced/world/my_prog/microscope
+mkdir -p ~/synced/world/my_prog/ImageJ
+mkdir -p ~/synced/world/my_prog/mpms
+mkdir -p ~/synced/world/my_prog/dir-inventory/
+mkdir -p ~/synced/core/
+mkdir -p ~/synced/Doc2/gadgets/leica_microscopes/
+ln -s ~/synced/world ~/world
+ln -s ~/synced/core ~/core
+#### DO: Sync data from laptop via rsync
+#### Setup dotfiles & ~/bin
+./world/my_prog/UNIXutils/SelectSetup.rb --loc=HOME; ./world/my_prog/UNIXutils/SetupBin.rb
+#### DO: Reboot
+#### DO: Login as myself
+#### Delete pi user
+sudo userdel -r pi
+#### DO: Enable automatic login
+#### DO: Change hostname to pi-cam
+#### DO: Reboot
 #### Download Fiji software & launcher
-wget 'https://downloads.imagej.net/fiji/latest/fiji-nojre.zip'
-wget 'https://github.com/imagej/imagej2/raw/master/bin/ImageJ.sh'
+cd ~
+test -e fiji-nojre.zip || wget 'https://downloads.imagej.net/fiji/latest/fiji-nojre.zip' 
+test -e ImageJ.sh || wget 'https://github.com/imagej/imagej2/raw/master/bin/ImageJ.sh'
 #### Unpack Fiji
 unzip fiji-nojre.zip
-#### Put in place ImageJ.sh script
-cp ImageJ.sh Fiji.app/
-chmod a+rx Fiji.app/ImageJ.sh
+#### Put in place ImageJ.sh script (hardwire the install directory)
+sed 's/^DIRECTORY=.*/DIRECTORY=~\/Fiji.app/' ImageJ.sh > ~/Fiji.app/ImageJ.sh
+chmod a+rx ~/Fiji.app/ImageJ.sh
 #### Workaround for a bug in current Fiji
-sudo cp /etc/java-8-openjdk/accessibility.properties /etc/java-8-openjdk/accessibility.properties.org
-sudo sh -c 'grep -v ^assistive_technologies /etc/java-8-openjdk/accessibility.properties.org > /etc/java-8-openjdk/accessibility.properties'
+mv ~/Fiji.app/jars/FilamentDetector-1.0.0.jar ~/Fiji.app/jars/FilamentDetector-1.0.0.bad
+#### Run Fiji and update
+~/Fiji.app/ImageJ.sh
+### Link the RPI_tools into Fiji
+ln -s ~/world/my_prog/microscope/RPI_tools.ijm ~/Fiji.app/macros/toolsets/RPI_tools.ijm
+### Link the PhilaJ into Fiji
+ln -s ~/world/my_prog/ImageJ/PhiliaJ/PhiliaJ.ijm ~/Fiji.app/macros/toolsets/PhiliaJ.ijm
+#### Setup dotfiles & ~/bin -- this time to put ImageJ.sh & ImageJ into ~/bin
+./world/my_prog/UNIXutils/SelectSetup.rb --loc=HOME; ./world/my_prog/UNIXutils/SetupBin.rb
+#### DO: Add ImageJ.sh to launch menu -- icon in ~/core/icons
 #### Install free42 calculator
 cd ~
 rm -rf ~/free42
@@ -802,42 +865,10 @@ make BCD_MATH=1 AUDIO_ALSA=1
 sudo cp free42dec /usr/local/bin/free42-3.0.6
 sudo rm -f /usr/local/bin/free42
 sudo ln -s /usr/local/bin/free42-3.0.6 /usr/local/bin/free42
-#### Setup directories & links in $HOME
-cd ~
-mkdir -p bin
-mkdir -p tmp/tmux/sockets
-mkdir -p synced/world/dotfiles/
-mkdir -p synced/world/dotfilesSecure/
-mkdir -p synced/world/stuff/homeNetwork/
-mkdir -p synced/world/stuff/my_ref/
-mkdir -p synced/world/stuff/notes/
-mkdir -p synced/world/my_prog/learn/ex-ruby/
-mkdir -p synced/world/my_prog/lispStuff/lispy/
-mkdir -p synced/world/my_prog/MJRdebianPakageTools/
-mkdir -p synced/world/my_prog/tmuxStuff/
-mkdir -p synced/world/my_prog/UNIXutils/
-mkdir -p synced/world/my_prog/utils/
-mkdir -p synced/world/my_prog/microscope
-mkdir -p synced/world/my_prog/mpms
-mkdir -p synced/world/my_prog/dir-inventory/
-mkdir -p synced/core/
-mkdir -p synced/Doc2/gadgets/leica_microscopes/
-ln -s synced/world world
-ln -s synced/core core
-#### RSYNC DATA FROM LAPTOP
-#### RSYNC DATA FROM LAPTOP
-#### RSYNC DATA FROM LAPTOP
-#### Setup dotfiles & ~/bin
-./world/my_prog/UNIXutils/SelectSetup.rb --loc=HOME; ./world/my_prog/UNIXutils/SetupBin.rb
-### Link the RPI_tools into Fiji
-ln -s ~/world/my_prog/microscope/RPI_tools.ijm ~/Fiji.app/macros/toolsets/RPI_tools.ijm
-#### Change my shell
-sudo usermod -s /usr/bin/zsh richmit
-/usr/bin/setxkbmap -option 'ctrl:nocaps'
-#### Change root's password
-sudo passwd root
-#### Delete pi user
-userdel -r pi
+#### DO: Add free42 to launch menu -- icon in ~/core/icons
+#### DO: Add piSleep to launch menu -- icon in ~/core/icons
+#### DO: Logout
+#### DO: Login
 #+end_src
 
 **** System Sync
@@ -846,8 +877,9 @@ I use =rsync= to keep data in sync between my camera and primary workstation.
 
 #+begin_src sh
 date; echo back-dat-sync;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2                  --rsh='ssh' pi-cam.home.mitchr.me:synced/pi-data/                            /c/Users/richmit/Documents/world/pi-cam/;
-date; echo back-pic-sync;        rsync -rlt --log-format=%f                            --modify-window=2                  --rsh='ssh' pi-cam.home.mitchr.me:Pictures/pi-cam/                           /c/Users/richmit/Pictures/pi-cam/;
+date; echo back-pic-sync;        rsync -rlt --log-format=%f                            --modify-window=2                  --rsh='ssh' pi-cam.home.mitchr.me:Pictures/pi-cam0/                           /c/Users/richmit/Pictures/pi-cam/;
 date; echo microscope-code;      rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/microscope/             pi-cam.home.mitchr.me:synced/world/my_prog/microscope/;
+date; echo imagej-code;          rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/ImageJ/                 pi-cam.home.mitchr.me:synced/world/my_prog/ImageJ/;
 date; echo dotfiles;             rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/dotfiles/                       pi-cam.home.mitchr.me:synced/world/dotfiles/;
 date; echo dotfilesSecure;       rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/dotfilesSecure/                 pi-cam.home.mitchr.me:synced/world/dotfilesSecure/;
 date; echo homeNetwork;          rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/stuff/homeNetwork/              pi-cam.home.mitchr.me:synced/world/stuff/homeNetwork/;
