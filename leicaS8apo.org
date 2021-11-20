@@ -716,9 +716,8 @@ sudo reboot
 #### Camera packages
 sudo apt install -y libcamera-apps
 sudo apt install -y libcamera-dev libepoxy-dev libjpeg-dev libtiff5-dev
-sudo apt install -y qtbase5-dev libqt5core5a libqt5gui5 libqt5widgets5 python3-pip git libboost-dev libgnutls28-dev openssl libtiff5-dev qtbase5-dev libqt5core5a libqt5gui5 libqt5widgets5 meson libglib2.0-dev libgstreamer-plugins-base1.0-dev
 #### Install my favorite  packages
-sudo apt install -y emacs gnuplot maxima sbcl telnet zsh tmux gitk xterm imagemagick nomacs gimp ruby exiv2
+sudo apt install -y emacs gnuplot maxima sbcl telnet zsh tmux gitk xterm imagemagick nomacs gimp ruby exiv2 git openssl
 #### Install & Setup java
 sudo apt install -y openjdk-8-jdk
 #### Download Fiji software & launcher
@@ -776,7 +775,8 @@ sudo reboot
 #### Camera packages
 sudo apt install -y libcamera-apps
 sudo apt install -y libcamera-dev libepoxy-dev libjpeg-dev libtiff5-dev
-sudo apt install -y qtbase5-dev libqt5core5a libqt5gui5 libqt5widgets5 python3-pip git libboost-dev libgnutls28-dev openssl libtiff5-dev qtbase5-dev libqt5core5a libqt5gui5 libqt5widgets5 meson libglib2.0-dev libgstreamer-plugins-base1.0-dev
+sudo apt install -y qtbase5-dev libqt5core5a libqt5gui5 libqt5widgets5 qtbase5-dev libqt5core5a libqt5gui5 libqt5widgets5
+sudo apt install -y python3-pip libboost-dev libgnutls28-dev openssl meson libglib2.0-dev libgstreamer-plugins-base1.0-dev
 #### Install my favorite  packages
 sudo apt install -y emacs gnuplot maxima sbcl telnet zsh tmux gitk xterm imagemagick nomacs gimp ruby exiv2
 #### Install & Setup java
