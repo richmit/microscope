@@ -336,6 +336,10 @@ convert toolsetbutton-capture.png  -resize 55x toolsetbutton-capture.gif
 convert toolsetbutton-load.png     -resize 55x toolsetbutton-load.gif
 convert toolsetbutton-scale.png    -resize 55x toolsetbutton-scale.gif
 convert toolsetbutton-settings.png -resize 55x toolsetbutton-settings.gif
+
+rm dialog-*.gif
+convert dialog-setscale.png -resize 300x dialog-setscale.gif
+convert dialog-settings.png -resize 300x dialog-settings.gif
 #+end_src
 
 ** Attaching Cameras
@@ -894,7 +898,7 @@ I use =rsync= to keep data in sync between my camera and primary workstation.
 
 #+begin_src sh
 date; echo back-dat-sync;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2                  --rsh='ssh' pi-cam.home.mitchr.me:synced/pi-data/                            /c/Users/richmit/Documents/world/pi-cam/;
-date; echo back-pic-sync;        rsync -rlt --log-format=%f                            --modify-window=2                  --rsh='ssh' pi-cam.home.mitchr.me:Pictures/pi-cam0/                           /c/Users/richmit/Pictures/pi-cam/;
+date; echo back-pic-sync;        rsync -rlt --log-format=%f                            --modify-window=2                  --rsh='ssh' pi-cam.home.mitchr.me:Pictures/pi-cam/                           /c/Users/richmit/Pictures/pi-cam/;
 date; echo microscope-code;      rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/microscope/             pi-cam.home.mitchr.me:synced/world/my_prog/microscope/;
 date; echo imagej-code;          rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/ImageJ/                 pi-cam.home.mitchr.me:synced/world/my_prog/ImageJ/;
 date; echo dotfiles;             rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/dotfiles/                       pi-cam.home.mitchr.me:synced/world/dotfiles/;
@@ -960,9 +964,28 @@ file:toolsetbuttons_800.gif
 
 Button Functions:
  - file:toolsetbutton-capture.gif   :: Capture, ssave, and open an image from the camera.  Images are stored in the same location, and with the same file name conventions, used by =piSnap.sh=.
- - file:toolsetbutton-settings.gif  :: Change some configuration options: 1) turn on/off debugging & 2) turn on/off live preview before a capture
+ - file:toolsetbutton-settings.gif  :: Change some configuration options 
+
+#+ATTR_HTML: :align center
+file:dialog-settings.gif
+
+   - Turn on/off debugging
+   - Turn on/off live preview before a capture
+   - Turn on/off asking for settings for each capture -- essentially pops up the settings dialog box everything the capture button is hit
+   - Turn on/off running the set image scale tool after each capture if the image scale is not already set
+   - Set captured image scale (100% 0r 50%)
+   - Set captured image format (jpg or png)
+
  - file:toolsetbutton-load.gif      :: Load last capture(s) from camera using the ImageJ/Fiji macro above or the =piSnap.sh= script.  If the last capture session with =piSnap.sh= captured multiple images, then *all* of them will be loaded.
  - file:toolsetbutton-scale.gif     :: Set image scale based upon microscope settings.  This script contains hardwired settings for my specific microscope and lenses, and may require modification for your microscope.
+
+#+ATTR_HTML: :align center
+file:dialog-setscale.gif
+
+   - The choice of microscope enables a calibration correction factor in the final computation
+   - The "Adjust for Resolution" option adjusts the scale if the number of horizontal pixels in the image differs from the horizontal resolution of the
+     sensor.  Most commonly this use used when the sensor is used in 2x2 mode yielding smaller image.  This option also works if the image is resized after
+     the fact.  
 
 #+INCLUDE:RPI_tools.ijm src c
 
