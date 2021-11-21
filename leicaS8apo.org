@@ -323,6 +323,21 @@ cp *_*.png ~/world/my_prog/microscope/docs
 echo DONE
 #+end_src
 
+
+*** Converting screenshots to gif                                  :noexport:
+
+#+begin_src sh
+rm toolsetbuttons_800.gif toolsetmenu_800.gif
+convert toolsetbuttons.png -resize 800x toolsetbuttons_800.gif
+convert toolsetmenu.png    -resize 800x toolsetmenu_800.gif
+
+rm toolsetbutton-*.gif
+convert toolsetbutton-capture.png  -resize 55x toolsetbutton-capture.gif
+convert toolsetbutton-load.png     -resize 55x toolsetbutton-load.gif
+convert toolsetbutton-scale.png    -resize 55x toolsetbutton-scale.gif
+convert toolsetbutton-settings.png -resize 55x toolsetbutton-settings.gif
+#+end_src
+
 ** Attaching Cameras
 
 The Leica documentation suggests using a chain of adapters for attaching a generic digital camera. The first part of the chain is one of the following three
@@ -733,6 +748,8 @@ chmod a+rx ~/Fiji.app/ImageJ.sh
 mv ~/Fiji.app/jars/FilamentDetector-1.0.0.jar ~/Fiji.app/jars/FilamentDetector-1.0.0.bad
 #### Link ImageJ.sh into /usr/bin/ as ImageJ
 sudo ln -s ~/Fiji.app/ImageJ.sh /usr/bin/ImageJ
+#### Run Fiji and update *EVERYTHING*
+/usr/bin/ImageJ
 #### Clone the git repo
 cd ~
 git clone 'https://github.com/richmit/microscope.git'
@@ -936,15 +953,16 @@ The code below provides an ImageJ/Fiji toolset.  You activate the tool set via t
 #+ATTR_HTML: :align center
 file:toolsetmenu_800.gif
 
-Once activated, it will add three buttons to the toolbar:
+Once activated, it will add four buttons to the toolbar:
 
 #+ATTR_HTML: :align center
 file:toolsetbuttons_800.gif
 
 Button Functions:
- - file:toolsetbutton-capture.gif :: Capture, save, and open an image from the camera.  Images are stored in the same location, and with the same file name conventions, used by =piSnap.sh=.
- - file:toolsetbutton-load.gif    :: Load last capture(s) from camera using the ImageJ/Fiji macro above or the =piSnap.sh= script.  If the last capture session with =piSnap.sh= captured multiple images, then *all* of them will be loaded.
- - file:toolsetbutton-scale.gif   :: Set image scale based upon microscope settings.  This script contains hardwired settings for my specific microscope and lenses, and may require modification for your microscope.
+ - file:toolsetbutton-capture.gif   :: Capture, ssave, and open an image from the camera.  Images are stored in the same location, and with the same file name conventions, used by =piSnap.sh=.
+ - file:toolsetbutton-settings.gif  :: Change some configuration options: 1) turn on/off debugging & 2) turn on/off live preview before a capture
+ - file:toolsetbutton-load.gif      :: Load last capture(s) from camera using the ImageJ/Fiji macro above or the =piSnap.sh= script.  If the last capture session with =piSnap.sh= captured multiple images, then *all* of them will be loaded.
+ - file:toolsetbutton-scale.gif     :: Set image scale based upon microscope settings.  This script contains hardwired settings for my specific microscope and lenses, and may require modification for your microscope.
 
 #+INCLUDE:RPI_tools.ijm src c
 
