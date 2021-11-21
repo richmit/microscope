@@ -40,6 +40,8 @@ Use: piSnap.sh [options] [file-annotation]
                         Without the -k option an image is immediatly captured with no preview
                 -s      Show image after capture with nomacs (my favorite lightweight image viewer)
                 -v      Verbose mode
+                -f      Fake Capture Mode -- don't run libcamera-still, but fake it with convert
+                        Used for debugging.  Most useful when combined with -v.
                 -b BIN  Full path to the libcamera-still binary
                         Default: /usr/bin/libcamera-still
                 -d DIR  Directory to store captured images.  
@@ -57,7 +59,7 @@ Use: piSnap.sh [options] [file-annotation]
 EOF
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------
-FAKE_CAP='Y'
+FAKE_CAP='N'
 SHOW='N'
 WKEY='N'
 VERB='N'
@@ -72,6 +74,7 @@ while [[ "$1" = -* ]]; do
     -k ) WKEY='Y';                                             ;; # Capture multiple images
     -d ) ODIR="$2"; shift;                                      ;; # Output directory
     -v ) VERB='Y';                                              ;; # Verbose mode
+    -f ) FAKE_CAP='Y';                                          ;; # Fake Capture mode
     -e ) IENC="$2"; shift;                                      ;; # Output image format
     -s ) SHOW='Y';                                              ;; # Open captured images
     -p ) PREVIEW='Y';                                           ;; # Preview only
