@@ -989,7 +989,7 @@ file:dialog-setscale.gif
 
 #+INCLUDE:RPI_tools.ijm src c
 
-*** Macro Test Installer
+*** Macro Test Installer                                           :noexport:
 
 When developing the ImageJ/Fiji macro, I use the following script to put the script in place and run ImageJ/Fiji so I can test it (on RPI or Windows).  This
 script is not useful for someone simply wanting to use the macro.
