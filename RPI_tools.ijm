@@ -7,8 +7,9 @@ var gbl_ALL_doScl     = true;                     // RPI-CODE
 var gbl_ALL_piDebug   = false;                    // RPI-CODE
 var gbl_pic_doSet     = false;                    // RPI-CODE
 var gbl_pic_ifmt      = "jpg";                    // RPI-CODE
+var gbl_pic_pviewDo   = true;                     // RPI-CODE
+var gbl_pic_pviewScl  = 4;                        // RPI-CODE
 var gbl_pic_res       = "100%";                   // RPI-CODE
-var gbl_pic_wPreview  = true;                     // RPI-CODE
 var gbl_ssm_aux       = "0.63";                   // RPI-CODE
 var gbl_ssm_cam       = "RPI";                    // RPI-CODE
 var gbl_ssm_gbl       = false;                    // RPI-CODE
@@ -41,9 +42,6 @@ macro "Open Last RPI Capture(s) Action Tool - Cc11 L000f L0fff Lfff3 Lf363 L6340
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/// RPI Functions
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -51,19 +49,21 @@ macro "Open Last RPI Capture(s) Action Tool - Cc11 L000f L0fff Lfff3 Lf363 L6340
 // RPI-CODE
 function configureRPI() {
   Dialog.create("Configure RPI Settings");
-  Dialog.addChoice("Image Format:", newArray("jpg", "png"), gbl_pic_ifmt);
-  Dialog.addChoice("Image Size:", newArray("100%", "50%"),  gbl_pic_res);
-  Dialog.addCheckbox("Change settings before capture",      gbl_pic_doSet);
-  Dialog.addCheckbox("Set scale after capture/load",        gbl_ALL_doScl);
-  Dialog.addCheckbox("Video preview before capture",        gbl_pic_wPreview);
+  Dialog.addChoice("Image Format:", newArray("jpg", "png"),              gbl_pic_ifmt);
+  Dialog.addChoice("Image Size:", newArray("100%", "50%"),               gbl_pic_res);
+  Dialog.addChoice("Preview Scale (1/n):", newArray("1", "2", "4", "8"), gbl_pic_pviewScl);
+  Dialog.addCheckbox("Change settings before capture",                   gbl_pic_doSet);
+  Dialog.addCheckbox("Set scale after capture/load",                     gbl_ALL_doScl);
+  Dialog.addCheckbox("Video preview before capture",                     gbl_pic_pviewDo);
   Dialog.addCheckbox("Debuging",                            gbl_ALL_piDebug);
   Dialog.show();
 
-  gbl_pic_ifmt     = Dialog.getChoice();  
-  gbl_pic_res      = Dialog.getChoice();  
+  gbl_pic_ifmt     = Dialog.getChoice();
+  gbl_pic_res      = Dialog.getChoice();
+  gbl_pic_pviewScl = Dialog.getChoice();
   gbl_pic_doSet    = Dialog.getCheckbox();
   gbl_ALL_doScl    = Dialog.getCheckbox();
-  gbl_pic_wPreview = Dialog.getCheckbox();
+  gbl_pic_pviewDo  = Dialog.getCheckbox();
   gbl_ALL_piDebug  = Dialog.getCheckbox();
 }
 
@@ -74,13 +74,13 @@ function captureImageFromRPI() {
   // Make sure we have libcamera-still installed -- if we don't, then we are probably
   // not running on a RPI..
   if (!(File.exists("/usr/bin/libcamera-still"))) {
-    exit("Could not find /usr/bin/libcamera-still!");
+    exit("ERROR(captureImageFromRPI): Could not find /usr/bin/libcamera-still!");
   }
 
   // Make sure we can find the user home directory
   piImagePath = getDirectory("home");
   if (!(File.exists(piImagePath))) {
-    exit("Could not find home directory!");
+    exit("ERROR(captureImageFromRPI): Could not find home directory!");
   }
 
   // Look for ~/Pictures.  Try to create it if it is missing.
@@ -89,7 +89,7 @@ function captureImageFromRPI() {
     print("Attempting to create directory: " + piImagePath);
     File.makeDirectory(piImagePath);
     if (!(File.exists(piImagePath))) {
-      exit("Directory creation failed: " + piImagePath);
+      exit("ERROR(captureImageFromRPI): Directory creation failed: " + piImagePath);
     }
   }
 
@@ -99,13 +99,13 @@ function captureImageFromRPI() {
     print("Attempting to create directory: " + piImagePath);
     File.makeDirectory(piImagePath);
     if (!(File.exists(piImagePath))) {
-      exit("Directory creation failed: " + piImagePath);
+      exit("ERROR(captureImageFromRPI): Directory creation failed: " + piImagePath);
     }
   }
 
   // Check again that piImagePath really exists...
   if (!(File.exists(piImagePath))) {
-    exit("Could not find/create image directory: " + piImagePath);
+    exit("ERROR(captureImageFromRPI): Could not find/create image directory: " + piImagePath);
   }
 
   // Ask for camera settings
@@ -123,27 +123,31 @@ function captureImageFromRPI() {
   }
 
   resOpt = "";
-  if (gbl_pic_res == "50%") 
+  if (gbl_pic_res == "50%")
     resOpt = "--width 2028 --height 1520";
 
   // Run libcamera-still
-  if (gbl_pic_wPreview) {
+  if (gbl_pic_pviewDo) {
     procList = exec("/bin/bash", "-c", "ps -eo cmd | grep '^ *libcamera-still'");
-    if (lengthOf(procList) > 10) 
-      exit("ERROR: libcamera-still is already running.  Close it first");
+    if (lengthOf(procList) > 10)
+      exit("ERROR(captureImageFromRPI): libcamera-still is already running.  Close it first");
 
-    pid = exec("/bin/bash", "-c", "libcamera-still -t 0 -s " + resOpt + " -e " + gbl_pic_ifmt + " -o '" + piImageFullFileName + "' >/dev/null 2>&1 & echo $!", "&");
+    psv = parseInt(gbl_pic_pviewScl);
+    pww = round(4056/psv);
+    pwh = round(3040/psv);
+
+    pid = exec("/bin/bash", "-c", "libcamera-still -t 0" + " -p 0,0," + pww + "," + pwh + " -s " + resOpt + " -e " + gbl_pic_ifmt + " -o '" + piImageFullFileName + "' >/dev/null 2>&1 & echo $!", "&");
 
     pid = String.trim(pid);
 
     if ( !(matches(pid, "(^[0-9][0-9]*$)")))
-      exit("ERROR: Can't get PID of libcamera-still process -- it may not have started!");
+      exit("ERROR(captureImageFromRPI): Can't get PID of libcamera-still process -- it may not have started!");
 
     waitForUser("RPI Capture", "Click OK to Capture Image");
 
     procList = exec("/bin/bash", "-c", "ps -eo pid,cmd | grep '^ *" + pid + "  *libcamera-still'");
-    if (lengthOf(procList) < 10) 
-      exit("ERROR: Unable to trigger capture (Can't find libcamera-still process)!");
+    if (lengthOf(procList) < 10)
+      exit("ERROR(captureImageFromRPI): Unable to trigger capture (Can't find libcamera-still process)!");
     showStatus("Waiting for capture process");
     exec("/bin/bash", "-c", "kill -SIGUSR1 " + pid);
     c=1;
@@ -157,7 +161,7 @@ function captureImageFromRPI() {
   } else {
     exec("libcamera-still -t 1 -n -q 100 " + resOpt + " -e " + gbl_pic_ifmt + " -o " + piImageFullFileName);
   }
-    
+
   // If we got an image, then we load it
   if (File.exists(piImageFullFileName)) {
     open(piImageFullFileName);
@@ -165,7 +169,7 @@ function captureImageFromRPI() {
       if ( !(isImageScaled()))
         setScaleForMicrograph();
   } else {
-    exit("Image file not found!: " + piImageFullFileName);
+    exit("ERROR(captureImageFromRPI): Image file not found!: " + piImageFullFileName);
   }
 }
 
@@ -175,19 +179,23 @@ function captureImageFromRPI() {
 function getImageLastRPI() {
   piFilesDir = String.join(newArray(getDirectory("home"), "Pictures", "pi-cam"), File.separator);
   if ( piFilesDir == "-") {
-    exit("Unable to locate pi-cam images directory: " + piFilesDir);
+    exit("ERROR(getImageLastRPI): Unable to locate pi-cam images directory: " + piFilesDir);
   }
 
-  // List of captured files
+  // List of files in pi-cam directory
   files = getFileList(piFilesDir);
+  if ( files.length == 0)
+    exit("ERROR(getImageLastRPI): No files found in pi-cam images directory: " + piFilesDir);
 
-  if ( files.length == 0) {
-    exit("No files found in pi-cam images directory: " + piFilesDir);
-  }
+  // Filter out non-image files
+  files = Array.filter(files, "(\\.(png|jpg)$)");
+  if ( files.length == 0)
+    exit("ERROR(getImageLastRPI): No image files found in pi-cam images directory: " + piFilesDir);
 
-  // Figure out last file captured
+  // Sort file list
   files = Array.sort(files);
-  // TODO: Should filter the array at this point -- i.e. only use files that match RE
+
+  // Find last file
   lastFile = files[lengthOf(files)-1];
 
   open(String.join(newArray(piFilesDir, lastFile), File.separator));
@@ -200,6 +208,9 @@ function getImageLastRPI() {
 // Set image scale for RPI Microscope Camera
 // RPI-CODE
 function setScaleForMicrograph() {
+
+  if (nImages == 0)
+    exit("ERROR(setScaleForMicrograph): No open images found!");
 
   Dialog.create("Set Scale for Stereo Microscope Photograph");
   Dialog.addChoice("Microscope:", newArray("Leica S8API"),   "Leica S8API");
@@ -285,4 +296,3 @@ function isImageScaled() {
   getPixelSize(pixelLengthUnit, pixelWidth, pixelHeight);
   return (is("global scale") || ( !(startsWith(pixelLengthUnit, "pixel"))) || (pixelHeight != 1));
 }
-

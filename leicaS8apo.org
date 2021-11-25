@@ -873,7 +873,7 @@ mv ~/Fiji.app/jars/FilamentDetector-1.0.0.jar ~/Fiji.app/jars/FilamentDetector-1
 ### Link the RPI_tools into Fiji
 ln -s ~/world/my_prog/microscope/RPI_tools.ijm ~/Fiji.app/macros/toolsets/RPI_tools.ijm
 ### Link the PhilaJ into Fiji
-ln -s ~/world/my_prog/ImageJ/PhiliaJ/PhiliaJ.ijm ~/Fiji.app/macros/toolsets/PhiliaJ.ijm
+ln -s ~/world/my_prog/ImageJ/PhilaJ/PhilaJ.ijm ~/Fiji.app/macros/toolsets/PhilaJ.ijm
 #### Setup dotfiles & ~/bin -- this time to put ImageJ.sh & ImageJ into ~/bin
 ./world/my_prog/UNIXutils/SelectSetup.rb --loc=HOME; ./world/my_prog/UNIXutils/SetupBin.rb
 #### DO: Add ImageJ.sh to launch menu -- icon in ~/core/icons
@@ -970,10 +970,11 @@ Button Functions:
 file:dialog-settings.gif
 
    - Turn on/off debugging
-   - Turn on/off live preview before a capture
+   - Turn on/off live video preview before a capture
    - Turn on/off asking for settings for each capture -- essentially pops up the settings dialog box everything the capture button is hit
    - Turn on/off running the set image scale tool after each capture if the image scale is not already set
-   - Set captured image scale (100% 0r 50%)
+   - Set captured image scale (100% or 50%)
+   - Set the scale factor for the live video preview
    - Set captured image format (jpg or png)
 
  - file:toolsetbutton-load.gif      :: Load last capture(s) from camera using the ImageJ/Fiji macro above or the =piSnap.sh= script.  If the last capture session with =piSnap.sh= captured multiple images, then *all* of them will be loaded.

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-11-21 Sun 17:51 -->
+<!-- 2021-11-25 Thu 16:14 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=1024, initial-scale=1" />
 <title>Leica S4E &amp; S8APO</title>
@@ -265,7 +265,7 @@ Copyright 2021 Mitch Richling. All rights reserved.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#introduction">1. Introduction</a></li>
-<li><a href="#orgd889f6c">2. Microscope Symbols &amp; Formulas</a>
+<li><a href="#orgd0eec78">2. Microscope Symbols &amp; Formulas</a>
 <ul>
 <li><a href="#variables">2.1. Variables</a></li>
 <li><a href="#formulas">2.2. Formulas</a></li>
@@ -283,29 +283,29 @@ Copyright 2021 Mitch Richling. All rights reserved.
 <li><a href="#s8-ret-scale">4.2. Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece</a></li>
 <li><a href="#s8-na">4.3. Numerical Aperture With No Auxiliary Lens</a></li>
 <li><a href="#leica-vid-obj">4.4. Leica C-Mount Video Objective Data</a></li>
-<li><a href="#org041ab65">4.5. Attaching Cameras</a></li>
+<li><a href="#org425cae2">4.5. Attaching Cameras</a></li>
 <li><a href="#s8-cam-data">4.6. Camera FOV &amp; Image Scales</a></li>
 </ul>
 </li>
 <li><a href="#mrconv">5. Reticle Unit Conversion Software For free42 and DM42</a>
 <ul>
-<li><a href="#org9b98b7e">5.1. The menu</a></li>
-<li><a href="#orgb244f59">5.2. The code</a></li>
+<li><a href="#org13e54b4">5.1. The menu</a></li>
+<li><a href="#orgf05eda6">5.2. The code</a></li>
 </ul>
 </li>
 <li><a href="#parts">6. S-Series Leica Parts</a></li>
 <li><a href="#sensors">7. Image Sensor Data</a></li>
 <li><a href="#rpi-camera">8. DIY RPI Camera</a>
 <ul>
-<li><a href="#orga2b34e1">8.1. The Idea</a></li>
-<li><a href="#orgdd0cadc">8.2. Bill Of Materials</a></li>
-<li><a href="#org0890dab">8.3. System Setup</a>
+<li><a href="#org9a2b85e">8.1. The Idea</a></li>
+<li><a href="#org9f64d9d">8.2. Bill Of Materials</a></li>
+<li><a href="#orgb7a3246">8.3. System Setup</a>
 <ul>
 <li><a href="#rpi-camera-min-soft-config">8.3.1. Minimal Configuration</a></li>
 <li><a href="#rpi-camera-my-soft-config">8.3.2. My Configuration</a>
 <ul>
-<li><a href="#orga625a13">8.3.2.1. System Setup</a></li>
-<li><a href="#orge6a23c4">8.3.2.2. System Sync</a></li>
+<li><a href="#org32c6472">8.3.2.1. System Setup</a></li>
+<li><a href="#orgbd4e080">8.3.2.2. System Sync</a></li>
 </ul>
 </li>
 </ul>
@@ -318,7 +318,7 @@ Copyright 2021 Mitch Richling. All rights reserved.
 </li>
 </ul>
 </li>
-<li><a href="#org3f877db">9. EOF</a></li>
+<li><a href="#org05d38b2">9. EOF</a></li>
 </ul>
 </div>
 </div>
@@ -328,7 +328,7 @@ Check out my home page for more stuff: <a href="https://www.mitchr.me/">https://
 </p>
 
 <div id="outline-container-introduction" class="outline-2">
-<h2 id="introduction"><span class="section-number-2">1.</span> Introduction</h2>
+<h2 id="introduction"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-introduction">
 <p>
 This page contains my personal notes for the Leica S8APO &amp; S4E stereo microscopes.  Being my personal notes, the content here isn't terribly polished;
@@ -337,12 +337,12 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 </div>
 </div>
 
-<div id="outline-container-orgd889f6c" class="outline-2">
-<h2 id="orgd889f6c"><span class="section-number-2">2.</span> Microscope Symbols &amp; Formulas</h2>
+<div id="outline-container-orgd0eec78" class="outline-2">
+<h2 id="orgd0eec78"><span class="section-number-2">2</span> Microscope Symbols &amp; Formulas</h2>
 <div class="outline-text-2" id="text-2">
 </div>
 <div id="outline-container-variables" class="outline-3">
-<h3 id="variables"><span class="section-number-3">2.1.</span> Variables</h3>
+<h3 id="variables"><span class="section-number-3">2.1</span> Variables</h3>
 <div class="outline-text-3" id="text-variables">
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
 <caption class="t-above"><span class="table-number">Table 1:</span> Symbols &amp; Formulas</caption>
@@ -586,7 +586,7 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 </div>
 </div>
 <div id="outline-container-formulas" class="outline-3">
-<h3 id="formulas"><span class="section-number-3">2.2.</span> Formulas</h3>
+<h3 id="formulas"><span class="section-number-3">2.2</span> Formulas</h3>
 <div class="outline-text-3" id="text-formulas">
 <dl class="org-dl">
 <dt>Image/Sensor magnification           </dt><dd>\[S_{MAG} = \frac{L_s}{L_o} = A \cdot Z \cdot O_c\]</dd>
@@ -610,12 +610,12 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 </div>
 
 <div id="outline-container-s4e" class="outline-2">
-<h2 id="s4e"><span class="section-number-2">3.</span> S4E</h2>
+<h2 id="s4e"><span class="section-number-2">3</span> S4E</h2>
 <div class="outline-text-2" id="text-s4e">
 </div>
 
 <div id="outline-container-s4-mag-fov" class="outline-3">
-<h3 id="s4-mag-fov"><span class="section-number-3">3.1.</span> Magnification and FOV at Various Zoom Levels With 10x/23 Eyepiece</h3>
+<h3 id="s4-mag-fov"><span class="section-number-3">3.1</span> Magnification and FOV at Various Zoom Levels With 10x/23 Eyepiece</h3>
 <div class="outline-text-3" id="text-s4-mag-fov">
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
 <caption class="t-above"><span class="table-number">Table 2:</span> S4E &#x2013; Magnification and FOV at Various Zoom Levels With 10x/23 Eyepiece</caption>
@@ -748,7 +748,7 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 </div>
 
 <div id="outline-container-s4-ret-scale" class="outline-3">
-<h3 id="s4-ret-scale"><span class="section-number-3">3.2.</span> Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece</h3>
+<h3 id="s4-ret-scale"><span class="section-number-3">3.2</span> Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece</h3>
 <div class="outline-text-3" id="text-s4-ret-scale">
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
 <caption class="t-above"><span class="table-number">Table 3:</span> S4E &#x2013; Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece</caption>
@@ -852,12 +852,12 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 </div>
 
 <div id="outline-container-s8apo" class="outline-2">
-<h2 id="s8apo"><span class="section-number-2">4.</span> S8APO</h2>
+<h2 id="s8apo"><span class="section-number-2">4</span> S8APO</h2>
 <div class="outline-text-2" id="text-s8apo">
 </div>
 
 <div id="outline-container-s8-mag-fov" class="outline-3">
-<h3 id="s8-mag-fov"><span class="section-number-3">4.1.</span> Magnification and FOV at Various Zoom Levels With 10x/23 Eyepiece</h3>
+<h3 id="s8-mag-fov"><span class="section-number-3">4.1</span> Magnification and FOV at Various Zoom Levels With 10x/23 Eyepiece</h3>
 <div class="outline-text-3" id="text-s8-mag-fov">
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
 <caption class="t-above"><span class="table-number">Table 4:</span> S8APO &#x2013; Magnification and FOV at Various Zoom Levels With 10x/23 Eyepiece</caption>
@@ -1010,7 +1010,7 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 </div>
 
 <div id="outline-container-s8-ret-scale" class="outline-3">
-<h3 id="s8-ret-scale"><span class="section-number-3">4.2.</span> Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece</h3>
+<h3 id="s8-ret-scale"><span class="section-number-3">4.2</span> Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece</h3>
 <div class="outline-text-3" id="text-s8-ret-scale">
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
 <caption class="t-above"><span class="table-number">Table 5:</span> S8APO &#x2013; Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece</caption>
@@ -1111,7 +1111,7 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 </div>
 
 <div id="outline-container-s8-na" class="outline-3">
-<h3 id="s8-na"><span class="section-number-3">4.3.</span> Numerical Aperture With No Auxiliary Lens</h3>
+<h3 id="s8-na"><span class="section-number-3">4.3</span> Numerical Aperture With No Auxiliary Lens</h3>
 <div class="outline-text-3" id="text-s8-na">
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
 <caption class="t-above"><span class="table-number">Table 6:</span> S8APO Numerical Aperture</caption>
@@ -1183,7 +1183,7 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 </div>
 
 <div id="outline-container-leica-vid-obj" class="outline-3">
-<h3 id="leica-vid-obj"><span class="section-number-3">4.4.</span> Leica C-Mount Video Objective Data</h3>
+<h3 id="leica-vid-obj"><span class="section-number-3">4.4</span> Leica C-Mount Video Objective Data</h3>
 <div class="outline-text-3" id="text-leica-vid-obj">
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
 <caption class="t-above"><span class="table-number">Table 7:</span> Leica C-Mount Video Objective Data</caption>
@@ -1333,8 +1333,8 @@ efficiently used with about 84% of the sensor pixels wasted.
 </div>
 </div>
 
-<div id="outline-container-org041ab65" class="outline-3">
-<h3 id="org041ab65"><span class="section-number-3">4.5.</span> Attaching Cameras</h3>
+<div id="outline-container-org425cae2" class="outline-3">
+<h3 id="org425cae2"><span class="section-number-3">4.5</span> Attaching Cameras</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 The Leica documentation suggests using a chain of adapters for attaching a generic digital camera. The first part of the chain is one of the following three
@@ -1367,7 +1367,7 @@ I use two cameras with my S8APO:
 </div>
 
 <div id="outline-container-s8-cam-data" class="outline-3">
-<h3 id="s8-cam-data"><span class="section-number-3">4.6.</span> Camera FOV &amp; Image Scales</h3>
+<h3 id="s8-cam-data"><span class="section-number-3">4.6</span> Camera FOV &amp; Image Scales</h3>
 <div class="outline-text-3" id="text-s8-cam-data">
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
 <caption class="t-above"><span class="table-number">Table 10:</span> Camera FOV &amp; Image Scales</caption>
@@ -1561,12 +1561,12 @@ I use two cameras with my S8APO:
 </div>
 
 <div id="outline-container-mrconv" class="outline-2">
-<h2 id="mrconv"><span class="section-number-2">5.</span> Reticle Unit Conversion Software For free42 and DM42</h2>
+<h2 id="mrconv"><span class="section-number-2">5</span> Reticle Unit Conversion Software For free42 and DM42</h2>
 <div class="outline-text-2" id="text-mrconv">
 </div>
 
-<div id="outline-container-org9b98b7e" class="outline-3">
-<h3 id="org9b98b7e"><span class="section-number-3">5.1.</span> The menu</h3>
+<div id="outline-container-org13e54b4" class="outline-3">
+<h3 id="org13e54b4"><span class="section-number-3">5.1</span> The menu</h3>
 <div class="outline-text-3" id="text-5-1">
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
 <caption class="t-above"><span class="table-number">Table 11:</span> Application Menu</caption>
@@ -1688,8 +1688,8 @@ keys each with two sets of settings &#x2013; the scope's lower zoom stop is used
 </div>
 </div>
 
-<div id="outline-container-orgb244f59" class="outline-3">
-<h3 id="orgb244f59"><span class="section-number-3">5.2.</span> The code</h3>
+<div id="outline-container-orgf05eda6" class="outline-3">
+<h3 id="orgf05eda6"><span class="section-number-3">5.2</span> The code</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 While this code isn't very useful without being customized to the particular settings the end user needs, it can be test driven as-is by cut-n-pasting the
@@ -1845,7 +1845,7 @@ END
 </div>
 
 <div id="outline-container-parts" class="outline-2">
-<h2 id="parts"><span class="section-number-2">6.</span> S-Series Leica Parts</h2>
+<h2 id="parts"><span class="section-number-2">6</span> S-Series Leica Parts</h2>
 <div class="outline-text-2" id="text-parts">
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
 <caption class="t-above"><span class="table-number">Table 12:</span> S-Series Leica Parts</caption>
@@ -2051,9 +2051,9 @@ END
 </div>
 
 <div id="outline-container-sensors" class="outline-2">
-<h2 id="sensors"><span class="section-number-2">7.</span> Image Sensor Data</h2>
+<h2 id="sensors"><span class="section-number-2">7</span> Image Sensor Data</h2>
 <div class="outline-text-2" id="text-sensors">
-<table id="org4b467e4" border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
+<table id="org6afc437" border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
 <caption class="t-above"><span class="table-number">Table 13:</span> Image Sensor Data</caption>
 
 <colgroup>
@@ -2353,32 +2353,32 @@ END
 </div>
 
 <div id="outline-container-rpi-camera" class="outline-2">
-<h2 id="rpi-camera"><span class="section-number-2">8.</span> DIY RPI Camera</h2>
+<h2 id="rpi-camera"><span class="section-number-2">8</span> DIY RPI Camera</h2>
 <div class="outline-text-2" id="text-rpi-camera">
 
-<div id="org7b433bf" class="figure">
+<div id="org9757c7b" class="figure">
 <p><img src="rpicam1_800.jpg" alt="rpicam1_800.jpg" border="2 solid #ccc" frame="hsides" align="center" />
 </p>
 <p><span class="figure-number">Figure 1: </span>A live feed from the microscope with a glass scale on the stage.</p>
 </div>
 
 
-<div id="org4cb78a4" class="figure">
+<div id="org6b76259" class="figure">
 <p><img src="rpicam2_800.jpg" alt="rpicam2_800.jpg" border="2 solid #ccc" frame="hsides" align="center" />
 </p>
 <p><span class="figure-number">Figure 2: </span>A good view of the wire management for the camera.</p>
 </div>
 
 
-<div id="org8274bd7" class="figure">
+<div id="org27f613a" class="figure">
 <p><img src="rpicam4_800.jpg" alt="rpicam4_800.jpg" border="2 solid #ccc" frame="hsides" align="center" />
 </p>
 <p><span class="figure-number">Figure 3: </span>A 30fps live feed illuminated only by my desk lamps.  This is an exceptionally bright microscope.</p>
 </div>
 </div>
 
-<div id="outline-container-orga2b34e1" class="outline-3">
-<h3 id="orga2b34e1"><span class="section-number-3">8.1.</span> The Idea</h3>
+<div id="outline-container-org9a2b85e" class="outline-3">
+<h3 id="org9a2b85e"><span class="section-number-3">8.1</span> The Idea</h3>
 <div class="outline-text-3" id="text-8-1">
 <p>
 If you have arrived here via direct link, then you might be interested to know that your browser is pointed to the middle of a larger document &#x2013; my personal
@@ -2395,8 +2395,8 @@ image analysis software (Fiji/ImageJ) right on the camera.
 </div>
 </div>
 
-<div id="outline-container-orgdd0cadc" class="outline-3">
-<h3 id="orgdd0cadc"><span class="section-number-3">8.2.</span> Bill Of Materials</h3>
+<div id="outline-container-org9f64d9d" class="outline-3">
+<h3 id="org9f64d9d"><span class="section-number-3">8.2</span> Bill Of Materials</h3>
 <div class="outline-text-3" id="text-8-2">
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
 <caption class="t-above"><span class="table-number">Table 14:</span> Bill Of Materials</caption>
@@ -2458,8 +2458,8 @@ image analysis software (Fiji/ImageJ) right on the camera.
 </div>
 </div>
 
-<div id="outline-container-org0890dab" class="outline-3">
-<h3 id="org0890dab"><span class="section-number-3">8.3.</span> System Setup</h3>
+<div id="outline-container-orgb7a3246" class="outline-3">
+<h3 id="orgb7a3246"><span class="section-number-3">8.3</span> System Setup</h3>
 <div class="outline-text-3" id="text-8-3">
 <p>
 Note: These instructions are for the Bullseye based Raspberry Pi OS relased in November of 2021!  
@@ -2467,7 +2467,7 @@ Note: These instructions are for the Bullseye based Raspberry Pi OS relased in N
 </div>
 
 <div id="outline-container-rpi-camera-min-soft-config" class="outline-4">
-<h4 id="rpi-camera-min-soft-config"><span class="section-number-4">8.3.1.</span> Minimal Configuration</h4>
+<h4 id="rpi-camera-min-soft-config"><span class="section-number-4">8.3.1</span> Minimal Configuration</h4>
 <div class="outline-text-4" id="text-rpi-camera-min-soft-config">
 <p>
 The system setup steps I used for my camera will not work for others because I made use of several aspects of my personal home directory configuration others
@@ -2516,7 +2516,7 @@ ln -s ~/microscope/RPI_tools.ijm ~/Fiji.app/macros/toolsets/RPI_tools.ijm
 </div>
 
 <div id="outline-container-rpi-camera-my-soft-config" class="outline-4">
-<h4 id="rpi-camera-my-soft-config"><span class="section-number-4">8.3.2.</span> My Configuration</h4>
+<h4 id="rpi-camera-my-soft-config"><span class="section-number-4">8.3.2</span> My Configuration</h4>
 <div class="outline-text-4" id="text-rpi-camera-my-soft-config">
 <p>
 Most Unix/Linux users have pretty strong opinions on how to setup a personal working environment.  Emacs vs VI anyone?  This section documents my personal
@@ -2540,8 +2540,8 @@ above:
 </ul>
 </div>
 
-<div id="outline-container-orga625a13" class="outline-5">
-<h5 id="orga625a13"><span class="section-number-5">8.3.2.1.</span> System Setup</h5>
+<div id="outline-container-org32c6472" class="outline-5">
+<h5 id="org32c6472"><span class="section-number-5">8.3.2.1</span> System Setup</h5>
 <div class="outline-text-5" id="text-8-3-2-1">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Refresh packages and update everything</span>
@@ -2630,7 +2630,7 @@ mv ~/Fiji.app/jars/FilamentDetector-1.0.0.jar ~/Fiji.app/jars/FilamentDetector-1
 <span style="color: #ffa500;">### </span><span style="color: #ff7f24;">Link the RPI_tools into Fiji</span>
 ln -s ~/world/my_prog/microscope/RPI_tools.ijm ~/Fiji.app/macros/toolsets/RPI_tools.ijm
 <span style="color: #ffa500;">### </span><span style="color: #ff7f24;">Link the PhilaJ into Fiji</span>
-ln -s ~/world/my_prog/ImageJ/PhiliaJ/PhiliaJ.ijm ~/Fiji.app/macros/toolsets/PhiliaJ.ijm
+ln -s ~/world/my_prog/ImageJ/PhilaJ/PhilaJ.ijm ~/Fiji.app/macros/toolsets/PhilaJ.ijm
 <span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Setup dotfiles &amp; ~/bin -- this time to put ImageJ.sh &amp; ImageJ into ~/bin</span>
 ./world/my_prog/UNIXutils/SelectSetup.rb --loc=HOME; ./world/my_prog/UNIXutils/SetupBin.rb
 <span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">DO: Add ImageJ.sh to launch menu -- icon in ~/core/icons</span>
@@ -2652,8 +2652,8 @@ sudo ln -s /usr/local/bin/free42-3.0.6 /usr/local/bin/free42
 </div>
 </div>
 
-<div id="outline-container-orge6a23c4" class="outline-5">
-<h5 id="orge6a23c4"><span class="section-number-5">8.3.2.2.</span> System Sync</h5>
+<div id="outline-container-orgbd4e080" class="outline-5">
+<h5 id="orgbd4e080"><span class="section-number-5">8.3.2.2</span> System Sync</h5>
 <div class="outline-text-5" id="text-8-3-2-2">
 <p>
 I use <code>rsync</code> to keep data in sync between my camera and primary workstation.
@@ -2688,7 +2688,7 @@ date
 </div>
 
 <div id="outline-container-rpi-soft" class="outline-3">
-<h3 id="rpi-soft"><span class="section-number-3">8.4.</span> RPI Software</h3>
+<h3 id="rpi-soft"><span class="section-number-3">8.4</span> RPI Software</h3>
 <div class="outline-text-3" id="text-rpi-soft">
 <p>
 My goals:
@@ -2711,7 +2711,7 @@ line script into ImageJ/Fiji.
 </div>
 
 <div id="outline-container-rpi-pisnap" class="outline-4">
-<h4 id="rpi-pisnap"><span class="section-number-4">8.4.1.</span> RPI Image Capture Script</h4>
+<h4 id="rpi-pisnap"><span class="section-number-4">8.4.1</span> RPI Image Capture Script</h4>
 <div class="outline-text-4" id="text-rpi-pisnap">
 <p>
 This script is pretty simple.  It provides a way to capture one or more images outside of ImageJ/Fiji, but in a way compatible with the ImageJ/Fiji macros
@@ -2913,14 +2913,14 @@ $<span style="color: #7fffd4;">DACMD</span>
 </div>
 
 <div id="outline-container-rpi-imagej" class="outline-4">
-<h4 id="rpi-imagej"><span class="section-number-4">8.4.2.</span> ImageJ/Fiji Toolset/Macros</h4>
+<h4 id="rpi-imagej"><span class="section-number-4">8.4.2</span> ImageJ/Fiji Toolset/Macros</h4>
 <div class="outline-text-4" id="text-rpi-imagej">
 <p>
 The code below provides an ImageJ/Fiji toolset.  You activate the tool set via the toolset menu:
 </p>
 
 
-<div id="org356c7f3" class="figure">
+<div id="orgae3fd7c" class="figure">
 <p><img src="toolsetmenu_800.gif" alt="toolsetmenu_800.gif" align="center" />
 </p>
 </div>
@@ -2930,7 +2930,7 @@ Once activated, it will add four buttons to the toolbar:
 </p>
 
 
-<div id="org3f4cd03" class="figure">
+<div id="orga66f7e6" class="figure">
 <p><img src="toolsetbuttons_800.gif" alt="toolsetbuttons_800.gif" align="center" />
 </p>
 </div>
@@ -2944,17 +2944,18 @@ Button Functions:
 </dl>
 
 
-<div id="org88740d2" class="figure">
+<div id="org17992cd" class="figure">
 <p><img src="dialog-settings.gif" alt="dialog-settings.gif" align="center" />
 </p>
 </div>
 
 <ul class="org-ul">
 <li>Turn on/off debugging</li>
-<li>Turn on/off live preview before a capture</li>
+<li>Turn on/off live video preview before a capture</li>
 <li>Turn on/off asking for settings for each capture &#x2013; essentially pops up the settings dialog box everything the capture button is hit</li>
 <li>Turn on/off running the set image scale tool after each capture if the image scale is not already set</li>
-<li>Set captured image scale (100% 0r 50%)</li>
+<li>Set captured image scale (100% or 50%)</li>
+<li>Set the scale factor for the live video preview</li>
 <li>Set captured image format (jpg or png)</li>
 </ul>
 <dl class="org-dl">
@@ -2963,7 +2964,7 @@ Button Functions:
 </dl>
 
 
-<div id="org6d0fe08" class="figure">
+<div id="org0e5f1f7" class="figure">
 <p><img src="dialog-setscale.gif" alt="dialog-setscale.gif" align="center" />
 </p>
 </div>
@@ -2985,8 +2986,9 @@ the fact.</li>
 <span style="color: #63b8ff;">var</span> <span style="color: #7fffd4;">gbl_ALL_piDebug</span>   = <span style="color: #8470ff; font-weight: bold;">false</span>;                    <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">RPI-CODE</span>
 <span style="color: #63b8ff;">var</span> <span style="color: #7fffd4;">gbl_pic_doSet</span>     = <span style="color: #8470ff; font-weight: bold;">false</span>;                    <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">RPI-CODE</span>
 <span style="color: #63b8ff;">var</span> <span style="color: #7fffd4;">gbl_pic_ifmt</span>      = <span style="color: #fa8072;">"jpg"</span>;                    <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">RPI-CODE</span>
+<span style="color: #63b8ff;">var</span> <span style="color: #7fffd4;">gbl_pic_pviewDo</span>   = <span style="color: #8470ff; font-weight: bold;">true</span>;                     <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">RPI-CODE</span>
+<span style="color: #63b8ff;">var</span> <span style="color: #7fffd4;">gbl_pic_pviewScl</span>  = 4;                        <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">RPI-CODE</span>
 <span style="color: #63b8ff;">var</span> <span style="color: #7fffd4;">gbl_pic_res</span>       = <span style="color: #fa8072;">"100%"</span>;                   <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">RPI-CODE</span>
-<span style="color: #63b8ff;">var</span> <span style="color: #7fffd4;">gbl_pic_wPreview</span>  = <span style="color: #8470ff; font-weight: bold;">true</span>;                     <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">RPI-CODE</span>
 <span style="color: #63b8ff;">var</span> <span style="color: #7fffd4;">gbl_ssm_aux</span>       = <span style="color: #fa8072;">"0.63"</span>;                   <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">RPI-CODE</span>
 <span style="color: #63b8ff;">var</span> <span style="color: #7fffd4;">gbl_ssm_cam</span>       = <span style="color: #fa8072;">"RPI"</span>;                    <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">RPI-CODE</span>
 <span style="color: #63b8ff;">var</span> <span style="color: #7fffd4;">gbl_ssm_gbl</span>       = <span style="color: #8470ff; font-weight: bold;">false</span>;                    <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">RPI-CODE</span>
@@ -3019,9 +3021,6 @@ macro <span style="color: #fa8072;">"Open Last RPI Capture(s) Action Tool - Cc11
 <span style="color: #ffa500;">////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////</span>
 <span style="color: #ffa500;">////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////</span>
 <span style="color: #ffa500;">////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////</span>
-<span style="color: #ffa500;">/// </span><span style="color: #ff7f24;">RPI Functions</span>
-<span style="color: #ffa500;">////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////</span>
-<span style="color: #ffa500;">////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////</span>
 <span style="color: #ffa500;">////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////</span>
 
 <span style="color: #ffa500;">////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////</span>
@@ -3029,19 +3028,21 @@ macro <span style="color: #fa8072;">"Open Last RPI Capture(s) Action Tool - Cc11
 <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">RPI-CODE</span>
 <span style="color: #63b8ff;">function</span> <span style="color: #00fa9a; font-weight: bold;">configureRPI</span>() {
   Dialog.create(<span style="color: #fa8072;">"Configure RPI Settings"</span>);
-  Dialog.addChoice(<span style="color: #fa8072;">"Image Format:"</span>, newArray(<span style="color: #fa8072;">"jpg"</span>, <span style="color: #fa8072;">"png"</span>), gbl_pic_ifmt);
-  Dialog.addChoice(<span style="color: #fa8072;">"Image Resolution:"</span>, newArray(<span style="color: #fa8072;">"100%"</span>, <span style="color: #fa8072;">"50%"</span>), gbl_pic_res);
-  Dialog.addCheckbox(<span style="color: #fa8072;">"Change settings before capture"</span>, gbl_pic_doSet);
-  Dialog.addCheckbox(<span style="color: #fa8072;">"Set scale after capture"</span>, gbl_ALL_doScl);
-  Dialog.addCheckbox(<span style="color: #fa8072;">"Preview before capture"</span>, gbl_pic_wPreview);
-  Dialog.addCheckbox(<span style="color: #fa8072;">"Debuging"</span>,               gbl_ALL_piDebug);
+  Dialog.addChoice(<span style="color: #fa8072;">"Image Format:"</span>, newArray(<span style="color: #fa8072;">"jpg"</span>, <span style="color: #fa8072;">"png"</span>),              gbl_pic_ifmt);
+  Dialog.addChoice(<span style="color: #fa8072;">"Image Size:"</span>, newArray(<span style="color: #fa8072;">"100%"</span>, <span style="color: #fa8072;">"50%"</span>),               gbl_pic_res);
+  Dialog.addChoice(<span style="color: #fa8072;">"Preview Scale (1/n):"</span>, newArray(<span style="color: #fa8072;">"1"</span>, <span style="color: #fa8072;">"2"</span>, <span style="color: #fa8072;">"4"</span>, <span style="color: #fa8072;">"8"</span>), gbl_pic_pviewScl);
+  Dialog.addCheckbox(<span style="color: #fa8072;">"Change settings before capture"</span>,                   gbl_pic_doSet);
+  Dialog.addCheckbox(<span style="color: #fa8072;">"Set scale after capture/load"</span>,                     gbl_ALL_doScl);
+  Dialog.addCheckbox(<span style="color: #fa8072;">"Video preview before capture"</span>,                     gbl_pic_pviewDo);
+  Dialog.addCheckbox(<span style="color: #fa8072;">"Debuging"</span>,                            gbl_ALL_piDebug);
   Dialog.show();
 
-  gbl_pic_ifmt     = Dialog.getChoice();  
-  gbl_pic_res      = Dialog.getChoice();  
+  gbl_pic_ifmt     = Dialog.getChoice();
+  gbl_pic_res      = Dialog.getChoice();
+  gbl_pic_pviewScl = Dialog.getChoice();
   gbl_pic_doSet    = Dialog.getCheckbox();
   gbl_ALL_doScl    = Dialog.getCheckbox();
-  gbl_pic_wPreview = Dialog.getCheckbox();
+  gbl_pic_pviewDo  = Dialog.getCheckbox();
   gbl_ALL_piDebug  = Dialog.getCheckbox();
 }
 
@@ -3052,13 +3053,13 @@ macro <span style="color: #fa8072;">"Open Last RPI Capture(s) Action Tool - Cc11
   <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Make sure we have libcamera-still installed -- if we don't, then we are probably</span>
   <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">not running on a RPI..</span>
   <span style="color: #00ffff;">if</span> (!(File.exists(<span style="color: #fa8072;">"/usr/bin/libcamera-still"</span>))) {
-    exit(<span style="color: #fa8072;">"Could not find /usr/bin/libcamera-still!"</span>);
+    exit(<span style="color: #fa8072;">"ERROR(captureImageFromRPI): Could not find /usr/bin/libcamera-still!"</span>);
   }
 
   <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Make sure we can find the user home directory</span>
   piImagePath = getDirectory(<span style="color: #fa8072;">"home"</span>);
   <span style="color: #00ffff;">if</span> (!(File.exists(piImagePath))) {
-    exit(<span style="color: #fa8072;">"Could not find home directory!"</span>);
+    exit(<span style="color: #fa8072;">"ERROR(captureImageFromRPI): Could not find home directory!"</span>);
   }
 
   <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Look for ~/Pictures.  Try to create it if it is missing.</span>
@@ -3067,7 +3068,7 @@ macro <span style="color: #fa8072;">"Open Last RPI Capture(s) Action Tool - Cc11
     print(<span style="color: #fa8072;">"Attempting to create directory: "</span> + piImagePath);
     File.makeDirectory(piImagePath);
     <span style="color: #00ffff;">if</span> (!(File.exists(piImagePath))) {
-      exit(<span style="color: #fa8072;">"Directory creation failed: "</span> + piImagePath);
+      exit(<span style="color: #fa8072;">"ERROR(captureImageFromRPI): Directory creation failed: "</span> + piImagePath);
     }
   }
 
@@ -3077,13 +3078,13 @@ macro <span style="color: #fa8072;">"Open Last RPI Capture(s) Action Tool - Cc11
     print(<span style="color: #fa8072;">"Attempting to create directory: "</span> + piImagePath);
     File.makeDirectory(piImagePath);
     <span style="color: #00ffff;">if</span> (!(File.exists(piImagePath))) {
-      exit(<span style="color: #fa8072;">"Directory creation failed: "</span> + piImagePath);
+      exit(<span style="color: #fa8072;">"ERROR(captureImageFromRPI): Directory creation failed: "</span> + piImagePath);
     }
   }
 
   <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Check again that piImagePath really exists...</span>
   <span style="color: #00ffff;">if</span> (!(File.exists(piImagePath))) {
-    exit(<span style="color: #fa8072;">"Could not find/create image directory: "</span> + piImagePath);
+    exit(<span style="color: #fa8072;">"ERROR(captureImageFromRPI): Could not find/create image directory: "</span> + piImagePath);
   }
 
   <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Ask for camera settings</span>
@@ -3101,27 +3102,31 @@ macro <span style="color: #fa8072;">"Open Last RPI Capture(s) Action Tool - Cc11
   }
 
   resOpt = <span style="color: #fa8072;">""</span>;
-  <span style="color: #00ffff;">if</span> (gbl_pic_res == <span style="color: #fa8072;">"50%"</span>) 
+  <span style="color: #00ffff;">if</span> (gbl_pic_res == <span style="color: #fa8072;">"50%"</span>)
     resOpt = <span style="color: #fa8072;">"--width 2028 --height 1520"</span>;
 
   <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Run libcamera-still</span>
-  <span style="color: #00ffff;">if</span> (gbl_pic_wPreview) {
+  <span style="color: #00ffff;">if</span> (gbl_pic_pviewDo) {
     procList = exec(<span style="color: #fa8072;">"/bin/bash"</span>, <span style="color: #fa8072;">"-c"</span>, <span style="color: #fa8072;">"ps -eo cmd | grep '^ *libcamera-still'"</span>);
-    <span style="color: #00ffff;">if</span> (lengthOf(procList) &gt; 10) 
-      exit(<span style="color: #fa8072;">"ERROR: libcamera-still is already running.  Close it first"</span>);
+    <span style="color: #00ffff;">if</span> (lengthOf(procList) &gt; 10)
+      exit(<span style="color: #fa8072;">"ERROR(captureImageFromRPI): libcamera-still is already running.  Close it first"</span>);
 
-    pid = exec(<span style="color: #fa8072;">"/bin/bash"</span>, <span style="color: #fa8072;">"-c"</span>, <span style="color: #fa8072;">"libcamera-still -t 0 -s "</span> + resOpt + <span style="color: #fa8072;">" -e "</span> + gbl_pic_ifmt + <span style="color: #fa8072;">" -o '"</span> + piImageFullFileName + <span style="color: #fa8072;">"' &gt;/dev/null 2&gt;&amp;1 &amp; echo $!"</span>, <span style="color: #fa8072;">"&amp;"</span>);
+    psv = parseInt(gbl_pic_pviewScl);
+    pww = round(4056/psv);
+    pwh = round(3040/psv);
+
+    pid = exec(<span style="color: #fa8072;">"/bin/bash"</span>, <span style="color: #fa8072;">"-c"</span>, <span style="color: #fa8072;">"libcamera-still -t 0"</span> + <span style="color: #fa8072;">" -p 0,0,"</span> + pww + <span style="color: #fa8072;">","</span> + pwh + <span style="color: #fa8072;">" -s "</span> + resOpt + <span style="color: #fa8072;">" -e "</span> + gbl_pic_ifmt + <span style="color: #fa8072;">" -o '"</span> + piImageFullFileName + <span style="color: #fa8072;">"' &gt;/dev/null 2&gt;&amp;1 &amp; echo $!"</span>, <span style="color: #fa8072;">"&amp;"</span>);
 
     pid = String.trim(pid);
 
     <span style="color: #00ffff;">if</span> ( !(matches(pid, <span style="color: #fa8072;">"(^[0-9][0-9]*$)"</span>)))
-      exit(<span style="color: #fa8072;">"ERROR: Can't get PID of libcamera-still process -- it may not have started!"</span>);
+      exit(<span style="color: #fa8072;">"ERROR(captureImageFromRPI): Can't get PID of libcamera-still process -- it may not have started!"</span>);
 
     waitForUser(<span style="color: #fa8072;">"RPI Capture"</span>, <span style="color: #fa8072;">"Click OK to Capture Image"</span>);
 
     procList = exec(<span style="color: #fa8072;">"/bin/bash"</span>, <span style="color: #fa8072;">"-c"</span>, <span style="color: #fa8072;">"ps -eo pid,cmd | grep '^ *"</span> + pid + <span style="color: #fa8072;">"  *libcamera-still'"</span>);
-    <span style="color: #00ffff;">if</span> (lengthOf(procList) &lt; 10) 
-      exit(<span style="color: #fa8072;">"ERROR: Unable to trigger capture (Can't find libcamera-still process)!"</span>);
+    <span style="color: #00ffff;">if</span> (lengthOf(procList) &lt; 10)
+      exit(<span style="color: #fa8072;">"ERROR(captureImageFromRPI): Unable to trigger capture (Can't find libcamera-still process)!"</span>);
     showStatus(<span style="color: #fa8072;">"Waiting for capture process"</span>);
     exec(<span style="color: #fa8072;">"/bin/bash"</span>, <span style="color: #fa8072;">"-c"</span>, <span style="color: #fa8072;">"kill -SIGUSR1 "</span> + pid);
     c=1;
@@ -3135,15 +3140,15 @@ macro <span style="color: #fa8072;">"Open Last RPI Capture(s) Action Tool - Cc11
   } <span style="color: #00ffff;">else</span> {
     exec(<span style="color: #fa8072;">"libcamera-still -t 1 -n -q 100 "</span> + resOpt + <span style="color: #fa8072;">" -e "</span> + gbl_pic_ifmt + <span style="color: #fa8072;">" -o "</span> + piImageFullFileName);
   }
-    
+
   <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">If we got an image, then we load it</span>
   <span style="color: #00ffff;">if</span> (File.exists(piImageFullFileName)) {
     open(piImageFullFileName);
     <span style="color: #00ffff;">if</span> (gbl_ALL_doScl)
-      <span style="color: #00ffff;">if</span> ( !(isImageScaled))
+      <span style="color: #00ffff;">if</span> ( !(isImageScaled()))
         setScaleForMicrograph();
   } <span style="color: #00ffff;">else</span> {
-    exit(<span style="color: #fa8072;">"Image file not found!: "</span> + piImageFullFileName);
+    exit(<span style="color: #fa8072;">"ERROR(captureImageFromRPI): Image file not found!: "</span> + piImageFullFileName);
   }
 }
 
@@ -3153,24 +3158,28 @@ macro <span style="color: #fa8072;">"Open Last RPI Capture(s) Action Tool - Cc11
 <span style="color: #63b8ff;">function</span> <span style="color: #00fa9a; font-weight: bold;">getImageLastRPI</span>() {
   piFilesDir = String.join(newArray(getDirectory(<span style="color: #fa8072;">"home"</span>), <span style="color: #fa8072;">"Pictures"</span>, <span style="color: #fa8072;">"pi-cam"</span>), File.separator);
   <span style="color: #00ffff;">if</span> ( piFilesDir == <span style="color: #fa8072;">"-"</span>) {
-    exit(<span style="color: #fa8072;">"Unable to locate pi-cam images directory: "</span> + piFilesDir);
+    exit(<span style="color: #fa8072;">"ERROR(getImageLastRPI): Unable to locate pi-cam images directory: "</span> + piFilesDir);
   }
 
-  <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">List of captured files</span>
+  <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">List of files in pi-cam directory</span>
   files = getFileList(piFilesDir);
+  <span style="color: #00ffff;">if</span> ( files.length == 0)
+    exit(<span style="color: #fa8072;">"ERROR(getImageLastRPI): No files found in pi-cam images directory: "</span> + piFilesDir);
 
-  <span style="color: #00ffff;">if</span> ( files.length == 0) {
-    exit(<span style="color: #fa8072;">"No files found in pi-cam images directory: "</span> + piFilesDir);
-  }
+  <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Filter out non-image files</span>
+  files = Array.filter(files, <span style="color: #fa8072;">"(\\.(png|jpg)$)"</span>);
+  <span style="color: #00ffff;">if</span> ( files.length == 0)
+    exit(<span style="color: #fa8072;">"ERROR(getImageLastRPI): No image files found in pi-cam images directory: "</span> + piFilesDir);
 
-  <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Figure out last file captured</span>
+  <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Sort file list</span>
   files = Array.sort(files);
-  <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">TODO: Should filter the array at this point -- i.e. only use files that match RE</span>
+
+  <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Find last file</span>
   lastFile = files[lengthOf(files)-1];
 
   open(String.join(newArray(piFilesDir, lastFile), File.separator));
   <span style="color: #00ffff;">if</span> (gbl_ALL_doScl)
-    <span style="color: #00ffff;">if</span> ( !(isImageScaled))
+    <span style="color: #00ffff;">if</span> ( !(isImageScaled()))
       setScaleForMicrograph();
 }
 
@@ -3178,6 +3187,9 @@ macro <span style="color: #fa8072;">"Open Last RPI Capture(s) Action Tool - Cc11
 <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">Set image scale for RPI Microscope Camera</span>
 <span style="color: #ffa500;">// </span><span style="color: #ff7f24;">RPI-CODE</span>
 <span style="color: #63b8ff;">function</span> <span style="color: #00fa9a; font-weight: bold;">setScaleForMicrograph</span>() {
+
+  <span style="color: #00ffff;">if</span> (nImages == 0)
+    exit(<span style="color: #fa8072;">"ERROR(setScaleForMicrograph): No open images found!"</span>);
 
   Dialog.create(<span style="color: #fa8072;">"Set Scale for Stereo Microscope Photograph"</span>);
   Dialog.addChoice(<span style="color: #fa8072;">"Microscope:"</span>, newArray(<span style="color: #fa8072;">"Leica S8API"</span>),   <span style="color: #fa8072;">"Leica S8API"</span>);
@@ -3270,8 +3282,8 @@ macro <span style="color: #fa8072;">"Open Last RPI Capture(s) Action Tool - Cc11
 </div>
 </div>
 
-<div id="outline-container-org3f877db" class="outline-2">
-<h2 id="org3f877db"><span class="section-number-2">9.</span> EOF</h2>
+<div id="outline-container-org05d38b2" class="outline-2">
+<h2 id="org05d38b2"><span class="section-number-2">9</span> EOF</h2>
 <div class="outline-text-2" id="text-9">
 <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
@@ -3282,7 +3294,7 @@ macro <span style="color: #fa8072;">"Open Last RPI Capture(s) Action Tool - Cc11
 </div>
 </div>
 <div id="postamble" class="status">
-Created by Mitch Richling <<a href="mailto:http://www.mitchr.me/">http://www.mitchr.me/</a>>.  Rendered on 2021-11-21 Sun 17:51 via <a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="https://orgmode.org">Org</a> mode 9.4.6)
+Created by Mitch Richling <<a href="mailto:http://www.mitchr.me/">http://www.mitchr.me/</a>>.  Rendered on 2021-11-25 Thu 16:14 via <a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="https://orgmode.org">Org</a> mode 9.4.4)
 </div>
 </body>
 </html>
