@@ -336,10 +336,6 @@ convert toolsetbutton-capture.png  -resize 55x toolsetbutton-capture.gif
 convert toolsetbutton-load.png     -resize 55x toolsetbutton-load.gif
 convert toolsetbutton-scale.png    -resize 55x toolsetbutton-scale.gif
 convert toolsetbutton-settings.png -resize 55x toolsetbutton-settings.gif
-
-rm dialog-*.gif
-convert dialog-setscale.png -resize 300x dialog-setscale.gif
-convert dialog-settings.png -resize 300x dialog-settings.gif
 #+end_src
 
 ** Attaching Cameras
@@ -966,21 +962,29 @@ Button Functions:
  - file:toolsetbutton-capture.gif   :: Capture, ssave, and open an image from the camera.  Images are stored in the same location, and with the same file name conventions, used by =piSnap.sh=.
  - file:toolsetbutton-settings.gif  :: Change some configuration options 
 
-#+ATTR_HTML: :align center
+#+ATTR_HTML: :align center :width 400px
 file:dialog-settings.gif
 
-   - Turn on/off debugging
-   - Turn on/off live video preview before a capture
-   - Turn on/off asking for settings for each capture -- essentially pops up the settings dialog box everything the capture button is hit
-   - Turn on/off running the set image scale tool after each capture if the image scale is not already set
+   - Specify a group for the captured image filenames.  See [[#rpi-pisnap][=piSnap=]] for filename details.
+   - Specify an annotation for the captured image filenames.  See [[#rpi-pisnap][=piSnap=]] for filename details.
+   - Set captured image format (jpg or png)
    - Set captured image scale (100% or 50%)
    - Set the scale factor for the live video preview
-   - Set captured image format (jpg or png)
+   - Turn on/off asking for settings for each capture -- essentially pops up the settings dialog box everything the capture button is hit
+   - Turn on/off repeated capture mode -- repeatedly captures images.  Most useful if a group is set.
+   - Turn on/off live video preview before a capture.
+   - Turn on/off loading images after capture.
+   - Turn on/off running the set image scale tool after each capture if the image scale is not already set
+   - Turn on/off debugging
 
- - file:toolsetbutton-load.gif      :: Load last capture(s) from camera using the ImageJ/Fiji macro above or the =piSnap.sh= script.  If the last capture session with =piSnap.sh= captured multiple images, then *all* of them will be loaded.
+ - file:toolsetbutton-load.gif      :: Load previous capture(s) from camera using the ImageJ/Fiji macro above or the =piSnap.sh= script.  
+
+#+ATTR_HTML: :align center :width 400px
+file:dialog-loadOld.gif
+
  - file:toolsetbutton-scale.gif     :: Set image scale based upon microscope settings.  This script contains hardwired settings for my specific microscope and lenses, and may require modification for your microscope.
 
-#+ATTR_HTML: :align center
+#+ATTR_HTML: :align center :width 400px
 file:dialog-setscale.gif
 
    - The choice of microscope enables a calibration correction factor in the final computation

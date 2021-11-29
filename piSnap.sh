@@ -32,30 +32,49 @@
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------
 read -r -d '' HELPT <<EOF
 
-Take one (or more) snapshot(s) using the Raspberry Pi HQ Camera and save them off in a standard way
+Take a snapshot using the Raspberry Pi HQ Camera and save it in a standard way
 
-Use: piSnap.sh [options] [file-annotation]
-       Options: -p      Preview only.  No images are captured. All other arguments are ignored
-                -k      Show a preview, and capture when [enter] is pressed.  
-                        Without the -k option an image is immediatly captured with no preview
-                -s      Show image after capture with nomacs (my favorite lightweight image viewer)
-                -v      Verbose mode
-                -f      Fake Capture Mode -- don't run libcamera-still, but fake it with convert
-                        Used for debugging.  Most useful when combined with -v.
-                -b BIN  Full path to the libcamera-still binary
-                        Default: /usr/bin/libcamera-still
-                -d DIR  Directory to store captured images.  
-                        Default: $HOME/Pictures/pi-cam
-                        Note: The related ImageJ/Fiji macro expects the default value!
-                -e ENC  File format: jpg, bmp, gif, png, rgb
-                        Default: jpg
-       Annotation
-           The file-annotation argument is translated automatically into something suitable for a 
-           file name.  White space and non-printable characters are converted to underscores.  
-           Multiple underscores are reduced to a single underscore.
-       File Names
-           Image names are like: YYYYMMDDHHMMSS-ANNOTATION.ENC
-
+Use: piSnap.sh [options]
+  Options:
+    -p        Preview!  No images are captured. Other arguments are ignored
+    -k        Show a preview, and capture when [enter] is pressed.  
+              Without -k an image is immediatly captured with no preview
+    -s        Show image after capture with nomacs
+    -a ANNO   Annotation
+    -g GROUP  Group name -- used for grouping similar captures
+              Adds a "_GROUP-NNN" component to the captured filename where
+              GROUP is the group name provided on the command line and NNN
+              is a zero padded integer index.  If the previous capture has
+              a diffrent group name, then the current capture will have a
+              fresh time stamp in the name and an index of 001.  If the
+              previous capture has the same group name, then the current
+              capture will reuse the time stamp in the name and an index
+              incremented by 1.
+    -v        Verbose mode
+    -f        Fake Capture Mode that uses convert instead of libcamera-still
+              Used for debugging.  Most useful when combined with -v.
+    -b BIN    Full path to the libcamera-still binary
+              Default: /usr/bin/libcamera-still
+    -d DIR    Directory to store captured images.  
+              Default: $HOME/Pictures/pi-cam
+              Note: The related ImageJ/Fiji macro expects the default value!
+    -e ENC    File format: jpg, bmp, gif, png, rgb
+              Default: jpg
+  File Names
+    Image names are like: YYYYMMDDHHMMSS_GROUP-ANNOTATION.ENC
+                          |              |     |
+                          |              |     File Annoation
+                          |              Group Name
+                          date/time stamp
+      - The "_GROUP" component of the name will not be pressent 
+        if the -g option was not provided.
+      - The "-ANNOTATION" component of the name will not be pressent 
+        if the -a option was not provided.
+      - The -a and -g arguments are translated automatically into
+        something suitable:  
+          - Non-alphanumeric characters are converted to underscores.  
+          - Leading underscores and dashes are removed
+          - The -g argument has all dashes removed
 EOF
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -64,6 +83,8 @@ SHOW='N'
 WKEY='N'
 VERB='N'
 PREVIEW='N'
+GROUP=''
+OGROUP=''
 ANNOT=''
 OANNOT=''
 ODIR="$HOME/Pictures/pi-cam"
@@ -71,8 +92,10 @@ IENC='jpg'
 RASPISP='/usr/bin/libcamera-still'
 while [[ "$1" = -* ]]; do
    case "$1" in
-    -k ) WKEY='Y';                                             ;; # Capture multiple images
+    -k ) WKEY='Y';                                              ;; # Capture multiple images
     -d ) ODIR="$2"; shift;                                      ;; # Output directory
+    -g ) OGROUP="$2"; shift;                                    ;; # Group name
+    -a ) OANNOT="$2"; shift;                                    ;; # Annotation
     -v ) VERB='Y';                                              ;; # Verbose mode
     -f ) FAKE_CAP='Y';                                          ;; # Fake Capture mode
     -e ) IENC="$2"; shift;                                      ;; # Output image format
@@ -83,9 +106,12 @@ while [[ "$1" = -* ]]; do
    esac
    shift;
 done
-if [ -n "$1" ]; then
-  OANNOT="$1"
-  ANNOT="-"`echo -n "$OANNOT" | tr -sc '[[:graph:]]' '_'`
+if [ -n "$OANNOT" ]; then
+  OANNOT="$OANNOT"
+  ANNOT=`echo -n "$OANNOT" | tr -sc '[[:graph:]]' '_' |                 sed 's/[-_]*$//' | sed 's/^[-_]*//' `
+fi
+if [ -n "$OGROUP" ]; then
+  GROUP=`echo -n "$OGROUP" | tr -sc '[[:graph:]]' '_' | tr -s '-' '_' | sed 's/[-_]*$//' | sed 's/^[-_]*//' `
 fi
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -95,6 +121,9 @@ if [ "$VERB" = 'Y' ]; then
   echo "DEBUG: PREVIEW  $PREVIEW  "
   echo "DEBUG: ANNOT    $ANNOT    "
   echo "DEBUG: OANNOT   $OANNOT   "
+  echo "DEBUG: GROUP    $GROUP    "
+  echo "DEBUG: OGROUP   $OGROUP   "
+  echo "DEBUG: WIDTH    $WIDTH    "
   echo "DEBUG: ODIR     $ODIR     " 
   echo "DEBUG: IENC     $IENC     "
 fi    
@@ -154,7 +183,14 @@ else
   if [ "$IENC" = "jpg" ]; then
     DACMD="$DACMD -q 100"
   fi
-  OFILE=$ODIR'/'`date '+%Y%m%d%H%M%S'`${ANNOT}'.'$IENC
+  OFILE=$ODIR'/'`date '+%Y%m%d%H%M%S'`
+  if [ -n "$GROUP" ]; then
+    OFILE=${OFILE}'_'${GROUP}
+  fi
+  if [ -n "$ANNOT" ]; then
+    OFILE=${OFILE}'-'${ANNOT}
+  fi
+  OFILE=${OFILE}'.'$IENC
   DACMD="$DACMD -e $IENC -o $OFILE"
 fi
 if [ "$VERB" = 'Y' ]; then                     
