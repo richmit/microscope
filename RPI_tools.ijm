@@ -25,6 +25,7 @@ var gbl_ssm_res       = false;                    // RPI-CODE
 var gbl_ssm_scope     = "Leica S8API";            // RPI-CODE
 var gbl_ssm_vobj      = "0.32";                   // RPI-CODE
 var gbl_ssm_zoom      = "1.00";                   // RPI-CODE
+var gbl_vid_pviewScl  = "1";                      // RPI-CODE
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -37,6 +38,10 @@ macro "Capture From RPI Camera Action Tool - Cc11 F06fa F16fa F4472 F6333 Ld2e3 
 
 macro "Setup RPI Camera Action Tool - Cc11 F06fa F16fa F4472 F6333 C000 T5f14s" {
   configureRPI();
+}
+
+macro "Live RPI Video Preview Action Tool - Cc11 L7730 L77f0 F26d9 Cfff F4993 F5875" {
+  videoPreviewFromRPI();
 }
 
 macro "Set Scale Action Tool - Cc11 L1cfc L1a1e Lfafe L8b8d L5b5d Lbbbd T4707R T9707P Te707I" {
@@ -59,17 +64,18 @@ function configureRPI() {
   do {
     needMoreData = false;
     Dialog.create("Configure RPI Capture Settings");
-    Dialog.addString("File group name:",                                   gbl_pic_group, 5);
-    Dialog.addString("File annotation:",                                   gbl_pic_anno,  15);
-    Dialog.addChoice("Image Format:", newArray("jpg", "png"),              gbl_pic_ifmt);
-    Dialog.addChoice("Image Size:", newArray("100%", "50%"),               gbl_pic_res);
-    Dialog.addChoice("Preview Scale (1/n):", newArray("1", "2", "4", "8"), gbl_pic_pviewScl);
-    Dialog.addCheckbox("Change settings before capture",                   gbl_pic_doSet);
-    Dialog.addCheckbox("Repeated capture mode",                            gbl_pic_repeat);
-    Dialog.addCheckbox("Video preview before capture",                     gbl_pic_pviewDo);
-    Dialog.addCheckbox("Load image after capture",                         gbl_pic_loadem);
-    Dialog.addCheckbox("Set scale after capture/load",                     gbl_ALL_doScl);
-    Dialog.addCheckbox("Debuging",                                         gbl_ALL_debug);
+    Dialog.addString("File group name:",                                           gbl_pic_group, 5);
+    Dialog.addString("File annotation:",                                           gbl_pic_anno,  15);
+    Dialog.addChoice("Image Format:", newArray("jpg", "png"),                      gbl_pic_ifmt);
+    Dialog.addChoice("Image Size:", newArray("100%", "50%"),                       gbl_pic_res);
+    Dialog.addChoice("Capture Preview Scale (1/n):", newArray("1", "2", "4", "8"), gbl_pic_pviewScl);
+    Dialog.addChoice("Live Video Scale (1/n):", newArray("1", "2", "4", "8"),      gbl_vid_pviewScl);
+    Dialog.addCheckbox("Change settings before capture",                           gbl_pic_doSet);
+    Dialog.addCheckbox("Repeated capture mode",                                    gbl_pic_repeat);
+    Dialog.addCheckbox("Video preview before capture",                             gbl_pic_pviewDo);
+    Dialog.addCheckbox("Load image after capture",                                 gbl_pic_loadem);
+    Dialog.addCheckbox("Set scale after capture/load",                             gbl_ALL_doScl);
+    Dialog.addCheckbox("Debugging",                                                gbl_ALL_debug);
 
     Dialog.show();
     gbl_pic_group    = Dialog.getString();
@@ -77,6 +83,7 @@ function configureRPI() {
     gbl_pic_ifmt     = Dialog.getChoice();
     gbl_pic_res      = Dialog.getChoice();
     gbl_pic_pviewScl = Dialog.getChoice();
+    gbl_vid_pviewScl = Dialog.getChoice();
     gbl_pic_doSet    = Dialog.getCheckbox();
     gbl_pic_repeat   = Dialog.getCheckbox();
     gbl_pic_pviewDo  = Dialog.getCheckbox();
@@ -92,6 +99,42 @@ function configureRPI() {
       needMoreData = true;
     }
   } while (needMoreData);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Live video preview
+// RPI-CODE
+function videoPreviewFromRPI() {
+  // Make sure we have libcamera-still installed -- if we don't, then we are probably
+  // not running on a RPI..
+  if (gbl_pic_useCam)
+    if (!(File.exists("/usr/bin/libcamera-still")))
+      exit("ERROR(captureImageFromRPI): Could not find /usr/bin/libcamera-still!");
+
+  if (gbl_pic_useCam) {
+    pList = exec("/bin/bash", "-c", "ps -eo pid,comm | grep libcamera- | grep -v grep");
+    if (lengthOf(pList) > 10)
+      exit("ERROR(captureImageFromRPI): libcamera processes are already running!  Can't start video preview.\n\nProcess List:\n" + pList);
+  }
+
+  // Ask for camera settings
+  if (gbl_pic_doSet) {
+    Dialog.create("Configure RPI Live Video Settings");
+    Dialog.addChoice("Live Video Scale (1/n):", newArray("1", "2", "4", "8"), gbl_vid_pviewScl);
+    Dialog.addCheckbox("Change settings before capture",                      gbl_pic_doSet);
+    Dialog.show();
+    gbl_vid_pviewScl = Dialog.getChoice();
+    gbl_pic_doSet    = Dialog.getCheckbox();
+  }
+
+  psv = parseInt(gbl_vid_pviewScl);
+  pww = round(4056/psv);
+  pwh = round(3040/psv);
+
+  if (gbl_pic_useCam) {
+    setOption("WaitForCompletion", false);
+    exec("/usr/bin/libcamera-still", "-t", "0", "-p", "0,0," + pww + "," + pwh, "--info-text", "fps:%fps/exp:%exp/a_gain:%ag/d_gain:%dg/focus:%focus");
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -165,16 +208,19 @@ function captureImageFromRPI() {
 
     // Run libcamera-still
     if (gbl_pic_useCam) {
-      if (gbl_pic_pviewDo) {
-        procList = exec("/bin/bash", "-c", "ps -eo cmd | grep '^ *libcamera-still'");
-        if (lengthOf(procList) > 10)
-          exit("ERROR(captureImageFromRPI): libcamera-still is already running.  Close it first");
 
+      pList = exec("/bin/bash", "-c", "ps -eo pid,comm | grep libcamera- | grep -v grep");
+      while (lengthOf(pList) > 10) {
+        waitForUserWithCancel("ERROR(captureImageFromRPI)", "libcamera processes are running.  Please close them.\n\nProcess List:\n" + pList);
+        pList = exec("/bin/bash", "-c", "ps -eo pid,comm | grep libcamera- | grep -v grep");
+      }
+
+      if (gbl_pic_pviewDo) {
         psv = parseInt(gbl_pic_pviewScl);
         pww = round(4056/psv);
         pwh = round(3040/psv);
 
-        pid = exec("/bin/bash", "-c", "libcamera-still -t 0" + " -p 0,0," + pww + "," + pwh + " -s " + resOpt + " -e " + gbl_pic_ifmt + " -o '" + piImageFullFileName + "' >/dev/null 2>&1 & echo $!", "&");
+        pid = exec("/bin/bash", "-c", "libcamera-still -t 0 --info-text 'fps:%fps/exp:%exp/a_gain:%ag/d_gain:%dg/focus:%focus'" + " -p 0,0," + pww + "," + pwh + " -s " + resOpt + " -e " + gbl_pic_ifmt + " -o '" + piImageFullFileName + "' >/dev/null 2>&1 & echo $!", "&");
 
         pid = String.trim(pid);
 
@@ -183,7 +229,7 @@ function captureImageFromRPI() {
 
         showMessage("RPI Capture", "Click OK to Capture Image");
 
-        procList = exec("/bin/bash", "-c", "ps -eo pid,cmd | grep '^ *" + pid + "  *libcamera-still'");
+        procList = exec("/bin/bash", "-c", "ps -eo pid,comm | grep '^ *" + pid + "  *libcamera-still'");
         if (lengthOf(procList) < 10)
           exit("ERROR(captureImageFromRPI): Unable to trigger capture (Can't find libcamera-still process)!");
         showStatus("Waiting for capture process");
@@ -314,7 +360,7 @@ function getCaptureFileNamesRPI(groupName) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Return the filename for the most recient pi-cam capture.  See piSnap.sh filename conventions.
+// Return the filename for the most recent pi-cam capture.  See piSnap.sh filename conventions.
 // RPI-CODE
 function getCaptureRPI() {
   allGroups = getCaptureGroupsRPI();

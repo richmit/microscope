@@ -324,19 +324,6 @@ echo DONE
 #+end_src
 
 
-*** Converting screenshots to gif                                  :noexport:
-
-#+begin_src sh
-rm toolsetbuttons_800.gif toolsetmenu_800.gif
-convert toolsetbuttons.png -resize 800x toolsetbuttons_800.gif
-convert toolsetmenu.png    -resize 800x toolsetmenu_800.gif
-
-rm toolsetbutton-*.gif
-convert toolsetbutton-capture.png  -resize 55x toolsetbutton-capture.gif
-convert toolsetbutton-load.png     -resize 55x toolsetbutton-load.gif
-convert toolsetbutton-scale.png    -resize 55x toolsetbutton-scale.gif
-convert toolsetbutton-settings.png -resize 55x toolsetbutton-settings.gif
-#+end_src
 
 ** Attaching Cameras
 
@@ -950,13 +937,13 @@ provided below.  I use this script quite a lot to provide a live view of the cam
 
 The code below provides an ImageJ/Fiji toolset.  You activate the tool set via the toolset menu:
 
-#+ATTR_HTML: :align center
-file:toolsetmenu_800.gif
+#+ATTR_HTML: :align center :width 800
+file:toolsetmenu.gif
 
 Once activated, it will add four buttons to the toolbar:
 
-#+ATTR_HTML: :align center
-file:toolsetbuttons_800.gif
+#+ATTR_HTML: :align center :width 800
+file:toolsetbuttons.gif
 
 Button Functions:
  - file:toolsetbutton-capture.gif   :: Capture, ssave, and open an image from the camera.  Images are stored in the same location, and with the same file name conventions, used by =piSnap.sh=.
@@ -969,13 +956,22 @@ file:dialog-settings.gif
    - Specify an annotation for the captured image filenames.  See [[#rpi-pisnap][=piSnap=]] for filename details.
    - Set captured image format (jpg or png)
    - Set captured image scale (100% or 50%)
-   - Set the scale factor for the live video preview
+   - Set the scale factor for capture preview
+   - Set the scale factor for the live video feed
    - Turn on/off asking for settings for each capture -- essentially pops up the settings dialog box everything the capture button is hit
    - Turn on/off repeated capture mode -- repeatedly captures images.  Most useful if a group is set.
    - Turn on/off live video preview before a capture.
    - Turn on/off loading images after capture.
    - Turn on/off running the set image scale tool after each capture if the image scale is not already set
    - Turn on/off debugging
+
+ - file:toolsetbutton-video.gif      :: Live video feed from camera.  Note the scale setting for the live video feed is diffrent from the capture preview scale.
+
+If "Change Settings Before Capture" is set, then a simplified settings dialog box will appear before the video feed window.
+
+#+ATTR_HTML: :align center :width 400px
+file:dialog-settings-v.gif
+
 
  - file:toolsetbutton-load.gif      :: Load previous capture(s) from camera using the ImageJ/Fiji macro above or the =piSnap.sh= script.  
 
