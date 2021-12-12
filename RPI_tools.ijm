@@ -190,7 +190,7 @@ function captureImageFromRPI() {
     piImageFileName = makeDateString();
     // Construct filename: group
     if (gbl_pic_group != "")
-      piImageFileName = piImageFileName + "_" + gbl_pic_group;   
+      piImageFileName = piImageFileName + "_" + gbl_pic_group;
     // Construct filename: anno
     if (lengthOf(gbl_pic_anno)>0)
       piImageFileName = piImageFileName + "-" + gbl_pic_anno;
@@ -290,31 +290,22 @@ function getCaptureGroupsRPI() {
 
   // Transform to group names
   for(i=0; i<files.length; i++) {
-    if (matches(files[i], "(^.............._.*)")) {
-      tmp = indexOf(files[i], "-");
-      files[i] = substring(files[i], 15, tmp);
+    if (matches(files[i], "(^.............._..*[.-].*)")) {
+      grpEndIndex = indexOf(files[i], "-");
+      if (grpEndIndex < 0)
+        grpEndIndex = indexOf(files[i], ".");
+      files[i] = substring(files[i], 15, grpEndIndex);
     } else {
       files[i] = "_NONE_";
     }
   }
 
-  // Sort group list
+  // Sort group list & remove duplicates
   files = Array.sort(files);
-
-  // Replace duplicate group names with _
-  lastGrp = "";
-  for(i=0; i<files.length; i++) {
-  	if (files[i] == lastGrp)
-      files[i] = "_";
-  	else 
-      lastGrp = files[i];
-  }
-
-  // Filter out _ strings
-  files = Array.deleteValue(files, "_"); 
+  files = arrayRemoveDuplicates(files);
 
   // Find last file
-  return files;  
+  return files;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -410,9 +401,7 @@ function getCaptureRPI() {
 // Set image scale for RPI Microscope Camera
 // RPI-CODE
 function setScaleForMicrograph(freshFromCamera) {
-
-  if (nImages == 0)
-    exit("ERROR(setScaleForMicrograph): No open images found!");
+  exitIfNoImages("setScaleForMicrograph");
 
   Dialog.create("Set Scale for Stereo Microscope Photograph");
   Dialog.addChoice("Microscope:", newArray("Leica S8API"),   "Leica S8API");
@@ -501,4 +490,23 @@ function makeDateString() {
 function isImageScaled() {
   getPixelSize(pixelLengthUnit, pixelWidth, pixelHeight);
   return (is("global scale") || ( !(startsWith(pixelLengthUnit, "pixel"))) || (pixelHeight != 1));
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Takes a SORTED array, and returns a new array with duplicates removed
+// RPI-CODE
+function arrayRemoveDuplicates(anArray) {
+  dedupedArray = newArray(anArray.length);
+  dedupedArray[0] = anArray[0];
+  if (anArray.length > 1) {
+    j=0;
+    for(i=1; i<anArray.length; i++) {
+      if (dedupedArray[j] != anArray[i]) {
+        j++;
+        dedupedArray[j] = anArray[i];
+      }
+    }
+    dedupedArray = Array.slice(dedupedArray, 0, j+1);
+  }
+  return dedupedArray;
 }
