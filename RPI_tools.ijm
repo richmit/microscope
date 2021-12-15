@@ -61,6 +61,8 @@ macro "Open Previous RPI Capture(s) Action Tool - Cc11 L000f L0fff Lfff3 Lf363 L
 // Capture an image.  See piSnap.sh filename conventions.
 // RPI-CODE
 function configureRPI() {
+  if (gbl_ALL_debug)
+    print("FUNC: configureRPI");
   do {
     needMoreData = false;
     Dialog.create("Configure RPI Capture Settings");
@@ -105,6 +107,8 @@ function configureRPI() {
 // Live video preview
 // RPI-CODE
 function videoPreviewFromRPI() {
+  if (gbl_ALL_debug)
+    print("FUNC: videoPreviewFromRPI");
   // Make sure we have libcamera-still installed -- if we don't, then we are probably
   // not running on a RPI..
   if (gbl_pic_useCam)
@@ -121,7 +125,7 @@ function videoPreviewFromRPI() {
   if (gbl_pic_doSet) {
     Dialog.create("Configure RPI Live Video Settings");
     Dialog.addChoice("Live Video Scale (1/n):", newArray("1", "2", "4", "8"), gbl_vid_pviewScl);
-    Dialog.addCheckbox("Change settings before capture",                      gbl_pic_doSet);
+    Dialog.addCheckbox("Change settings before preview",                      gbl_pic_doSet);
     Dialog.show();
     gbl_vid_pviewScl = Dialog.getChoice();
     gbl_pic_doSet    = Dialog.getCheckbox();
@@ -141,6 +145,8 @@ function videoPreviewFromRPI() {
 // Capture an image.  See piSnap.sh filename conventions.
 // RPI-CODE
 function captureImageFromRPI() {
+  if (gbl_ALL_debug)
+    print("FUNC: captureImageFromRPI");
   needOne = true;
   while (needOne || gbl_pic_repeat) {
     needOne = false;
@@ -271,6 +277,8 @@ function captureImageFromRPI() {
 // Get a list of group names for captured files
 // RPI-CODE
 function getCaptureGroupsRPI() {
+  if (gbl_ALL_debug)
+    print("FUNC: getCaptureGroupsRPI");
   piFilesDir = String.join(newArray(getDirectory("home"), "Pictures", "pi-cam"), File.separator);
 
   // Make sure the pi-cam directory exists
@@ -313,6 +321,8 @@ function getCaptureGroupsRPI() {
 // "_ANY_" & "_NONE_" are special groups...
 // RPI-CODE
 function getCaptureFileNamesRPI(groupName) {
+  if (gbl_ALL_debug)
+    print("FUNC: getCaptureFileNamesRPI ", groupName);
   piFilesDir = String.join(newArray(getDirectory("home"), "Pictures", "pi-cam"), File.separator);
 
   // Make sure the pi-cam directory exists
@@ -338,7 +348,7 @@ function getCaptureFileNamesRPI(groupName) {
     if (files.length == 0)
       return files;
   } else if (lengthOf(groupName)>0) {
-    files = Array.filter(files, "(^.............._" + groupName + ".*)");
+    files = Array.filter(files, "(^.............._" + groupName + "[-.].*)");
     if (files.length == 0)
       return files;
   }
@@ -354,6 +364,8 @@ function getCaptureFileNamesRPI(groupName) {
 // Return the filename for the most recent pi-cam capture.  See piSnap.sh filename conventions.
 // RPI-CODE
 function getCaptureRPI() {
+  if (gbl_ALL_debug)
+    print("FUNC: getCaptureRPI");
   allGroups = getCaptureGroupsRPI();
   tmp = newArray(1);
   tmp[0] = "_ANY_";
@@ -374,7 +386,7 @@ function getCaptureRPI() {
   gbl_lil_which = Dialog.getChoice();
 
   files = getCaptureFileNamesRPI(gbl_lil_group);
-  len  = files.length;
+  len   = files.length;
   if (indexOf(gbl_lil_which, " ") > 0)
     num = parseInt(substring(gbl_lil_which, indexOf(gbl_lil_which, " ")+1));
   else
@@ -401,6 +413,8 @@ function getCaptureRPI() {
 // Set image scale for RPI Microscope Camera
 // RPI-CODE
 function setScaleForMicrograph(freshFromCamera) {
+  if (gbl_ALL_debug)
+    print("FUNC: setScaleForMicrograph ", freshFromCamera);
   exitIfNoImages("setScaleForMicrograph");
 
   Dialog.create("Set Scale for Stereo Microscope Photograph");
@@ -463,6 +477,8 @@ function setScaleForMicrograph(freshFromCamera) {
 // Takes an integer and returns a zero padded string
 // RPI-CODE
 function intToZeroPadString(anInt, width) {
+  if (gbl_ALL_debug)
+    print("FUNC: intToZeroPadString ", anInt, width);
   result = d2s(anInt, 0);
   while (lengthOf(result) < width) {
     result = "0" + result;
@@ -474,6 +490,8 @@ function intToZeroPadString(anInt, width) {
 // Returns a string for the current date/time YYYYMMDDhhmmss
 // RPI-CODE
 function makeDateString() {
+  if (gbl_ALL_debug)
+    print("FUNC: makeDateString");
   getDateAndTime(year, month, dayOfWeek, dayOfMonth, hour, minute, second, msec);
   dateBitVal = newArray(year, month+1, dayOfMonth, hour, minute, second);
   dateBitWid = newArray(4, 2, 2, 2, 2, 2);
@@ -488,6 +506,8 @@ function makeDateString() {
 // Check if image has scale.  If not, try to set it or query if RPI iamge.
 // RPI-CODE
 function isImageScaled() {
+  if (gbl_ALL_debug)
+    print("FUNC: isImageScaled");
   getPixelSize(pixelLengthUnit, pixelWidth, pixelHeight);
   return (is("global scale") || ( !(startsWith(pixelLengthUnit, "pixel"))) || (pixelHeight != 1));
 }
@@ -496,6 +516,8 @@ function isImageScaled() {
 // Takes a SORTED array, and returns a new array with duplicates removed
 // RPI-CODE
 function arrayRemoveDuplicates(anArray) {
+  if (gbl_ALL_debug)
+    print("FUNC: arrayRemoveDuplicates"); // TODO: deal with array values
   dedupedArray = newArray(anArray.length);
   dedupedArray[0] = anArray[0];
   if (anArray.length > 1) {
@@ -509,4 +531,25 @@ function arrayRemoveDuplicates(anArray) {
     dedupedArray = Array.slice(dedupedArray, 0, j+1);
   }
   return dedupedArray;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Exit a macro if no images are open
+// RPI-CODE
+function exitIfNoImages(srcStr) {
+  if (gbl_ALL_debug)
+    print("FUNC: exitIfNoImages ", srcStr);
+  if (nImages == 0)
+    exit("ERROR(" + srcStr + "): No open images found!");
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Like waitForUser() but has a cancel button (note: the docs say waitForUser has a cancel button... Bug?)
+// RPI-CODE
+function waitForUserWithCancel(title, message) {
+  if (gbl_ALL_debug)
+    print("FUNC: waitForUserWithCancel ", title, message);
+  Dialog.createNonBlocking(title);
+  Dialog.addMessage(message);
+  Dialog.show();
 }
