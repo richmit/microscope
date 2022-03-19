@@ -682,6 +682,9 @@ why not build my own?  It's just a tiny computer and a camera in a compact case 
 image analysis software (Fiji/ImageJ) right on the camera.  
 
 ** Bill Of Materials
+:PROPERTIES:
+:CUSTOM_ID: rpi-bom
+:END:
 
 #+CAPTION: Bill Of Materials
 #+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
@@ -737,14 +740,15 @@ mv ~/Fiji.app/jars/FilamentDetector-1.0.0.jar ~/Fiji.app/jars/FilamentDetector-1
 sudo ln -s ~/Fiji.app/ImageJ.sh /usr/bin/ImageJ
 #### Run Fiji and update *EVERYTHING*
 /usr/bin/ImageJ
-#### Clone the git repo
+#### Clone the git repos
 cd ~
 git clone 'https://github.com/richmit/microscope.git'
+git clone 'https://github.com/richmit/imagej.git'
 #### Link piSnap to /bin/
 sudo ln -s ~/microscope/piSnap.sh /usr/bin/piSnap
 chmod a+rx /usr/bin/piSnap
 ### Link the RPI_tools into Fiji
-ln -s ~/microscope/RPI_tools.ijm ~/Fiji.app/macros/toolsets/RPI_tools.ijm
+ln -s ~/imagej/PhilaJ-and-RPI_Tools/RPI_tools.ijm ~/Fiji.app/macros/toolsets/RPI_tools.ijm
 #+end_src
 
 *** My Configuration
@@ -854,9 +858,9 @@ mv ~/Fiji.app/jars/FilamentDetector-1.0.0.jar ~/Fiji.app/jars/FilamentDetector-1
 #### Run Fiji and update
 ~/Fiji.app/ImageJ.sh
 ### Link the RPI_tools into Fiji
-ln -s ~/world/my_prog/microscope/RPI_tools.ijm ~/Fiji.app/macros/toolsets/RPI_tools.ijm
+ln -s ~/world/my_prog/imagej/PhilaJ-and-RPI_Tools/RPI_tools.ijm ~/Fiji.app/macros/toolsets/RPI_tools.ijm
 ### Link the PhilaJ into Fiji
-ln -s ~/world/my_prog/ImageJ/PhilaJ/PhilaJ.ijm ~/Fiji.app/macros/toolsets/PhilaJ.ijm
+ln -s ~/world/my_prog/imagej/PhilaJ-and-RPI_Tools/PhilaJ.ijm ~/Fiji.app/macros/toolsets/PhilaJ.ijm
 #### Setup dotfiles & ~/bin -- this time to put ImageJ.sh & ImageJ into ~/bin
 ./world/my_prog/UNIXutils/SelectSetup.rb --loc=HOME; ./world/my_prog/UNIXutils/SetupBin.rb
 #### DO: Add ImageJ.sh to launch menu -- icon in ~/core/icons
@@ -909,16 +913,21 @@ date
 
 My goals:
 
-  - Capture images directly from ImageJ/Fiji so I could immediately preform an image analysis
-  - My #1 most used image analysis activity is measuring stuff (lengths, etc...) so setting image scale needs to be easy
-  - Capture images from the command line as well, but such that it is easy to load them in ImageJ/Fiji later
-  - See a live view from the camera
-  - Simple to sync data between camera and primary workstation
-  - Identical ImageJ/Fiji UI between Windows and RPI
-
-In the end I wrote a command line script and a set of ImageJ/Fiji toolbar macros that work together. I say they work together in that they both save newly
-captured images to the same directory using the same file name conventions.  For example, this makes it easy to load the last thing captured by the command
-line script into ImageJ/Fiji.
+  - ImageJ/Fiji
+    - Capture images directly from ImageJ/Fiji so I can immediately preform an image analysis
+    - Setting image scale needs to be easy because measuring lengths is my #1 application
+    - Identical UI between Windows and RPI
+    - Eventually integrate the software into PhilaJ (an extensive set of ImageJ/Fiji macros for philatelic image analysis), but provide a trimmed down version
+      of PhilaJ with just the microscope functionality for people not interested in philately.
+  - CLI
+    - Needs to integrate will with ImageJ/Fiji so that it is easy to load them in ImageJ/Fiji later
+    - Completely indipendant of the ImageJ/Fiji software
+    - As simple as possible with minimal external requirements -- just the RPI CLI image tools and basic shell stuff
+  - General Requirements
+    - Optionally show a preview before capture
+    - See a live view from the camera & control the size of the preview
+    - Capture sequences of related images, and name so they are grouped together
+    - Put captured images in a known directory with a standard naming convention so that it is simple to orginize and sync data between camear and computers
 
 *** RPI Image Capture Script
 :PROPERTIES:
@@ -926,76 +935,68 @@ line script into ImageJ/Fiji.
 :END:
 
 This script is pretty simple.  It provides a way to capture one or more images outside of ImageJ/Fiji, but in a way compatible with the ImageJ/Fiji macros
-provided below.  I use this script quite a lot to provide a live view of the camera feed.
+provided below.  I almost always have ImageJ/Fiji running on my camera, so I don't end us uping this cript much; however, it is still nice to have around.
 
-#+INCLUDE:piSnap.sh src sh
+#+begin_src text
+Take a snapshot using the Raspberry Pi HQ Camera and save it in a standard way
+
+Use: piSnap.sh [options]
+  Options:
+    -p        Preview!  No images are captured. Other arguments are ignored
+    -k        Show a preview, and capture when [enter] is pressed.
+              Without -k an image is immediatly captured with no preview
+    -s        Show image after capture with nomacs
+    -a ANNO   Annotation: Used to identify the capture.
+              Adds a "-ANNOTATION" component to the captured filename.
+              See the "File Names" section below
+    -g GROUP  Group name -- used for grouping similar captures.
+              Adds a "_GROUP" component to the captured filename
+              See the "File Names" section below
+    -v        Verbose mode
+    -f        Fake Capture Mode that uses convert instead of libcamera-still
+              Used for debugging.  Most useful when combined with -v.
+    -b BIN    Full path to the libcamera-still binary
+              Default: /usr/bin/libcamera-still
+    -d DIR    Directory to store captured images.
+              Default: $HOME/Pictures/pi-cam
+              Note: The related ImageJ/Fiji macro expects the default value!
+    -e ENC    File format: jpg, bmp, gif, png, rgb
+              Default: jpg
+  File Names
+    Image names are like: YYYYMMDDHHMMSS_GROUP-ANNOTATION.ENC
+                          |              |     |
+                          |              |     File Annoation
+                          |              Group Name
+                          date/time stamp
+      - The "_GROUP" component of the name will not be pressent
+        if the -g option was not provided.
+      - The "-ANNOTATION" component of the name will not be pressent
+        if the -a option was not provided.
+      - The -a and -g arguments are translated automatically into
+        something suitable:
+          - Non-alphanumeric characters are converted to underscores.
+          - Leading underscores and dashes are removed
+          - The -g argument has all dashes removed
+#+end_src
+
+Part of the setup instructions above install this script.  
+
+The script can be found on github: https://github.com/richmit/microscope
 
 *** ImageJ/Fiji Toolset/Macros 
 :PROPERTIES:
 :CUSTOM_ID: rpi-imagej
 :END:
 
-The code below provides an ImageJ/Fiji toolset.  You activate the tool set via the toolset menu:
+The ImageJ/Fiji toolset, called "=RPI_tools=", is actually a direct copy my ="PhilaJ"= software with an alternative, stripped down user interface that only
+exposes the microscope functionality.  That is to say, the only difference between "=RPI_tools=" and "=PhilaJ=" is the ImageJ/Fiji toolset code the exposes the
+functionality to the end user.  Full documentation may be found here:
 
-#+ATTR_HTML: :align center :width 800
-file:toolsetmenu.gif
+https://richmit.github.io/imagej/PhilaJ.html#rpi-tools
 
-Once activated, it will add four buttons to the toolbar:
+The setup instructions above install this package into Fiji.  You can find the code on github:
 
-#+ATTR_HTML: :align center :width 800
-file:toolsetbuttons.gif
-
-Button Functions:
- - file:toolsetbutton-capture.gif   :: Capture, ssave, and open an image from the camera.  Images are stored in the same location, and with the same file name conventions, used by =piSnap.sh=.
- - file:toolsetbutton-settings.gif  :: Change some configuration options 
-
-#+ATTR_HTML: :align center :width 400px
-file:dialog-settings.gif
-
-   - Specify a group for the captured image filenames.  See [[#rpi-pisnap][=piSnap=]] for filename details.
-   - Specify an annotation for the captured image filenames.  See [[#rpi-pisnap][=piSnap=]] for filename details.
-   - Set captured image format (jpg or png)
-   - Set captured image scale (100% or 50%)
-   - Set the scale factor for capture preview
-   - Set the scale factor for the live video feed
-   - Turn on/off asking for settings for each capture -- essentially pops up the settings dialog box everything the capture button is hit
-   - Turn on/off repeated capture mode -- repeatedly captures images.  Most useful if a group is set.
-   - Turn on/off live video preview before a capture.
-   - Turn on/off loading images after capture.
-   - Turn on/off running the set image scale tool after each capture if the image scale is not already set
-   - Turn on/off debugging
-
- - file:toolsetbutton-video.gif      :: Live video feed from camera.  Note the scale setting for the live video feed is diffrent from the capture preview scale.
-
-If "Change Settings Before Capture" is set, then a simplified settings dialog box will appear before the video feed window.
-
-#+ATTR_HTML: :align center :width 400px
-file:dialog-settings-v.gif
-
-
- - file:toolsetbutton-load.gif      :: Load previous capture(s) from camera using the ImageJ/Fiji macro above or the =piSnap.sh= script.  
-
-#+ATTR_HTML: :align center :width 400px
-file:dialog-loadOld.gif
-
- - file:toolsetbutton-scale.gif     :: Set image scale based upon microscope settings.  This script contains hardwired settings for my specific microscope and lenses, and may require modification for your microscope.
-
-#+ATTR_HTML: :align center :width 400px
-file:dialog-setscale.gif
-
-   - The choice of microscope enables a calibration correction factor in the final computation
-   - The "Adjust for Resolution" option adjusts the scale if the number of horizontal pixels in the image differs from the horizontal resolution of the
-     sensor.  Most commonly this use used when the sensor is used in 2x2 mode yielding smaller image.  This option also works if the image is resized after
-     the fact.  
-
-#+INCLUDE:RPI_tools.ijm src c
-
-*** Macro Test Installer                                           :noexport:
-
-When developing the ImageJ/Fiji macro, I use the following script to put the script in place and run ImageJ/Fiji so I can test it (on RPI or Windows).  This
-script is not useful for someone simply wanting to use the macro.
-
-#+INCLUDE:RPI_tools_install.sh src sh
+https://github.com/richmit/imagej
 
 * S4 and S8 Magnification Coverage                                 :noexport:
 

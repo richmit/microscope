@@ -40,16 +40,12 @@ Use: piSnap.sh [options]
     -k        Show a preview, and capture when [enter] is pressed.  
               Without -k an image is immediatly captured with no preview
     -s        Show image after capture with nomacs
-    -a ANNO   Annotation
-    -g GROUP  Group name -- used for grouping similar captures
-              Adds a "_GROUP-NNN" component to the captured filename where
-              GROUP is the group name provided on the command line and NNN
-              is a zero padded integer index.  If the previous capture has
-              a diffrent group name, then the current capture will have a
-              fresh time stamp in the name and an index of 001.  If the
-              previous capture has the same group name, then the current
-              capture will reuse the time stamp in the name and an index
-              incremented by 1.
+    -a ANNO   Annotation: Used to identify the capture.
+              Adds a "-ANNOTATION" component to the captured filename.
+              See the "File Names" section below
+    -g GROUP  Group name -- used for grouping similar captures.
+              Adds a "_GROUP" component to the captured filename
+              See the "File Names" section below
     -v        Verbose mode
     -f        Fake Capture Mode that uses convert instead of libcamera-still
               Used for debugging.  Most useful when combined with -v.
