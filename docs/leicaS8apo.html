@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-03-19 Sat 18:52 -->
+<!-- 2022-03-31 Thu 11:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=1024, initial-scale=1" />
 <title>Leica S4E &amp; S8APO</title>
@@ -252,7 +252,7 @@
 
 <tr>
 <td class="org-right"><b>Updated:</b></td>
-<td class="org-left"><i>2022-03-19</i></td>
+<td class="org-left"><i>2022-03-31</i></td>
 </tr>
 </tbody>
 </table>
@@ -265,7 +265,7 @@ Copyright 2022 Mitch Richling. All rights reserved.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#introduction">1. Introduction</a></li>
-<li><a href="#orgc6111cd">2. Microscope Symbols &amp; Formulas</a>
+<li><a href="#org322f35e">2. Microscope Symbols &amp; Formulas</a>
 <ul>
 <li><a href="#variables">2.1. Variables</a></li>
 <li><a href="#formulas">2.2. Formulas</a></li>
@@ -283,29 +283,29 @@ Copyright 2022 Mitch Richling. All rights reserved.
 <li><a href="#s8-ret-scale">4.2. Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece</a></li>
 <li><a href="#s8-na">4.3. Numerical Aperture With No Auxiliary Lens</a></li>
 <li><a href="#leica-vid-obj">4.4. Leica C-Mount Video Objective Data</a></li>
-<li><a href="#orga945dab">4.5. Attaching Cameras</a></li>
+<li><a href="#orgd1c8ecc">4.5. Attaching Cameras</a></li>
 <li><a href="#s8-cam-data">4.6. Camera FOV &amp; Image Scales</a></li>
 </ul>
 </li>
 <li><a href="#mrconv">5. Reticle Unit Conversion Software For free42 and DM42</a>
 <ul>
-<li><a href="#orgee43570">5.1. The menu</a></li>
-<li><a href="#org1b8b1d9">5.2. The code</a></li>
+<li><a href="#orgb0c6b30">5.1. The menu</a></li>
+<li><a href="#org3cd0269">5.2. The code</a></li>
 </ul>
 </li>
 <li><a href="#parts">6. S-Series Leica Parts</a></li>
 <li><a href="#sensors">7. Image Sensor Data</a></li>
 <li><a href="#rpi-camera">8. DIY RPI Camera</a>
 <ul>
-<li><a href="#org0d515db">8.1. The Idea</a></li>
+<li><a href="#org9e18200">8.1. The Idea</a></li>
 <li><a href="#rpi-bom">8.2. Bill Of Materials</a></li>
-<li><a href="#orgddee470">8.3. System Setup</a>
+<li><a href="#org028b55c">8.3. System Setup</a>
 <ul>
 <li><a href="#rpi-camera-min-soft-config">8.3.1. Minimal Configuration</a></li>
 <li><a href="#rpi-camera-my-soft-config">8.3.2. My Configuration</a>
 <ul>
-<li><a href="#orgf5fc127">8.3.2.1. System Setup</a></li>
-<li><a href="#org551109e">8.3.2.2. System Sync</a></li>
+<li><a href="#orgf6bd7fe">8.3.2.1. System Setup</a></li>
+<li><a href="#org80bb90e">8.3.2.2. System Sync</a></li>
 </ul>
 </li>
 </ul>
@@ -318,7 +318,8 @@ Copyright 2022 Mitch Richling. All rights reserved.
 </li>
 </ul>
 </li>
-<li><a href="#org11d104f">9. EOF</a></li>
+<li><a href="#org3a22abc">9. S4 and S8 Magnification Coverage</a></li>
+<li><a href="#orgb06a8ec">10. EOF</a></li>
 </ul>
 </div>
 </div>
@@ -337,8 +338,8 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 </div>
 </div>
 
-<div id="outline-container-orgc6111cd" class="outline-2">
-<h2 id="orgc6111cd"><span class="section-number-2">2</span> Microscope Symbols &amp; Formulas</h2>
+<div id="outline-container-org322f35e" class="outline-2">
+<h2 id="org322f35e"><span class="section-number-2">2</span> Microscope Symbols &amp; Formulas</h2>
 <div class="outline-text-2" id="text-2">
 </div>
 <div id="outline-container-variables" class="outline-3">
@@ -641,19 +642,41 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 
 <col  class="org-right" />
 </colgroup>
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
 <thead>
 <tr>
 <th scope="col" class="org-right">&#xa0;</th>
-<th scope="col" class="org-right">\(A=1.0\times\)</th>
-<th scope="col" class="org-right">\(W=110\,\mathrm{mm}\)</th>
-<th scope="col" class="org-right">\(A=0.5\times\)</th>
-<th scope="col" class="org-right">\(W=200\,\mathrm{mm}\)</th>
-<th scope="col" class="org-right">\(A=1.6\times\)</th>
-<th scope="col" class="org-right">\(W=55\,\mathrm{mm}\)</th>
+<th scope="col" class="org-right">\(A=\)</th>
+<th scope="col" class="org-right">\(W=\)</th>
+<th scope="col" class="org-right">\(A=\)</th>
+<th scope="col" class="org-right">\(W=\)</th>
+<th scope="col" class="org-right">\(A=\)</th>
+<th scope="col" class="org-right">\(W=\)</th>
+<th scope="col" class="org-right">\(A=\)</th>
+<th scope="col" class="org-right">\(W=\)</th>
+</tr>
+
+<tr>
+<th scope="col" class="org-right">&#xa0;</th>
+<th scope="col" class="org-right">\(0.5\times\)</th>
+<th scope="col" class="org-right">\(200\,\mathrm{mm}\)</th>
+<th scope="col" class="org-right">\(0.75\times\)</th>
+<th scope="col" class="org-right">\(130\,\mathrm{mm}\)</th>
+<th scope="col" class="org-right">\(1.0\times\)</th>
+<th scope="col" class="org-right">\(110\,\mathrm{mm}\)</th>
+<th scope="col" class="org-right">\(1.6\times\)</th>
+<th scope="col" class="org-right">\(55\,\mathrm{mm}\)</th>
 </tr>
 
 <tr>
 <th scope="col" class="org-right">\(Z\)</th>
+<th scope="col" class="org-right">\(E_{MAG}\)</th>
+<th scope="col" class="org-right">\(V_{FOV}\)</th>
 <th scope="col" class="org-right">\(E_{MAG}\)</th>
 <th scope="col" class="org-right">\(V_{FOV}\)</th>
 <th scope="col" class="org-right">\(E_{MAG}\)</th>
@@ -665,80 +688,96 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 <tbody>
 <tr>
 <td class="org-right">0.63</td>
-<td class="org-right">6.30</td>
-<td class="org-right">36.51</td>
 <td class="org-right">3.15</td>
 <td class="org-right">73.02</td>
+<td class="org-right">4.72</td>
+<td class="org-right">48.68</td>
+<td class="org-right">6.30</td>
+<td class="org-right">36.51</td>
 <td class="org-right">10.08</td>
 <td class="org-right">22.82</td>
 </tr>
 
 <tr>
 <td class="org-right">0.80</td>
-<td class="org-right">8.00</td>
-<td class="org-right">28.75</td>
 <td class="org-right">4.00</td>
 <td class="org-right">57.50</td>
+<td class="org-right">6.00</td>
+<td class="org-right">38.33</td>
+<td class="org-right">8.00</td>
+<td class="org-right">28.75</td>
 <td class="org-right">12.80</td>
 <td class="org-right">17.97</td>
 </tr>
 
 <tr>
 <td class="org-right">1.00</td>
-<td class="org-right">10.00</td>
-<td class="org-right">23.00</td>
 <td class="org-right">5.00</td>
 <td class="org-right">46.00</td>
+<td class="org-right">7.50</td>
+<td class="org-right">30.67</td>
+<td class="org-right">10.00</td>
+<td class="org-right">23.00</td>
 <td class="org-right">16.00</td>
 <td class="org-right">14.38</td>
 </tr>
 
 <tr>
 <td class="org-right">1.25</td>
-<td class="org-right">12.50</td>
-<td class="org-right">18.40</td>
 <td class="org-right">6.25</td>
 <td class="org-right">36.80</td>
+<td class="org-right">9.38</td>
+<td class="org-right">24.53</td>
+<td class="org-right">12.50</td>
+<td class="org-right">18.40</td>
 <td class="org-right">20.00</td>
 <td class="org-right">11.50</td>
 </tr>
 
 <tr>
 <td class="org-right">1.60</td>
-<td class="org-right">16.00</td>
-<td class="org-right">14.38</td>
 <td class="org-right">8.00</td>
 <td class="org-right">28.75</td>
+<td class="org-right">12.00</td>
+<td class="org-right">19.17</td>
+<td class="org-right">16.00</td>
+<td class="org-right">14.38</td>
 <td class="org-right">25.60</td>
 <td class="org-right">8.98</td>
 </tr>
 
 <tr>
 <td class="org-right">2.00</td>
-<td class="org-right">20.00</td>
-<td class="org-right">11.50</td>
 <td class="org-right">10.00</td>
 <td class="org-right">23.00</td>
+<td class="org-right">15.00</td>
+<td class="org-right">15.33</td>
+<td class="org-right">20.00</td>
+<td class="org-right">11.50</td>
 <td class="org-right">32.00</td>
 <td class="org-right">7.19</td>
 </tr>
 
 <tr>
 <td class="org-right">2.50</td>
-<td class="org-right">25.00</td>
-<td class="org-right">9.20</td>
 <td class="org-right">12.50</td>
 <td class="org-right">18.40</td>
+<td class="org-right">18.75</td>
+<td class="org-right">12.27</td>
+<td class="org-right">25.00</td>
+<td class="org-right">9.20</td>
 <td class="org-right">40.00</td>
 <td class="org-right">5.75</td>
 </tr>
 
 <tr>
 <td class="org-right">3.00</td>
-<td class="org-right">30.00</td>
-<td class="org-right">7.67</td>
 <td class="org-right">15.00</td>
 <td class="org-right">15.33</td>
+<td class="org-right">22.50</td>
+<td class="org-right">10.22</td>
+<td class="org-right">30.00</td>
+<td class="org-right">7.67</td>
 <td class="org-right">48.00</td>
 <td class="org-right">4.79</td>
 </tr>
@@ -883,19 +922,41 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 
 <col  class="org-right" />
 </colgroup>
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
 <thead>
 <tr>
 <th scope="col" class="org-right">&#xa0;</th>
-<th scope="col" class="org-right">\(A=1.0\times\)</th>
-<th scope="col" class="org-right">\(W=75\,\mathrm{mm}\)</th>
-<th scope="col" class="org-right">\(A=0.63\times\)</th>
-<th scope="col" class="org-right">\(W=101\,\mathrm{mm}\)</th>
-<th scope="col" class="org-right">\(A=2.0\times\)</th>
-<th scope="col" class="org-right">\(W=25\,\mathrm{mm}\)</th>
+<th scope="col" class="org-right">\(A=\)</th>
+<th scope="col" class="org-right">\(W=\)</th>
+<th scope="col" class="org-right">\(A=\)</th>
+<th scope="col" class="org-right">\(W=\)</th>
+<th scope="col" class="org-right">\(A=\)</th>
+<th scope="col" class="org-right">\(W=\)</th>
+<th scope="col" class="org-right">\(A=\)</th>
+<th scope="col" class="org-right">\(W=\)</th>
+</tr>
+
+<tr>
+<th scope="col" class="org-right">&#xa0;</th>
+<th scope="col" class="org-right">\(0.32\times\)</th>
+<th scope="col" class="org-right">\(200\,\mathrm{mm}\)</th>
+<th scope="col" class="org-right">\(0.63\times\)</th>
+<th scope="col" class="org-right">\(101\,\mathrm{mm}\)</th>
+<th scope="col" class="org-right">\(1.0\times\)</th>
+<th scope="col" class="org-right">\(75\,\mathrm{mm}\)</th>
+<th scope="col" class="org-right">\(2.0\times\)</th>
+<th scope="col" class="org-right">\(25\,\mathrm{mm}\)</th>
 </tr>
 
 <tr>
 <th scope="col" class="org-right">\(Z\)</th>
+<th scope="col" class="org-right">\(V_{MAG}\)</th>
+<th scope="col" class="org-right">\(V_{FOV}\)</th>
 <th scope="col" class="org-right">\(V_{MAG}\)</th>
 <th scope="col" class="org-right">\(V_{FOV}\)</th>
 <th scope="col" class="org-right">\(V_{MAG}\)</th>
@@ -907,100 +968,120 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 <tbody>
 <tr>
 <td class="org-right">1.0</td>
-<td class="org-right">10.0</td>
-<td class="org-right">23.00</td>
+<td class="org-right">3.2</td>
+<td class="org-right">71.88</td>
 <td class="org-right">6.30</td>
 <td class="org-right">36.51</td>
+<td class="org-right">10.0</td>
+<td class="org-right">23.00</td>
 <td class="org-right">20</td>
 <td class="org-right">11.50</td>
 </tr>
 
 <tr>
 <td class="org-right">1.25</td>
-<td class="org-right">12.5</td>
-<td class="org-right">18.40</td>
+<td class="org-right">4.0</td>
+<td class="org-right">57.50</td>
 <td class="org-right">7.88</td>
 <td class="org-right">29.21</td>
+<td class="org-right">12.5</td>
+<td class="org-right">18.40</td>
 <td class="org-right">25</td>
 <td class="org-right">9.20</td>
 </tr>
 
 <tr>
 <td class="org-right">1.6</td>
-<td class="org-right">16.0</td>
-<td class="org-right">14.38</td>
+<td class="org-right">5.1</td>
+<td class="org-right">44.92</td>
 <td class="org-right">10.08</td>
 <td class="org-right">22.82</td>
+<td class="org-right">16.0</td>
+<td class="org-right">14.38</td>
 <td class="org-right">32</td>
 <td class="org-right">7.19</td>
 </tr>
 
 <tr>
 <td class="org-right">2.0</td>
-<td class="org-right">20.0</td>
-<td class="org-right">11.50</td>
+<td class="org-right">6.4</td>
+<td class="org-right">35.94</td>
 <td class="org-right">12.60</td>
 <td class="org-right">18.25</td>
+<td class="org-right">20.0</td>
+<td class="org-right">11.50</td>
 <td class="org-right">40</td>
 <td class="org-right">5.75</td>
 </tr>
 
 <tr>
 <td class="org-right">2.5</td>
-<td class="org-right">25.0</td>
-<td class="org-right">9.20</td>
+<td class="org-right">8.0</td>
+<td class="org-right">28.75</td>
 <td class="org-right">15.75</td>
 <td class="org-right">14.60</td>
+<td class="org-right">25.0</td>
+<td class="org-right">9.20</td>
 <td class="org-right">50</td>
 <td class="org-right">4.60</td>
 </tr>
 
 <tr>
 <td class="org-right">3.2</td>
-<td class="org-right">32.0</td>
-<td class="org-right">7.19</td>
+<td class="org-right">10.2</td>
+<td class="org-right">22.46</td>
 <td class="org-right">20.16</td>
 <td class="org-right">11.41</td>
+<td class="org-right">32.0</td>
+<td class="org-right">7.19</td>
 <td class="org-right">64</td>
 <td class="org-right">3.59</td>
 </tr>
 
 <tr>
 <td class="org-right">4.0</td>
-<td class="org-right">40.0</td>
-<td class="org-right">5.75</td>
+<td class="org-right">12.8</td>
+<td class="org-right">17.97</td>
 <td class="org-right">25.20</td>
 <td class="org-right">9.13</td>
+<td class="org-right">40.0</td>
+<td class="org-right">5.75</td>
 <td class="org-right">80</td>
 <td class="org-right">2.88</td>
 </tr>
 
 <tr>
 <td class="org-right">5.0</td>
-<td class="org-right">50.0</td>
-<td class="org-right">4.60</td>
+<td class="org-right">16.0</td>
+<td class="org-right">14.38</td>
 <td class="org-right">31.50</td>
 <td class="org-right">7.30</td>
+<td class="org-right">50.0</td>
+<td class="org-right">4.60</td>
 <td class="org-right">100</td>
 <td class="org-right">2.30</td>
 </tr>
 
 <tr>
 <td class="org-right">6.3</td>
-<td class="org-right">63.0</td>
-<td class="org-right">3.65</td>
+<td class="org-right">20.2</td>
+<td class="org-right">11.41</td>
 <td class="org-right">39.69</td>
 <td class="org-right">5.79</td>
+<td class="org-right">63.0</td>
+<td class="org-right">3.65</td>
 <td class="org-right">126</td>
 <td class="org-right">1.83</td>
 </tr>
 
 <tr>
 <td class="org-right">8.0</td>
-<td class="org-right">80.0</td>
-<td class="org-right">2.88</td>
+<td class="org-right">25.6</td>
+<td class="org-right">8.98</td>
 <td class="org-right">50.40</td>
 <td class="org-right">4.56</td>
+<td class="org-right">80.0</td>
+<td class="org-right">2.88</td>
 <td class="org-right">160</td>
 <td class="org-right">1.44</td>
 </tr>
@@ -1335,8 +1416,8 @@ efficiently used with about 84% of the sensor pixels wasted.
 
 
 
-<div id="outline-container-orga945dab" class="outline-3">
-<h3 id="orga945dab"><span class="section-number-3">4.5</span> Attaching Cameras</h3>
+<div id="outline-container-orgd1c8ecc" class="outline-3">
+<h3 id="orgd1c8ecc"><span class="section-number-3">4.5</span> Attaching Cameras</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 The Leica documentation suggests using a chain of adapters for attaching a generic digital camera. The first part of the chain is one of the following three
@@ -1567,8 +1648,8 @@ I use two cameras with my S8APO:
 <div class="outline-text-2" id="text-mrconv">
 </div>
 
-<div id="outline-container-orgee43570" class="outline-3">
-<h3 id="orgee43570"><span class="section-number-3">5.1</span> The menu</h3>
+<div id="outline-container-orgb0c6b30" class="outline-3">
+<h3 id="orgb0c6b30"><span class="section-number-3">5.1</span> The menu</h3>
 <div class="outline-text-3" id="text-5-1">
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
 <caption class="t-above"><span class="table-number">Table 11:</span> Application Menu</caption>
@@ -1690,8 +1771,8 @@ keys each with two sets of settings &#x2013; the scope's lower zoom stop is used
 </div>
 </div>
 
-<div id="outline-container-org1b8b1d9" class="outline-3">
-<h3 id="org1b8b1d9"><span class="section-number-3">5.2</span> The code</h3>
+<div id="outline-container-org3cd0269" class="outline-3">
+<h3 id="org3cd0269"><span class="section-number-3">5.2</span> The code</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 While this code isn't very useful without being customized to the particular settings the end user needs, it can be test driven as-is by cut-n-pasting the
@@ -1854,196 +1935,238 @@ END
 
 <colgroup>
 <col  class="org-right" />
-</colgroup>
 
-<colgroup>
+<col  class="org-right" />
+
 <col  class="org-left" />
 </colgroup>
 <thead>
 <tr>
+<th scope="col" class="org-right">&#xa0;</th>
 <th scope="col" class="org-right">Leica Part #</th>
 <th scope="col" class="org-left">Leica Part Name</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">/</td>
+<td class="org-left">&lt;&gt;</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
 <td class="org-right">10446298</td>
 <td class="org-left">Leica S8 APO</td>
 </tr>
 
 <tr>
+<td class="org-right">1</td>
 <td class="org-right">10446293</td>
 <td class="org-left">Leica S4 E</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
+<td class="org-right">&#xa0;</td>
 <td class="org-right">10447136</td>
 <td class="org-left">10x/23B eyepiece for eyeglasses, fixed</td>
 </tr>
 
 <tr>
+<td class="org-right">4</td>
 <td class="org-right">10447137</td>
 <td class="org-left">10x/23B eyepiece for eyeglasses, adjustable</td>
 </tr>
 
 <tr>
+<td class="org-right">&#xa0;</td>
 <td class="org-right">10447138</td>
 <td class="org-left">16x/15B eyepiece for eyeglasses, fixed</td>
 </tr>
 
 <tr>
+<td class="org-right">&#xa0;</td>
 <td class="org-right">10447139</td>
 <td class="org-left">16x/15B eyepiece for eyeglasses, adjustable</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
+<td class="org-right">&#xa0;</td>
 <td class="org-right">10446447</td>
 <td class="org-left">Reticle 10 mm/0.1 mm</td>
 </tr>
 
 <tr>
+<td class="org-right">&#xa0;</td>
 <td class="org-right">10446448</td>
 <td class="org-left">Reticle 5 mm/0.1 mm</td>
 </tr>
 
 <tr>
+<td class="org-right">&#xa0;</td>
 <td class="org-right">10446449</td>
 <td class="org-left">Reticle 5 mm/0.05 mm</td>
 </tr>
 
 <tr>
+<td class="org-right">&#xa0;</td>
 <td class="org-right">10447000</td>
 <td class="org-left">Reticle 100 scale intervals / 0.002"</td>
 </tr>
 
 <tr>
+<td class="org-right">&#xa0;</td>
 <td class="org-right">10447001</td>
 <td class="org-left">Reticle 100 scale intervals / 0.001"</td>
 </tr>
 
 <tr>
+<td class="org-right">&#xa0;</td>
 <td class="org-right">10447002</td>
 <td class="org-left">Reticle 150 scale intervals / 0.0005"</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
+<td class="org-right">1</td>
 <td class="org-right">10446334</td>
-<td class="org-left">Achro Auxiliary \(0.32\times\) for A8, WD 200 mm</td>
+<td class="org-left">Achro Auxiliary \(0.32\times\) for S8APO, WD 200 mm</td>
 </tr>
 
 <tr>
+<td class="org-right">1</td>
 <td class="org-right">10446335</td>
-<td class="org-left">APO Auxiliary \(0.63\times\) for A8, WD 100 mm</td>
+<td class="org-left">APO Auxiliary \(0.63\times\) for S8APO, WD 100 mm</td>
 </tr>
 
 <tr>
+<td class="org-right">&#xa0;</td>
 <td class="org-right">10446336</td>
-<td class="org-left">APO Auxiliary \(1.6\times\) for A8, WD 37 mm</td>
+<td class="org-left">APO Auxiliary \(1.6\times\) for S8APO, WD 37 mm</td>
 </tr>
 
 <tr>
+<td class="org-right">&#xa0;</td>
 <td class="org-right">10446337</td>
-<td class="org-left">APO Auxiliary \(2.0\times\) for A8, WD 25 mm</td>
+<td class="org-left">APO Auxiliary \(2.0\times\) for S8APO, WD 25 mm</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
+<td class="org-right">&#xa0;</td>
 <td class="org-right">10446316</td>
 <td class="org-left">Auxiliary \(0.32\times\) for S4/S6, WD 300 mm</td>
 </tr>
 
 <tr>
+<td class="org-right">1</td>
 <td class="org-right">10446318</td>
 <td class="org-left">Auxiliary \(0.5\times\) for S4/S6, WD 200 mm</td>
 </tr>
 
 <tr>
+<td class="org-right">&#xa0;</td>
 <td class="org-right">10446319</td>
 <td class="org-left">Auxiliary \(0.63\times\) for S4/S6, WD 155 mm</td>
 </tr>
 
 <tr>
+<td class="org-right">1</td>
 <td class="org-right">10446320</td>
 <td class="org-left">Auxiliary \(0.75\times\) for S4/S6, WD 130 mm</td>
 </tr>
 
 <tr>
+<td class="org-right">1</td>
 <td class="org-right">10446321</td>
 <td class="org-left">Auxiliary \(1.6\times\) for S4/S6, WD 55 mm</td>
 </tr>
 
 <tr>
+<td class="org-right">&#xa0;</td>
 <td class="org-right">10446322</td>
 <td class="org-left">Auxiliary \(2.0\times\) for S4/S6, WD 35 mm</td>
 </tr>
 
 <tr>
+<td class="org-right">&#xa0;</td>
 <td class="org-right">10446325</td>
 <td class="org-left">Auxiliary \(0.3–0.4\times\) for S4/S6 (Adjustable), WD 200–350mm</td>
 </tr>
 
 <tr>
+<td class="org-right">&#xa0;</td>
 <td class="org-right">10446323</td>
 <td class="org-left">Auxiliary \(0.6–0.75\times\) for S4/S6 (ErgoObjective) WD 77–137mm</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
+<td class="org-right">&#xa0;</td>
 <td class="org-right">10450817</td>
 <td class="org-left">Auxiliary \(0.5\times\) for S9, WD 200 mm</td>
 </tr>
 
 <tr>
+<td class="org-right">&#xa0;</td>
 <td class="org-right">10450818</td>
 <td class="org-left">Auxiliary \(0.63\times\) for S9, WD 150 mm</td>
 </tr>
 
 <tr>
+<td class="org-right">&#xa0;</td>
 <td class="org-right">10450819</td>
 <td class="org-left">Auxiliary \(0.75\times\) for S9, WD 130 mm</td>
 </tr>
 
 <tr>
+<td class="org-right">&#xa0;</td>
 <td class="org-right">10450820</td>
 <td class="org-left">Auxiliary \(1.6\times\) for S9, WD 50 mm</td>
 </tr>
 
 <tr>
+<td class="org-right">&#xa0;</td>
 <td class="org-right">10450821</td>
 <td class="org-left">Auxiliary \(2.0\times\) for S9, WD 35 mm</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
+<td class="org-right">&#xa0;</td>
 <td class="org-right">10446324</td>
 <td class="org-left">Lens shield</td>
 </tr>
 
 <tr>
+<td class="org-right">&#xa0;</td>
 <td class="org-right">10450831</td>
 <td class="org-left">Updated lens shield</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
+<td class="org-right">1</td>
 <td class="org-right">10445928</td>
 <td class="org-left">Leica Video Objective \(0.32\times\)</td>
 </tr>
 
 <tr>
+<td class="org-right">1</td>
 <td class="org-right">10450528</td>
 <td class="org-left">Leica Video Objective \(0.5\times\)</td>
 </tr>
 
 <tr>
+<td class="org-right">&#xa0;</td>
 <td class="org-right">10447367</td>
 <td class="org-left">Leica Video Objective \(0.63\times\)</td>
 </tr>
 
 <tr>
+<td class="org-right">1</td>
 <td class="org-right">10446307</td>
 <td class="org-left">Leica Video Objective \(0.8\times\)</td>
 </tr>
@@ -2055,7 +2178,7 @@ END
 <div id="outline-container-sensors" class="outline-2">
 <h2 id="sensors"><span class="section-number-2">7</span> Image Sensor Data</h2>
 <div class="outline-text-2" id="text-sensors">
-<table id="orgd7bd09b" border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
+<table id="org06dec60" border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
 <caption class="t-above"><span class="table-number">Table 13:</span> Image Sensor Data</caption>
 
 <colgroup>
@@ -2358,29 +2481,29 @@ END
 <h2 id="rpi-camera"><span class="section-number-2">8</span> DIY RPI Camera</h2>
 <div class="outline-text-2" id="text-rpi-camera">
 
-<div id="org392983f" class="figure">
+<div id="orgc144018" class="figure">
 <p><img src="rpicam1_800.jpg" alt="rpicam1_800.jpg" border="2 solid #ccc" frame="hsides" align="center" />
 </p>
 <p><span class="figure-number">Figure 1: </span>A live feed from the microscope with a glass scale on the stage.</p>
 </div>
 
 
-<div id="org02e0318" class="figure">
+<div id="org2446569" class="figure">
 <p><img src="rpicam2_800.jpg" alt="rpicam2_800.jpg" border="2 solid #ccc" frame="hsides" align="center" />
 </p>
 <p><span class="figure-number">Figure 2: </span>A good view of the wire management for the camera.</p>
 </div>
 
 
-<div id="org01d1b23" class="figure">
+<div id="org9550a85" class="figure">
 <p><img src="rpicam4_800.jpg" alt="rpicam4_800.jpg" border="2 solid #ccc" frame="hsides" align="center" />
 </p>
 <p><span class="figure-number">Figure 3: </span>A 30fps live feed illuminated only by my desk lamps.  This is an exceptionally bright microscope.</p>
 </div>
 </div>
 
-<div id="outline-container-org0d515db" class="outline-3">
-<h3 id="org0d515db"><span class="section-number-3">8.1</span> The Idea</h3>
+<div id="outline-container-org9e18200" class="outline-3">
+<h3 id="org9e18200"><span class="section-number-3">8.1</span> The Idea</h3>
 <div class="outline-text-3" id="text-8-1">
 <p>
 If you have arrived here via direct link, then you might be interested to know that your browser is pointed to the middle of a larger document &#x2013; my personal
@@ -2460,8 +2583,8 @@ image analysis software (Fiji/ImageJ) right on the camera.
 </div>
 </div>
 
-<div id="outline-container-orgddee470" class="outline-3">
-<h3 id="orgddee470"><span class="section-number-3">8.3</span> System Setup</h3>
+<div id="outline-container-org028b55c" class="outline-3">
+<h3 id="org028b55c"><span class="section-number-3">8.3</span> System Setup</h3>
 <div class="outline-text-3" id="text-8-3">
 <p>
 Note: These instructions are for the Bullseye based Raspberry Pi OS relased in November of 2021!  
@@ -2543,8 +2666,8 @@ above:
 </ul>
 </div>
 
-<div id="outline-container-orgf5fc127" class="outline-5">
-<h5 id="orgf5fc127"><span class="section-number-5">8.3.2.1</span> System Setup</h5>
+<div id="outline-container-orgf6bd7fe" class="outline-5">
+<h5 id="orgf6bd7fe"><span class="section-number-5">8.3.2.1</span> System Setup</h5>
 <div class="outline-text-5" id="text-8-3-2-1">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Refresh packages and update everything</span>
@@ -2655,8 +2778,8 @@ sudo ln -s /usr/local/bin/free42-3.0.6 /usr/local/bin/free42
 </div>
 </div>
 
-<div id="outline-container-org551109e" class="outline-5">
-<h5 id="org551109e"><span class="section-number-5">8.3.2.2</span> System Sync</h5>
+<div id="outline-container-org80bb90e" class="outline-5">
+<h5 id="org80bb90e"><span class="section-number-5">8.3.2.2</span> System Sync</h5>
 <div class="outline-text-5" id="text-8-3-2-2">
 <p>
 I use <code>rsync</code> to keep data in sync between my camera and primary workstation.
@@ -2809,9 +2932,722 @@ The setup instructions above install this package into Fiji.  You can find the c
 </div>
 </div>
 
-<div id="outline-container-org11d104f" class="outline-2">
-<h2 id="org11d104f"><span class="section-number-2">9</span> EOF</h2>
+<div id="outline-container-org3a22abc" class="outline-2">
+<h2 id="org3a22abc"><span class="section-number-2">9</span> S4 and S8 Magnification Coverage</h2>
 <div class="outline-text-2" id="text-9">
+<p>
+Various magnifications may be reached with different combinations of eyepiece, power, &amp; auxiliary lens.
+</p>
+
+<div style="font-size: 60%;">
+<table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="all" frame="all" align="center">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">S/EPxA</th>
+<th scope="col" class="org-center">003</th>
+<th scope="col" class="org-center">004</th>
+<th scope="col" class="org-center">005</th>
+<th scope="col" class="org-center">006</th>
+<th scope="col" class="org-center">008</th>
+<th scope="col" class="org-center">010</th>
+<th scope="col" class="org-center">013</th>
+<th scope="col" class="org-center">016</th>
+<th scope="col" class="org-center">020</th>
+<th scope="col" class="org-center">026</th>
+<th scope="col" class="org-center">032</th>
+<th scope="col" class="org-center">040</th>
+<th scope="col" class="org-center">050</th>
+<th scope="col" class="org-center">064</th>
+<th scope="col" class="org-center">080</th>
+<th scope="col" class="org-center">100</th>
+<th scope="col" class="org-center">128</th>
+<th scope="col" class="org-center">160</th>
+<th scope="col" class="org-center">200</th>
+<th scope="col" class="org-center">256</th>
+<th scope="col" class="org-center">320</th>
+<th scope="col" class="org-center">400</th>
+<th scope="col" class="org-center">500</th>
+<th scope="col" class="org-center">640</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">S4/10x0.5</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">S8/10x0.32</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">S4/10x0.75</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">S4/16x0.5</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">S4/10x1</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">S8/10x0.63</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">S4/25x0.5</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">S4/10x1.6</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">S8/10x1.0</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">X</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">S4/20x1</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">S8/20x0.63</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">S4/16x1.6</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">S8/16x1.0</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">S4/20x1.6</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">S8/10x2.0</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">S4/25x1.6</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">S8/25x1.0</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">S8/16x2.0</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">S4/40x1.6</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">S8/40x1.0</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">S8/25x2.0</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">S8/40x2.0</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+<td class="org-center">O</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb06a8ec" class="outline-2">
+<h2 id="orgb06a8ec"><span class="section-number-2">10</span> EOF</h2>
+<div class="outline-text-2" id="text-10">
 <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
@@ -2821,7 +3657,7 @@ The setup instructions above install this package into Fiji.  You can find the c
 </div>
 </div>
 <div id="postamble" class="status">
-Created by Mitch Richling <<a href="mailto:http://www.mitchr.me/">http://www.mitchr.me/</a>>.  Rendered on 2022-03-19 Sat 18:52 via <a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="https://orgmode.org">Org</a> mode 9.4.4)
+Created by Mitch Richling <<a href="mailto:http://www.mitchr.me/">http://www.mitchr.me/</a>>.  Rendered on 2022-03-31 Thu 11:50 via <a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="https://orgmode.org">Org</a> mode 9.4.4)
 </div>
 </body>
 </html>
