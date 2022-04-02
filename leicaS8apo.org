@@ -393,182 +393,269 @@ I use two cameras with my S8APO:
 #+TBLFM: @7$15..@>$15=min($5,$OLY_Sw)/($2*$3*$4);%.2f
 #+TBLFM: @7$16..@>$16=min($5,$OLY_Sh)/($2*$3*$4);%.2f
 
+* S4 and S8 Magnification Coverage                          
+
+Various magnifications may be reached with different combinations of eyepiece, power, & auxiliary lens.  "X" & "O" mark the reachable magnifications.
+
+#+HTML: <div style="font-size: 60%;">
+#+ATTR_HTML: :border 2 solid #ccc :rules all :frame all :align center
+| S/EPxA     | 003 | 004 | 005 | 006 | 008 | 010 | 013 | 016 | 020 | 026 | 032 | 040 | 050 | 064 | 080 | 100 | 128 | 160 | 200 | 256 | 320 | 400 | 500 | 640 |
+| /          | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> |
+|------------+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
+| S4/10x0.5  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
+| S8/10x0.32 |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
+| S4/10x0.75 |     |     |  X  |  X  |  X  |  X  |  X  |  X  |  X  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
+| S4/16x0.5  |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
+| S4/10x1    |     |     |     |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |     |     |     |     |     |     |     |     |     |     |     |     |     |
+| S8/10x0.63 |     |     |     |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |     |     |     |     |     |     |     |     |     |     |     |
+| S4/25x0.5  |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |     |     |     |     |     |
+| S4/10x1.6  |     |     |     |     |     |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |     |     |     |     |     |     |     |     |     |     |     |
+| S8/10x1.0  |     |     |     |     |     |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |     |     |     |     |     |     |     |     |     |
+| S4/20x1    |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |     |     |     |
+| S8/20x0.63 |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |     |
+| S4/16x1.6  |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |     |     |
+| S8/16x1.0  |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |
+| S4/20x1.6  |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |     |
+| S8/10x2.0  |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |
+| S4/25x1.6  |     |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |
+| S8/25x1.0  |     |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |
+| S8/16x2.0  |     |     |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |
+| S4/40x1.6  |     |     |     |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |
+| S8/40x1.0  |     |     |     |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |
+| S8/25x2.0  |     |     |     |     |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |
+| S8/40x2.0  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |
+#+HTML: </div>
 * Reticle Unit Conversion Software For free42 and DM42
 :PROPERTIES:
 :CUSTOM_ID: mrconv
 :END:
 
+The computational part of this code is trivial.  The value of the program really is in the settings menus -- allowing the user to quickly change equipment
+settings and convert measurements.
+
+The code as-is will work pretty well for people using an S8APO or S4E scope with a 10x EP and standard reticle; however, users with diffrent equipment will
+want to modify the settings menus.
+
 ** The menu
 
 #+CAPTION: Application Menu
 #+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
-| Key                | Without =[SHIFT]=           | With =[SHIFT]=              | Notes                                |
-|--------------------+-----------------------------+-----------------------------+--------------------------------------|
-| /                  | <                           | >                           |                                      |
-| A                  | Store A                     | Display A                   | Actually stored in variable "mrcvA"  |
-| Z                  | Store Z                     | Display Z                   | Actually stored in variable "mrcvZ"  |
-| Rc                 | Store Rc                    | Display Rc                  | Actually stored in variable "mrcvRc" |
-| ▒▒▒▒               |                             |                             |                                      |
-| ▒▒▒▒               |                             |                             |                                      |
-| CONV               | Convert from Reticle Units  | Convert from Reticle Units  |                                      |
-|--------------------+-----------------------------+-----------------------------+--------------------------------------|
-| Setting 1: "4;.5"  | Leica S4; A=0.50; Z=0.63    | Leica S4; A=0.50; Z=3.00    | Modify as required!                  |
-| Setting 2: "4;1"   | Leica S4; A=1.00; Z=0.63    | Leica S4; A=1.00; Z=3.00    | Modify as required!                  |
-| Setting 3: "4;1.6" | Leica S4; A=1.60; Z=0.63    | Leica S4; A=1.60; Z=3.00    | Modify as required!                  |
-| Setting 4: "8;.63" | Leica S8APO; A=0.63; Z=1.00 | Leica S8APO; A=0.63; Z=8.00 | Modify as required!                  |
-| Setting 5: "8;1"   | Leica S8APO; A=1.00; Z=1.00 | Leica S8APO; A=1.00; Z=8.00 | Modify as required!                  |
-| Setting 6: "8;2"   | Leica S8APO; A=2.00; Z=1.00 | Leica S8APO; A=2.00; Z=8.00 | Modify as required!                  |
-
-The setting sections of the code should be modified to meet the end user's needs.  In my case, I have two zoom microscopes (Leica S4E and Leica S8APO).  They
-both have two zoom stops (upper and lower), and I have two auxiliary lenses for each.  That's a total of 12 different configurations.  I decided use 6 menu
-keys each with two sets of settings -- the scope's lower zoom stop is used when pressed without =[SHIFT]=, and the upper zoom stop when use with =[SHIFT]=.
+| Key     | Without =[SHIFT]=                      | With =[SHIFT]=                         | Notes                       |
+|---------+----------------------------------------+----------------------------------------+-----------------------------|
+| /       | <                                      | >                                      |                             |
+| =A=     | Store A                                | Display A                              | Stored in variable "mrcvA"  |
+| =Z=     | Store Z                                | Display Z                              | Stored in variable "mrcvZ"  |
+| =Rc=    | Store Rc                               | Display Rc                             | Stored in variable "mrcvRc" |
+| =▒▒▒▒=  |                                        |                                        |                             |
+| =▒▒▒▒=  |                                        |                                        |                             |
+| =CONV=  | Convert from Reticle Units             | Convert from Reticle Units             |                             |
+|---------+----------------------------------------+----------------------------------------+-----------------------------|
+| =8;.32= | Leica S8APO; Z=1.00x; A=0.32x aux      | Leica S8APO; Z=8.00x; A=0.32x aux      |                             |
+| =8;.63= | Leica S8APO; Z=1.00x; A=0.63x aux      | Leica S8APO; Z=8.00x; A=0.63x aux      |                             |
+| =8;1=   | Leica S8APO; Z=1.00x; A=1.00x (no aux) | Leica S8APO; Z=8.00x; A=1.00x (no aux) |                             |
+| =8;1.6= | Leica S8APO; Z=1.00x; A=1.60x aux      | Leica S8APO; Z=8.00x; A=1.60x aux      |                             |
+| =8;2=   | Leica S8APO; Z=1.00x; A=2.00x aux      | Leica S8APO; Z=8.00x; A=2.00x aux      |                             |
+| =ZZZ=   | Leica S8APO; Z=1.00x; A=NO CHANGE      | Leica S8APO; Z=8.00x; A=NO CHANGE      |                             |
+|---------+----------------------------------------+----------------------------------------+-----------------------------|
+| =4;.32= | Leica S4; Z=0.63x; A=0.32x aux         | Leica S4; Z=3.00x; A=0.32x aux         |                             |
+| =4;.5=  | Leica S4; Z=0.63x; A=0.50x aux         | Leica S4; Z=3.00x; A=0.50x aux         |                             |
+| =4;.63= | Leica S4; Z=0.63x; A=0.63x aux         | Leica S4; Z=3.00x; A=0.63x aux         |                             |
+| =4;.75= | Leica S4; Z=0.63x; A=0.75x aux         | Leica S4; Z=3.00x; A=0.75x aux         |                             |
+| =4;1=   | Leica S4; Z=0.63x; A=1.00x (no aux)    | Leica S4; Z=3.00x; A=1.00x (no aux)    |                             |
+| =4;1.6= | Leica S4; Z=0.63x; A=1.60x aux         | Leica S4; Z=3.00x; A=1.60x aux         |                             |
 
 ** The code
 
-While this code isn't very useful without being customized to the particular settings the end user needs, it can be test driven as-is by cut-n-pasting the
-code below into free42 or by installing the raw file from [[https://github.com/richmit/microscope][github]]. 
+The code below may be cut-n-pasted the code below into free42.  Alternately the raw file from [[https://github.com/richmit/microscope][github]].
 
 #+begin_src hp42s :eval never :tangle mrconv.hp42s
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ (ref:MRCONV)
 @@@@ DSC: Convert Reticle Units to Physical Units
 LBL "MRCONV"
+
 LBL 01           @@@@ Conversion & Variable Menu Page
 CLMENU
 "A"
-KEY 1 XEQ 03
+KEY 1 XEQ 11
 "Z"
-KEY 2 XEQ 04
+KEY 2 XEQ 12
 "Rc"
-KEY 3 XEQ 05
+KEY 3 XEQ 13
 "CONV"
-KEY 6 XEQ 06
-KEY 7 GTO 02
+KEY 6 XEQ 14
+KEY 7 GTO 03
 KEY 8 GTO 02
 KEY 9 GTO 00
 MENU
 STOP
 GTO 01
-LBL 02           @@@@ Quick Settings Menu Page
+
+LBL 02           @@@@ Quick Settings Menu Page #1
 CLMENU
-"4;.5"             @@@@ Setting 1
-KEY 1 GTO 07       
-"4;1"              @@@@ Setting 2
-KEY 2 GTO 08       
-"4;1.6"            @@@@ Setting 3
-KEY 3 GTO 09       
-"8;.63"            @@@@ Setting 4
-KEY 4 GTO 10       
-"8;1"              @@@@ Setting 5
-KEY 5 GTO 11       
-"8;2"              @@@@ Setting 6
-KEY 6 XEQ 12
+"8;.32"            @@@@ Setting: S8 with 0.32x aux
+KEY 1 GTO 20       
+"8;.63"            @@@@ Setting: S8 with 0.63x aux
+KEY 2 GTO 21       
+"8;1"              @@@@ Setting: S8 with no aux
+KEY 3 GTO 22       
+"8;1.6"            @@@@ Setting: S8 with 1.6x aux
+KEY 4 GTO 23       
+"8;2"              @@@@ Setting: S8 with 2x aux
+KEY 5 GTO 24       
+"ZZZ"              @@@@ Setting: Toggle Zoom
+KEY 6 XEQ 25
 KEY 7 GTO 01
-KEY 8 GTO 01
+KEY 8 GTO 03
 KEY 9 GTO 00
 MENU
 STOP
 GTO 02
+
+LBL 03           @@@@ Quick Settings Menu Page #2
+CLMENU
+"4;.32"            @@@@ Setting: S4 with 0.32x aux
+KEY 1 GTO 30       
+"4;.5"             @@@@ Setting: S4 with 0.5x aux
+KEY 2 GTO 31       
+"4;.63"            @@@@ Setting: S4 with 0.63x aux
+KEY 3 GTO 32       
+"4;.75"            @@@@ Setting: S4 with 0.75x aux
+KEY 4 GTO 33       
+"4;1"              @@@@ Setting: S4 with no aux
+KEY 5 GTO 34       
+"4;1.6"            @@@@ Setting: S4 with 1.6x aux
+KEY 6 XEQ 35
+KEY 7 GTO 02
+KEY 8 GTO 01
+KEY 9 GTO 00
+MENU
+STOP
+GTO 03
+
 LBL 00           @@@@ Application Exit
 EXITALL          
 RTN              
-LBL 03           @@@@ Code for menu key A
+
+LBL 11           @@@@ Code for menu key A
 FC? 64           
 STO "mrcvA"      
 VIEW "mrcvA"     
 RTN              
-LBL 04           @@@@ Code for menu key Z
+LBL 12           @@@@ Code for menu key Z
 FC? 64           
 STO "mrcvZ"      
 VIEW "mrcvZ"     
 RTN              
-LBL 05           @@@@ Code for menu key Rc
+LBL 13           @@@@ Code for menu key Rc
 FC? 64           
 STO "mrcvRc"     
 VIEW "mrcvRc"    
 RTN              
-LBL 06           @@@@ Code for menu key CONV
+LBL 14           @@@@ Code for menu key CONV
 RCL× "mrcvRc"    
 RCL÷ "mrcvA"     
 RCL÷ "mrcvZ"     
 RTN              
-LBL 07           @@@@ Code for Setting 1 -- "4;.5"
-1                  @@@@ Rc Value for Setting 1 -- "4;.5"
+
+LBL 20           @@@@ Code for Setting S8: with 0.32x aux
+1                  @@@@ Rc Value
 STO "mrcvRc"     
 R↓               
-0.5                @@@@ A Value for Setting 1 -- "4;.5"
+0.32               @@@@ A Value
 STO "mrcvA"      
+GTO 26             @@@@ Set Z Value
+LBL 21           @@@@ Code for Setting: S8 with 0.63x aux
+1                  @@@@ Rc Value
+STO "mrcvRc"     
+R↓               
+0.63               @@@@ A Value
+STO "mrcvA"      
+GTO 26             @@@@ Set Z Value
+LBL 22           @@@@ Code for Setting: S8 with no aux
+1                  @@@@ Rc Value
+STO "mrcvRc"     
+R↓               
+1.00               @@@@ A Value
+STO "mrcvA"      
+GTO 26             @@@@ Set Z Value
+LBL 23           @@@@ Code for Setting: S8 with 1.6x aux
+1                  @@@@ Rc Value
+STO "mrcvRc"     
+R↓               
+1.60               @@@@ A Value
+STO "mrcvA"      
+GTO 26             @@@@ Set Z Value
+LBL 24           @@@@ Code for Setting: S8 with 2x aux
+1                  @@@@ Rc Value
+STO "mrcvRc"     
+R↓               
+2.00               @@@@ A Value
+STO "mrcvA"      
+GTO 26             @@@@ Set Z Value
+LBL 25           @@@@ Code for Setting: EMPTY
+GTO 26             @@@@ Set Z Value
+
+LBL 26 @@@@ Drop X & set the zoom level for S8 Scope
 R↓               
 FC? 64           
-0.63               @@@@ Z Value for no SHIFT Setting 1 -- "4;.5"
+1.0               @@@@ Z Value NO SHIFT
 FS? 64           
-3.0                @@@@ Z Value for SHIFT Setting 1 -- "4;.5"
+8.0               @@@@ Z Value SHIFT
 STO "mrcvZ"      
-GTO 01           
-LBL 08           @@@@ Code for Setting 2 -- "4;1"
-1                  @@@@ Rc Value for Setting 2 -- "4;1"
-STO "mrcvRc"     
-R↓               
-1.0                @@@@ A Value for Setting 2 -- "4;1"
-STO "mrcvA"      
-R↓               
-FC? 64           
-0.63               @@@@ Z Value for no SHIFT Setting 2 -- "4;1"
-FS? 64           
-3.0                @@@@ Z Value for SHIFT Setting 2 -- "4;1"
-STO "mrcvZ"      
-GTO 01           
-LBL 09           @@@@ Code for Setting 3 -- "4;1.6"
-1                  @@@@ Rc Value for Setting 3 -- "4;1.6"
-STO "mrcvRc"     
-R↓               
-1.6                @@@@ A Value for Setting 3 -- "4;1.6"
-STO "mrcvA"      
-R↓               
-FC? 64           
-0.63               @@@@ Z Value for no SHIFT Setting 3 -- "4;1.6"
-FS? 64           
-3.0                @@@@ Z Value for SHIFT Setting 3 -- "4;1.6"
-STO "mrcvZ"      
-GTO 01           
-LBL 10           @@@@ Code for Setting 4 -- "8;.63"
-1                  @@@@ Rc Value for Setting 4 -- "8;.63"
-STO "mrcvRc"     
-R↓               
-0.63               @@@@ A Value for Setting 4 -- "8;.63"
-STO "mrcvA"      
-R↓               
-FC? 64           
-1.0                @@@@ Z Value for no SHIFT Setting 4 -- "8;.63"
-FS? 64           
-8.0                @@@@ Z Value for SHIFT Setting 4 -- "8;.63"
-STO "mrcvZ"      
-GTO 01           
-LBL 11           @@@@ Code for Setting 5 -- "8;1"
-1                  @@@@ Rc Value for Setting 5 -- "8;1"
-STO "mrcvRc"     
-R↓               
-1.0                @@@@ A Value for Setting 5 -- "8;1"
-STO "mrcvA"      
-R↓               
-FC? 64           
-1.0                @@@@ Z Value for no SHIFT Setting 5 -- "8;1"
-FS? 64           
-8.0                @@@@ Z Value for SHIFT Setting 5 -- "8;1"
-STO "mrcvZ"      
-GTO 01           
-LBL 12           @@@@ Code for Setting 6 -- "8;2"
-1                  @@@@ Rc Value for Setting 6 -- "8;2"
-STO "mrcvRc"     
-R↓               
-2.0                @@@@ A Value for Setting 6 -- "8;2"
-STO "mrcvA"      
-R↓               
-FC? 64           
-1.0                @@@@ Z Value for no SHIFT Setting 6 -- "8;2"
-FS? 64           
-8.0                @@@@ Z Value for SHIFT Setting 6 -- "8;2"
-STO "mrcvZ"
 GTO 01
+
+LBL 30           @@@@ Code for Setting: S4 with 0.32x aux
+1                  @@@@ Rc Value
+STO "mrcvRc"     
+R↓               
+0.32               @@@@ A Value
+STO "mrcvA"      
+GTO 36             @@@@ Set Z Value
+LBL 31           @@@@ Code for Setting: S4 with 0.5x aux
+1                  @@@@ Rc Value
+STO "mrcvRc"     
+R↓               
+0.50               @@@@ A Value
+STO "mrcvA"      
+GTO 36             @@@@ Set Z Value
+LBL 32           @@@@ Code for Setting: S4 with 0.63x aux
+1                  @@@@ Rc Value
+STO "mrcvRc"     
+R↓               
+0.63               @@@@ A Value
+STO "mrcvA"      
+GTO 36             @@@@ Set Z Value
+LBL 33           @@@@ Code for Setting: S4 with 0.75x aux
+1                  @@@@ Rc Value
+STO "mrcvRc"     
+R↓               
+0.75               @@@@ A Value
+STO "mrcvA"      
+GTO 36             @@@@ Set Z Value
+LBL 34           @@@@ Code for Setting: S4 with no aux
+1                  @@@@ Rc Value
+STO "mrcvRc"     
+R↓               
+1.00               @@@@ A Value
+STO "mrcvA"      
+GTO 36             @@@@ Set Z Value
+LBL 35           @@@@ Code for Setting: S4 with 1.6x aux
+1                  @@@@ Rc Value
+STO "mrcvRc"     
+R↓               
+1.60               @@@@ A Value
+STO "mrcvA"      
+GTO 36             @@@@ Set Z Value
+
+LBL 36 @@@@ Drop X & Set the zoom level for S4 Scope
+R↓               
+FC? 64           
+0.63               @@@@ Z Value NO SHIFT
+FS? 64           
+3.0                @@@@ Z Value SHIFT
+STO "mrcvZ"      
+GTO 01
+
 END
 #+end_src
 
@@ -585,7 +672,7 @@ END
 | 1 |     10446298 | Leica S8 APO                                                     |
 | 1 |     10446293 | Leica S4 E                                                       |
 |---+--------------+------------------------------------------------------------------|
-|   |     10447136 | 10x/23B eyepiece for eyeglasses, fixed                           |
+| 2 |     10447136 | 10x/23B eyepiece for eyeglasses, fixed                           |
 | 4 |     10447137 | 10x/23B eyepiece for eyeglasses, adjustable                      |
 |   |     10447138 | 16x/15B eyepiece for eyeglasses, fixed                           |
 |   |     10447139 | 16x/15B eyepiece for eyeglasses, adjustable                      |
@@ -924,8 +1011,8 @@ My goals:
     - Capture images directly from ImageJ/Fiji so I can immediately preform an image analysis
     - Setting image scale needs to be easy because measuring lengths is my #1 application
     - Identical UI between Windows and RPI
-    - Eventually integrate the software into PhilaJ (an extensive set of ImageJ/Fiji macros for philatelic image analysis), but provide a trimmed down version
-      of PhilaJ with just the microscope functionality for people not interested in philately.
+    - The software should be fully integrated into PhilaJ (an extensive set of ImageJ/Fiji macros for philatelic image analysis)
+    - The microscope functionality should be available without the bulk of the PhilaJ user interface for people not interested in philately.
   - CLI
     - Needs to integrate will with ImageJ/Fiji so that it is easy to load them in ImageJ/Fiji later
     - Completely indipendant of the ImageJ/Fiji software
@@ -1004,39 +1091,6 @@ https://richmit.github.io/imagej/PhilaJ.html#rpi-tools
 The setup instructions above install this package into Fiji.  You can find the code on github:
 
 https://github.com/richmit/imagej
-
-* S4 and S8 Magnification Coverage                          
-
-Various magnifications may be reached with different combinations of eyepiece, power, & auxiliary lens.  "X" & "O" mark the reachable magnifications.
-
-#+HTML: <div style="font-size: 60%;">
-#+ATTR_HTML: :border 2 solid #ccc :rules all :frame all :align center
-| S/EPxA     | 003 | 004 | 005 | 006 | 008 | 010 | 013 | 016 | 020 | 026 | 032 | 040 | 050 | 064 | 080 | 100 | 128 | 160 | 200 | 256 | 320 | 400 | 500 | 640 |
-| /          | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> |
-|------------+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
-| S4/10x0.5  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-| S8/10x0.32 |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-| S4/10x0.75 |     |     |  X  |  X  |  X  |  X  |  X  |  X  |  X  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-| S4/16x0.5  |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-| S4/10x1    |     |     |     |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |     |     |     |     |     |     |     |     |     |     |     |     |     |
-| S8/10x0.63 |     |     |     |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |     |     |     |     |     |     |     |     |     |     |     |
-| S4/25x0.5  |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |     |     |     |     |     |
-| S4/10x1.6  |     |     |     |     |     |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |     |     |     |     |     |     |     |     |     |     |     |
-| S8/10x1.0  |     |     |     |     |     |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |     |     |     |     |     |     |     |     |     |
-| S4/20x1    |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |     |     |     |
-| S8/20x0.63 |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |     |
-| S4/16x1.6  |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |     |     |
-| S8/16x1.0  |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |
-| S4/20x1.6  |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |     |
-| S8/10x2.0  |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |
-| S4/25x1.6  |     |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |
-| S8/25x1.0  |     |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |
-| S8/16x2.0  |     |     |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |
-| S4/40x1.6  |     |     |     |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |
-| S8/40x1.0  |     |     |     |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |
-| S8/25x2.0  |     |     |     |     |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |
-| S8/40x2.0  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |
-#+HTML: </div>
 
 * EOF
 
