@@ -905,6 +905,10 @@ sudo usermod -aG `grep '[:,]pi' /etc/group | cut -d: -f3 | tr '[:space:]' , | se
 sudo usermod -s /usr/bin/zsh richmit
 #### Change root's password
 sudo passwd root
+#### Fix the caps lock key
+sudo sh -c 'sed "s/^XKBOPTIONS=.*/XKBOPTIONS=\"ctrl:nocaps\"/" < /etc/default/keyboard > /etc/default/keyboard.new'
+sudo chmod a+r /etc/default/keyboard /etc/default/keyboard.new
+if diff -q /etc/default/keyboard /etc/default/keyboard.new; then sudo rm /etc/default/keyboard.new; else sudo mv /etc/default/keyboard /etc/default/keyboard.bak_`date +%s`; sudo mv /etc/default/keyboard.new /etc/default/keyboard; fi
 #### DO: Add my account to sudo
 #### Login with my new account
 sudo su - richmit
@@ -983,25 +987,25 @@ sudo ln -s /usr/local/bin/free42-3.0.6 /usr/local/bin/free42
 I use =rsync= to keep data in sync between my camera and primary workstation.
 
 #+begin_src sh
-date; echo back-dat-sync;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2                  --rsh='ssh' pi-cam.home.mitchr.me:synced/pi-data/                            /c/Users/richmit/Documents/world/pi-cam/;
-date; echo back-pic-sync;        rsync -rlt --log-format=%f                            --modify-window=2                  --rsh='ssh' pi-cam.home.mitchr.me:Pictures/pi-cam/                           /c/Users/richmit/Pictures/pi-cam/;
-date; echo microscope-code;      rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/microscope/             pi-cam.home.mitchr.me:synced/world/my_prog/microscope/;
-date; echo imagej-code;          rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/imagej/                 pi-cam.home.mitchr.me:synced/world/my_prog/imagej/;
-date; echo dotfiles;             rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/dotfiles/                       pi-cam.home.mitchr.me:synced/world/dotfiles/;
-date; echo dotfilesSecure;       rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/dotfilesSecure/                 pi-cam.home.mitchr.me:synced/world/dotfilesSecure/;
-date; echo homeNetwork;          rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/stuff/homeNetwork/              pi-cam.home.mitchr.me:synced/world/stuff/homeNetwork/;
-date; echo my_ref;               rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/stuff/my_ref/                   pi-cam.home.mitchr.me:synced/world/stuff/my_ref/;
-date; echo notes;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/stuff/notes/                    pi-cam.home.mitchr.me:synced/world/stuff/notes/;
-date; echo mpms;                 rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/mpms/                   pi-cam.home.mitchr.me:synced/world/my_prog/mpms/;
-date; echo dir-inventory;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/dir-inventory/          pi-cam.home.mitchr.me:synced/world/my_prog/dir-inventory/;
-date; echo ruby-examples;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/learn/ex-ruby/          pi-cam.home.mitchr.me:synced/world/my_prog/learn/ex-ruby/;
-date; echo lispy;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/lispStuff/lispy/        pi-cam.home.mitchr.me:synced/world/my_prog/lispStuff/lispy/;
-date; echo MJRdebianPakageTools; rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/MJRdebianPakageTools/   pi-cam.home.mitchr.me:synced/world/my_prog/MJRdebianPakageTools/;
-date; echo tmuxStuff;            rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/tmuxStuff/              pi-cam.home.mitchr.me:synced/world/my_prog/tmuxStuff/;
-date; echo UNIXutils;            rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/UNIXutils/              pi-cam.home.mitchr.me:synced/world/my_prog/UNIXutils/;
-date; echo utils;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/utils/                  pi-cam.home.mitchr.me:synced/world/my_prog/utils/;
-date; echo core;                 rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/core/                                 pi-cam.home.mitchr.me:synced/core/;
-date; echo leicaS8APO-docs;      rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/Doc2/gadgets/leica_microscopes/       pi-cam.home.mitchr.me:synced/Doc2/leica_microscopes/;
+date; echo back-dat-sync;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2                  --rsh='ssh' pi-cam.home.mitchr.me:synced/pi-data/                              /c/Users/richmit/Documents/world/pi-cam/;
+date; echo back-pic-sync;        rsync -rlt --log-format=%f                            --modify-window=2                  --rsh='ssh' pi-cam.home.mitchr.me:Pictures/pi-cam/                             /c/Users/richmit/Pictures/pi-cam/;
+date; echo microscope-code;      rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/microscope/               pi-cam.home.mitchr.me:synced/world/my_prog/microscope/;
+date; echo imagej-code;          rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/imagej/                   pi-cam.home.mitchr.me:synced/world/my_prog/imagej/;
+date; echo dotfiles;             rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/dotfiles/                         pi-cam.home.mitchr.me:synced/world/dotfiles/;
+date; echo dotfilesSecure;       rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/dotfilesSecure/                   pi-cam.home.mitchr.me:synced/world/dotfilesSecure/;
+date; echo homeNetwork;          rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/stuff/homeNetwork/                pi-cam.home.mitchr.me:synced/world/stuff/homeNetwork/;
+date; echo my_ref;               rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/stuff/my_ref/                     pi-cam.home.mitchr.me:synced/world/stuff/my_ref/;
+date; echo notes;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/stuff/notes/                      pi-cam.home.mitchr.me:synced/world/stuff/notes/;
+date; echo mpms;                 rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/mpms/                     pi-cam.home.mitchr.me:synced/world/my_prog/mpms/;
+date; echo dir-inventory;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/dir-inventory/            pi-cam.home.mitchr.me:synced/world/my_prog/dir-inventory/;
+date; echo ruby-examples;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/learn/ex-ruby/            pi-cam.home.mitchr.me:synced/world/my_prog/learn/ex-ruby/;
+date; echo lispy;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/lispStuff/lispy/          pi-cam.home.mitchr.me:synced/world/my_prog/lispStuff/lispy/;
+date; echo MJRdebianPakageTools; rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/MJRdebianPakageTools/     pi-cam.home.mitchr.me:synced/world/my_prog/MJRdebianPakageTools/;
+date; echo tmuxStuff;            rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/tmuxStuff/                pi-cam.home.mitchr.me:synced/world/my_prog/tmuxStuff/;
+date; echo UNIXutils;            rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/UNIXutils/                pi-cam.home.mitchr.me:synced/world/my_prog/UNIXutils/;
+date; echo utils;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/utils/                    pi-cam.home.mitchr.me:synced/world/my_prog/utils/;
+date; echo core;                 rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/core/                                   pi-cam.home.mitchr.me:synced/core/;
+date; echo leicaS8APO-docs;      rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/reading/Doc2/gadgets/leica_microscopes/ pi-cam.home.mitchr.me:synced/Doc2/leica_microscopes/;
 date
 #+end_src
 
