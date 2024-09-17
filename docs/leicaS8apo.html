@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-04-23 Sat 10:35 -->
+<!-- 2024-09-17 Tue 15:25 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=1024, initial-scale=1" />
 <title>Leica S4E &amp; S8APO</title>
@@ -193,7 +193,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <style>body { width: 95%; margin: 2% auto; font-size: 18px; line-height: 1.4em; font-family: Georgia, serif; color: black; background-color: white; }</style>
 <style>body { min-width: 500px; max-width: 1024px; }</style>
@@ -205,27 +205,38 @@
 <style>.org-src-container>pre { line-height: 1.2em; padding-top: 1.5em; margin: 0.5em; background-color: #404040; color: white; overflow: auto; }</style>
 <style>.org-src-container>pre:before { display: block; position: absolute; background-color: #b3b3b3; top: 0; right: 0; padding: 0 0.2em 0 0.4em; border-bottom-left-radius: 8px; border: 0; color: white; font-size: 100%; font-family: Helvetica, sans-serif;}</style>
 <style>pre.example { white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -o-pre-wrap; font-family: Lucida Console, monospace; font-size: 80%; background: #404040; color: white; display: block; padding: 0em; border: 2px solid black; }</style>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="org-div-home-and-up">
@@ -250,12 +261,12 @@
 
 <tr>
 <td class="org-right"><b>Updated:</b></td>
-<td class="org-left"><i>2022-04-23</i></td>
+<td class="org-left"><i>2024-09-17</i></td>
 </tr>
 </tbody>
 </table>
 <p align="center">
-Copyright 2022 Mitch Richling. All rights reserved.
+Copyright 2024 Mitch Richling. All rights reserved.
 </p>
 
 <div id="table-of-contents" role="doc-toc">
@@ -263,7 +274,7 @@ Copyright 2022 Mitch Richling. All rights reserved.
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
 <li><a href="#introduction">1. Introduction</a></li>
-<li><a href="#org5b78b0c">2. Microscope Symbols &amp; Formulas</a>
+<li><a href="#orga33bf21">2. Microscope Symbols &amp; Formulas</a>
 <ul>
 <li><a href="#variables">2.1. Variables</a></li>
 <li><a href="#formulas">2.2. Formulas</a></li>
@@ -281,30 +292,30 @@ Copyright 2022 Mitch Richling. All rights reserved.
 <li><a href="#s8-ret-scale">4.2. Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece</a></li>
 <li><a href="#s8-na">4.3. Numerical Aperture With No Auxiliary Lens</a></li>
 <li><a href="#leica-vid-obj">4.4. Leica C-Mount Video Objective Data</a></li>
-<li><a href="#org6f63d5b">4.5. Attaching Cameras</a></li>
+<li><a href="#orgc730742">4.5. Attaching Cameras</a></li>
 <li><a href="#s8-cam-data">4.6. Camera FOV &amp; Image Scales</a></li>
 </ul>
 </li>
-<li><a href="#org2836562">5. S4 and S8 Magnification Coverage</a></li>
+<li><a href="#org493243c">5. S4 and S8 Magnification Coverage</a></li>
 <li><a href="#mrconv">6. Reticle Unit Conversion Software For free42 and DM42</a>
 <ul>
-<li><a href="#org456f7a8">6.1. The menu</a></li>
-<li><a href="#org3d7361e">6.2. The code</a></li>
+<li><a href="#orge65ed64">6.1. The menu</a></li>
+<li><a href="#org8312365">6.2. The code</a></li>
 </ul>
 </li>
 <li><a href="#parts">7. S-Series Leica Parts</a></li>
 <li><a href="#sensors">8. Image Sensor Data</a></li>
 <li><a href="#rpi-camera">9. DIY RPI Camera</a>
 <ul>
-<li><a href="#org7636696">9.1. The Idea</a></li>
+<li><a href="#orgd81161e">9.1. The Idea</a></li>
 <li><a href="#rpi-bom">9.2. Bill Of Materials</a></li>
-<li><a href="#org9f0cf06">9.3. System Setup</a>
+<li><a href="#org76c1697">9.3. System Setup</a>
 <ul>
 <li><a href="#rpi-camera-min-soft-config">9.3.1. Minimal Configuration</a></li>
 <li><a href="#rpi-camera-my-soft-config">9.3.2. My Configuration</a>
 <ul>
-<li><a href="#org8253c3e">9.3.2.1. System Setup</a></li>
-<li><a href="#org2f1808a">9.3.2.2. System Sync</a></li>
+<li><a href="#orga7b8273">9.3.2.1. System Setup</a></li>
+<li><a href="#org7a0779e">9.3.2.2. System Sync</a></li>
 </ul>
 </li>
 </ul>
@@ -317,7 +328,6 @@ Copyright 2022 Mitch Richling. All rights reserved.
 </li>
 </ul>
 </li>
-<li><a href="#org9cf5da3">10. EOF</a></li>
 </ul>
 </div>
 </div>
@@ -336,8 +346,8 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 </div>
 </div>
 
-<div id="outline-container-org5b78b0c" class="outline-2">
-<h2 id="org5b78b0c"><span class="section-number-2">2.</span> Microscope Symbols &amp; Formulas</h2>
+<div id="outline-container-orga33bf21" class="outline-2">
+<h2 id="orga33bf21"><span class="section-number-2">2.</span> Microscope Symbols &amp; Formulas</h2>
 <div class="outline-text-2" id="text-2">
 </div>
 <div id="outline-container-variables" class="outline-3">
@@ -646,9 +656,17 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 
 <col  class="org-right" />
 </colgroup>
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
 <thead>
 <tr>
 <th scope="col" class="org-right">&#xa0;</th>
+<th scope="col" class="org-right">\(A=\)</th>
+<th scope="col" class="org-right">\(W=\)</th>
 <th scope="col" class="org-right">\(A=\)</th>
 <th scope="col" class="org-right">\(W=\)</th>
 <th scope="col" class="org-right">\(A=\)</th>
@@ -669,10 +687,14 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 <th scope="col" class="org-right">\(110\,\mathrm{mm}\)</th>
 <th scope="col" class="org-right">\(1.6\times\)</th>
 <th scope="col" class="org-right">\(55\,\mathrm{mm}\)</th>
+<th scope="col" class="org-right">\(2.0\times\)</th>
+<th scope="col" class="org-right">\(35\,\mathrm{mm}\)</th>
 </tr>
 
 <tr>
 <th scope="col" class="org-right">\(Z\)</th>
+<th scope="col" class="org-right">\(E_{MAG}\)</th>
+<th scope="col" class="org-right">\(V_{FOV}\)</th>
 <th scope="col" class="org-right">\(E_{MAG}\)</th>
 <th scope="col" class="org-right">\(V_{FOV}\)</th>
 <th scope="col" class="org-right">\(E_{MAG}\)</th>
@@ -694,6 +716,8 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 <td class="org-right">36.51</td>
 <td class="org-right">10.08</td>
 <td class="org-right">22.82</td>
+<td class="org-right">12.60</td>
+<td class="org-right">18.25</td>
 </tr>
 
 <tr>
@@ -706,6 +730,8 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 <td class="org-right">28.75</td>
 <td class="org-right">12.80</td>
 <td class="org-right">17.97</td>
+<td class="org-right">16.00</td>
+<td class="org-right">14.38</td>
 </tr>
 
 <tr>
@@ -718,6 +744,8 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 <td class="org-right">23.00</td>
 <td class="org-right">16.00</td>
 <td class="org-right">14.38</td>
+<td class="org-right">20.00</td>
+<td class="org-right">11.50</td>
 </tr>
 
 <tr>
@@ -730,6 +758,8 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 <td class="org-right">18.40</td>
 <td class="org-right">20.00</td>
 <td class="org-right">11.50</td>
+<td class="org-right">25.00</td>
+<td class="org-right">9.20</td>
 </tr>
 
 <tr>
@@ -742,6 +772,8 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 <td class="org-right">14.38</td>
 <td class="org-right">25.60</td>
 <td class="org-right">8.98</td>
+<td class="org-right">32.00</td>
+<td class="org-right">7.19</td>
 </tr>
 
 <tr>
@@ -754,6 +786,8 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 <td class="org-right">11.50</td>
 <td class="org-right">32.00</td>
 <td class="org-right">7.19</td>
+<td class="org-right">40.00</td>
+<td class="org-right">5.75</td>
 </tr>
 
 <tr>
@@ -766,6 +800,8 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 <td class="org-right">9.20</td>
 <td class="org-right">40.00</td>
 <td class="org-right">5.75</td>
+<td class="org-right">50.00</td>
+<td class="org-right">4.60</td>
 </tr>
 
 <tr>
@@ -778,11 +814,14 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 <td class="org-right">7.67</td>
 <td class="org-right">48.00</td>
 <td class="org-right">4.79</td>
+<td class="org-right">60.00</td>
+<td class="org-right">3.83</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
+
 
 <div id="outline-container-s4-ret-scale" class="outline-3">
 <h3 id="s4-ret-scale"><span class="section-number-3">3.2.</span> Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece</h3>
@@ -900,6 +939,27 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 <td class="org-right">0.20833</td>
 <td class="org-right">48.00</td>
 <td class="org-right">4.79</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">2.00</td>
+<td class="org-right">0.63</td>
+<td class="org-right">10</td>
+<td class="org-right">23</td>
+<td class="org-right">0.79365</td>
+<td class="org-right">12.60</td>
+<td class="org-right">18.25</td>
+</tr>
+
+<tr>
+<td class="org-right">2.00</td>
+<td class="org-right">3.00</td>
+<td class="org-right">10</td>
+<td class="org-right">23</td>
+<td class="org-right">0.16667</td>
+<td class="org-right">60.00</td>
+<td class="org-right">3.83</td>
 </tr>
 </tbody>
 </table>
@@ -1454,8 +1514,8 @@ efficiently used with about 84% of the sensor pixels wasted.
 
 
 
-<div id="outline-container-org6f63d5b" class="outline-3">
-<h3 id="org6f63d5b"><span class="section-number-3">4.5.</span> Attaching Cameras</h3>
+<div id="outline-container-orgc730742" class="outline-3">
+<h3 id="orgc730742"><span class="section-number-3">4.5.</span> Attaching Cameras</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 The Leica documentation suggests using a chain of adapters for attaching a generic digital camera. The first part of the chain is one of the following three
@@ -1681,15 +1741,22 @@ I use two cameras with my S8APO:
 </div>
 </div>
 
-<div id="outline-container-org2836562" class="outline-2">
-<h2 id="org2836562"><span class="section-number-2">5.</span> S4 and S8 Magnification Coverage</h2>
+<div id="outline-container-org493243c" class="outline-2">
+<h2 id="org493243c"><span class="section-number-2">5.</span> S4 and S8 Magnification Coverage</h2>
 <div class="outline-text-2" id="text-5">
 <p>
-Various magnifications may be reached with different combinations of eyepiece, power, &amp; auxiliary lens.  "X" &amp; "O" mark the reachable magnifications.
+Various magnifications may be reached with different combinations of eyepiece, power, &amp; auxiliary lens.
 </p>
+<ul class="org-ul">
+<li><b>green</b>: Full APO</li>
+<li><b>yellow</b>: Achro but not APO</li>
+<li><b>pink</b>: Unspecified distortion (might not even be Acro)</li>
+<li><b>red</b>: I don't have equipment for this</li>
+<li><b>black</b>: Not possible</li>
+</ul>
 
-<div style="font-size: 60%;">
-<table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="all" frame="all" align="center">
+<div style="font-size: 80%;">
+<table border="2" cellspacing="0" cellpadding="0" rules="all solid #ccc" frame="all" align="center" border-spacing="0">
 
 
 <colgroup>
@@ -1746,647 +1813,703 @@ Various magnifications may be reached with different combinations of eyepiece, p
 <thead>
 <tr>
 <th scope="col" class="org-left">S/EPxA</th>
-<th scope="col" class="org-center">003</th>
-<th scope="col" class="org-center">004</th>
-<th scope="col" class="org-center">005</th>
-<th scope="col" class="org-center">006</th>
-<th scope="col" class="org-center">008</th>
-<th scope="col" class="org-center">010</th>
-<th scope="col" class="org-center">013</th>
-<th scope="col" class="org-center">016</th>
-<th scope="col" class="org-center">020</th>
-<th scope="col" class="org-center">026</th>
-<th scope="col" class="org-center">032</th>
-<th scope="col" class="org-center">040</th>
-<th scope="col" class="org-center">050</th>
-<th scope="col" class="org-center">064</th>
-<th scope="col" class="org-center">080</th>
-<th scope="col" class="org-center">100</th>
-<th scope="col" class="org-center">128</th>
-<th scope="col" class="org-center">160</th>
-<th scope="col" class="org-center">200</th>
-<th scope="col" class="org-center">256</th>
-<th scope="col" class="org-center">320</th>
-<th scope="col" class="org-center">400</th>
-<th scope="col" class="org-center">500</th>
-<th scope="col" class="org-center">640</th>
+<th scope="col" class="org-center">&nbsp;003&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;004&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;005&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;006&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;008&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;010&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;013&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;016&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;020&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;026&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;032&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;040&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;050&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;064&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;080&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;100&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;128&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;160&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;200&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;256&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;320&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;400&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;500&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;640&nbsp;</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="org-left">S4/10x0.5</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
+<td class="org-left">&nbsp;S4/10x0.50&nbsp;</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 </tr>
 
 <tr>
-<td class="org-left">S8/10x0.32</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
+<td class="org-left">&nbsp;S8/10x0.32&nbsp;</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 </tr>
 
 <tr>
-<td class="org-left">S4/10x0.75</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
+<td class="org-left">&nbsp;S4/10x0.75&nbsp;</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 </tr>
 
 <tr>
-<td class="org-left">S4/16x0.5</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
+<td class="org-left">&nbsp;S4/16x0.50&nbsp;</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 </tr>
 
 <tr>
-<td class="org-left">S4/10x1</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
+<td class="org-left">&nbsp;S4/10x1.00&nbsp;</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 </tr>
 
 <tr>
-<td class="org-left">S8/10x0.63</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
+<td class="org-left">&nbsp;S8/10x0.63&nbsp;</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 </tr>
 
 <tr>
-<td class="org-left">S4/25x0.5</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
+<td class="org-left">&nbsp;S8/10x0.75&nbsp;</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 </tr>
 
 <tr>
-<td class="org-left">S4/10x1.6</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
+<td class="org-left">&nbsp;S4/25x0.50&nbsp;</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 </tr>
 
 <tr>
-<td class="org-left">S8/10x1.0</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">X</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
+<td class="org-left">&nbsp;S4/10x1.60&nbsp;</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 </tr>
 
 <tr>
-<td class="org-left">S4/20x1</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
+<td class="org-left">&nbsp;S8/10x1.00&nbsp;</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 </tr>
 
 <tr>
-<td class="org-left">S8/20x0.63</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
+<td class="org-left">&nbsp;S4/20x1.00&nbsp;</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 </tr>
 
 <tr>
-<td class="org-left">S4/16x1.6</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
+<td class="org-left">&nbsp;S4/10x2.00&nbsp;</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 </tr>
 
 <tr>
-<td class="org-left">S8/16x1.0</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
+<td class="org-left">&nbsp;S8/20x0.63&nbsp;</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 </tr>
 
 <tr>
-<td class="org-left">S4/20x1.6</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
+<td class="org-left">&nbsp;S4/16x1.60&nbsp;</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 </tr>
 
 <tr>
-<td class="org-left">S8/10x2.0</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
+<td class="org-left">&nbsp;S8/16x1.00&nbsp;</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 </tr>
 
 <tr>
-<td class="org-left">S4/25x1.6</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
+<td class="org-left">&nbsp;S4/20x1.60&nbsp;</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 </tr>
 
 <tr>
-<td class="org-left">S8/25x1.0</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
+<td class="org-left">&nbsp;S8/10x2.00&nbsp;</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 </tr>
 
 <tr>
-<td class="org-left">S8/16x2.0</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
+<td class="org-left">&nbsp;S4/25x1.60&nbsp;</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 </tr>
 
 <tr>
-<td class="org-left">S4/40x1.6</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
+<td class="org-left">&nbsp;S8/25x1.00&nbsp;</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 </tr>
 
 <tr>
-<td class="org-left">S8/40x1.0</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
+<td class="org-left">&nbsp;S8/16x2.00&nbsp;</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 </tr>
 
 <tr>
-<td class="org-left">S8/25x2.0</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
+<td class="org-left">&nbsp;S4/40x1.60&nbsp;</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 </tr>
 
 <tr>
-<td class="org-left">S8/40x2.0</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">&#xa0;</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
-<td class="org-center">O</td>
+<td class="org-left">&nbsp;S8/40x1.00&nbsp;</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;S8/25x2.00&nbsp;</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;S8/40x2.00&nbsp;</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
 </tr>
 </tbody>
 </table>
@@ -2407,8 +2530,8 @@ want to modify the settings menus.
 </p>
 </div>
 
-<div id="outline-container-org456f7a8" class="outline-3">
-<h3 id="org456f7a8"><span class="section-number-3">6.1.</span> The menu</h3>
+<div id="outline-container-orge65ed64" class="outline-3">
+<h3 id="orge65ed64"><span class="section-number-3">6.1.</span> The menu</h3>
 <div class="outline-text-3" id="text-6-1">
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
 <caption class="t-above"><span class="table-number">Table 11:</span> Application Menu</caption>
@@ -2567,8 +2690,8 @@ want to modify the settings menus.
 </div>
 </div>
 
-<div id="outline-container-org3d7361e" class="outline-3">
-<h3 id="org3d7361e"><span class="section-number-3">6.2.</span> The code</h3>
+<div id="outline-container-org8312365" class="outline-3">
+<h3 id="org8312365"><span class="section-number-3">6.2.</span> The code</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 The code below may be cut-n-pasted the code below into free42.  Alternately the raw file from <a href="https://github.com/richmit/microscope">github</a>.
@@ -2791,9 +2914,9 @@ END
 </thead>
 <tbody>
 <tr>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">/</td>
-<td class="org-left">&lt;&gt;</td>
+<td class="org-right">&lt;</td>
+<td class="org-right">&lt;</td>
+<td class="org-left">&gt;</td>
 </tr>
 
 <tr>
@@ -2927,7 +3050,7 @@ END
 </tr>
 
 <tr>
-<td class="org-right">&#xa0;</td>
+<td class="org-right">1</td>
 <td class="org-right">10446322</td>
 <td class="org-left">Auxiliary \(2.0\times\) for S4/S6, WD 35 mm</td>
 </tr>
@@ -2942,37 +3065,6 @@ END
 <td class="org-right">&#xa0;</td>
 <td class="org-right">10446323</td>
 <td class="org-left">Auxiliary \(0.6–0.75\times\) for S4/S6 (ErgoObjective) WD 77–137mm</td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">10450817</td>
-<td class="org-left">Auxiliary \(0.5\times\) for S9, WD 200 mm</td>
-</tr>
-
-<tr>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">10450818</td>
-<td class="org-left">Auxiliary \(0.63\times\) for S9, WD 150 mm</td>
-</tr>
-
-<tr>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">10450819</td>
-<td class="org-left">Auxiliary \(0.75\times\) for S9, WD 130 mm</td>
-</tr>
-
-<tr>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">10450820</td>
-<td class="org-left">Auxiliary \(1.6\times\) for S9, WD 50 mm</td>
-</tr>
-
-<tr>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">10450821</td>
-<td class="org-left">Auxiliary \(2.0\times\) for S9, WD 35 mm</td>
 </tr>
 </tbody>
 <tbody>
@@ -3020,7 +3112,7 @@ END
 <div id="outline-container-sensors" class="outline-2">
 <h2 id="sensors"><span class="section-number-2">8.</span> Image Sensor Data</h2>
 <div class="outline-text-2" id="text-sensors">
-<table id="org5536ba0" border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
+<table id="org397cbe1" border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
 <caption class="t-above"><span class="table-number">Table 13:</span> Image Sensor Data</caption>
 
 <colgroup>
@@ -3323,29 +3415,29 @@ END
 <h2 id="rpi-camera"><span class="section-number-2">9.</span> DIY RPI Camera</h2>
 <div class="outline-text-2" id="text-rpi-camera">
 
-<div id="org7f0f642" class="figure">
+<div id="org1fd30d9" class="figure">
 <p><img src="rpicam1_800.jpg" alt="rpicam1_800.jpg" border="2 solid #ccc" frame="hsides" align="center" />
 </p>
 <p><span class="figure-number">Figure 1: </span>A live feed from the microscope with a glass scale on the stage.</p>
 </div>
 
 
-<div id="org67ed685" class="figure">
+<div id="orga1eea82" class="figure">
 <p><img src="rpicam2_800.jpg" alt="rpicam2_800.jpg" border="2 solid #ccc" frame="hsides" align="center" />
 </p>
 <p><span class="figure-number">Figure 2: </span>A good view of the wire management for the camera.</p>
 </div>
 
 
-<div id="org898651f" class="figure">
+<div id="org93df9f6" class="figure">
 <p><img src="rpicam4_800.jpg" alt="rpicam4_800.jpg" border="2 solid #ccc" frame="hsides" align="center" />
 </p>
 <p><span class="figure-number">Figure 3: </span>A 30fps live feed illuminated only by my desk lamps.  This is an exceptionally bright microscope.</p>
 </div>
 </div>
 
-<div id="outline-container-org7636696" class="outline-3">
-<h3 id="org7636696"><span class="section-number-3">9.1.</span> The Idea</h3>
+<div id="outline-container-orgd81161e" class="outline-3">
+<h3 id="orgd81161e"><span class="section-number-3">9.1.</span> The Idea</h3>
 <div class="outline-text-3" id="text-9-1">
 <p>
 If you have arrived here via direct link, then you might be interested to know that your browser is pointed to the middle of a larger document &#x2013; my personal
@@ -3425,8 +3517,8 @@ image analysis software (Fiji/ImageJ) right on the camera.
 </div>
 </div>
 
-<div id="outline-container-org9f0cf06" class="outline-3">
-<h3 id="org9f0cf06"><span class="section-number-3">9.3.</span> System Setup</h3>
+<div id="outline-container-org76c1697" class="outline-3">
+<h3 id="org76c1697"><span class="section-number-3">9.3.</span> System Setup</h3>
 <div class="outline-text-3" id="text-9-3">
 <p>
 Note: These instructions are for the Bullseye based Raspberry Pi OS relased in November of 2021!  
@@ -3508,8 +3600,8 @@ above:
 </ul>
 </div>
 
-<div id="outline-container-org8253c3e" class="outline-5">
-<h5 id="org8253c3e"><span class="section-number-5">9.3.2.1.</span> System Setup</h5>
+<div id="outline-container-orga7b8273" class="outline-5">
+<h5 id="orga7b8273"><span class="section-number-5">9.3.2.1.</span> System Setup</h5>
 <div class="outline-text-5" id="text-9-3-2-1">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Refresh packages and update everything</span>
@@ -3624,8 +3716,8 @@ sudo ln -s /usr/local/bin/free42-3.0.6 /usr/local/bin/free42
 </div>
 </div>
 
-<div id="outline-container-org2f1808a" class="outline-5">
-<h5 id="org2f1808a"><span class="section-number-5">9.3.2.2.</span> System Sync</h5>
+<div id="outline-container-org7a0779e" class="outline-5">
+<h5 id="org7a0779e"><span class="section-number-5">9.3.2.2.</span> System Sync</h5>
 <div class="outline-text-5" id="text-9-3-2-2">
 <p>
 I use <code>rsync</code> to keep data in sync between my camera and primary workstation.
@@ -3646,7 +3738,7 @@ date; <span style="color: #b0c4de;">echo</span> dir-inventory;        rsync -rlt
 date; <span style="color: #b0c4de;">echo</span> ruby-examples;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/my_prog/learn/ex-ruby/            pi-cam.home.mitchr.me:synced/world/my_prog/learn/ex-ruby/;
 date; <span style="color: #b0c4de;">echo</span> lispy;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/my_prog/lispStuff/lispy/          pi-cam.home.mitchr.me:synced/world/my_prog/lispStuff/lispy/;
 date; <span style="color: #b0c4de;">echo</span> MJRdebianPakageTools; rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/my_prog/MJRdebianPakageTools/     pi-cam.home.mitchr.me:synced/world/my_prog/MJRdebianPakageTools/;
-date; <span style="color: #b0c4de;">echo</span> tmuxStuff;            rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/my_prog/tmuxStuff/                pi-cam.home.mitchr.me:synced/world/my_prog/tmuxStuff/;
+date; <span style="color: #b0c4de;">echo</span> tmuxHelper;           rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/my_prog/tmuxHelper/               pi-cam.home.mitchr.me:synced/world/my_prog/tmuxHelper/;
 date; <span style="color: #b0c4de;">echo</span> UNIXutils;            rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/my_prog/UNIXutils/                pi-cam.home.mitchr.me:synced/world/my_prog/UNIXutils/;
 date; <span style="color: #b0c4de;">echo</span> utils;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/my_prog/utils/                    pi-cam.home.mitchr.me:synced/world/my_prog/utils/;
 date; <span style="color: #b0c4de;">echo</span> core;                 rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/core/                                   pi-cam.home.mitchr.me:synced/core/;
@@ -3776,20 +3868,13 @@ The setup instructions above install this package into Fiji.  You can find the c
 </div>
 </div>
 </div>
-
-<div id="outline-container-org9cf5da3" class="outline-2">
-<h2 id="org9cf5da3"><span class="section-number-2">10.</span> EOF</h2>
-<div class="outline-text-2" id="text-10">
-<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
-<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
-<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
-<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
-<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
-</div>
-</div>
 </div>
 <div id="postamble" class="status">
-Created by Mitch Richling <<a href="mailto:http://www.mitchr.me/">http://www.mitchr.me/</a>>.  Rendered on 2022-04-23 Sat 10:35 via <a href="https://www.gnu.org/software/emacs/">Emacs</a> 28.1 (<a href="https://orgmode.org">Org</a> mode 9.5.2)
+<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 </div>
 </body>
 </html>

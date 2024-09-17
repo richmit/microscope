@@ -126,22 +126,22 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 
 #+CAPTION: S4E -- Magnification and FOV at Various Zoom Levels With 10x/23 Eyepiece
 #+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
-|   |      |        $A=$ |               $W=$ |         $A=$ |               $W=$ |        $A=$ |               $W=$ |        $A=$ |              $W=$ |
-|   |      | $0.5\times$ | $200\,\mathrm{mm}$ | $0.75\times$ | $130\,\mathrm{mm}$ | $1.0\times$ | $110\,\mathrm{mm}$ | $1.6\times$ | $55\,\mathrm{mm}$ |
-|   |  $Z$ |   $E_{MAG}$ |          $V_{FOV}$ |    $E_{MAG}$ |          $V_{FOV}$ |   $E_{MAG}$ |          $V_{FOV}$ |   $E_{MAG}$ |         $V_{FOV}$ |
-|---+------+-------------+--------------------+--------------+--------------------+-------------+--------------------+-------------+-------------------|
-| / |      |             |                    |              |                    |          23 |                 10 |             |                   |
-| ^ |      |             |                    |              |                    |         EFN |               EMAG |             |                   |
-| / |      |         0.5 |                    |         0.75 |                    |           1 |                    |         1.6 |                   |
-| / |      |           < |                  > |            < |                  > |           < |                  > |           < |                 > |
-|   | 0.63 |        3.15 |              73.02 |         4.72 |              48.68 |        6.30 |              36.51 |       10.08 |             22.82 |
-|   | 0.80 |        4.00 |              57.50 |         6.00 |              38.33 |        8.00 |              28.75 |       12.80 |             17.97 |
-|   | 1.00 |        5.00 |              46.00 |         7.50 |              30.67 |       10.00 |              23.00 |       16.00 |             14.38 |
-|   | 1.25 |        6.25 |              36.80 |         9.38 |              24.53 |       12.50 |              18.40 |       20.00 |             11.50 |
-|   | 1.60 |        8.00 |              28.75 |        12.00 |              19.17 |       16.00 |              14.38 |       25.60 |              8.98 |
-|   | 2.00 |       10.00 |              23.00 |        15.00 |              15.33 |       20.00 |              11.50 |       32.00 |              7.19 |
-|   | 2.50 |       12.50 |              18.40 |        18.75 |              12.27 |       25.00 |               9.20 |       40.00 |              5.75 |
-|   | 3.00 |       15.00 |              15.33 |        22.50 |              10.22 |       30.00 |               7.67 |       48.00 |              4.79 |
+|   |      |        $A=$ |               $W=$ |         $A=$ |               $W=$ |        $A=$ |               $W=$ |        $A=$ |              $W=$ |        $A=$ |              $W=$ |
+|   |      | $0.5\times$ | $200\,\mathrm{mm}$ | $0.75\times$ | $130\,\mathrm{mm}$ | $1.0\times$ | $110\,\mathrm{mm}$ | $1.6\times$ | $55\,\mathrm{mm}$ | $2.0\times$ | $35\,\mathrm{mm}$ |
+|   |  $Z$ |   $E_{MAG}$ |          $V_{FOV}$ |    $E_{MAG}$ |          $V_{FOV}$ |   $E_{MAG}$ |          $V_{FOV}$ |   $E_{MAG}$ |         $V_{FOV}$ |   $E_{MAG}$ |         $V_{FOV}$ |
+|---+------+-------------+--------------------+--------------+--------------------+-------------+--------------------+-------------+-------------------+-------------+-------------------|
+| / |      |             |                    |              |                    |          23 |                 10 |             |                   |             |                   |
+| ^ |      |             |                    |              |                    |         EFN |               EMAG |             |                   |             |                   |
+| / |      |         0.5 |                    |         0.75 |                    |           1 |                    |         1.6 |                   |         2.0 |                   |
+| / |      |           < |                  > |            < |                  > |           < |                  > |           < |                 > |           < |                 > |
+|   | 0.63 |        3.15 |              73.02 |         4.72 |              48.68 |        6.30 |              36.51 |       10.08 |             22.82 |       12.60 |             18.25 |
+|   | 0.80 |        4.00 |              57.50 |         6.00 |              38.33 |        8.00 |              28.75 |       12.80 |             17.97 |       16.00 |             14.38 |
+|   | 1.00 |        5.00 |              46.00 |         7.50 |              30.67 |       10.00 |              23.00 |       16.00 |             14.38 |       20.00 |             11.50 |
+|   | 1.25 |        6.25 |              36.80 |         9.38 |              24.53 |       12.50 |              18.40 |       20.00 |             11.50 |       25.00 |              9.20 |
+|   | 1.60 |        8.00 |              28.75 |        12.00 |              19.17 |       16.00 |              14.38 |       25.60 |              8.98 |       32.00 |              7.19 |
+|   | 2.00 |       10.00 |              23.00 |        15.00 |              15.33 |       20.00 |              11.50 |       32.00 |              7.19 |       40.00 |              5.75 |
+|   | 2.50 |       12.50 |              18.40 |        18.75 |              12.27 |       25.00 |               9.20 |       40.00 |              5.75 |       50.00 |              4.60 |
+|   | 3.00 |       15.00 |              15.33 |        22.50 |              10.22 |       30.00 |               7.67 |       48.00 |              4.79 |       60.00 |              3.83 |
 #+TBLFM: @8$3..@>$3=$EMAG*$2*@6;%.2f
 #+TBLFM: @8$4..@>$4=$EFN/$2/@6$-1;%.2f
 #+TBLFM: @8$5..@>$5=$EMAG*$2*@6;%.2f
@@ -150,6 +150,9 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 #+TBLFM: @8$8..@>$8=$EFN/$2/@6$-1;%.2f
 #+TBLFM: @8$9..@>$9=$EMAG*$2*@6;%.2f
 #+TBLFM: @8$10..@>$10=$EFN/$2/@6$-1;%.2f
+#+TBLFM: @8$11..@>$11=$EMAG*$2*@6;%.2f
+#+TBLFM: @8$12..@>$12=$EFN/$2/@6$-1;%.2f
+
 
 ** Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece
 :PROPERTIES:
@@ -172,6 +175,9 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 |------+------+-----------+----------+---------+-----------+-----------|
 | 1.60 | 0.63 |        10 |       23 | 0.99206 |     10.08 |     22.82 |
 | 1.60 | 3.00 |        10 |       23 | 0.20833 |     48.00 |      4.79 |
+|------+------+-----------+----------+---------+-----------+-----------|
+| 2.00 | 0.63 |        10 |       23 | 0.79365 |     12.60 |     18.25 |
+| 2.00 | 3.00 |        10 |       23 | 0.16667 |     60.00 |      3.83 |
 #+TBLFM: $5=1/($1*$2);%.5f
 #+TBLFM: $7=$4/($1*$2);%.2f
 #+TBLFM: $6=$1*$2*$3;%.2f
@@ -402,35 +408,56 @@ I use two cameras with my S8APO:
 
 * S4 and S8 Magnification Coverage                          
 
-Various magnifications may be reached with different combinations of eyepiece, power, & auxiliary lens.  "X" & "O" mark the reachable magnifications.
+Various magnifications may be reached with different combinations of eyepiece, power, & auxiliary lens.
+ - *green*: Full APO
+ - *yellow*: Achro but not APO
+ - *pink*: Unspecified distortion (might not even be Acro)
+ - *red*: I don't have equipment for this
+ - *black*: Not possible
 
-#+HTML: <div style="font-size: 60%;">
-#+ATTR_HTML: :border 2 solid #ccc :rules all :frame all :align center
-| S/EPxA     | 003 | 004 | 005 | 006 | 008 | 010 | 013 | 016 | 020 | 026 | 032 | 040 | 050 | 064 | 080 | 100 | 128 | 160 | 200 | 256 | 320 | 400 | 500 | 640 |
-| /          | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> | <c> |
-|------------+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----|
-| S4/10x0.5  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-| S8/10x0.32 |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-| S4/10x0.75 |     |     |  X  |  X  |  X  |  X  |  X  |  X  |  X  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-| S4/16x0.5  |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
-| S4/10x1    |     |     |     |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |     |     |     |     |     |     |     |     |     |     |     |     |     |
-| S8/10x0.63 |     |     |     |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |     |     |     |     |     |     |     |     |     |     |     |
-| S4/25x0.5  |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |     |     |     |     |     |
-| S4/10x1.6  |     |     |     |     |     |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |     |     |     |     |     |     |     |     |     |     |     |
-| S8/10x1.0  |     |     |     |     |     |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |  X  |     |     |     |     |     |     |     |     |     |
-| S4/20x1    |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |     |     |     |
-| S8/20x0.63 |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |     |
-| S4/16x1.6  |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |     |     |
-| S8/16x1.0  |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |
-| S4/20x1.6  |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |     |
-| S8/10x2.0  |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |
-| S4/25x1.6  |     |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |
-| S8/25x1.0  |     |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |
-| S8/16x2.0  |     |     |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |
-| S4/40x1.6  |     |     |     |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |
-| S8/40x1.0  |     |     |     |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |
-| S8/25x2.0  |     |     |     |     |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |
-| S8/40x2.0  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |
+# APO
+#+MACRO: ABX @@html:<div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div>@@ 
+# Acro
+#+MACRO: CBX @@html:<div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div>@@ 
+# Unknown optical performance
+#+MACRO: UBX @@html:<div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div>@@ 
+# Missing
+#+MACRO: MBX @@html:<div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div>@@ 
+# Not possible
+#+MACRO: XBX @@html:<div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div>@@ 
+# Space pad a string
+#+MACRO: SPP @@html:&nbsp;$1&nbsp;@@ 
+
+
+#+HTML: <div style="font-size: 80%;">
+#+ATTR_HTML: :rules all solid #ccc :frame all :align center :cellpadding 0 :border-spacing 0
+| S/EPxA                | {{{SPP(003)}}} | {{{SPP(004)}}} | {{{SPP(005)}}} | {{{SPP(006)}}} | {{{SPP(008)}}} | {{{SPP(010)}}} | {{{SPP(013)}}} | {{{SPP(016)}}} | {{{SPP(020)}}} | {{{SPP(026)}}} | {{{SPP(032)}}} | {{{SPP(040)}}} | {{{SPP(050)}}} | {{{SPP(064)}}} | {{{SPP(080)}}} | {{{SPP(100)}}} | {{{SPP(128)}}} | {{{SPP(160)}}} | {{{SPP(200)}}} | {{{SPP(256)}}} | {{{SPP(320)}}} | {{{SPP(400)}}} | {{{SPP(500)}}} | {{{SPP(640)}}} |
+| /                     |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |
+|-----------------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------|
+| {{{SPP(S4/10x0.50)}}} |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{SPP(S8/10x0.32)}}} |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{SPP(S4/10x0.75)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{SPP(S4/16x0.50)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{SPP(S4/10x1.00)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{SPP(S8/10x0.63)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{SPP(S8/10x0.75)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{SPP(S4/25x0.50)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{SPP(S4/10x1.60)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{SPP(S8/10x1.00)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{SPP(S4/20x1.00)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{SPP(S4/10x2.00)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{SPP(S8/20x0.63)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{SPP(S4/16x1.60)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{SPP(S8/16x1.00)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{SPP(S4/20x1.60)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{SPP(S8/10x2.00)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{SPP(S4/25x1.60)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{SPP(S8/25x1.00)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{SPP(S8/16x2.00)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{SPP(S4/40x1.60)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{SPP(S8/40x1.00)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{SPP(S8/25x2.00)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{SPP(S8/40x2.00)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |
 #+HTML: </div>
 * Reticle Unit Conversion Software For free42 and DM42
 :PROPERTIES:
@@ -675,7 +702,7 @@ END
 #+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
 |   | Leica Part # | Leica Part Name                                                  |
 |---+--------------+------------------------------------------------------------------|
-|   |            / | <>                                                               |
+| < |            < | >                                                                |
 | 1 |     10446298 | Leica S8 APO                                                     |
 | 1 |     10446293 | Leica S4 E                                                       |
 |---+--------------+------------------------------------------------------------------|
@@ -701,15 +728,9 @@ END
 |   |     10446319 | Auxiliary $0.63\times$ for S4/S6, WD 155 mm                      |
 | 1 |     10446320 | Auxiliary $0.75\times$ for S4/S6, WD 130 mm                      |
 | 1 |     10446321 | Auxiliary $1.6\times$ for S4/S6, WD 55 mm                        |
-|   |     10446322 | Auxiliary $2.0\times$ for S4/S6, WD 35 mm                        |
+| 1 |     10446322 | Auxiliary $2.0\times$ for S4/S6, WD 35 mm                        |
 |   |     10446325 | Auxiliary $0.3–0.4\times$ for S4/S6 (Adjustable), WD 200–350mm   |
 |   |     10446323 | Auxiliary $0.6–0.75\times$ for S4/S6 (ErgoObjective) WD 77–137mm |
-|---+--------------+------------------------------------------------------------------|
-|   |     10450817 | Auxiliary $0.5\times$ for S9, WD 200 mm                          |
-|   |     10450818 | Auxiliary $0.63\times$ for S9, WD 150 mm                         |
-|   |     10450819 | Auxiliary $0.75\times$ for S9, WD 130 mm                         |
-|   |     10450820 | Auxiliary $1.6\times$ for S9, WD 50 mm                           |
-|   |     10450821 | Auxiliary $2.0\times$ for S9, WD 35 mm                           |
 |---+--------------+------------------------------------------------------------------|
 |   |     10446324 | Lens shield                                                      |
 |   |     10450831 | Updated lens shield                                              |
@@ -1002,7 +1023,7 @@ date; echo dir-inventory;        rsync -rlt --log-format=%f --delete --delete-ex
 date; echo ruby-examples;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/learn/ex-ruby/            pi-cam.home.mitchr.me:synced/world/my_prog/learn/ex-ruby/;
 date; echo lispy;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/lispStuff/lispy/          pi-cam.home.mitchr.me:synced/world/my_prog/lispStuff/lispy/;
 date; echo MJRdebianPakageTools; rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/MJRdebianPakageTools/     pi-cam.home.mitchr.me:synced/world/my_prog/MJRdebianPakageTools/;
-date; echo tmuxStuff;            rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/tmuxStuff/                pi-cam.home.mitchr.me:synced/world/my_prog/tmuxStuff/;
+date; echo tmuxHelper;           rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/tmuxHelper/               pi-cam.home.mitchr.me:synced/world/my_prog/tmuxHelper/;
 date; echo UNIXutils;            rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/UNIXutils/                pi-cam.home.mitchr.me:synced/world/my_prog/UNIXutils/;
 date; echo utils;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/utils/                    pi-cam.home.mitchr.me:synced/world/my_prog/utils/;
 date; echo core;                 rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/core/                                   pi-cam.home.mitchr.me:synced/core/;
