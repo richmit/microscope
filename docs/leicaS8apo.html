@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-09-17 Tue 15:25 -->
+<!-- 2026-04-24 Fri 09:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=1024, initial-scale=1" />
 <title>Leica S4E &amp; S8APO</title>
@@ -11,7 +11,7 @@
 <meta name="description" content="Leica S8 API" />
 <meta name="keywords" content="Leica S8 API" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -261,12 +261,12 @@
 
 <tr>
 <td class="org-right"><b>Updated:</b></td>
-<td class="org-left"><i>2024-09-17</i></td>
+<td class="org-left"><i>2025-12-11</i></td>
 </tr>
 </tbody>
 </table>
 <p align="center">
-Copyright 2024 Mitch Richling. All rights reserved.
+Copyright 2026 Mitch Richling. All rights reserved.
 </p>
 
 <div id="table-of-contents" role="doc-toc">
@@ -274,7 +274,7 @@ Copyright 2024 Mitch Richling. All rights reserved.
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
 <li><a href="#introduction">1. Introduction</a></li>
-<li><a href="#orga33bf21">2. Microscope Symbols &amp; Formulas</a>
+<li><a href="#org8d1bf2b">2. Microscope Symbols &amp; Formulas</a>
 <ul>
 <li><a href="#variables">2.1. Variables</a></li>
 <li><a href="#formulas">2.2. Formulas</a></li>
@@ -284,6 +284,7 @@ Copyright 2024 Mitch Richling. All rights reserved.
 <ul>
 <li><a href="#s4-mag-fov">3.1. Magnification and FOV at Various Zoom Levels With 10x/23 Eyepiece</a></li>
 <li><a href="#s4-ret-scale">3.2. Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece</a></li>
+<li><a href="#s4-aux-mag-wd">3.3. Auxiliary Len Magnification &amp; Working Distance</a></li>
 </ul>
 </li>
 <li><a href="#s8apo">4. S8APO</a>
@@ -291,41 +292,40 @@ Copyright 2024 Mitch Richling. All rights reserved.
 <li><a href="#s8-mag-fov">4.1. Magnification and FOV at Various Zoom Levels With 10x/23 Eyepiece</a></li>
 <li><a href="#s8-ret-scale">4.2. Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece</a></li>
 <li><a href="#s8-na">4.3. Numerical Aperture With No Auxiliary Lens</a></li>
-<li><a href="#leica-vid-obj">4.4. Leica C-Mount Video Objective Data</a></li>
-<li><a href="#orgc730742">4.5. Attaching Cameras</a></li>
-<li><a href="#s8-cam-data">4.6. Camera FOV &amp; Image Scales</a></li>
+<li><a href="#s8-aux-mag-wd">4.4. Auxiliary Len Magnification &amp; Working Distance</a></li>
+<li><a href="#leica-vid-obj">4.5. Leica C-Mount Video Objective Data</a></li>
+<li><a href="#org528f0a1">4.6. Attaching Cameras</a></li>
+<li><a href="#s8-cam-data">4.7. Camera FOV &amp; Image Scales</a></li>
 </ul>
 </li>
-<li><a href="#org493243c">5. S4 and S8 Magnification Coverage</a></li>
+<li><a href="#orgb59d39b">5. S4 and S8 Magnification Coverage</a></li>
 <li><a href="#mrconv">6. Reticle Unit Conversion Software For free42 and DM42</a>
 <ul>
-<li><a href="#orge65ed64">6.1. The menu</a></li>
-<li><a href="#org8312365">6.2. The code</a></li>
+<li><a href="#orga8fdaa0">6.1. The menu</a></li>
+<li><a href="#orgca9b99f">6.2. The code</a></li>
 </ul>
 </li>
 <li><a href="#parts">7. S-Series Leica Parts</a></li>
 <li><a href="#sensors">8. Image Sensor Data</a></li>
 <li><a href="#rpi-camera">9. DIY RPI Camera</a>
 <ul>
-<li><a href="#orgd81161e">9.1. The Idea</a></li>
+<li><a href="#org97253e4">9.1. The Idea</a></li>
 <li><a href="#rpi-bom">9.2. Bill Of Materials</a></li>
-<li><a href="#org76c1697">9.3. System Setup</a>
+<li><a href="#orgae7d2e2">9.3. Wire Management</a></li>
+<li><a href="#orge25f3f4">9.4. Wired Ethernet vs. WiFi</a></li>
+<li><a href="#rpi-camera-case-fan">9.5. Cooling Fan &amp; Heat Sink Case</a></li>
+<li><a href="#org59d0feb">9.6. System Setup</a>
 <ul>
-<li><a href="#rpi-camera-min-soft-config">9.3.1. Minimal Configuration</a></li>
-<li><a href="#rpi-camera-my-soft-config">9.3.2. My Configuration</a>
+<li><a href="#rpi-camera-min-soft-config">9.6.1. Minimal Configuration</a></li>
+<li><a href="#rpi-camera-my-soft-config">9.6.2. My Configuration</a>
 <ul>
-<li><a href="#orga7b8273">9.3.2.1. System Setup</a></li>
-<li><a href="#org7a0779e">9.3.2.2. System Sync</a></li>
+<li><a href="#org1ce4fd5">9.6.2.1. System Setup</a></li>
+<li><a href="#rpi-camera-my-soft-sync">9.6.2.2. System Sync</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#rpi-soft">9.4. RPI Software</a>
-<ul>
-<li><a href="#rpi-pisnap">9.4.1. RPI Image Capture Script</a></li>
-<li><a href="#rpi-imagej">9.4.2. ImageJ/Fiji Toolset/Macros</a></li>
-</ul>
-</li>
+<li><a href="#rpi-soft">9.7. RPI Software</a></li>
 </ul>
 </li>
 </ul>
@@ -335,7 +335,6 @@ Copyright 2024 Mitch Richling. All rights reserved.
 <p>
 Check out my home page for more stuff: <a href="https://www.mitchr.me/">https://www.mitchr.me/</a>
 </p>
-
 <div id="outline-container-introduction" class="outline-2">
 <h2 id="introduction"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-introduction">
@@ -345,9 +344,8 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 </p>
 </div>
 </div>
-
-<div id="outline-container-orga33bf21" class="outline-2">
-<h2 id="orga33bf21"><span class="section-number-2">2.</span> Microscope Symbols &amp; Formulas</h2>
+<div id="outline-container-org8d1bf2b" class="outline-2">
+<h2 id="org8d1bf2b"><span class="section-number-2">2.</span> Microscope Symbols &amp; Formulas</h2>
 <div class="outline-text-2" id="text-2">
 </div>
 <div id="outline-container-variables" class="outline-3">
@@ -590,6 +588,13 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 <td class="org-left">mm</td>
 <td class="org-left">&#xa0;</td>
 </tr>
+
+<tr>
+<td class="org-left">\(NA\)</td>
+<td class="org-left">Numerical Aperture</td>
+<td class="org-left">N/A</td>
+<td class="org-left">&#xa0;</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -617,12 +622,10 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 </div>
 </div>
 </div>
-
 <div id="outline-container-s4e" class="outline-2">
 <h2 id="s4e"><span class="section-number-2">3.</span> S4E</h2>
 <div class="outline-text-2" id="text-s4e">
 </div>
-
 <div id="outline-container-s4-mag-fov" class="outline-3">
 <h3 id="s4-mag-fov"><span class="section-number-3">3.1.</span> Magnification and FOV at Various Zoom Levels With 10x/23 Eyepiece</h3>
 <div class="outline-text-3" id="text-s4-mag-fov">
@@ -821,8 +824,6 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 </table>
 </div>
 </div>
-
-
 <div id="outline-container-s4-ret-scale" class="outline-3">
 <h3 id="s4-ret-scale"><span class="section-number-3">3.2.</span> Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece</h3>
 <div class="outline-text-3" id="text-s4-ret-scale">
@@ -965,18 +966,99 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 </table>
 </div>
 </div>
-</div>
+<div id="outline-container-s4-aux-mag-wd" class="outline-3">
+<h3 id="s4-aux-mag-wd"><span class="section-number-3">3.3.</span> Auxiliary Len Magnification &amp; Working Distance</h3>
+<div class="outline-text-3" id="text-s4-aux-mag-wd">
+<table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
+<caption class="t-above"><span class="table-number">Table 4:</span> S4E &#x2013; Auxiliary Lens Magnification, and Working Distance</caption>
 
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">\(A\)</th>
+<th scope="col" class="org-left">\(W\)</th>
+<th scope="col" class="org-left">Perf</th>
+<th scope="col" class="org-right">Part</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">\(0.32\times\)</td>
+<td class="org-left">300 mm</td>
+<td class="org-left">Acro</td>
+<td class="org-right">10446316</td>
+</tr>
+
+<tr>
+<td class="org-left">\(0.5\times\)</td>
+<td class="org-left">200 mm</td>
+<td class="org-left">Acro</td>
+<td class="org-right">10446318</td>
+</tr>
+
+<tr>
+<td class="org-left">\(0.63\times\)</td>
+<td class="org-left">155 mm</td>
+<td class="org-left">Acro</td>
+<td class="org-right">10446319</td>
+</tr>
+
+<tr>
+<td class="org-left">\(0.75\times\)</td>
+<td class="org-left">130 mm</td>
+<td class="org-left">Acro</td>
+<td class="org-right">10446320</td>
+</tr>
+
+<tr>
+<td class="org-left">\(1.6\times\)</td>
+<td class="org-left">55 mm</td>
+<td class="org-left">Acro</td>
+<td class="org-right">10446321</td>
+</tr>
+
+<tr>
+<td class="org-left">\(2.0\times\)</td>
+<td class="org-left">35 mm</td>
+<td class="org-left">Acro</td>
+<td class="org-right">10446322</td>
+</tr>
+
+<tr>
+<td class="org-left">\(0.3–0.4\times\)</td>
+<td class="org-left">200–350 mm</td>
+<td class="org-left">Acro</td>
+<td class="org-right">10446325</td>
+</tr>
+
+<tr>
+<td class="org-left">\(0.6–0.75\times\)</td>
+<td class="org-left">77–137 mm</td>
+<td class="org-left">Acro</td>
+<td class="org-right">10446323</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 <div id="outline-container-s8apo" class="outline-2">
 <h2 id="s8apo"><span class="section-number-2">4.</span> S8APO</h2>
 <div class="outline-text-2" id="text-s8apo">
 </div>
-
 <div id="outline-container-s8-mag-fov" class="outline-3">
 <h3 id="s8-mag-fov"><span class="section-number-3">4.1.</span> Magnification and FOV at Various Zoom Levels With 10x/23 Eyepiece</h3>
 <div class="outline-text-3" id="text-s8-mag-fov">
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
-<caption class="t-above"><span class="table-number">Table 4:</span> S8APO &#x2013; Magnification and FOV at Various Zoom Levels With 10x/23 Eyepiece</caption>
+<caption class="t-above"><span class="table-number">Table 5:</span> S8APO &#x2013; Magnification and FOV at Various Zoom Levels With 10x/23 Eyepiece</caption>
 
 <colgroup>
 <col  class="org-right" />
@@ -1166,12 +1248,11 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 </table>
 </div>
 </div>
-
 <div id="outline-container-s8-ret-scale" class="outline-3">
 <h3 id="s8-ret-scale"><span class="section-number-3">4.2.</span> Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece</h3>
 <div class="outline-text-3" id="text-s8-ret-scale">
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
-<caption class="t-above"><span class="table-number">Table 5:</span> S8APO &#x2013; Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece</caption>
+<caption class="t-above"><span class="table-number">Table 6:</span> S8APO &#x2013; Reticle Scale, Magnification, and FOV at Zoom Stops With 10x/23 Eyepiece</caption>
 
 <colgroup>
 <col  class="org-right" />
@@ -1288,84 +1369,142 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 </table>
 </div>
 </div>
-
 <div id="outline-container-s8-na" class="outline-3">
 <h3 id="s8-na"><span class="section-number-3">4.3.</span> Numerical Aperture With No Auxiliary Lens</h3>
 <div class="outline-text-3" id="text-s8-na">
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
-<caption class="t-above"><span class="table-number">Table 6:</span> S8APO Numerical Aperture</caption>
+<caption class="t-above"><span class="table-number">Table 7:</span> S8APO Numerical Aperture</caption>
 
 <colgroup>
-<col  class="org-right" />
+<col  class="org-center" />
 
-<col  class="org-right" />
+<col  class="org-center" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-right">Zoom</th>
-<th scope="col" class="org-right">NA</th>
+<th scope="col" class="org-center">Zoom</th>
+<th scope="col" class="org-center">Numerical Aperture</th>
+</tr>
+
+<tr>
+<th scope="col" class="org-center">\(Z\)</th>
+<th scope="col" class="org-center">\(NA\)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="org-right">1.0</td>
-<td class="org-right">0.026</td>
+<td class="org-center">1.0</td>
+<td class="org-center">0.026</td>
 </tr>
 
 <tr>
-<td class="org-right">1.25</td>
-<td class="org-right">0.031</td>
+<td class="org-center">1.25</td>
+<td class="org-center">0.031</td>
 </tr>
 
 <tr>
-<td class="org-right">1.6</td>
-<td class="org-right">0.038</td>
+<td class="org-center">1.6</td>
+<td class="org-center">0.038</td>
 </tr>
 
 <tr>
-<td class="org-right">2.0</td>
-<td class="org-right">0.046</td>
+<td class="org-center">2.0</td>
+<td class="org-center">0.046</td>
 </tr>
 
 <tr>
-<td class="org-right">2.5</td>
-<td class="org-right">0.056</td>
+<td class="org-center">2.5</td>
+<td class="org-center">0.056</td>
 </tr>
 
 <tr>
-<td class="org-right">3.2</td>
-<td class="org-right">0.069</td>
+<td class="org-center">3.2</td>
+<td class="org-center">0.069</td>
 </tr>
 
 <tr>
-<td class="org-right">4.0</td>
-<td class="org-right">0.081</td>
+<td class="org-center">4.0</td>
+<td class="org-center">0.081</td>
 </tr>
 
 <tr>
-<td class="org-right">5.0</td>
-<td class="org-right">0.093</td>
+<td class="org-center">5.0</td>
+<td class="org-center">0.093</td>
 </tr>
 
 <tr>
-<td class="org-right">6.3</td>
-<td class="org-right">0.100</td>
+<td class="org-center">6.3</td>
+<td class="org-center">0.100</td>
 </tr>
 
 <tr>
-<td class="org-right">8.0</td>
-<td class="org-right">0.100</td>
+<td class="org-center">8.0</td>
+<td class="org-center">0.100</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
+<div id="outline-container-s8-aux-mag-wd" class="outline-3">
+<h3 id="s8-aux-mag-wd"><span class="section-number-3">4.4.</span> Auxiliary Len Magnification &amp; Working Distance</h3>
+<div class="outline-text-3" id="text-s8-aux-mag-wd">
+<table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
+<caption class="t-above"><span class="table-number">Table 8:</span> S8API &#x2013; Auxiliary Lens Magnification, and Working Distance</caption>
 
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-center" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">Leica Part #</th>
+<th scope="col" class="org-left">\(A\)</th>
+<th scope="col" class="org-right">\(W\)</th>
+<th scope="col" class="org-center">Perf</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">10446334</td>
+<td class="org-left">\(0.32\times\)</td>
+<td class="org-right">200 mm</td>
+<td class="org-center">Achro</td>
+</tr>
+
+<tr>
+<td class="org-right">10446335</td>
+<td class="org-left">\(0.63\times\)</td>
+<td class="org-right">100 mm</td>
+<td class="org-center">APO</td>
+</tr>
+
+<tr>
+<td class="org-right">10446336</td>
+<td class="org-left">\(1.6\times\)</td>
+<td class="org-right">37 mm</td>
+<td class="org-center">APO</td>
+</tr>
+
+<tr>
+<td class="org-right">10446337</td>
+<td class="org-left">\(2.0\times\)</td>
+<td class="org-right">25 mm</td>
+<td class="org-center">APO</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <div id="outline-container-leica-vid-obj" class="outline-3">
-<h3 id="leica-vid-obj"><span class="section-number-3">4.4.</span> Leica C-Mount Video Objective Data</h3>
+<h3 id="leica-vid-obj"><span class="section-number-3">4.5.</span> Leica C-Mount Video Objective Data</h3>
 <div class="outline-text-3" id="text-leica-vid-obj">
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
-<caption class="t-above"><span class="table-number">Table 7:</span> Leica C-Mount Video Objective Data</caption>
+<caption class="t-above"><span class="table-number">Table 9:</span> Leica C-Mount Video Objective Data</caption>
 
 <colgroup>
 <col  class="org-right" />
@@ -1434,7 +1573,7 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 </table>
 
 <p>
-Note the image circles are all the same size at the sensor for a particular video objective, but FOV will change with the auxiliary &amp; video objective.
+Note the image circles are all the same size at the sensor for a particular video objective, but FOV will change with the auxiliary lens.
 </p>
 
 <p>
@@ -1443,7 +1582,7 @@ an IMX477 (RPI HQ) sensor.  Note that about 65% of the Micro Four Thirds sensor 
 </p>
 
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="all" align="center">
-<caption class="t-above"><span class="table-number">Table 8:</span> Image Circles with \(O_d=0.5\times\)</caption>
+<caption class="t-above"><span class="table-number">Table 10:</span> Image Circles with \(O_d=0.5\times\)</caption>
 
 <colgroup>
 <col  class="org-left" />
@@ -1480,7 +1619,7 @@ efficiently used with about 84% of the sensor pixels wasted.
 </p>
 
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="all" align="center">
-<caption class="t-above"><span class="table-number">Table 9:</span> Image Circles with \(O_d=0.32\times\)</caption>
+<caption class="t-above"><span class="table-number">Table 11:</span> Image Circles with \(O_d=0.32\times\)</caption>
 
 <colgroup>
 <col  class="org-left" />
@@ -1511,12 +1650,9 @@ efficiently used with about 84% of the sensor pixels wasted.
 </table>
 </div>
 </div>
-
-
-
-<div id="outline-container-orgc730742" class="outline-3">
-<h3 id="orgc730742"><span class="section-number-3">4.5.</span> Attaching Cameras</h3>
-<div class="outline-text-3" id="text-4-5">
+<div id="outline-container-org528f0a1" class="outline-3">
+<h3 id="org528f0a1"><span class="section-number-3">4.6.</span> Attaching Cameras</h3>
+<div class="outline-text-3" id="text-4-6">
 <p>
 The Leica documentation suggests using a chain of adapters for attaching a generic digital camera. The first part of the chain is one of the following three
 parts: 10447436 1.6× DSLR tube, 10446175 2.5× DSLR tube, or 10445930 1.0× video/photo objective.  Next will be one or more adapters for your camera.  The
@@ -1546,12 +1682,11 @@ I use two cameras with my S8APO:
 </ul>
 </div>
 </div>
-
 <div id="outline-container-s8-cam-data" class="outline-3">
-<h3 id="s8-cam-data"><span class="section-number-3">4.6.</span> Camera FOV &amp; Image Scales</h3>
+<h3 id="s8-cam-data"><span class="section-number-3">4.7.</span> Camera FOV &amp; Image Scales</h3>
 <div class="outline-text-3" id="text-s8-cam-data">
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
-<caption class="t-above"><span class="table-number">Table 10:</span> Camera FOV &amp; Image Scales</caption>
+<caption class="t-above"><span class="table-number">Table 12:</span> Camera FOV &amp; Image Scales</caption>
 
 <colgroup>
 <col  class="org-right" />
@@ -1740,26 +1875,20 @@ I use two cameras with my S8APO:
 </div>
 </div>
 </div>
-
-<div id="outline-container-org493243c" class="outline-2">
-<h2 id="org493243c"><span class="section-number-2">5.</span> S4 and S8 Magnification Coverage</h2>
+<div id="outline-container-orgb59d39b" class="outline-2">
+<h2 id="orgb59d39b"><span class="section-number-2">5.</span> S4 and S8 Magnification Coverage</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Various magnifications may be reached with different combinations of eyepiece, power, &amp; auxiliary lens.
 </p>
-<ul class="org-ul">
-<li><b>green</b>: Full APO</li>
-<li><b>yellow</b>: Achro but not APO</li>
-<li><b>pink</b>: Unspecified distortion (might not even be Acro)</li>
-<li><b>red</b>: I don't have equipment for this</li>
-<li><b>black</b>: Not possible</li>
-</ul>
 
-<div style="font-size: 80%;">
+<div style="font-size: 75%;">
 <table border="2" cellspacing="0" cellpadding="0" rules="all solid #ccc" frame="all" align="center" border-spacing="0">
-
+<caption class="t-above"><span class="table-number">Table 13:</span> S4</caption>
 
 <colgroup>
+<col  class="org-left" />
+
 <col  class="org-left" />
 
 <col  class="org-center" />
@@ -1812,7 +1941,8 @@ Various magnifications may be reached with different combinations of eyepiece, p
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-left">S/EPxA</th>
+<th scope="col" class="org-left">&nbsp;&nbsp; \(E_{MAG}\) &nbsp;&nbsp;</th>
+<th scope="col" class="org-left">&nbsp;&nbsp; \(A\) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
 <th scope="col" class="org-center">&nbsp;003&nbsp;</th>
 <th scope="col" class="org-center">&nbsp;004&nbsp;</th>
 <th scope="col" class="org-center">&nbsp;005&nbsp;</th>
@@ -1841,15 +1971,16 @@ Various magnifications may be reached with different combinations of eyepiece, p
 </thead>
 <tbody>
 <tr>
-<td class="org-left">&nbsp;S4/10x0.50&nbsp;</td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-left">&nbsp;&nbsp; \(10\times\)</td>
+<td class="org-left">&nbsp;&nbsp; \(0.50\times\)</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
@@ -1869,44 +2000,17 @@ Various magnifications may be reached with different combinations of eyepiece, p
 </tr>
 
 <tr>
-<td class="org-left">&nbsp;S8/10x0.32&nbsp;</td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-left">&nbsp;&nbsp; \(10\times\)</td>
+<td class="org-left">&nbsp;&nbsp; \(0.75\times\)</td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-</tr>
-
-<tr>
-<td class="org-left">&nbsp;S4/10x0.75&nbsp;</td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
@@ -1925,46 +2029,19 @@ Various magnifications may be reached with different combinations of eyepiece, p
 </tr>
 
 <tr>
-<td class="org-left">&nbsp;S4/16x0.50&nbsp;</td>
+<td class="org-left">&nbsp;&nbsp; \(16\times\)</td>
+<td class="org-left">&nbsp;&nbsp; \(0.50\times\)</td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-</tr>
-
-<tr>
-<td class="org-left">&nbsp;S4/10x1.00&nbsp;</td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
@@ -1981,75 +2058,20 @@ Various magnifications may be reached with different combinations of eyepiece, p
 </tr>
 
 <tr>
-<td class="org-left">&nbsp;S8/10x0.63&nbsp;</td>
+<td class="org-left">&nbsp;&nbsp; \(10\times\)</td>
+<td class="org-left">&nbsp;&nbsp; \(1.00\times\)</td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-</tr>
-
-<tr>
-<td class="org-left">&nbsp;S8/10x0.75&nbsp;</td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-</tr>
-
-<tr>
-<td class="org-left">&nbsp;S4/25x0.50&nbsp;</td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
@@ -2065,20 +2087,50 @@ Various magnifications may be reached with different combinations of eyepiece, p
 </tr>
 
 <tr>
-<td class="org-left">&nbsp;S4/10x1.60&nbsp;</td>
+<td class="org-left">&nbsp;&nbsp; \(25\times\)</td>
+<td class="org-left">&nbsp;&nbsp; \(0.50\times\)</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;&nbsp; \(10\times\)</td>
+<td class="org-left">&nbsp;&nbsp; \(1.60\times\)</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
@@ -2093,49 +2145,22 @@ Various magnifications may be reached with different combinations of eyepiece, p
 </tr>
 
 <tr>
-<td class="org-left">&nbsp;S8/10x1.00&nbsp;</td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
+<td class="org-left">&nbsp;&nbsp; \(20\times\)</td>
+<td class="org-left">&nbsp;&nbsp; \(1.00\times\)</td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-</tr>
-
-<tr>
-<td class="org-left">&nbsp;S4/20x1.00&nbsp;</td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
@@ -2149,78 +2174,23 @@ Various magnifications may be reached with different combinations of eyepiece, p
 </tr>
 
 <tr>
-<td class="org-left">&nbsp;S4/10x2.00&nbsp;</td>
+<td class="org-left">&nbsp;&nbsp; \(10\times\)</td>
+<td class="org-left">&nbsp;&nbsp; \(2.00\times\)</td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-</tr>
-
-<tr>
-<td class="org-left">&nbsp;S8/20x0.63&nbsp;</td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-</tr>
-
-<tr>
-<td class="org-left">&nbsp;S4/16x1.60&nbsp;</td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
@@ -2233,7 +2203,8 @@ Various magnifications may be reached with different combinations of eyepiece, p
 </tr>
 
 <tr>
-<td class="org-left">&nbsp;S8/16x1.00&nbsp;</td>
+<td class="org-left">&nbsp;&nbsp; \(16\times\)</td>
+<td class="org-left">&nbsp;&nbsp; \(1.60\times\)</td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
@@ -2241,43 +2212,15 @@ Various magnifications may be reached with different combinations of eyepiece, p
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-</tr>
-
-<tr>
-<td class="org-left">&nbsp;S4/20x1.60&nbsp;</td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
@@ -2289,7 +2232,8 @@ Various magnifications may be reached with different combinations of eyepiece, p
 </tr>
 
 <tr>
-<td class="org-left">&nbsp;S8/10x2.00&nbsp;</td>
+<td class="org-left">&nbsp;&nbsp; \(20\times\)</td>
+<td class="org-left">&nbsp;&nbsp; \(1.60\times\)</td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
@@ -2298,43 +2242,15 @@ Various magnifications may be reached with different combinations of eyepiece, p
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-</tr>
-
-<tr>
-<td class="org-left">&nbsp;S4/25x1.60&nbsp;</td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
@@ -2345,7 +2261,8 @@ Various magnifications may be reached with different combinations of eyepiece, p
 </tr>
 
 <tr>
-<td class="org-left">&nbsp;S8/25x1.00&nbsp;</td>
+<td class="org-left">&nbsp;&nbsp; \(25\times\)</td>
+<td class="org-left">&nbsp;&nbsp; \(1.60\times\)</td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
@@ -2355,16 +2272,16 @@ Various magnifications may be reached with different combinations of eyepiece, p
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
@@ -2373,35 +2290,8 @@ Various magnifications may be reached with different combinations of eyepiece, p
 </tr>
 
 <tr>
-<td class="org-left">&nbsp;S8/16x2.00&nbsp;</td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-</tr>
-
-<tr>
-<td class="org-left">&nbsp;S4/40x1.60&nbsp;</td>
+<td class="org-left">&nbsp;&nbsp; \(40\times\)</td>
+<td class="org-left">&nbsp;&nbsp; \(1.60\times\)</td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
@@ -2413,14 +2303,14 @@ Various magnifications may be reached with different combinations of eyepiece, p
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
@@ -2429,35 +2319,8 @@ Various magnifications may be reached with different combinations of eyepiece, p
 </tr>
 
 <tr>
-<td class="org-left">&nbsp;S8/40x1.00&nbsp;</td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-</tr>
-
-<tr>
-<td class="org-left">&nbsp;S8/25x2.00&nbsp;</td>
+<td class="org-left">&nbsp;&nbsp; \(40\times\)</td>
+<td class="org-left">&nbsp;&nbsp; \(2.00\times\)</td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
@@ -2470,50 +2333,492 @@ Various magnifications may be reached with different combinations of eyepiece, p
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-</tr>
-
-<tr>
-<td class="org-left">&nbsp;S8/40x2.00&nbsp;</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
 <td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
-<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div></td>
 </tr>
 </tbody>
 </table>
 </div>
+
+<div style="font-size: 75%;">
+<table border="2" cellspacing="0" cellpadding="0" rules="all solid #ccc" frame="all" align="center" border-spacing="0">
+<caption class="t-above"><span class="table-number">Table 14:</span> S8</caption>
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&nbsp;&nbsp; \(E_{MAG}\) &nbsp;&nbsp;</th>
+<th scope="col" class="org-left">&nbsp;&nbsp; \(A\) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;003&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;004&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;005&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;006&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;008&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;010&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;013&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;016&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;020&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;026&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;032&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;040&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;050&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;064&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;080&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;100&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;128&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;160&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;200&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;256&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;320&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;400&nbsp;</th>
+<th scope="col" class="org-center">&nbsp;500&nbsp;</th>
+<th scope="col" class="org-left">&nbsp;640&nbsp;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&nbsp;&nbsp; \(10\times\)</td>
+<td class="org-left">&nbsp;&nbsp; \(0.32\times\)</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-left"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;&nbsp; \(10\times\)</td>
+<td class="org-left">&nbsp;&nbsp; \(0.63\times\)</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-left"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;&nbsp; \(10\times\)</td>
+<td class="org-left">&nbsp;&nbsp; \(1.00\times\)</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-left"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;&nbsp; \(20\times\)</td>
+<td class="org-left">&nbsp;&nbsp; \(0.63\times\)</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-left"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;&nbsp; \(16\times\)</td>
+<td class="org-left">&nbsp;&nbsp; \(1.00\times\)</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-left"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;&nbsp; \(10\times\)</td>
+<td class="org-left">&nbsp;&nbsp; \(2.00\times\)</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-left"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;&nbsp; \(25\times\)</td>
+<td class="org-left">&nbsp;&nbsp; \(1.00\times\)</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-left"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;&nbsp; \(16\times\)</td>
+<td class="org-left">&nbsp;&nbsp; \(2.00\times\)</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-left"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;&nbsp; \(40\times\)</td>
+<td class="org-left">&nbsp;&nbsp; \(1.00\times\)</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-left"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;&nbsp; \(25\times\)</td>
+<td class="org-left">&nbsp;&nbsp; \(2.00\times\)</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-left"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+</tr>
+
+<tr>
+<td class="org-left">&nbsp;&nbsp; \(40\times\)</td>
+<td class="org-left">&nbsp;&nbsp; \(2.00\times\)</td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+<td class="org-left"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p>
+<br />
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
+<caption class="t-above"><span class="table-number">Table 15:</span> Colors</caption>
+
+<colgroup>
+<col  class="org-center" />
+
+<col  class="org-center" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-center">Color</th>
+<th scope="col" class="org-center">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div></td>
+<td class="org-center">APO</td>
+</tr>
+
+<tr>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div></td>
+<td class="org-center">Acro</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+<br />
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
+<caption class="t-above"><span class="table-number">Table 16:</span> Symbols</caption>
+
+<colgroup>
+<col  class="org-center" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-center">Symbol</th>
+<th scope="col" class="org-left">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-center">-</td>
+<td class="org-left">I don't have this combination of equipment</td>
+</tr>
+
+<tr>
+<td class="org-center"><div style='margin:0;padding:0.25em;color:black;background-color:white'>&check;</div></td>
+<td class="org-left">I  have this combination of equipment</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div id="outline-container-mrconv" class="outline-2">
@@ -2529,12 +2834,11 @@ The code as-is will work pretty well for people using an S8APO or S4E scope with
 want to modify the settings menus.
 </p>
 </div>
-
-<div id="outline-container-orge65ed64" class="outline-3">
-<h3 id="orge65ed64"><span class="section-number-3">6.1.</span> The menu</h3>
+<div id="outline-container-orga8fdaa0" class="outline-3">
+<h3 id="orga8fdaa0"><span class="section-number-3">6.1.</span> The menu</h3>
 <div class="outline-text-3" id="text-6-1">
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
-<caption class="t-above"><span class="table-number">Table 11:</span> Application Menu</caption>
+<caption class="t-above"><span class="table-number">Table 17:</span> Application Menu</caption>
 
 <colgroup>
 <col  class="org-left" />
@@ -2689,12 +2993,11 @@ want to modify the settings menus.
 </table>
 </div>
 </div>
-
-<div id="outline-container-org8312365" class="outline-3">
-<h3 id="org8312365"><span class="section-number-3">6.2.</span> The code</h3>
+<div id="outline-container-orgca9b99f" class="outline-3">
+<h3 id="orgca9b99f"><span class="section-number-3">6.2.</span> The code</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
-The code below may be cut-n-pasted the code below into free42.  Alternately the raw file from <a href="https://github.com/richmit/microscope">github</a>.
+The code below may be cut-n-pasted into free42.
 </p>
 
 <div class="org-src-container">
@@ -2891,15 +3194,14 @@ END
 </div>
 </div>
 </div>
-
 <div id="outline-container-parts" class="outline-2">
 <h2 id="parts"><span class="section-number-2">7.</span> S-Series Leica Parts</h2>
 <div class="outline-text-2" id="text-parts">
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
-<caption class="t-above"><span class="table-number">Table 12:</span> S-Series Leica Parts</caption>
+<caption class="t-above"><span class="table-number">Table 18:</span> S-Series Leica Parts</caption>
 
 <colgroup>
-<col  class="org-right" />
+<col  class="org-center" />
 
 <col  class="org-right" />
 
@@ -2907,200 +3209,261 @@ END
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-right">&#xa0;</th>
+<th scope="col" class="org-center">&#xa0;</th>
 <th scope="col" class="org-right">Leica Part #</th>
 <th scope="col" class="org-left">Leica Part Name</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="org-right">&lt;</td>
-<td class="org-right">&lt;</td>
-<td class="org-left">&gt;</td>
-</tr>
-
-<tr>
-<td class="org-right">1</td>
+<td class="org-center">1</td>
 <td class="org-right">10446298</td>
-<td class="org-left">Leica S8 APO</td>
+<td class="org-left">Leica S8 APO Microscope</td>
 </tr>
 
 <tr>
-<td class="org-right">1</td>
+<td class="org-center">1</td>
 <td class="org-right">10446293</td>
-<td class="org-left">Leica S4 E</td>
+<td class="org-left">Leica S4 E Microscope</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="org-right">2</td>
+<td class="org-center">2</td>
 <td class="org-right">10447136</td>
-<td class="org-left">10x/23B eyepiece for eyeglasses, fixed</td>
+<td class="org-left">10×/23B eyepiece for eyeglasses, fixed</td>
 </tr>
 
 <tr>
-<td class="org-right">4</td>
+<td class="org-center">4</td>
 <td class="org-right">10447137</td>
-<td class="org-left">10x/23B eyepiece for eyeglasses, adjustable</td>
+<td class="org-left">10×/23B eyepiece for eyeglasses, adjustable, accepts reticles</td>
 </tr>
 
 <tr>
-<td class="org-right">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
 <td class="org-right">10447138</td>
-<td class="org-left">16x/15B eyepiece for eyeglasses, fixed</td>
+<td class="org-left">16×/15B eyepiece for eyeglasses, fixed</td>
 </tr>
 
 <tr>
-<td class="org-right">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
 <td class="org-right">10447139</td>
-<td class="org-left">16x/15B eyepiece for eyeglasses, adjustable</td>
+<td class="org-left">16×/15B eyepiece for eyeglasses, adjustable, accepts reticles</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-right">10447130</td>
+<td class="org-left">10×/23 eyepiece, fixed</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-right">10447131</td>
+<td class="org-left">10×/23 eyepiece, adjustable, accepts reticles</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-right">10447132</td>
+<td class="org-left">16×/16 eyepiece, fixed</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-right">10447133</td>
+<td class="org-left">16×/16 eyepiece, adjustable, accepts reticles</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-right">10447134</td>
+<td class="org-left">20×/12 eyepiece, fixed</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-right">10447135</td>
+<td class="org-left">20×/12 eyepiece, adjustable, accepts reticles</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="org-right">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
+<td class="org-right">10446326</td>
+<td class="org-left">10x/23 eyepiece for eyeglasses, fixed</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-right">10446329</td>
+<td class="org-left">10x/23 eyepiece for eyeglasses, adjustable, accepts reticles</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-right">10445301</td>
+<td class="org-left">16x/14B eyepiece for eyeglasses, adjustable, accepts reticles, requires spacer</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-right">10445302</td>
+<td class="org-left">25x/9.5B eyepiece for eyeglasses, adjustable, accepts reticles, requires spacer</td>
+</tr>
+
+<tr>
+<td class="org-center">&#xa0;</td>
+<td class="org-right">10445303</td>
+<td class="org-left">40x/6B eyepiece for eyeglasses, adjustable, accepts reticles, requires spacer</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-center">2</td>
 <td class="org-right">10446447</td>
 <td class="org-left">Reticle 10 mm/0.1 mm</td>
 </tr>
 
 <tr>
-<td class="org-right">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
 <td class="org-right">10446448</td>
 <td class="org-left">Reticle 5 mm/0.1 mm</td>
 </tr>
 
 <tr>
-<td class="org-right">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
 <td class="org-right">10446449</td>
 <td class="org-left">Reticle 5 mm/0.05 mm</td>
 </tr>
 
 <tr>
-<td class="org-right">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
 <td class="org-right">10447000</td>
 <td class="org-left">Reticle 100 scale intervals / 0.002"</td>
 </tr>
 
 <tr>
-<td class="org-right">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
 <td class="org-right">10447001</td>
 <td class="org-left">Reticle 100 scale intervals / 0.001"</td>
 </tr>
 
 <tr>
-<td class="org-right">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
 <td class="org-right">10447002</td>
 <td class="org-left">Reticle 150 scale intervals / 0.0005"</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="org-right">1</td>
+<td class="org-center">1</td>
 <td class="org-right">10446334</td>
 <td class="org-left">Achro Auxiliary \(0.32\times\) for S8APO, WD 200 mm</td>
 </tr>
 
 <tr>
-<td class="org-right">1</td>
+<td class="org-center">1</td>
 <td class="org-right">10446335</td>
 <td class="org-left">APO Auxiliary \(0.63\times\) for S8APO, WD 100 mm</td>
 </tr>
 
 <tr>
-<td class="org-right">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
 <td class="org-right">10446336</td>
 <td class="org-left">APO Auxiliary \(1.6\times\) for S8APO, WD 37 mm</td>
 </tr>
 
 <tr>
-<td class="org-right">&#xa0;</td>
+<td class="org-center">1</td>
 <td class="org-right">10446337</td>
 <td class="org-left">APO Auxiliary \(2.0\times\) for S8APO, WD 25 mm</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="org-right">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
 <td class="org-right">10446316</td>
 <td class="org-left">Auxiliary \(0.32\times\) for S4/S6, WD 300 mm</td>
 </tr>
 
 <tr>
-<td class="org-right">1</td>
+<td class="org-center">1</td>
 <td class="org-right">10446318</td>
 <td class="org-left">Auxiliary \(0.5\times\) for S4/S6, WD 200 mm</td>
 </tr>
 
 <tr>
-<td class="org-right">&#xa0;</td>
+<td class="org-center">1</td>
 <td class="org-right">10446319</td>
 <td class="org-left">Auxiliary \(0.63\times\) for S4/S6, WD 155 mm</td>
 </tr>
 
 <tr>
-<td class="org-right">1</td>
+<td class="org-center">1</td>
 <td class="org-right">10446320</td>
 <td class="org-left">Auxiliary \(0.75\times\) for S4/S6, WD 130 mm</td>
 </tr>
 
 <tr>
-<td class="org-right">1</td>
+<td class="org-center">1</td>
 <td class="org-right">10446321</td>
 <td class="org-left">Auxiliary \(1.6\times\) for S4/S6, WD 55 mm</td>
 </tr>
 
 <tr>
-<td class="org-right">1</td>
+<td class="org-center">1</td>
 <td class="org-right">10446322</td>
 <td class="org-left">Auxiliary \(2.0\times\) for S4/S6, WD 35 mm</td>
 </tr>
 
 <tr>
-<td class="org-right">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
 <td class="org-right">10446325</td>
 <td class="org-left">Auxiliary \(0.3–0.4\times\) for S4/S6 (Adjustable), WD 200–350mm</td>
 </tr>
 
 <tr>
-<td class="org-right">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
 <td class="org-right">10446323</td>
 <td class="org-left">Auxiliary \(0.6–0.75\times\) for S4/S6 (ErgoObjective) WD 77–137mm</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="org-right">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
 <td class="org-right">10446324</td>
 <td class="org-left">Lens shield</td>
 </tr>
 
 <tr>
-<td class="org-right">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
 <td class="org-right">10450831</td>
 <td class="org-left">Updated lens shield</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
-<td class="org-right">1</td>
+<td class="org-center">1</td>
 <td class="org-right">10445928</td>
 <td class="org-left">Leica Video Objective \(0.32\times\)</td>
 </tr>
 
 <tr>
-<td class="org-right">1</td>
+<td class="org-center">1</td>
 <td class="org-right">10450528</td>
 <td class="org-left">Leica Video Objective \(0.5\times\)</td>
 </tr>
 
 <tr>
-<td class="org-right">&#xa0;</td>
+<td class="org-center">&#xa0;</td>
 <td class="org-right">10447367</td>
 <td class="org-left">Leica Video Objective \(0.63\times\)</td>
 </tr>
 
 <tr>
-<td class="org-right">1</td>
+<td class="org-center">1</td>
 <td class="org-right">10446307</td>
 <td class="org-left">Leica Video Objective \(0.8\times\)</td>
 </tr>
@@ -3108,12 +3471,11 @@ END
 </table>
 </div>
 </div>
-
 <div id="outline-container-sensors" class="outline-2">
 <h2 id="sensors"><span class="section-number-2">8.</span> Image Sensor Data</h2>
 <div class="outline-text-2" id="text-sensors">
-<table id="org397cbe1" border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
-<caption class="t-above"><span class="table-number">Table 13:</span> Image Sensor Data</caption>
+<table id="org1ce600f" border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
+<caption class="t-above"><span class="table-number">Table 19:</span> Image Sensor Data</caption>
 
 <colgroup>
 <col  class="org-left" />
@@ -3410,34 +3772,18 @@ END
 </table>
 </div>
 </div>
-
 <div id="outline-container-rpi-camera" class="outline-2">
 <h2 id="rpi-camera"><span class="section-number-2">9.</span> DIY RPI Camera</h2>
 <div class="outline-text-2" id="text-rpi-camera">
 
-<div id="org1fd30d9" class="figure">
-<p><img src="rpicam1_800.jpg" alt="rpicam1_800.jpg" border="2 solid #ccc" frame="hsides" align="center" />
+<div id="orgd71d86a" class="figure">
+<p><img src="20251211_134106_200.jpg" alt="20251211_134106_200.jpg" border="2 solid #ccc" frame="hsides" align="center" />
 </p>
-<p><span class="figure-number">Figure 1: </span>A live feed from the microscope with a glass scale on the stage.</p>
-</div>
-
-
-<div id="orga1eea82" class="figure">
-<p><img src="rpicam2_800.jpg" alt="rpicam2_800.jpg" border="2 solid #ccc" frame="hsides" align="center" />
-</p>
-<p><span class="figure-number">Figure 2: </span>A good view of the wire management for the camera.</p>
-</div>
-
-
-<div id="org93df9f6" class="figure">
-<p><img src="rpicam4_800.jpg" alt="rpicam4_800.jpg" border="2 solid #ccc" frame="hsides" align="center" />
-</p>
-<p><span class="figure-number">Figure 3: </span>A 30fps live feed illuminated only by my desk lamps.  This is an exceptionally bright microscope.</p>
+<p><span class="figure-number">Figure 1: </span>A 30fps live feed illuminated only by my desk lamps.  This is an exceptionally bright microscope.</p>
 </div>
 </div>
-
-<div id="outline-container-orgd81161e" class="outline-3">
-<h3 id="orgd81161e"><span class="section-number-3">9.1.</span> The Idea</h3>
+<div id="outline-container-org97253e4" class="outline-3">
+<h3 id="org97253e4"><span class="section-number-3">9.1.</span> The Idea</h3>
 <div class="outline-text-3" id="text-9-1">
 <p>
 If you have arrived here via direct link, then you might be interested to know that your browser is pointed to the middle of a larger document &#x2013; my personal
@@ -3453,12 +3799,16 @@ image analysis software (Fiji/ImageJ) right on the camera.
 </p>
 </div>
 </div>
-
 <div id="outline-container-rpi-bom" class="outline-3">
 <h3 id="rpi-bom"><span class="section-number-3">9.2.</span> Bill Of Materials</h3>
 <div class="outline-text-3" id="text-rpi-bom">
+<p>
+Note: I originally built this camera around 2021, so the hardware listed below is pretty old (Pi model 4).  The good news is that the software components
+described later work on newer Raspberry PIs, so you should be able to make a version of this project with modern hardware without too much difficulty.
+</p>
+
 <table border="2 solid #ccc" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center">
-<caption class="t-above"><span class="table-number">Table 14:</span> Bill Of Materials</caption>
+<caption class="t-above"><span class="table-number">Table 20:</span> Bill Of Materials</caption>
 
 <colgroup>
 <col  class="org-left" />
@@ -3483,7 +3833,7 @@ image analysis software (Fiji/ImageJ) right on the camera.
 </tr>
 
 <tr>
-<td class="org-left"><a href="https://www.adafruit.com/product/4340">Heatsink Raspberry Pi 4 Case with Dual Fans</a></td>
+<td class="org-left"><a href="https://www.adafruit.com/product/4340">Heatsink Raspberry Pi 4 Case with Dual Fans</a> (<a href="#rpi-camera-case-fan">NOTE</a>)</td>
 <td class="org-right">26</td>
 </tr>
 
@@ -3516,110 +3866,132 @@ image analysis software (Fiji/ImageJ) right on the camera.
 </table>
 </div>
 </div>
-
-<div id="outline-container-org76c1697" class="outline-3">
-<h3 id="org76c1697"><span class="section-number-3">9.3.</span> System Setup</h3>
+<div id="outline-container-orgae7d2e2" class="outline-3">
+<h3 id="orgae7d2e2"><span class="section-number-3">9.3.</span> Wire Management</h3>
 <div class="outline-text-3" id="text-9-3">
 <p>
-Note: These instructions are for the Bullseye based Raspberry Pi OS relased in November of 2021!  
+I like to be able to move the microscope around on my desk, so I have the whole thing on Teflon glider feet.  This makes wire management a bit tricky.  The
+power cable I purchased is quite sturdy and has a large EMI filter choke that's about the 10mm in diameter.  I decided to use this as my primary cable mount
+point by clamping the choke into a small camera rig pipe mount which I connected to the 1/4" photographic mounting hole on the camera ring.  I then routed all
+the wires parallel to the power cable, and encased them in a wire tube.  I also added a couple zip-ties to secure the wire tube to the camera plate.  The whole
+thing is pretty resilient.
+</p>
+
+
+<div id="org4018e06" class="figure">
+<p><a href="20251211_135029.jpg" border="2 solid #ccc" frame="hsides" align="center"><img src="20251211_135029_200.jpg" alt="20251211_135029_200.jpg" border="2 solid #ccc" frame="hsides" align="center" /></a>
 </p>
 </div>
 
+<div id="org59f60ce" class="figure">
+<p><a href="20251211_135035.jpg" border="2 solid #ccc" frame="hsides" align="center"><img src="20251211_135035_200.jpg" alt="20251211_135035_200.jpg" border="2 solid #ccc" frame="hsides" align="center" /></a>
+</p>
+</div>
+
+<div id="org5191271" class="figure">
+<p><a href="20251211_135050.jpg" border="2 solid #ccc" frame="hsides" align="center"><img src="20251211_135050_200.jpg" alt="20251211_135050_200.jpg" border="2 solid #ccc" frame="hsides" align="center" /></a>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orge25f3f4" class="outline-3">
+<h3 id="orge25f3f4"><span class="section-number-3">9.4.</span> Wired Ethernet vs. WiFi</h3>
+<div class="outline-text-3" id="text-9-4">
+<p>
+It's more than reasonable to use WiFi for this setup; however, things like software updates are a little slow.  In the end I decided to use this super thin
+Ethernet cable I had in the cable box.  Honestly if I hadn't had that cable laying around I probably would have stuck with WiFi.
+</p>
+</div>
+</div>
+<div id="outline-container-rpi-camera-case-fan" class="outline-3">
+<h3 id="rpi-camera-case-fan"><span class="section-number-3">9.5.</span> Cooling Fan &amp; Heat Sink Case</h3>
+<div class="outline-text-3" id="text-rpi-camera-case-fan">
+<p>
+The fan is pretty unnecessary in my experience, and I generally keep it disconnected.  The Pi can display a streaming view from the camera for hours without
+the temperature ever going over 50C in my lab (I keep the lab at about 20C).
+</p>
+
+<p>
+If I were going to build this again, I would probably use the version of the case without the fan and save a couple dollars.
+</p>
+</div>
+</div>
+<div id="outline-container-org59d0feb" class="outline-3">
+<h3 id="org59d0feb"><span class="section-number-3">9.6.</span> System Setup</h3>
+<div class="outline-text-3" id="text-9-6">
+<p>
+First the Raspberry Pi must be configured &#x2013; the OS installed &amp; configured.  The best place to start with that is probably the
+<a href="https://www.raspberrypi.com/documentation/computers/getting-started.html">official "getting started" documentation</a>.
+</p>
+
+<p>
+The instructions below describe the next step of installing and configuring the camera related software.  Note the following instructions are for the Debian
+Trixie (version 13) based Raspberry Pi OS released in October of 2025.
+</p>
+</div>
 <div id="outline-container-rpi-camera-min-soft-config" class="outline-4">
-<h4 id="rpi-camera-min-soft-config"><span class="section-number-4">9.3.1.</span> Minimal Configuration</h4>
+<h4 id="rpi-camera-min-soft-config"><span class="section-number-4">9.6.1.</span> Minimal Configuration</h4>
 <div class="outline-text-4" id="text-rpi-camera-min-soft-config">
 <p>
-The system setup steps I used for my camera will not work for others because I made use of several aspects of my personal home directory configuration others
-will not have.  What follows are simplified configuration steps I <b>believe</b> will for for most people out of the box.  The only tricky bit is Fiji because it
-is such a dynamic project, things change.
+The following steps should work for most people out of the box.  The only tricky bit is Fiji because it is such a dynamic project, and things change over
+time.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Refresh packages and update everything</span>
-sudo apt-get update
-sudo apt-get upgrade
-sudo reboot
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Camera packages</span>
-sudo apt install -y libcamera-apps
-sudo apt install -y libcamera-dev libepoxy-dev libjpeg-dev libtiff5-dev
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Install my favorite  packages</span>
-sudo apt install -y emacs gnuplot maxima sbcl telnet zsh tmux gitk xterm imagemagick nomacs gimp ruby exiv2 git openssl
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Install &amp; Setup java</span>
-sudo apt install -y openjdk-8-jdk
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Download Fiji software &amp; launcher</span>
+<pre class="src src-sh"><span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Install camera packages</span>
+sudo apt install -y libcamera-apps libcamera-dev rpicam-apps
+<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Make sure we are in our home direcotory!</span>
 <span style="color: #b0c4de;">cd</span> ~
-test -e fiji-nojre.zip || wget <span style="color: #fa8072;">'https://downloads.imagej.net/fiji/latest/fiji-nojre.zip'</span> 
-test -e ImageJ.sh || wget <span style="color: #fa8072;">'https://github.com/imagej/imagej2/raw/master/bin/ImageJ.sh'</span>
+<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Download Fiji software</span>
+test -e fiji-latest-linux-arm64-jdk.zip || wget <span style="color: #fa8072;">'https://downloads.imagej.net/fiji/latest/fiji-latest-linux-arm64-jdk.zip'</span>
 <span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Unpack Fiji</span>
-unzip fiji-nojre.zip
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Put in place ImageJ.sh script (hardwire the install directory)</span>
-sed <span style="color: #fa8072;">'s/^DIRECTORY=.*/DIRECTORY=~\/Fiji.app/'</span> ImageJ.sh &gt; ~/Fiji.app/ImageJ.sh
-chmod a+rx ~/Fiji.app/ImageJ.sh
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Workaround for a bug in current Fiji</span>
-mv ~/Fiji.app/jars/FilamentDetector-1.0.0.jar ~/Fiji.app/jars/FilamentDetector-1.0.0.bad
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Link ImageJ.sh into /usr/bin/ as ImageJ</span>
-sudo ln -s ~/Fiji.app/ImageJ.sh /usr/bin/ImageJ
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Run Fiji and update *EVERYTHING*</span>
-/usr/bin/ImageJ
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Clone the git repos</span>
-<span style="color: #b0c4de;">cd</span> ~
-git clone <span style="color: #fa8072;">'https://github.com/richmit/microscope.git'</span>
-git clone <span style="color: #fa8072;">'https://github.com/richmit/imagej.git'</span>
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Link piSnap to /bin/</span>
-sudo ln -s ~/microscope/piSnap.sh /usr/bin/piSnap
-chmod a+rx /usr/bin/piSnap
-<span style="color: #ffa500;">### </span><span style="color: #ff7f24;">Link the RPI_tools into Fiji</span>
-ln -s ~/imagej/PhilaJ-and-RPI_Tools/RPI_tools.ijm ~/Fiji.app/macros/toolsets/RPI_tools.ijm
+unzip fiji-latest-linux-arm64-jdk.zip
+<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">If necessary, sync GIT repos from github.</span>
+<span style="color: #00ffff;">if</span> [ ! -e ~/world/my_prog/imagej/PhilaJ-and-RPI_Tools/ ] ; <span style="color: #00ffff;">then</span>
+  git clone <span style="color: #fa8072;">'https://github.com/richmit/microscope.git'</span>
+  git clone <span style="color: #fa8072;">'https://github.com/richmit/imagej.git'</span>
+<span style="color: #00ffff;">fi</span>
+<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Link the RPI_tools &amp; optionally PhilaJ.ijm into Fiji</span>
+rm -f ~/Fiji/macros/toolsets/RPI_tools.ijm ~/Fiji/macros/toolsets/PhilaJ.ijm
+<span style="color: #00ffff;">if</span> [ -e ~/world/my_prog/imagej/PhilaJ-and-RPI_Tools/ ] ; <span style="color: #00ffff;">then</span>
+  ln -s ~/world/my_prog/imagej/PhilaJ-and-RPI_Tools/RPI_tools.ijm ~/Fiji/macros/toolsets/RPI_tools.ijm
+  ln -s ~/world/my_prog/imagej/PhilaJ-and-RPI_Tools/PhilaJ.ijm    ~/Fiji/macros/toolsets/PhilaJ.ijm
+<span style="color: #00ffff;">else</span>
+   ln -s ~/imagej/PhilaJ-and-RPI_Tools/RPI_tools.ijm ~/Fiji.app/macros/toolsets/RPI_tools.ijm
+   <span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">If you are a postage stamp collector, then you may want to also install PhilaJ</span>
+   <span style="color: #ffa500;">#</span><span style="color: #ff7f24;">ln -s ~/imagej/PhilaJ-and-RPI_Tools/PhilaJ.ijm    ~/Fiji/macros/toolsets/PhilaJ.ijm</span>
+<span style="color: #00ffff;">fi</span>
+<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Run Fiji and update</span>
+~/Fiji/fiji
 </pre>
 </div>
 </div>
 </div>
-
 <div id="outline-container-rpi-camera-my-soft-config" class="outline-4">
-<h4 id="rpi-camera-my-soft-config"><span class="section-number-4">9.3.2.</span> My Configuration</h4>
+<h4 id="rpi-camera-my-soft-config"><span class="section-number-4">9.6.2.</span> My Configuration</h4>
 <div class="outline-text-4" id="text-rpi-camera-my-soft-config">
 <p>
-Most Unix/Linux users have pretty strong opinions on how to setup a personal working environment.  Emacs vs VI anyone?  This section documents my personal
-configuration and is pretty specific to my operating environment.  Some differences from the "<a href="#rpi-camera-min-soft-config">Minimal Configuration</a>" section
-above:
+Most Unix/Linux users have pretty strong opinions on how to setup a personal working environment.  This section documents my personal configuration.  I
+preform these steps <b>before</b> I do the stuff in the section <a href="#rpi-camera-min-soft-config">Minimal Configuration</a>.
 </p>
 
 <ul class="org-ul">
-<li>Makes use of scripts and data found in my home directory</li>
-<li>Uses my environment setup scripts to put piSnap.sh in the right place and link it.</li>
-<li>~/bin is where the binaries go</li>
-<li>I use my preferred login name for the main account, and remove the '<code>pi</code>' user from the system</li>
+<li>I have a bunch of stuff in my home directory I sync (via <a href="#rpi-camera-my-soft-sync">rsync</a>) from my primary workstation.</li>
+<li>I like to have <code>ruby</code>, <code>perl</code>, &amp; <code>sbck</code> in <code>/usr/local/bin/</code> so scripts will work that refrnece those locations.</li>
+<li>My dot files and <code>~/bin</code> are automatically configured via <code>SelectSetup.rb</code> &amp; <code>SetupBin.rb</code>.</li>
+<li>My preferred user name is '<code>richmit</code>'.</li>
+<li>My preferred shell is '<code>zsh</code>'.</li>
 <li>Quite a bit more apt installed software (Emacs, sbcl, maxima, gnuplot, paraview, etc&#x2026;)</li>
-<li>I install the free42 calculator along with some <a href="https://richmit.github.io/hp42/">software on the calculator</a> itself.</li>
-<li>My primary system for photography and image analysis is a Windows system
-<ul class="org-ul">
-<li>This system has a nice, color corrected 4K monitor, and a couple scanners attached</li>
-<li>Some of the software I use is proprietary and only runs on Windows</li>
-<li>With regard to free software, I run mostly the same stack on Windows (Fiji, GIMP, Imagemagick, Emacs, etc&#x2026;) in MSYS2</li>
-</ul></li>
 </ul>
 </div>
-
-<div id="outline-container-orga7b8273" class="outline-5">
-<h5 id="orga7b8273"><span class="section-number-5">9.3.2.1.</span> System Setup</h5>
-<div class="outline-text-5" id="text-9-3-2-1">
+<div id="outline-container-org1ce4fd5" class="outline-5">
+<h5 id="org1ce4fd5"><span class="section-number-5">9.6.2.1.</span> System Setup</h5>
+<div class="outline-text-5" id="text-9-6-2-1">
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Refresh packages and update everything</span>
-sudo apt-get update
-sudo apt-get upgrade
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">DO: Turn off auto login for pi user</span>
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">DO: Turn on SSH &amp; VNC</span>
-sudo reboot
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Camera packages</span>
-sudo apt install -y libcamera-apps
-sudo apt install -y libcamera-dev libepoxy-dev libjpeg-dev libtiff5-dev
-sudo apt install -y qtbase5-dev libqt5core5a libqt5gui5 libqt5widgets5 qtbase5-dev libqt5core5a libqt5gui5 libqt5widgets5
-sudo apt install -y python3-pip libboost-dev libgnutls28-dev openssl meson libglib2.0-dev libgstreamer-plugins-base1.0-dev
+<pre class="src src-sh"><span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">DO: Setup ssh (put pi-cam public key in .ssh directory)</span>
 <span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Install my favorite  packages</span>
-sudo apt install -y emacs gnuplot maxima sbcl telnet zsh tmux gitk xterm imagemagick nomacs gimp ruby exiv2
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Install &amp; Setup java</span>
-sudo apt install -y openjdk-8-jdk
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Make local links</span>
+sudo apt install -y emacs gnuplot maxima sbcl telnet zsh tmux gitk xterm imagemagick nomacs gimp ruby exiv2 git openssl
+<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Make /usr/local links</span>
 <span style="color: #00ffff;">for</span> f<span style="color: #00ffff;"> in</span> ruby perl sbcl; <span style="color: #00ffff;">do</span>
   <span style="color: #00ffff;">if</span> [ -e /usr/bin/$<span style="color: #7fffd4;">f</span> ]; <span style="color: #00ffff;">then</span>
     sudo ln -s /usr/bin/$<span style="color: #7fffd4;">f</span> /usr/local/bin/$<span style="color: #7fffd4;">f</span>
@@ -3627,122 +3999,61 @@ sudo apt install -y openjdk-8-jdk
     <span style="color: #b0c4de;">echo</span> Missing: /usr/bin/$<span style="color: #7fffd4;">f</span>
   <span style="color: #00ffff;">fi</span>
 <span style="color: #00ffff;">done</span>
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Create my account</span>
-sudo addgroup richmit
-sudo adduser --gid 1001 richmit <span style="color: #ffa500;">## </span><span style="color: #ff7f24;">use GID from previous command</span>
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Add me to all the groups the pi user is in -- or at least users that start with pi ;)</span>
-sudo usermod -aG <span style="color: #bf3eff; font-weight: bold;">`grep '[:,]pi' /etc/group | cut -d: -f3 | tr '[:space:]' , | sed 's/,$//'`</span> richmit
 <span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Change my shell</span>
 sudo usermod -s /usr/bin/zsh richmit
 <span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Change root's password</span>
 sudo passwd root
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Fix the caps lock key</span>
-sudo sh -c <span style="color: #fa8072;">'sed "s/^XKBOPTIONS=.*/XKBOPTIONS=\"ctrl:nocaps\"/" &lt; /etc/default/keyboard &gt; /etc/default/keyboard.new'</span>
-sudo chmod a+r /etc/default/keyboard /etc/default/keyboard.new
-<span style="color: #00ffff;">if</span> diff -q /etc/default/keyboard /etc/default/keyboard.new; <span style="color: #00ffff;">then</span> sudo rm /etc/default/keyboard.new; <span style="color: #00ffff;">else</span> sudo mv /etc/default/keyboard /etc/default/keyboard.bak_<span style="color: #bf3eff; font-weight: bold;">`date +%s`</span>; sudo mv /etc/default/keyboard.new /etc/default/keyboard; <span style="color: #00ffff;">fi</span>
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">DO: Add my account to sudo</span>
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Login with my new account</span>
-sudo su - richmit
 <span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Setup directories &amp; links in $HOME</span>
 <span style="color: #b0c4de;">cd</span> ~
-mkdir -p ~/bin
-mkdir -p ~/tmp/tmux/sockets
-mkdir -p ~/Pictures/pi-cam
-mkdir -p ~/synced/world/pi-data/
-mkdir -p ~/synced/world/dotfiles/
-mkdir -p ~/synced/world/dotfilesSecure/
-mkdir -p ~/synced/world/stuff/homeNetwork/
-mkdir -p ~/synced/world/stuff/my_ref/
-mkdir -p ~/synced/world/stuff/notes/
-mkdir -p ~/synced/world/my_prog/learn/ex-ruby/
-mkdir -p ~/synced/world/my_prog/lispStuff/lispy/
-mkdir -p ~/synced/world/my_prog/MJRdebianPakageTools/
-mkdir -p ~/synced/world/my_prog/tmuxStuff/
-mkdir -p ~/synced/world/my_prog/UNIXutils/
-mkdir -p ~/synced/world/my_prog/utils/
-mkdir -p ~/synced/world/my_prog/microscope
-mkdir -p ~/synced/world/my_prog/ImageJ
-mkdir -p ~/synced/world/my_prog/mpms
-mkdir -p ~/synced/world/my_prog/dir-inventory/
-mkdir -p ~/synced/core/
-mkdir -p ~/synced/Doc2/gadgets/leica_microscopes/
+<span style="color: #00ffff;">for</span> d<span style="color: #00ffff;"> in</span> ~/bin ~/tmp/tmux/sockets ~/Pictures/pi-cam ~/synced/core/ ~/synced/Doc2/gadgets/leica_microscopes/; <span style="color: #00ffff;">do</span>
+  mkdir -p $<span style="color: #7fffd4;">d</span>
+<span style="color: #00ffff;">done</span>
+<span style="color: #00ffff;">for</span> d<span style="color: #00ffff;"> in</span> pi-data/ dotfiles/ dotfilesSecure/ stuff/homeNetwork/ stuff/notes/ my_prog/learn/ex-ruby/              <span style="color: #000000; background-color: #f0e68c; font-weight: bold;">\</span>
+         my_prog/microscope/ my_prog/debianPackageTools/ my_prog/tmuxStuff/ my_prog/UNIXutils/ my_prog/utils/ <span style="color: #000000; background-color: #f0e68c; font-weight: bold;">\</span>
+         my_prog/ImageJ my_prog/mpms my_prog/dir-inventory/ stuff/my_ref/ my_prog/lispStuff/lispy/;             <span style="color: #00ffff;">do</span>
+  mkdir -p ~/synced/world/$<span style="color: #7fffd4;">d</span>
+<span style="color: #00ffff;">done</span>
+<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Make links to synced dirs</span>
 ln -s ~/synced/world ~/world
 ln -s ~/synced/core ~/core
 <span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">DO: Sync data from laptop via rsync</span>
 <span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Setup dotfiles &amp; ~/bin</span>
 ./world/my_prog/UNIXutils/SelectSetup.rb --loc=HOME; ./world/my_prog/UNIXutils/SetupBin.rb
 <span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">DO: Reboot</span>
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">DO: Login as myself</span>
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Delete pi user</span>
-sudo userdel -r pi
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">DO: Enable automatic login</span>
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">DO: Change hostname to pi-cam</span>
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">DO: Reboot</span>
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Download Fiji software &amp; launcher</span>
-<span style="color: #b0c4de;">cd</span> ~
-test -e fiji-nojre.zip || wget <span style="color: #fa8072;">'https://downloads.imagej.net/fiji/latest/fiji-nojre.zip'</span> 
-test -e ImageJ.sh || wget <span style="color: #fa8072;">'https://github.com/imagej/imagej2/raw/master/bin/ImageJ.sh'</span>
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Unpack Fiji</span>
-unzip fiji-nojre.zip
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Put in place ImageJ.sh script (hardwire the install directory)</span>
-sed <span style="color: #fa8072;">'s/^DIRECTORY=.*/DIRECTORY=~\/Fiji.app/'</span> ImageJ.sh &gt; ~/Fiji.app/ImageJ.sh
-chmod a+rx ~/Fiji.app/ImageJ.sh
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Workaround for a bug in current Fiji</span>
-mv ~/Fiji.app/jars/FilamentDetector-1.0.0.jar ~/Fiji.app/jars/FilamentDetector-1.0.0.bad
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Run Fiji and update</span>
-~/Fiji.app/ImageJ.sh
-<span style="color: #ffa500;">### </span><span style="color: #ff7f24;">Link the RPI_tools into Fiji</span>
-ln -s ~/world/my_prog/imagej/PhilaJ-and-RPI_Tools/RPI_tools.ijm ~/Fiji.app/macros/toolsets/RPI_tools.ijm
-<span style="color: #ffa500;">### </span><span style="color: #ff7f24;">Link the PhilaJ into Fiji</span>
-ln -s ~/world/my_prog/imagej/PhilaJ-and-RPI_Tools/PhilaJ.ijm ~/Fiji.app/macros/toolsets/PhilaJ.ijm
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Setup dotfiles &amp; ~/bin -- this time to put ImageJ.sh &amp; ImageJ into ~/bin</span>
-./world/my_prog/UNIXutils/SelectSetup.rb --loc=HOME; ./world/my_prog/UNIXutils/SetupBin.rb
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">DO: Add ImageJ.sh to launch menu -- icon in ~/core/icons</span>
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">Install free42 calculator</span>
-<span style="color: #b0c4de;">cd</span> ~
-rm -rf ~/free42
-git clone <span style="color: #fa8072;">'https://github.com/thomasokken/free42.git'</span>
-<span style="color: #b0c4de;">cd</span> free42/gtk
-make <span style="color: #7fffd4;">BCD_MATH</span>=1 <span style="color: #7fffd4;">AUDIO_ALSA</span>=1
-sudo cp free42dec /usr/local/bin/free42-3.0.6
-sudo rm -f /usr/local/bin/free42
-sudo ln -s /usr/local/bin/free42-3.0.6 /usr/local/bin/free42
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">DO: Add free42 to launch menu -- icon in ~/core/icons</span>
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">DO: Add piSleep to launch menu -- icon in ~/core/icons</span>
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">DO: Logout</span>
-<span style="color: #ffa500;">#### </span><span style="color: #ff7f24;">DO: Login</span>
 </pre>
 </div>
 </div>
 </div>
-
-<div id="outline-container-org7a0779e" class="outline-5">
-<h5 id="org7a0779e"><span class="section-number-5">9.3.2.2.</span> System Sync</h5>
-<div class="outline-text-5" id="text-9-3-2-2">
+<div id="outline-container-rpi-camera-my-soft-sync" class="outline-5">
+<h5 id="rpi-camera-my-soft-sync"><span class="section-number-5">9.6.2.2.</span> System Sync</h5>
+<div class="outline-text-5" id="text-rpi-camera-my-soft-sync">
 <p>
-I use <code>rsync</code> to keep data in sync between my camera and primary workstation.
+I frequently sync my primary workstation with the <code>pi-cam</code>. The sync is bidirectional pulling data from the RPI (captured images &amp; data) to my workstation,
+and to the RPI (scripts &amp; config).  I sync over the network using <code>rsync</code> via <code>ssh</code>. The commands below are executed on my primary workstation.  
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">date; <span style="color: #b0c4de;">echo</span> back-dat-sync;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2                  --rsh=<span style="color: #fa8072;">'ssh'</span> pi-cam.home.mitchr.me:synced/pi-data/                              /c/Users/richmit/Documents/world/pi-cam/;
-date; <span style="color: #b0c4de;">echo</span> back-pic-sync;        rsync -rlt --log-format=%f                            --modify-window=2                  --rsh=<span style="color: #fa8072;">'ssh'</span> pi-cam.home.mitchr.me:Pictures/pi-cam/                             /c/Users/richmit/Pictures/pi-cam/;
-date; <span style="color: #b0c4de;">echo</span> microscope-code;      rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/my_prog/microscope/               pi-cam.home.mitchr.me:synced/world/my_prog/microscope/;
-date; <span style="color: #b0c4de;">echo</span> imagej-code;          rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/my_prog/imagej/                   pi-cam.home.mitchr.me:synced/world/my_prog/imagej/;
-date; <span style="color: #b0c4de;">echo</span> dotfiles;             rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/dotfiles/                         pi-cam.home.mitchr.me:synced/world/dotfiles/;
-date; <span style="color: #b0c4de;">echo</span> dotfilesSecure;       rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/dotfilesSecure/                   pi-cam.home.mitchr.me:synced/world/dotfilesSecure/;
-date; <span style="color: #b0c4de;">echo</span> homeNetwork;          rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/stuff/homeNetwork/                pi-cam.home.mitchr.me:synced/world/stuff/homeNetwork/;
-date; <span style="color: #b0c4de;">echo</span> my_ref;               rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/stuff/my_ref/                     pi-cam.home.mitchr.me:synced/world/stuff/my_ref/;
-date; <span style="color: #b0c4de;">echo</span> notes;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/stuff/notes/                      pi-cam.home.mitchr.me:synced/world/stuff/notes/;
-date; <span style="color: #b0c4de;">echo</span> mpms;                 rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/my_prog/mpms/                     pi-cam.home.mitchr.me:synced/world/my_prog/mpms/;
-date; <span style="color: #b0c4de;">echo</span> dir-inventory;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/my_prog/dir-inventory/            pi-cam.home.mitchr.me:synced/world/my_prog/dir-inventory/;
-date; <span style="color: #b0c4de;">echo</span> ruby-examples;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/my_prog/learn/ex-ruby/            pi-cam.home.mitchr.me:synced/world/my_prog/learn/ex-ruby/;
-date; <span style="color: #b0c4de;">echo</span> lispy;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/my_prog/lispStuff/lispy/          pi-cam.home.mitchr.me:synced/world/my_prog/lispStuff/lispy/;
-date; <span style="color: #b0c4de;">echo</span> MJRdebianPakageTools; rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/my_prog/MJRdebianPakageTools/     pi-cam.home.mitchr.me:synced/world/my_prog/MJRdebianPakageTools/;
-date; <span style="color: #b0c4de;">echo</span> tmuxHelper;           rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/my_prog/tmuxHelper/               pi-cam.home.mitchr.me:synced/world/my_prog/tmuxHelper/;
-date; <span style="color: #b0c4de;">echo</span> UNIXutils;            rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/my_prog/UNIXutils/                pi-cam.home.mitchr.me:synced/world/my_prog/UNIXutils/;
-date; <span style="color: #b0c4de;">echo</span> utils;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/world/my_prog/utils/                    pi-cam.home.mitchr.me:synced/world/my_prog/utils/;
-date; <span style="color: #b0c4de;">echo</span> core;                 rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/core/                                   pi-cam.home.mitchr.me:synced/core/;
-date; <span style="color: #b0c4de;">echo</span> leicaS8APO-docs;      rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/Documents/reading/Doc2/gadgets/leica_microscopes/ pi-cam.home.mitchr.me:synced/Doc2/leica_microscopes/;
+<pre class="src src-sh">date; <span style="color: #b0c4de;">echo</span> back-dat-sync;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2                  --rsh=<span style="color: #fa8072;">'ssh'</span> pi-cam:synced/pi-data/                                       /c/Users/richmit/Documents/world/pi-cam/;
+date; <span style="color: #b0c4de;">echo</span> back-pic-sync;        rsync -rlt --log-format=%f                            --modify-window=2                  --rsh=<span style="color: #fa8072;">'ssh'</span> pi-cam:Pictures/pi-cam/                                      /c/Users/richmit/Pictures/pi-cam/;
+date; <span style="color: #b0c4de;">echo</span> microscope-code;      rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/MJR/world/my_prog/microscope/               pi-cam:synced/world/my_prog/microscope/;
+date; <span style="color: #b0c4de;">echo</span> imagej-code;          rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/MJR/world/my_prog/imagej/                   pi-cam:synced/world/my_prog/imagej/;
+date; <span style="color: #b0c4de;">echo</span> dotfiles;             rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/MJR/world/dotfiles/                         pi-cam:synced/world/dotfiles/;
+date; <span style="color: #b0c4de;">echo</span> dotfilesSecure;       rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/MJR/world/dotfilesSecure/                   pi-cam:synced/world/dotfilesSecure/;
+date; <span style="color: #b0c4de;">echo</span> homeNetwork;          rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/MJR/world/stuff/homeNetwork/                pi-cam:synced/world/stuff/homeNetwork/;
+date; <span style="color: #b0c4de;">echo</span> my_ref;               rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/MJR/world/stuff/my_ref/                     pi-cam:synced/world/stuff/my_ref/;
+date; <span style="color: #b0c4de;">echo</span> notes;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/MJR/world/stuff/notes/                      pi-cam:synced/world/stuff/notes/;
+date; <span style="color: #b0c4de;">echo</span> mpms;                 rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/MJR/world/my_prog/mpms/                     pi-cam:synced/world/my_prog/mpms/;
+date; <span style="color: #b0c4de;">echo</span> mpms;                 rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/MJR/world/my_prog/verGo/                    pi-cam:synced/world/my_prog/verGo/;
+date; <span style="color: #b0c4de;">echo</span> dir-inventory;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/MJR/world/my_prog/dir-inventory/            pi-cam:synced/world/my_prog/dir-inventory/;
+date; <span style="color: #b0c4de;">echo</span> ruby-examples;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/MJR/world/my_prog/learn/ex-ruby/            pi-cam:synced/world/my_prog/learn/ex-ruby/;
+date; <span style="color: #b0c4de;">echo</span> lispy;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/MJR/world/my_prog/lispStuff/lispy/          pi-cam:synced/world/my_prog/lispStuff/lispy/;
+date; <span style="color: #b0c4de;">echo</span> line-sets;            rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/MJR/world/my_prog/lineSets/                 pi-cam:synced/world/my_prog/lineSets/;
+date; <span style="color: #b0c4de;">echo</span> debianPackageTools;   rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/MJR/world/my_prog/debianPackageTools/       pi-cam:synced/world/my_prog/debianPackageTools/;
+date; <span style="color: #b0c4de;">echo</span> tmuxHelper;           rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/MJR/world/my_prog/tmuxHelper/               pi-cam:synced/world/my_prog/tmuxHelper/;
+date; <span style="color: #b0c4de;">echo</span> UNIXutils;            rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/MJR/world/my_prog/UNIXutils/                pi-cam:synced/world/my_prog/UNIXutils/;
+date; <span style="color: #b0c4de;">echo</span> utils;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/MJR/world/my_prog/utils/                    pi-cam:synced/world/my_prog/utils/;
+date; <span style="color: #b0c4de;">echo</span> core;                 rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/MJR/core/                                   pi-cam:synced/core/;
+date; <span style="color: #b0c4de;">echo</span> leicaS8APO-docs;      rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude <span style="color: #fa8072;">'.git'</span> --rsh=<span style="color: #fa8072;">'ssh'</span> /c/Users/richmit/MJR/reading/Doc2/gadgets/leica_microscopes/ pi-cam:synced/Doc2/leica_microscopes/;
 date
 </pre>
 </div>
@@ -3750,107 +4061,31 @@ date
 </div>
 </div>
 </div>
-
 <div id="outline-container-rpi-soft" class="outline-3">
-<h3 id="rpi-soft"><span class="section-number-3">9.4.</span> RPI Software</h3>
+<h3 id="rpi-soft"><span class="section-number-3">9.7.</span> RPI Software</h3>
 <div class="outline-text-3" id="text-rpi-soft">
 <p>
 My goals:
 </p>
 
 <ul class="org-ul">
-<li>ImageJ/Fiji
+<li>Capture images directly from ImageJ/Fiji so I can immediately preform an image analysis
 <ul class="org-ul">
-<li>Capture images directly from ImageJ/Fiji so I can immediately preform an image analysis</li>
 <li>Setting image scale needs to be easy because measuring lengths is my #1 application</li>
 <li>Identical UI between Windows and RPI</li>
 <li>The software should be fully integrated into PhilaJ (an extensive set of ImageJ/Fiji macros for philatelic image analysis)</li>
 <li>The microscope functionality should be available without the bulk of the PhilaJ user interface for people not interested in philately.</li>
-</ul></li>
-<li>CLI
-<ul class="org-ul">
-<li>Needs to integrate will with ImageJ/Fiji so that it is easy to load them in ImageJ/Fiji later</li>
-<li>Completely indipendant of the ImageJ/Fiji software</li>
-<li>As simple as possible with minimal external requirements &#x2013; just the RPI CLI image tools and basic shell stuff</li>
-</ul></li>
-<li>General Requirements
-<ul class="org-ul">
 <li>Optionally show a preview before capture</li>
 <li>See a live view from the camera &amp; control the size of the preview</li>
 <li>Capture sequences of related images, and name so they are grouped together</li>
 <li>Put captured images in a known directory with a standard naming convention so that it is simple to orginize and sync data between camear and computers</li>
 </ul></li>
 </ul>
-</div>
 
-<div id="outline-container-rpi-pisnap" class="outline-4">
-<h4 id="rpi-pisnap"><span class="section-number-4">9.4.1.</span> RPI Image Capture Script</h4>
-<div class="outline-text-4" id="text-rpi-pisnap">
-<p>
-This script is pretty simple.  It provides a way to capture one or more images outside of ImageJ/Fiji, but in a way compatible with the ImageJ/Fiji macros
-provided below.  I almost always have ImageJ/Fiji running on my camera, so I don't end us uping this cript much; however, it is still nice to have around.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-text">Take a snapshot using the Raspberry Pi HQ Camera and save it in a standard way
-
-Use: piSnap.sh [options]
-  Options:
-    -p        Preview!  No images are captured. Other arguments are ignored
-    -k        Show a preview, and capture when [enter] is pressed.
-              Without -k an image is immediatly captured with no preview
-    -s        Show image after capture with nomacs
-    -a ANNO   Annotation: Used to identify the capture.
-              Adds a "-ANNOTATION" component to the captured filename.
-              See the "File Names" section below
-    -g GROUP  Group name -- used for grouping similar captures.
-              Adds a "_GROUP" component to the captured filename
-              See the "File Names" section below
-    -v        Verbose mode
-    -f        Fake Capture Mode that uses convert instead of libcamera-still
-              Used for debugging.  Most useful when combined with -v.
-    -b BIN    Full path to the libcamera-still binary
-              Default: /usr/bin/libcamera-still
-    -d DIR    Directory to store captured images.
-              Default: $HOME/Pictures/pi-cam
-              Note: The related ImageJ/Fiji macro expects the default value!
-    -e ENC    File format: jpg, bmp, gif, png, rgb
-              Default: jpg
-  File Names
-    Image names are like: YYYYMMDDHHMMSS_GROUP-ANNOTATION.ENC
-                          |              |     |
-                          |              |     File Annoation
-                          |              Group Name
-                          date/time stamp
-      - The "_GROUP" component of the name will not be pressent
-        if the -g option was not provided.
-      - The "-ANNOTATION" component of the name will not be pressent
-        if the -a option was not provided.
-      - The -a and -g arguments are translated automatically into
-        something suitable:
-          - Non-alphanumeric characters are converted to underscores.
-          - Leading underscores and dashes are removed
-          - The -g argument has all dashes removed
-</pre>
-</div>
-
-<p>
-Part of the setup instructions above install this script.  
-</p>
-
-<p>
-The script can be found on github: <a href="https://github.com/richmit/microscope">https://github.com/richmit/microscope</a>
-</p>
-</div>
-</div>
-
-<div id="outline-container-rpi-imagej" class="outline-4">
-<h4 id="rpi-imagej"><span class="section-number-4">9.4.2.</span> ImageJ/Fiji Toolset/Macros</h4>
-<div class="outline-text-4" id="text-rpi-imagej">
 <p>
 The ImageJ/Fiji toolset, called "<code>RPI_tools</code>", is actually a direct copy my <code>"PhilaJ"</code> software with an alternative, stripped down user interface that only
-exposes the microscope functionality.  That is to say, the only difference between "<code>RPI_tools</code>" and "<code>PhilaJ</code>" is the ImageJ/Fiji toolset code the exposes the
-functionality to the end user.  Full documentation may be found here:
+exposes the microscope functionality.  That is to say, the only difference between "<code>RPI_tools</code>" and "<code>PhilaJ</code>" is the ImageJ/Fiji toolset code the exposes
+the functionality to the end user.  Full documentation may be found here:
 </p>
 
 <p>
@@ -3864,7 +4099,6 @@ The setup instructions above install this package into Fiji.  You can find the c
 <p>
 <a href="https://github.com/richmit/imagej">https://github.com/richmit/imagej</a>
 </p>
-</div>
 </div>
 </div>
 </div>

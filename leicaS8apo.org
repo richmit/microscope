@@ -82,6 +82,8 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 | $I_{AR}$     | Image Aspect Ratio                     | Ratio     |                                                  |
 | $P_{IJSPAR}$ | ImageJ Scale Pixel Aspect Ratio        | Ratio     |                                                  |
 | $W$          | Working Distance                       | mm        |                                                  |
+| $NA$         | Numerical Aperture                     | N/A       |                                                  |
+
 ** Formulas
 :PROPERTIES:
 :CUSTOM_ID: formulas
@@ -182,6 +184,24 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 #+TBLFM: $7=$4/($1*$2);%.2f
 #+TBLFM: $6=$1*$2*$3;%.2f
 
+** Auxiliary Len Magnification & Working Distance
+:PROPERTIES:
+:CUSTOM_ID: s4-aux-mag-wd
+:END:
+
+#+CAPTION: S4E -- Auxiliary Lens Magnification, and Working Distance 
+#+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
+| $A$              | $W$        | Perf |     Part |
+|------------------+------------+------+----------|
+| $0.32\times$     | 300 mm     | Acro | 10446316 |
+| $0.5\times$      | 200 mm     | Acro | 10446318 |
+| $0.63\times$     | 155 mm     | Acro | 10446319 |
+| $0.75\times$     | 130 mm     | Acro | 10446320 |
+| $1.6\times$      | 55 mm      | Acro | 10446321 |
+| $2.0\times$      | 35 mm      | Acro | 10446322 |
+| $0.3–0.4\times$  | 200–350 mm | Acro | 10446325 |
+| $0.6–0.75\times$ | 77–137 mm  | Acro | 10446323 |
+
 * S8APO
 :PROPERTIES:
 :CUSTOM_ID: s8apo
@@ -253,18 +273,35 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 
 #+CAPTION: S8APO Numerical Aperture
 #+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
-| Zoom |    NA |
-|------+-------|
-|  1.0 | 0.026 |
-| 1.25 | 0.031 |
-|  1.6 | 0.038 |
-|  2.0 | 0.046 |
-|  2.5 | 0.056 |
-|  3.2 | 0.069 |
-|  4.0 | 0.081 |
-|  5.0 | 0.093 |
-|  6.3 | 0.100 |
-|  8.0 | 0.100 |
+| Zoom | Numerical Aperture |
+| $Z$  |        $NA$        |
+| <c>  |        <c>         |
+|------+--------------------|
+| 1.0  |       0.026        |
+| 1.25 |       0.031        |
+| 1.6  |       0.038        |
+| 2.0  |       0.046        |
+| 2.5  |       0.056        |
+| 3.2  |       0.069        |
+| 4.0  |       0.081        |
+| 5.0  |       0.093        |
+| 6.3  |       0.100        |
+| 8.0  |       0.100        |
+
+** Auxiliary Len Magnification & Working Distance
+:PROPERTIES:
+:CUSTOM_ID: s8-aux-mag-wd
+:END:
+
+#+CAPTION: S8API -- Auxiliary Lens Magnification, and Working Distance 
+#+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
+| Leica Part # | $A$          | $W$    | Perf  |
+|          <r> | <l>          | <r>    |  <c>  |
+|--------------+--------------+--------+-------|
+|     10446334 | $0.32\times$ | 200 mm | Achro |
+|     10446335 | $0.63\times$ | 100 mm |  APO  |
+|     10446336 | $1.6\times$  | 37 mm  |  APO  |
+|     10446337 | $2.0\times$  | 25 mm  |  APO  |
 
 ** Leica C-Mount Video Objective Data
 :PROPERTIES:
@@ -283,7 +320,7 @@ however, I've gone ahead and published it anyhow in hope someone might find it u
 |     10446307 | Leica Video Objective $0.8\times$  | 0.80 |  16.8 | Estimated $O_d$ | co80 |
 #+TBLFM: @4$4..@>$4=21*$3;%.1f
 
-Note the image circles are all the same size at the sensor for a particular video objective, but FOV will change with the auxiliary & video objective.
+Note the image circles are all the same size at the sensor for a particular video objective, but FOV will change with the auxiliary lens.
 
 With $O_d=0.5\times$ we can capture the full image circle with a Micro Four Thirds (Olympus OM-D E-M1 Mark II) sensor, but only about 37% of the image circle with
 an IMX477 (RPI HQ) sensor.  Note that about 65% of the Micro Four Thirds sensor is outside the image circle -- i.e. wasted pixels.
@@ -409,56 +446,91 @@ I use two cameras with my S8APO:
 * S4 and S8 Magnification Coverage                          
 
 Various magnifications may be reached with different combinations of eyepiece, power, & auxiliary lens.
- - *green*: Full APO
- - *yellow*: Achro but not APO
- - *pink*: Unspecified distortion (might not even be Acro)
- - *red*: I don't have equipment for this
- - *black*: Not possible
 
 # APO
-#+MACRO: ABX @@html:<div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div>@@ 
+#+MACRO: ABX0 @@html:<div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>-</div>@@ 
+#+MACRO: ABX1 @@html:<div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&check;</div>@@ 
+#+MACRO: ABXB @@html:<div style='margin:0;padding:0.25em;color:black;background-color:lightgreen'>&nbsp;</div>@@ 
+
 # Acro
-#+MACRO: CBX @@html:<div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div>@@ 
-# Unknown optical performance
-#+MACRO: UBX @@html:<div style='margin:0;padding:0.25em;color:black;background-color:pink'>&nbsp;</div>@@ 
-# Missing
-#+MACRO: MBX @@html:<div style='margin:0;padding:0.25em;color:black;background-color:red'>&nbsp;</div>@@ 
+#+MACRO: CBX0 @@html:<div style='margin:0;padding:0.25em;color:black;background-color:yellow'>-</div>@@ 
+#+MACRO: CBX1 @@html:<div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&check;</div>@@ 
+#+MACRO: CBXB @@html:<div style='margin:0;padding:0.25em;color:black;background-color:yellow'>&nbsp;</div>@@ 
+
+
 # Not possible
 #+MACRO: XBX @@html:<div style='margin:0;padding:0.25em;color:black;background-color:white'>&nbsp;</div>@@ 
+
+
+# Check Mark
+#+MACRO: CHK @@html:<div style='margin:0;padding:0.25em;color:black;background-color:white'>&check;</div>@@ 
+
+
 # Space pad a string
 #+MACRO: SPP @@html:&nbsp;$1&nbsp;@@ 
 
+#+MACRO: NS2 @@html:&nbsp;&nbsp;@@ 
+#+MACRO: NS8 @@html:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@@ 
 
-#+HTML: <div style="font-size: 80%;">
+
+#+HTML: <div style="font-size: 75%;">
+#+CAPTION: S4
 #+ATTR_HTML: :rules all solid #ccc :frame all :align center :cellpadding 0 :border-spacing 0
-| S/EPxA                | {{{SPP(003)}}} | {{{SPP(004)}}} | {{{SPP(005)}}} | {{{SPP(006)}}} | {{{SPP(008)}}} | {{{SPP(010)}}} | {{{SPP(013)}}} | {{{SPP(016)}}} | {{{SPP(020)}}} | {{{SPP(026)}}} | {{{SPP(032)}}} | {{{SPP(040)}}} | {{{SPP(050)}}} | {{{SPP(064)}}} | {{{SPP(080)}}} | {{{SPP(100)}}} | {{{SPP(128)}}} | {{{SPP(160)}}} | {{{SPP(200)}}} | {{{SPP(256)}}} | {{{SPP(320)}}} | {{{SPP(400)}}} | {{{SPP(500)}}} | {{{SPP(640)}}} |
-| /                     |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |
-|-----------------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------|
-| {{{SPP(S4/10x0.50)}}} |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
-| {{{SPP(S8/10x0.32)}}} |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
-| {{{SPP(S4/10x0.75)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
-| {{{SPP(S4/16x0.50)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
-| {{{SPP(S4/10x1.00)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
-| {{{SPP(S8/10x0.63)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
-| {{{SPP(S8/10x0.75)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
-| {{{SPP(S4/25x0.50)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
-| {{{SPP(S4/10x1.60)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
-| {{{SPP(S8/10x1.00)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{ABX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
-| {{{SPP(S4/20x1.00)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
-| {{{SPP(S4/10x2.00)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{CBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
-| {{{SPP(S8/20x0.63)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
-| {{{SPP(S4/16x1.60)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
-| {{{SPP(S8/16x1.00)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
-| {{{SPP(S4/20x1.60)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
-| {{{SPP(S8/10x2.00)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{UBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
-| {{{SPP(S4/25x1.60)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
-| {{{SPP(S8/25x1.00)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
-| {{{SPP(S8/16x2.00)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
-| {{{SPP(S4/40x1.60)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
-| {{{SPP(S8/40x1.00)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
-| {{{SPP(S8/25x2.00)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
-| {{{SPP(S8/40x2.00)}}} |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |   {{{MBX}}}    |
+| {{{NS2}}} $E_{MAG}$ {{{NS2}}} | {{{NS2}}} $A$ {{{NS8}}} | {{{SPP(003)}}} | {{{SPP(004)}}} | {{{SPP(005)}}} | {{{SPP(006)}}} | {{{SPP(008)}}} | {{{SPP(010)}}} | {{{SPP(013)}}} | {{{SPP(016)}}} | {{{SPP(020)}}} | {{{SPP(026)}}} | {{{SPP(032)}}} | {{{SPP(040)}}} | {{{SPP(050)}}} | {{{SPP(064)}}} | {{{SPP(080)}}} | {{{SPP(100)}}} | {{{SPP(128)}}} | {{{SPP(160)}}} | {{{SPP(200)}}} | {{{SPP(256)}}} | {{{SPP(320)}}} | {{{SPP(400)}}} | {{{SPP(500)}}} | {{{SPP(640)}}} |
+| <l>                           | <l>                     |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |
+|-------------------------------+-------------------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------|
+| {{{NS2}}} $10\times$          | {{{NS2}}} $0.50\times$  |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{NS2}}} $10\times$          | {{{NS2}}} $0.75\times$  |   {{{XBX}}}    |   {{{XBX}}}    |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{NS2}}} $16\times$          | {{{NS2}}} $0.50\times$  |   {{{XBX}}}    |   {{{XBX}}}    |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{NS2}}} $10\times$          | {{{NS2}}} $1.00\times$  |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{NS2}}} $25\times$          | {{{NS2}}} $0.50\times$  |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{NS2}}} $10\times$          | {{{NS2}}} $1.60\times$  |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{NS2}}} $20\times$          | {{{NS2}}} $1.00\times$  |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{NS2}}} $10\times$          | {{{NS2}}} $2.00\times$  |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{NS2}}} $16\times$          | {{{NS2}}} $1.60\times$  |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{NS2}}} $20\times$          | {{{NS2}}} $1.60\times$  |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{NS2}}} $25\times$          | {{{NS2}}} $1.60\times$  |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{NS2}}} $40\times$          | {{{NS2}}} $1.60\times$  |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
+| {{{NS2}}} $40\times$          | {{{NS2}}} $2.00\times$  |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{CBX0}}}   |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |
 #+HTML: </div>
+
+#+HTML: <div style="font-size: 75%;">
+#+CAPTION: S8
+#+ATTR_HTML: :rules all solid #ccc :frame all :align center :cellpadding 0 :border-spacing 0
+| {{{NS2}}} $E_{MAG}$ {{{NS2}}} | {{{NS2}}} $A$ {{{NS8}}} | {{{SPP(003)}}} | {{{SPP(004)}}} | {{{SPP(005)}}} | {{{SPP(006)}}} | {{{SPP(008)}}} | {{{SPP(010)}}} | {{{SPP(013)}}} | {{{SPP(016)}}} | {{{SPP(020)}}} | {{{SPP(026)}}} | {{{SPP(032)}}} | {{{SPP(040)}}} | {{{SPP(050)}}} | {{{SPP(064)}}} | {{{SPP(080)}}} | {{{SPP(100)}}} | {{{SPP(128)}}} | {{{SPP(160)}}} | {{{SPP(200)}}} | {{{SPP(256)}}} | {{{SPP(320)}}} | {{{SPP(400)}}} | {{{SPP(500)}}} | {{{SPP(640)}}} |
+| <l>                           |           <l>           |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |      <c>       |                |
+|-------------------------------+-------------------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------|
+| {{{NS2}}} $10\times$          | {{{NS2}}} $0.32\times$  |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{CBX1}}}   |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    | {{{XBX}}}      |
+| {{{NS2}}} $10\times$          | {{{NS2}}} $0.63\times$  |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    | {{{XBX}}}      |
+| {{{NS2}}} $10\times$          | {{{NS2}}} $1.00\times$  |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    | {{{XBX}}}      |
+| {{{NS2}}} $20\times$          | {{{NS2}}} $0.63\times$  |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    | {{{XBX}}}      |
+| {{{NS2}}} $16\times$          | {{{NS2}}} $1.00\times$  |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    | {{{XBX}}}      |
+| {{{NS2}}} $10\times$          | {{{NS2}}} $2.00\times$  |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{ABX1}}}   |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    | {{{XBX}}}      |
+| {{{NS2}}} $25\times$          | {{{NS2}}} $1.00\times$  |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    | {{{XBX}}}      |
+| {{{NS2}}} $16\times$          | {{{NS2}}} $2.00\times$  |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    | {{{XBX}}}      |
+| {{{NS2}}} $40\times$          | {{{NS2}}} $1.00\times$  |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{XBX}}}    |   {{{XBX}}}    | {{{XBX}}}      |
+| {{{NS2}}} $25\times$          | {{{NS2}}} $2.00\times$  |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{XBX}}}    | {{{XBX}}}      |
+| {{{NS2}}} $40\times$          | {{{NS2}}} $2.00\times$  |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{XBX}}}    |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   |   {{{ABX0}}}   | {{{ABX0}}}     |
+#+HTML: </div>
+
+\\
+#+CAPTION: Colors
+#+ATTR_HTML: :align center
+|   Color    | Meaning |
+|    <c>     |   <c>   |
+|------------+---------|
+| {{{ABXB}}} |   APO   |
+| {{{CBXB}}} |  Acro   |
+
+\\
+#+CAPTION: Symbols
+#+ATTR_HTML: :align center
+|  Symbol   | Meaning                                    |
+|    <c>    | <l>                                        |
+|-----------+--------------------------------------------|
+|     -     | I don't have this combination of equipment |
+| {{{CHK}}} | I  have this combination of equipment      |
+
 * Reticle Unit Conversion Software For free42 and DM42
 :PROPERTIES:
 :CUSTOM_ID: mrconv
@@ -500,7 +572,7 @@ want to modify the settings menus.
 
 ** The code
 
-The code below may be cut-n-pasted the code below into free42.  Alternately the raw file from [[https://github.com/richmit/microscope][github]].
+The code below may be cut-n-pasted into free42.
 
 #+begin_src hp42s :eval never :tangle mrconv.hp42s
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ (ref:MRCONV)
@@ -700,45 +772,57 @@ END
 
 #+CAPTION: S-Series Leica Parts
 #+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
-|   | Leica Part # | Leica Part Name                                                  |
-|---+--------------+------------------------------------------------------------------|
-| < |            < | >                                                                |
-| 1 |     10446298 | Leica S8 APO                                                     |
-| 1 |     10446293 | Leica S4 E                                                       |
-|---+--------------+------------------------------------------------------------------|
-| 2 |     10447136 | 10x/23B eyepiece for eyeglasses, fixed                           |
-| 4 |     10447137 | 10x/23B eyepiece for eyeglasses, adjustable                      |
-|   |     10447138 | 16x/15B eyepiece for eyeglasses, fixed                           |
-|   |     10447139 | 16x/15B eyepiece for eyeglasses, adjustable                      |
-|---+--------------+------------------------------------------------------------------|
-|   |     10446447 | Reticle 10 mm/0.1 mm                                             |
-|   |     10446448 | Reticle 5 mm/0.1 mm                                              |
-|   |     10446449 | Reticle 5 mm/0.05 mm                                             |
-|   |     10447000 | Reticle 100 scale intervals / 0.002"                             |
-|   |     10447001 | Reticle 100 scale intervals / 0.001"                             |
-|   |     10447002 | Reticle 150 scale intervals / 0.0005"                            |
-|---+--------------+------------------------------------------------------------------|
-| 1 |     10446334 | Achro Auxiliary $0.32\times$ for S8APO, WD 200 mm                |
-| 1 |     10446335 | APO Auxiliary $0.63\times$ for S8APO, WD 100 mm                  |
-|   |     10446336 | APO Auxiliary $1.6\times$ for S8APO, WD 37 mm                    |
-|   |     10446337 | APO Auxiliary $2.0\times$ for S8APO, WD 25 mm                    |
-|---+--------------+------------------------------------------------------------------|
-|   |     10446316 | Auxiliary $0.32\times$ for S4/S6, WD 300 mm                      |
-| 1 |     10446318 | Auxiliary $0.5\times$ for S4/S6, WD 200 mm                       |
-|   |     10446319 | Auxiliary $0.63\times$ for S4/S6, WD 155 mm                      |
-| 1 |     10446320 | Auxiliary $0.75\times$ for S4/S6, WD 130 mm                      |
-| 1 |     10446321 | Auxiliary $1.6\times$ for S4/S6, WD 55 mm                        |
-| 1 |     10446322 | Auxiliary $2.0\times$ for S4/S6, WD 35 mm                        |
-|   |     10446325 | Auxiliary $0.3–0.4\times$ for S4/S6 (Adjustable), WD 200–350mm   |
-|   |     10446323 | Auxiliary $0.6–0.75\times$ for S4/S6 (ErgoObjective) WD 77–137mm |
-|---+--------------+------------------------------------------------------------------|
-|   |     10446324 | Lens shield                                                      |
-|   |     10450831 | Updated lens shield                                              |
-|---+--------------+------------------------------------------------------------------|
-| 1 |     10445928 | Leica Video Objective $0.32\times$                               |
-| 1 |     10450528 | Leica Video Objective $0.5\times$                                |
-|   |     10447367 | Leica Video Objective $0.63\times$                               |
-| 1 |     10446307 | Leica Video Objective $0.8\times$                                |
+|     | Leica Part # | Leica Part Name                                                                 |
+| <c> |          <r> | <l>                                                                             |
+|-----+--------------+---------------------------------------------------------------------------------|
+|  1  |     10446298 | Leica S8 APO Microscope                                                         |
+|  1  |     10446293 | Leica S4 E Microscope                                                           |
+|-----+--------------+---------------------------------------------------------------------------------|
+|  2  |     10447136 | 10×/23B eyepiece for eyeglasses, fixed                                          |
+|  4  |     10447137 | 10×/23B eyepiece for eyeglasses, adjustable, accepts reticles                   |
+|     |     10447138 | 16×/15B eyepiece for eyeglasses, fixed                                          |
+|     |     10447139 | 16×/15B eyepiece for eyeglasses, adjustable, accepts reticles                   |
+|     |     10447130 | 10×/23 eyepiece, fixed                                                          |
+|     |     10447131 | 10×/23 eyepiece, adjustable, accepts reticles                                   |
+|     |     10447132 | 16×/16 eyepiece, fixed                                                          |
+|     |     10447133 | 16×/16 eyepiece, adjustable, accepts reticles                                   |
+|     |     10447134 | 20×/12 eyepiece, fixed                                                          |
+|     |     10447135 | 20×/12 eyepiece, adjustable, accepts reticles                                   |
+|-----+--------------+---------------------------------------------------------------------------------|
+|     |     10446326 | 10x/23 eyepiece for eyeglasses, fixed                                           |
+|     |     10446329 | 10x/23 eyepiece for eyeglasses, adjustable, accepts reticles                    |
+|     |     10445301 | 16x/14B eyepiece for eyeglasses, adjustable, accepts reticles, requires spacer  |
+|     |     10445302 | 25x/9.5B eyepiece for eyeglasses, adjustable, accepts reticles, requires spacer |
+|     |     10445303 | 40x/6B eyepiece for eyeglasses, adjustable, accepts reticles, requires spacer   |
+|-----+--------------+---------------------------------------------------------------------------------|
+|  2  |     10446447 | Reticle 10 mm/0.1 mm                                                            |
+|     |     10446448 | Reticle 5 mm/0.1 mm                                                             |
+|     |     10446449 | Reticle 5 mm/0.05 mm                                                            |
+|     |     10447000 | Reticle 100 scale intervals / 0.002"                                            |
+|     |     10447001 | Reticle 100 scale intervals / 0.001"                                            |
+|     |     10447002 | Reticle 150 scale intervals / 0.0005"                                           |
+|-----+--------------+---------------------------------------------------------------------------------|
+|  1  |     10446334 | Achro Auxiliary $0.32\times$ for S8APO, WD 200 mm                               |
+|  1  |     10446335 | APO Auxiliary $0.63\times$ for S8APO, WD 100 mm                                 |
+|     |     10446336 | APO Auxiliary $1.6\times$ for S8APO, WD 37 mm                                   |
+|  1  |     10446337 | APO Auxiliary $2.0\times$ for S8APO, WD 25 mm                                   |
+|-----+--------------+---------------------------------------------------------------------------------|
+|     |     10446316 | Auxiliary $0.32\times$ for S4/S6, WD 300 mm                                     |
+|  1  |     10446318 | Auxiliary $0.5\times$ for S4/S6, WD 200 mm                                      |
+|  1  |     10446319 | Auxiliary $0.63\times$ for S4/S6, WD 155 mm                                     |
+|  1  |     10446320 | Auxiliary $0.75\times$ for S4/S6, WD 130 mm                                     |
+|  1  |     10446321 | Auxiliary $1.6\times$ for S4/S6, WD 55 mm                                       |
+|  1  |     10446322 | Auxiliary $2.0\times$ for S4/S6, WD 35 mm                                       |
+|     |     10446325 | Auxiliary $0.3–0.4\times$ for S4/S6 (Adjustable), WD 200–350mm                  |
+|     |     10446323 | Auxiliary $0.6–0.75\times$ for S4/S6 (ErgoObjective) WD 77–137mm                |
+|-----+--------------+---------------------------------------------------------------------------------|
+|     |     10446324 | Lens shield                                                                     |
+|     |     10450831 | Updated lens shield                                                             |
+|-----+--------------+---------------------------------------------------------------------------------|
+|  1  |     10445928 | Leica Video Objective $0.32\times$                                              |
+|  1  |     10450528 | Leica Video Objective $0.5\times$                                               |
+|     |     10447367 | Leica Video Objective $0.63\times$                                              |
+|  1  |     10446307 | Leica Video Objective $0.8\times$                                               |
 
 * Image Sensor Data
 :PROPERTIES:
@@ -779,17 +863,9 @@ END
 :CUSTOM_ID: rpi-camera
 :END:
 
-#+CAPTION: A live feed from the microscope with a glass scale on the stage.
-#+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
-file:rpicam1_800.jpg
-
-#+CAPTION: A good view of the wire management for the camera.
-#+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
-file:rpicam2_800.jpg
-
 #+CAPTION: A 30fps live feed illuminated only by my desk lamps.  This is an exceptionally bright microscope.
 #+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
-file:rpicam4_800.jpg
+file:20251211_134106_200.jpg
 
 ** The Idea
 
@@ -807,13 +883,16 @@ image analysis software (Fiji/ImageJ) right on the camera.
 :CUSTOM_ID: rpi-bom
 :END:
 
+Note: I originally built this camera around 2021, so the hardware listed below is pretty old (Pi model 4).  The good news is that the software components
+described later work on newer Raspberry PIs, so you should be able to make a version of this project with modern hardware without too much difficulty.
+
 #+CAPTION: Bill Of Materials
 #+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
 | Item                                                                                                                       | Price (US $) |
 |----------------------------------------------------------------------------------------------------------------------------+--------------|
 | [[https://www.adafruit.com/product/4564][Raspberry Pi 4 Model B - 8 GB RAM]]                                               |           75 |
 | [[https://www.adafruit.com/product/5026][Raspberry Pi 4 Pro Mounting Plate for HQ Camera]]                                 |            7 |
-| [[https://www.adafruit.com/product/4340][Heatsink Raspberry Pi 4 Case with Dual Fans]]                                     |           26 |
+| [[https://www.adafruit.com/product/4340][Heatsink Raspberry Pi 4 Case with Dual Fans]] ([[#rpi-camera-case-fan][NOTE]])    |           26 |
 | [[https://www.adafruit.com/product/4561][Raspberry Pi High Quality HQ Camera - 12MP]]                                      |           50 |
 | MicroSD Card                                                                                                               |           15 |
 | Micro HDMI to HDMI Cable                                                                                                   |           12 |
@@ -821,55 +900,79 @@ image analysis software (Fiji/ImageJ) right on the camera.
 |----------------------------------------------------------------------------------------------------------------------------+--------------|
 | Total                                                                                                                      |          196 |
 
+** Wire Management
+
+I like to be able to move the microscope around on my desk, so I have the whole thing on Teflon glider feet.  This makes wire management a bit tricky.  The
+power cable I purchased is quite sturdy and has a large EMI filter choke that's about the 10mm in diameter.  I decided to use this as my primary cable mount
+point by clamping the choke into a small camera rig pipe mount which I connected to the 1/4" photographic mounting hole on the camera ring.  I then routed all
+the wires parallel to the power cable, and encased them in a wire tube.  I also added a couple zip-ties to secure the wire tube to the camera plate.  The whole
+thing is pretty resilient.
+
+#+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
+[[file:20251211_135029.jpg][file:20251211_135029_200.jpg]]
+#+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
+[[file:20251211_135035.jpg][file:20251211_135035_200.jpg]]
+#+ATTR_HTML: :border 2 solid #ccc :frame hsides :align center
+[[file:20251211_135050.jpg][file:20251211_135050_200.jpg]]
+
+** Wired Ethernet vs. WiFi
+
+It's more than reasonable to use WiFi for this setup; however, things like software updates are a little slow.  In the end I decided to use this super thin
+Ethernet cable I had in the cable box.  Honestly if I hadn't had that cable laying around I probably would have stuck with WiFi.
+
+** Cooling Fan & Heat Sink Case
+:PROPERTIES:
+:CUSTOM_ID: rpi-camera-case-fan
+:END:
+
+
+The fan is pretty unnecessary in my experience, and I generally keep it disconnected.  The Pi can display a streaming view from the camera for hours without
+the temperature ever going over 50C in my lab (I keep the lab at about 20C).
+
+If I were going to build this again, I would probably use the version of the case without the fan and save a couple dollars.
+
 ** System Setup
 
-Note: These instructions are for the Bullseye based Raspberry Pi OS relased in November of 2021!  
+First the Raspberry Pi must be configured -- the OS installed & configured.  The best place to start with that is probably the
+[[https://www.raspberrypi.com/documentation/computers/getting-started.html][official "getting started" documentation]].
+
+The instructions below describe the next step of installing and configuring the camera related software.  Note the following instructions are for the Debian
+Trixie (version 13) based Raspberry Pi OS released in October of 2025.
 
 *** Minimal Configuration
 :PROPERTIES:
 :CUSTOM_ID: rpi-camera-min-soft-config
 :END:
 
-The system setup steps I used for my camera will not work for others because I made use of several aspects of my personal home directory configuration others
-will not have.  What follows are simplified configuration steps I *believe* will for for most people out of the box.  The only tricky bit is Fiji because it
-is such a dynamic project, things change.
+The following steps should work for most people out of the box.  The only tricky bit is Fiji because it is such a dynamic project, and things change over
+time.
 
 #+begin_src sh
-#### Refresh packages and update everything
-sudo apt-get update
-sudo apt-get upgrade
-sudo reboot
-#### Camera packages
-sudo apt install -y libcamera-apps
-sudo apt install -y libcamera-dev libepoxy-dev libjpeg-dev libtiff5-dev
-#### Install my favorite  packages
-sudo apt install -y emacs gnuplot maxima sbcl telnet zsh tmux gitk xterm imagemagick nomacs gimp ruby exiv2 git openssl
-#### Install & Setup java
-sudo apt install -y openjdk-8-jdk
-#### Download Fiji software & launcher
+#### Install camera packages
+sudo apt install -y libcamera-apps libcamera-dev rpicam-apps
+#### Make sure we are in our home direcotory!
 cd ~
-test -e fiji-nojre.zip || wget 'https://downloads.imagej.net/fiji/latest/fiji-nojre.zip' 
-test -e ImageJ.sh || wget 'https://github.com/imagej/imagej2/raw/master/bin/ImageJ.sh'
+#### Download Fiji software
+test -e fiji-latest-linux-arm64-jdk.zip || wget 'https://downloads.imagej.net/fiji/latest/fiji-latest-linux-arm64-jdk.zip'
 #### Unpack Fiji
-unzip fiji-nojre.zip
-#### Put in place ImageJ.sh script (hardwire the install directory)
-sed 's/^DIRECTORY=.*/DIRECTORY=~\/Fiji.app/' ImageJ.sh > ~/Fiji.app/ImageJ.sh
-chmod a+rx ~/Fiji.app/ImageJ.sh
-#### Workaround for a bug in current Fiji
-mv ~/Fiji.app/jars/FilamentDetector-1.0.0.jar ~/Fiji.app/jars/FilamentDetector-1.0.0.bad
-#### Link ImageJ.sh into /usr/bin/ as ImageJ
-sudo ln -s ~/Fiji.app/ImageJ.sh /usr/bin/ImageJ
-#### Run Fiji and update *EVERYTHING*
-/usr/bin/ImageJ
-#### Clone the git repos
-cd ~
-git clone 'https://github.com/richmit/microscope.git'
-git clone 'https://github.com/richmit/imagej.git'
-#### Link piSnap to /bin/
-sudo ln -s ~/microscope/piSnap.sh /usr/bin/piSnap
-chmod a+rx /usr/bin/piSnap
-### Link the RPI_tools into Fiji
-ln -s ~/imagej/PhilaJ-and-RPI_Tools/RPI_tools.ijm ~/Fiji.app/macros/toolsets/RPI_tools.ijm
+unzip fiji-latest-linux-arm64-jdk.zip
+#### If necessary, sync GIT repos from github.
+if [ ! -e ~/world/my_prog/imagej/PhilaJ-and-RPI_Tools/ ] ; then
+  git clone 'https://github.com/richmit/microscope.git'
+  git clone 'https://github.com/richmit/imagej.git'
+fi
+#### Link the RPI_tools & optionally PhilaJ.ijm into Fiji
+rm -f ~/Fiji/macros/toolsets/RPI_tools.ijm ~/Fiji/macros/toolsets/PhilaJ.ijm
+if [ -e ~/world/my_prog/imagej/PhilaJ-and-RPI_Tools/ ] ; then
+  ln -s ~/world/my_prog/imagej/PhilaJ-and-RPI_Tools/RPI_tools.ijm ~/Fiji/macros/toolsets/RPI_tools.ijm
+  ln -s ~/world/my_prog/imagej/PhilaJ-and-RPI_Tools/PhilaJ.ijm    ~/Fiji/macros/toolsets/PhilaJ.ijm
+else
+   ln -s ~/imagej/PhilaJ-and-RPI_Tools/RPI_tools.ijm ~/Fiji.app/macros/toolsets/RPI_tools.ijm
+   #### If you are a postage stamp collector, then you may want to also install PhilaJ
+   #ln -s ~/imagej/PhilaJ-and-RPI_Tools/PhilaJ.ijm    ~/Fiji/macros/toolsets/PhilaJ.ijm
+fi
+#### Run Fiji and update
+~/Fiji/fiji
 #+end_src
 
 *** My Configuration
@@ -877,40 +980,23 @@ ln -s ~/imagej/PhilaJ-and-RPI_Tools/RPI_tools.ijm ~/Fiji.app/macros/toolsets/RPI
 :CUSTOM_ID: rpi-camera-my-soft-config
 :END:
 
-Most Unix/Linux users have pretty strong opinions on how to setup a personal working environment.  Emacs vs VI anyone?  This section documents my personal
-configuration and is pretty specific to my operating environment.  Some differences from the "[[#rpi-camera-min-soft-config][Minimal Configuration]]" section
-above:
+Most Unix/Linux users have pretty strong opinions on how to setup a personal working environment.  This section documents my personal configuration.  I
+preform these steps *before* I do the stuff in the section [[#rpi-camera-min-soft-config][Minimal Configuration]].
 
-  - Makes use of scripts and data found in my home directory
-  - Uses my environment setup scripts to put piSnap.sh in the right place and link it.
-  - ~/bin is where the binaries go
-  - I use my preferred login name for the main account, and remove the '=pi=' user from the system
+  - I have a bunch of stuff in my home directory I sync (via [[#rpi-camera-my-soft-sync][rsync]]) from my primary workstation.
+  - I like to have =ruby=, =perl=, & =sbck= in =/usr/local/bin/= so scripts will work that refrnece those locations.
+  - My dot files and =~/bin= are automatically configured via =SelectSetup.rb= & =SetupBin.rb=.
+  - My preferred user name is '=richmit='.
+  - My preferred shell is '=zsh='.
   - Quite a bit more apt installed software (Emacs, sbcl, maxima, gnuplot, paraview, etc...)
-  - I install the free42 calculator along with some [[https://richmit.github.io/hp42/][software on the calculator]] itself.
-  - My primary system for photography and image analysis is a Windows system
-    - This system has a nice, color corrected 4K monitor, and a couple scanners attached
-    - Some of the software I use is proprietary and only runs on Windows
-    - With regard to free software, I run mostly the same stack on Windows (Fiji, GIMP, Imagemagick, Emacs, etc...) in MSYS2
 
 **** System Setup
 
 #+begin_src sh
-#### Refresh packages and update everything
-sudo apt-get update
-sudo apt-get upgrade
-#### DO: Turn off auto login for pi user
-#### DO: Turn on SSH & VNC
-sudo reboot
-#### Camera packages
-sudo apt install -y libcamera-apps
-sudo apt install -y libcamera-dev libepoxy-dev libjpeg-dev libtiff5-dev
-sudo apt install -y qtbase5-dev libqt5core5a libqt5gui5 libqt5widgets5 qtbase5-dev libqt5core5a libqt5gui5 libqt5widgets5
-sudo apt install -y python3-pip libboost-dev libgnutls28-dev openssl meson libglib2.0-dev libgstreamer-plugins-base1.0-dev
+#### DO: Setup ssh (put pi-cam public key in .ssh directory)
 #### Install my favorite  packages
-sudo apt install -y emacs gnuplot maxima sbcl telnet zsh tmux gitk xterm imagemagick nomacs gimp ruby exiv2
-#### Install & Setup java
-sudo apt install -y openjdk-8-jdk
-#### Make local links
+sudo apt install -y emacs gnuplot maxima sbcl telnet zsh tmux gitk xterm imagemagick nomacs gimp ruby exiv2 git openssl
+#### Make /usr/local links
 for f in ruby perl sbcl; do
   if [ -e /usr/bin/$f ]; then
     sudo ln -s /usr/bin/$f /usr/local/bin/$f
@@ -918,116 +1004,59 @@ for f in ruby perl sbcl; do
     echo Missing: /usr/bin/$f
   fi
 done
-#### Create my account
-sudo addgroup richmit
-sudo adduser --gid 1001 richmit ## use GID from previous command
-#### Add me to all the groups the pi user is in -- or at least users that start with pi ;)
-sudo usermod -aG `grep '[:,]pi' /etc/group | cut -d: -f3 | tr '[:space:]' , | sed 's/,$//'` richmit
 #### Change my shell
 sudo usermod -s /usr/bin/zsh richmit
 #### Change root's password
 sudo passwd root
-#### Fix the caps lock key
-sudo sh -c 'sed "s/^XKBOPTIONS=.*/XKBOPTIONS=\"ctrl:nocaps\"/" < /etc/default/keyboard > /etc/default/keyboard.new'
-sudo chmod a+r /etc/default/keyboard /etc/default/keyboard.new
-if diff -q /etc/default/keyboard /etc/default/keyboard.new; then sudo rm /etc/default/keyboard.new; else sudo mv /etc/default/keyboard /etc/default/keyboard.bak_`date +%s`; sudo mv /etc/default/keyboard.new /etc/default/keyboard; fi
-#### DO: Add my account to sudo
-#### Login with my new account
-sudo su - richmit
 #### Setup directories & links in $HOME
 cd ~
-mkdir -p ~/bin
-mkdir -p ~/tmp/tmux/sockets
-mkdir -p ~/Pictures/pi-cam
-mkdir -p ~/synced/world/pi-data/
-mkdir -p ~/synced/world/dotfiles/
-mkdir -p ~/synced/world/dotfilesSecure/
-mkdir -p ~/synced/world/stuff/homeNetwork/
-mkdir -p ~/synced/world/stuff/my_ref/
-mkdir -p ~/synced/world/stuff/notes/
-mkdir -p ~/synced/world/my_prog/learn/ex-ruby/
-mkdir -p ~/synced/world/my_prog/lispStuff/lispy/
-mkdir -p ~/synced/world/my_prog/MJRdebianPakageTools/
-mkdir -p ~/synced/world/my_prog/tmuxStuff/
-mkdir -p ~/synced/world/my_prog/UNIXutils/
-mkdir -p ~/synced/world/my_prog/utils/
-mkdir -p ~/synced/world/my_prog/microscope
-mkdir -p ~/synced/world/my_prog/ImageJ
-mkdir -p ~/synced/world/my_prog/mpms
-mkdir -p ~/synced/world/my_prog/dir-inventory/
-mkdir -p ~/synced/core/
-mkdir -p ~/synced/Doc2/gadgets/leica_microscopes/
+for d in ~/bin ~/tmp/tmux/sockets ~/Pictures/pi-cam ~/synced/core/ ~/synced/Doc2/gadgets/leica_microscopes/; do
+  mkdir -p $d
+done
+for d in pi-data/ dotfiles/ dotfilesSecure/ stuff/homeNetwork/ stuff/notes/ my_prog/learn/ex-ruby/              \
+         my_prog/microscope/ my_prog/debianPackageTools/ my_prog/tmuxStuff/ my_prog/UNIXutils/ my_prog/utils/ \
+         my_prog/ImageJ my_prog/mpms my_prog/dir-inventory/ stuff/my_ref/ my_prog/lispStuff/lispy/;             do
+  mkdir -p ~/synced/world/$d
+done
+#### Make links to synced dirs
 ln -s ~/synced/world ~/world
 ln -s ~/synced/core ~/core
 #### DO: Sync data from laptop via rsync
 #### Setup dotfiles & ~/bin
 ./world/my_prog/UNIXutils/SelectSetup.rb --loc=HOME; ./world/my_prog/UNIXutils/SetupBin.rb
 #### DO: Reboot
-#### DO: Login as myself
-#### Delete pi user
-sudo userdel -r pi
-#### DO: Enable automatic login
-#### DO: Change hostname to pi-cam
-#### DO: Reboot
-#### Download Fiji software & launcher
-cd ~
-test -e fiji-nojre.zip || wget 'https://downloads.imagej.net/fiji/latest/fiji-nojre.zip' 
-test -e ImageJ.sh || wget 'https://github.com/imagej/imagej2/raw/master/bin/ImageJ.sh'
-#### Unpack Fiji
-unzip fiji-nojre.zip
-#### Put in place ImageJ.sh script (hardwire the install directory)
-sed 's/^DIRECTORY=.*/DIRECTORY=~\/Fiji.app/' ImageJ.sh > ~/Fiji.app/ImageJ.sh
-chmod a+rx ~/Fiji.app/ImageJ.sh
-#### Workaround for a bug in current Fiji
-mv ~/Fiji.app/jars/FilamentDetector-1.0.0.jar ~/Fiji.app/jars/FilamentDetector-1.0.0.bad
-#### Run Fiji and update
-~/Fiji.app/ImageJ.sh
-### Link the RPI_tools into Fiji
-ln -s ~/world/my_prog/imagej/PhilaJ-and-RPI_Tools/RPI_tools.ijm ~/Fiji.app/macros/toolsets/RPI_tools.ijm
-### Link the PhilaJ into Fiji
-ln -s ~/world/my_prog/imagej/PhilaJ-and-RPI_Tools/PhilaJ.ijm ~/Fiji.app/macros/toolsets/PhilaJ.ijm
-#### Setup dotfiles & ~/bin -- this time to put ImageJ.sh & ImageJ into ~/bin
-./world/my_prog/UNIXutils/SelectSetup.rb --loc=HOME; ./world/my_prog/UNIXutils/SetupBin.rb
-#### DO: Add ImageJ.sh to launch menu -- icon in ~/core/icons
-#### Install free42 calculator
-cd ~
-rm -rf ~/free42
-git clone 'https://github.com/thomasokken/free42.git'
-cd free42/gtk
-make BCD_MATH=1 AUDIO_ALSA=1
-sudo cp free42dec /usr/local/bin/free42-3.0.6
-sudo rm -f /usr/local/bin/free42
-sudo ln -s /usr/local/bin/free42-3.0.6 /usr/local/bin/free42
-#### DO: Add free42 to launch menu -- icon in ~/core/icons
-#### DO: Add piSleep to launch menu -- icon in ~/core/icons
-#### DO: Logout
-#### DO: Login
 #+end_src
 
 **** System Sync
+:PROPERTIES:
+:CUSTOM_ID: rpi-camera-my-soft-sync
+:END:
 
-I use =rsync= to keep data in sync between my camera and primary workstation.
+I frequently sync my primary workstation with the =pi-cam=. The sync is bidirectional pulling data from the RPI (captured images & data) to my workstation,
+and to the RPI (scripts & config).  I sync over the network using =rsync= via =ssh=. The commands below are executed on my primary workstation.  
 
 #+begin_src sh
-date; echo back-dat-sync;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2                  --rsh='ssh' pi-cam.home.mitchr.me:synced/pi-data/                              /c/Users/richmit/Documents/world/pi-cam/;
-date; echo back-pic-sync;        rsync -rlt --log-format=%f                            --modify-window=2                  --rsh='ssh' pi-cam.home.mitchr.me:Pictures/pi-cam/                             /c/Users/richmit/Pictures/pi-cam/;
-date; echo microscope-code;      rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/microscope/               pi-cam.home.mitchr.me:synced/world/my_prog/microscope/;
-date; echo imagej-code;          rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/imagej/                   pi-cam.home.mitchr.me:synced/world/my_prog/imagej/;
-date; echo dotfiles;             rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/dotfiles/                         pi-cam.home.mitchr.me:synced/world/dotfiles/;
-date; echo dotfilesSecure;       rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/dotfilesSecure/                   pi-cam.home.mitchr.me:synced/world/dotfilesSecure/;
-date; echo homeNetwork;          rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/stuff/homeNetwork/                pi-cam.home.mitchr.me:synced/world/stuff/homeNetwork/;
-date; echo my_ref;               rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/stuff/my_ref/                     pi-cam.home.mitchr.me:synced/world/stuff/my_ref/;
-date; echo notes;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/stuff/notes/                      pi-cam.home.mitchr.me:synced/world/stuff/notes/;
-date; echo mpms;                 rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/mpms/                     pi-cam.home.mitchr.me:synced/world/my_prog/mpms/;
-date; echo dir-inventory;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/dir-inventory/            pi-cam.home.mitchr.me:synced/world/my_prog/dir-inventory/;
-date; echo ruby-examples;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/learn/ex-ruby/            pi-cam.home.mitchr.me:synced/world/my_prog/learn/ex-ruby/;
-date; echo lispy;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/lispStuff/lispy/          pi-cam.home.mitchr.me:synced/world/my_prog/lispStuff/lispy/;
-date; echo MJRdebianPakageTools; rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/MJRdebianPakageTools/     pi-cam.home.mitchr.me:synced/world/my_prog/MJRdebianPakageTools/;
-date; echo tmuxHelper;           rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/tmuxHelper/               pi-cam.home.mitchr.me:synced/world/my_prog/tmuxHelper/;
-date; echo UNIXutils;            rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/UNIXutils/                pi-cam.home.mitchr.me:synced/world/my_prog/UNIXutils/;
-date; echo utils;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/world/my_prog/utils/                    pi-cam.home.mitchr.me:synced/world/my_prog/utils/;
-date; echo core;                 rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/core/                                   pi-cam.home.mitchr.me:synced/core/;
-date; echo leicaS8APO-docs;      rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/Documents/reading/Doc2/gadgets/leica_microscopes/ pi-cam.home.mitchr.me:synced/Doc2/leica_microscopes/;
+date; echo back-dat-sync;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2                  --rsh='ssh' pi-cam:synced/pi-data/                                       /c/Users/richmit/Documents/world/pi-cam/;
+date; echo back-pic-sync;        rsync -rlt --log-format=%f                            --modify-window=2                  --rsh='ssh' pi-cam:Pictures/pi-cam/                                      /c/Users/richmit/Pictures/pi-cam/;
+date; echo microscope-code;      rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/MJR/world/my_prog/microscope/               pi-cam:synced/world/my_prog/microscope/;
+date; echo imagej-code;          rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/MJR/world/my_prog/imagej/                   pi-cam:synced/world/my_prog/imagej/;
+date; echo dotfiles;             rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/MJR/world/dotfiles/                         pi-cam:synced/world/dotfiles/;
+date; echo dotfilesSecure;       rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/MJR/world/dotfilesSecure/                   pi-cam:synced/world/dotfilesSecure/;
+date; echo homeNetwork;          rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/MJR/world/stuff/homeNetwork/                pi-cam:synced/world/stuff/homeNetwork/;
+date; echo my_ref;               rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/MJR/world/stuff/my_ref/                     pi-cam:synced/world/stuff/my_ref/;
+date; echo notes;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/MJR/world/stuff/notes/                      pi-cam:synced/world/stuff/notes/;
+date; echo mpms;                 rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/MJR/world/my_prog/mpms/                     pi-cam:synced/world/my_prog/mpms/;
+date; echo mpms;                 rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/MJR/world/my_prog/verGo/                    pi-cam:synced/world/my_prog/verGo/;
+date; echo dir-inventory;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/MJR/world/my_prog/dir-inventory/            pi-cam:synced/world/my_prog/dir-inventory/;
+date; echo ruby-examples;        rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/MJR/world/my_prog/learn/ex-ruby/            pi-cam:synced/world/my_prog/learn/ex-ruby/;
+date; echo lispy;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/MJR/world/my_prog/lispStuff/lispy/          pi-cam:synced/world/my_prog/lispStuff/lispy/;
+date; echo line-sets;            rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/MJR/world/my_prog/lineSets/                 pi-cam:synced/world/my_prog/lineSets/;
+date; echo debianPackageTools;   rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/MJR/world/my_prog/debianPackageTools/       pi-cam:synced/world/my_prog/debianPackageTools/;
+date; echo tmuxHelper;           rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/MJR/world/my_prog/tmuxHelper/               pi-cam:synced/world/my_prog/tmuxHelper/;
+date; echo UNIXutils;            rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/MJR/world/my_prog/UNIXutils/                pi-cam:synced/world/my_prog/UNIXutils/;
+date; echo utils;                rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/MJR/world/my_prog/utils/                    pi-cam:synced/world/my_prog/utils/;
+date; echo core;                 rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/MJR/core/                                   pi-cam:synced/core/;
+date; echo leicaS8APO-docs;      rsync -rlt --log-format=%f --delete --delete-excluded --modify-window=2 --exclude '.git' --rsh='ssh' /c/Users/richmit/MJR/reading/Doc2/gadgets/leica_microscopes/ pi-cam:synced/Doc2/leica_microscopes/;
 date
 #+end_src
 
@@ -1038,87 +1067,23 @@ date
 
 My goals:
 
-  - ImageJ/Fiji
-    - Capture images directly from ImageJ/Fiji so I can immediately preform an image analysis
-    - Setting image scale needs to be easy because measuring lengths is my #1 application
-    - Identical UI between Windows and RPI
-    - The software should be fully integrated into PhilaJ (an extensive set of ImageJ/Fiji macros for philatelic image analysis)
-    - The microscope functionality should be available without the bulk of the PhilaJ user interface for people not interested in philately.
-  - CLI
-    - Needs to integrate will with ImageJ/Fiji so that it is easy to load them in ImageJ/Fiji later
-    - Completely indipendant of the ImageJ/Fiji software
-    - As simple as possible with minimal external requirements -- just the RPI CLI image tools and basic shell stuff
-  - General Requirements
-    - Optionally show a preview before capture
-    - See a live view from the camera & control the size of the preview
-    - Capture sequences of related images, and name so they are grouped together
-    - Put captured images in a known directory with a standard naming convention so that it is simple to orginize and sync data between camear and computers
-
-*** RPI Image Capture Script
-:PROPERTIES:
-:CUSTOM_ID: rpi-pisnap
-:END:
-
-This script is pretty simple.  It provides a way to capture one or more images outside of ImageJ/Fiji, but in a way compatible with the ImageJ/Fiji macros
-provided below.  I almost always have ImageJ/Fiji running on my camera, so I don't end us uping this cript much; however, it is still nice to have around.
-
-#+begin_src text
-Take a snapshot using the Raspberry Pi HQ Camera and save it in a standard way
-
-Use: piSnap.sh [options]
-  Options:
-    -p        Preview!  No images are captured. Other arguments are ignored
-    -k        Show a preview, and capture when [enter] is pressed.
-              Without -k an image is immediatly captured with no preview
-    -s        Show image after capture with nomacs
-    -a ANNO   Annotation: Used to identify the capture.
-              Adds a "-ANNOTATION" component to the captured filename.
-              See the "File Names" section below
-    -g GROUP  Group name -- used for grouping similar captures.
-              Adds a "_GROUP" component to the captured filename
-              See the "File Names" section below
-    -v        Verbose mode
-    -f        Fake Capture Mode that uses convert instead of libcamera-still
-              Used for debugging.  Most useful when combined with -v.
-    -b BIN    Full path to the libcamera-still binary
-              Default: /usr/bin/libcamera-still
-    -d DIR    Directory to store captured images.
-              Default: $HOME/Pictures/pi-cam
-              Note: The related ImageJ/Fiji macro expects the default value!
-    -e ENC    File format: jpg, bmp, gif, png, rgb
-              Default: jpg
-  File Names
-    Image names are like: YYYYMMDDHHMMSS_GROUP-ANNOTATION.ENC
-                          |              |     |
-                          |              |     File Annoation
-                          |              Group Name
-                          date/time stamp
-      - The "_GROUP" component of the name will not be pressent
-        if the -g option was not provided.
-      - The "-ANNOTATION" component of the name will not be pressent
-        if the -a option was not provided.
-      - The -a and -g arguments are translated automatically into
-        something suitable:
-          - Non-alphanumeric characters are converted to underscores.
-          - Leading underscores and dashes are removed
-          - The -g argument has all dashes removed
-#+end_src
-
-Part of the setup instructions above install this script.  
-
-The script can be found on github: https://github.com/richmit/microscope
-
-*** ImageJ/Fiji Toolset/Macros 
-:PROPERTIES:
-:CUSTOM_ID: rpi-imagej
-:END:
+ - Capture images directly from ImageJ/Fiji so I can immediately preform an image analysis
+   - Setting image scale needs to be easy because measuring lengths is my #1 application
+   - Identical UI between Windows and RPI
+   - The software should be fully integrated into PhilaJ (an extensive set of ImageJ/Fiji macros for philatelic image analysis)
+   - The microscope functionality should be available without the bulk of the PhilaJ user interface for people not interested in philately.
+   - Optionally show a preview before capture
+   - See a live view from the camera & control the size of the preview
+   - Capture sequences of related images, and name so they are grouped together
+   - Put captured images in a known directory with a standard naming convention so that it is simple to orginize and sync data between camear and computers
 
 The ImageJ/Fiji toolset, called "=RPI_tools=", is actually a direct copy my ="PhilaJ"= software with an alternative, stripped down user interface that only
-exposes the microscope functionality.  That is to say, the only difference between "=RPI_tools=" and "=PhilaJ=" is the ImageJ/Fiji toolset code the exposes the
-functionality to the end user.  Full documentation may be found here:
+exposes the microscope functionality.  That is to say, the only difference between "=RPI_tools=" and "=PhilaJ=" is the ImageJ/Fiji toolset code the exposes
+the functionality to the end user.  Full documentation may be found here:
 
 https://richmit.github.io/imagej/PhilaJ.html#rpi-tools
 
 The setup instructions above install this package into Fiji.  You can find the code on github:
 
 https://github.com/richmit/imagej
+
